@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CarryPass is the free offline password manager for those who need extra privacy, with 256-bit AES encryption and time-based one time password as a second factor of authentication." />
+
+  <title>CarryPass</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="/static/css/style_new.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="/" class="logo" style="color: #21004b;">CarryPass</a>
+
+      <nav class="navbar container" data-navbar>
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#features" class="navbar-link" data-nav-link>Features</a>
+          </li>
+
+          <li>
+            <a href="#security" class="navbar-link" data-nav-link>Cybersecurity</a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link" data-nav-link>Application</a>
+          </li>
+
+          <li>
+            <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
+          </li>
+
+          <li>
+            <a href="#download" class="btn btn-primary">Download</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+        <ion-icon name="menu-outline" class="open"></ion-icon>
+        <ion-icon name="close-outline" class="close"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" id="home" aria-label="hero">
+        <div class="container">
+
+          <div class="hero-content">
+
+
+            <h1 class="h2 hero-title">The portable password manager for the privacy conscious</h1>
+
+            <p class="hero-text">
+                Set it up once and carry your login credentials across devices.
+            </p>
+
+            <a href="#features" class="btn btn-primary">Learn more</a>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="/static/images/protected.svg" width="720" height="673" alt="hero banner" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service" id="features" aria-label="service">
+        <div class="container">
+
+          <h2 class="h2 section-title">Main features</h2>
+
+          <p class="section-text">
+
+          </p>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #13c4a1">
+                  <ion-icon src="/static/images/shield-checkmark.svg"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#features" class="card-title">Security</a>
+                </h3>
+
+                <p class="card-text">
+                  CarryPass employs enterprise-grade encryption (256-bit AES) on usernames, email addresses, passwords and private notes. 
+                  The master password is further protected with a key stretching algorithm (PBKDF2_HMAC) with at least 300.000 iterations.
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #6610f2">
+                  <ion-icon src="/static/images/eye-off.svg"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#features" class="card-title">Privacy</a>
+                </h3>
+
+                <p class="card-text">
+                  CarryPass keeps your data private. Usernames, passwords and notes are concealed and stored on your own portable device, so you can retain control over the information. 
+                  Not only does another party <i>not know</i>, but also <i>not have</i> the information you value.
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #fc3549">
+                  <ion-icon src="/static/images/help-circle.svg"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#features" class="card-title">Anonimity</a>
+                </h3>
+
+                <p id="secondline" class="card-text">
+                  Encrypted usernames, email addresses and notes can keep you non-identifiable even in case 
+                  some of the stored information is revealed, such as the login URLs of the websites. Anonimity online is, of course, a completely different matter.
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #ffb700">
+                  <ion-icon name="phone-portrait"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#secondline" class="card-title">Two factor authentication</a>
+                </h3>
+
+                <p class="card-text">
+                  Time-based one time password, as a second factor of authentication, 
+                  together with your master password can further protect the information stored by the application.
+
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #00d280">
+                  <ion-icon src="/static/images/timer.svg"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#secondline" class="card-title">Trust scaling</a>
+                </h3>
+
+                <p class="card-text">
+                  Depending on how much you trust each device where you use CarryPass, you can control idle timeout of the application, 
+                  and require time-based one time password for login.
+
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon" style="background-color: #ff612f">
+                  <ion-icon src="/static/images/play-circle.svg"></ion-icon>
+                </div>
+
+                <h3 class="h3">
+                  <a href="#secondline" class="card-title">Login automation</a>
+                </h3>
+
+                <p class="card-text">
+                  Handles the login process for both desktop and web applications. 
+                  No additional browser extension or plugin is required 
+                  as CarryPass manages the login process on the screen.
+                </p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PROJECT
+      -->
+
+      <section class="section project" id="security" aria-label="project">
+        <div class="container">
+
+          <h2 class="h2 section-title">Cybersecurity</h2>
+
+          <p class="section-text">
+            Strong passwords are the first line of defense in cybersecurity. Also, there are many threat vectors in social engineering attacks that we can prepare against
+            to make our online activities safer and to protect our privacy.
+          </p>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/red-hat.jpg" width="510" height="700" loading="lazy"
+                    alt="Red hat hacker" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">Avoid getting hacked!</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">Learn about social engineering attacks to evade them</a>
+                  </h3>
+
+                  <a href="https://www.stationx.net/top-phishing-keywords-revealed/" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/strong.jpg" width="510" height="700" loading="lazy"
+                    alt="Building design process within teams" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">How strong is my password?</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">Check your password strength and learn about best practices</a>
+                  </h3>
+
+                  <a href="https://www.security.org/how-secure-is-my-password/" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/letters.jpg" width="510" height="700" loading="lazy"
+                    alt="How intercom brings play into their design process" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">No More Ransom</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">What to do if you have fallen victim of a ransomware attack</a>
+                  </h3>
+
+                  <a href="https://www.nomoreransom.org/en/index.html" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/bliss.jpg" width="510" height="700" loading="lazy"
+                    alt="Stuck with to-do list, I created a new app for" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">Before clicking on open</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">Check suspicious files, domains, IPs and URLs to detect malware and other breaches</a>
+                  </h3>
+
+                  <a href="https://www.virustotal.com/gui/home/upload" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/pwned.jpg" width="510" height="700" loading="lazy"
+                    alt="Examples of different types of sprints" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">Have you been pwned?</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">Check if your passwords have previously been exposed in data breaches</a>
+                  </h3>
+
+                  <a href="https://haveibeenpwned.com/Passwords" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card">
+
+                <figure class="card-banner img-holder" style="--width: 510; --height: 700;">
+                  <img src="/static/images/einstein.jpg" width="510" height="700" loading="lazy"
+                    alt="Redesigning the New York times app" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <p class="card-subtitle">How to stay safe</p>
+
+                  <h3 class="h3">
+                    <a class="card-title">It's not rocket science. Read the advice for regular users</a>
+                  </h3>
+
+                  <a href="https://www.nomoreransom.org/en/prevention-advice-for-users.html" target="_blank" class="btn btn-primary">Visit website</a>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+
+          <div class="about-banner img-holder" style="--width: 720; --height: 960;">
+            <img src="/static/images/theapp.jpg" width="720" height="960" loading="lazy" alt="about banner"
+              class="img-cover">
+
+            <a class="play-btn" aria-label="Play video" href="https://www.dailymotion.com/video/x8dgjq0?playlist=x7kt5t" target="_blank">
+              <ion-icon name="play" aria-hidden="true"></ion-icon>
+            </a>
+          </div>
+
+          <div class="about-content">
+
+            <h2 class="h2">CarryPass manages your strong passwords</h2>
+
+            <p class="section-text">
+              CarryPass is the free offline password manager for those who need extra privacy, with 256-bit AES encryption and time-based one time password as a second factor of authentication. 
+              It is a small, lightweight password manager written fully in Python, using the Kivy framework. This offline password manager only stores your data on your device. 
+              The pwned password check needs internet connection, but plaintext passwords never leave your computer. See <a class="copyright-link" target="_blank" href="https://pypi.org/project/pwnedpasswords/">pwnedpassword</a> for details.
+              Since the usernames, email addresses, passwords and private notes are stored on your device, you have total control over their security.
+              Whether the security, privacy and anonimity features of the application provide sufficient protection depends on your security threat landscape.
+              See <a href="https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html" class="copyright-link" target="_blank">Pycryptodome - AES</a> encryption, and the <a href="https://docs.python.org/3/library/hashlib.html#hashlib.pbkdf2_hmac" class="copyright-link" target="_blank">pbkdf2_hmac</a> algorithm for details. 
+            </p>
+
+            <h3 class="h3">List of features</h3>
+
+            <ul class="about-list">
+
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                <p class="section-text">
+                  Portability across desktop devices
+                </p>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                <p class="section-text">
+                  Login credential management: strong password generation and encryption, pwned password detection
+                </p>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                <p class="section-text">
+                  Trust scaling across devices: idle timeout control, time-based one time password
+                </p>
+              </li>
+
+              <li class="about-item">
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                <p class="section-text">
+                  Convenience features: login automation and private notes
+                </p>
+              </li>
+
+            </ul>
+
+            <h3 class="h3">How to install</h3>
+
+            <p class="section-text">
+              Download the compressed folder and extract its contents to a USB storage device. 
+              Launch the CarryPass.exe application and you are all set!
+              Watch the demo videos about how to set it up and all the features on <a href="https://www.dailymotion.com/video/x8dgjq0?playlist=x7kt5t" class="copyright-link" target="_blank">Dailymotion</a>
+            </p>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- 
+        - #CTA
+      -->
+
+      <section class="section cta"  id="download" aria-label="cta" style="background-image: url('/static/images/matrix.jpg')">
+        <div class="container">
+
+          <p class="cta-subtitle">The download is compatible with 64-bit Windows 10</p>
+
+
+          <h2 class="h2 section-title">Visit the project's GitHub page to check out the source or download the app!</h2>
+
+          <a href="https://github.com/racz-zoltan/carrypass/releases/tag/v1.0.1" target="_blank" class="btn btn-secondary">Visit GitHub page</a>
+
+          <h2 class="h2 section-title"></h2>
+
+
+
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #BLOG
+      -->
+
+      <section class="section blog" id="blog" aria-label="blog">
+        <div class="container">
+          <h2 class="section-text">If you like the privacy CarryPass gives you, </h2>
+          <h2 class="section-text"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="zoltanracz" data-color="#5F7FFF" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script></h2>
+          <h2 class="section-text"></h2>
+
+
+        </div>
+      </section>
+
+
+      <section class="section blog" id="blog" aria-label="blog">
+        <div class="container">
+
+          <h2 class="h2 section-title"></h2>
+          <h2 class="h2 section-title"></h2>
+
+        </div>
+      </section>
+
+
+
+      <!-- 
+        - #CONTACT
+      -->
+
+    </article>
+  </main>
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" style="margin-bottom: 100px;">
+    <div class="container" id="contact">
+
+      <p class="copyright">
+        &copy; 2022 Zoltán Rácz <a id="email" class="copyright-link" href="javascript:displayEmail();">[Display email address]</a>
+      </p>
+
+    </div>
+  </footer>
+
+  <script>
+      function displayEmail() {
+          alert("Please leave questions and comments about the application under the demo videos on Dailymotion if possible.");
+          document.getElementById('email').innerText = "zoltan@carrypass.net";
+          document.getElementById('email').href = "mailto:zoltan@carrypass.net";
+      }
+  </script>
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" aria-label="back to top" data-back-top-btn class="back-top-btn">
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="/static/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
