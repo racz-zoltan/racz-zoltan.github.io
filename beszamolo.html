@@ -23,6 +23,12 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <style>
+        .invisible {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -52,15 +58,15 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr id="divider2" class="sidebar-divider invisible">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div id="menuHeading" class="sidebar-heading invisible">
                 Beszámolás
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li id="menuReszItem" class="nav-item invisible">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-fw"></i>
@@ -76,7 +82,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li id="menuZaroItem" class="nav-item invisible">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-fw"></i>
@@ -93,22 +99,22 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr id="divider1" class="sidebar-divider invisible">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div id="summaryHeading" class="sidebar-heading invisible">
                 Összesítés
             </div>
 
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li id="summaryItem" class="nav-item invisible">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Minden mobilitás</span></a>
+                    <span>Beszámoló összesítés</span></a>
             </li>
 
-            <li class="nav-item">
+            <li id="finaliseItem" class="nav-item invisible">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Beszámoló véglegesítése</span></a>
@@ -420,11 +426,25 @@
             var tipus = document.getElementById("actualtype");
             var menumain = document.getElementById("collapseTwo");
             var menusub = document.getElementById("collapseItem");
+            var menuresz = document.getElementById("menuReszItem");
+            var menuheading = document.getElementById("menuHeading");
+            var dividerone = document.getElementById("divider1");
+            var dividertwo = document.getElementById("divider2");
+            var summaryheading = document.getElementById("summaryHeading");
+            var summaryitem = document.getElementById("summaryItem");
+            var finaliseitem = document.getElementById("finaliseItem");
             btnresz.setAttribute("class", "btn btn-primary btn-icon-split disabled");
             btnresz.innerHTML = "Időközi beszámoló igénylés folyamatban";
             btnzaro.setAttribute("class", "btn btn-secondary btn-icon-split disabled");
             menumain.setAttribute("class", "collapse show");
             menusub.setAttribute("class", "collapse-item active");
+            menuresz.setAttribute("class", "nav-item");
+            menuheading.setAttribute("class", "sidebar-heading");
+            dividerone.setAttribute("class", "sidebar-divider");
+            dividertwo.setAttribute("class", "sidebar-divider");
+            summaryheading.setAttribute("class", "sidebar-heading");
+            summaryitem.setAttribute("class", "nav-item");
+            finaliseitem.setAttribute("class", "nav-item");
             btnzaro.innerHTML = "Ez a beszámolótípus inaktív";
             tipus.innerHTML = "2023/2024-es pályázati év aktuális beszámoló típusa: <b>IDŐKÖZI BESZÁMOLÓ</b>";
         }
@@ -437,11 +457,25 @@
         var tipus = document.getElementById("actualtype");
         var menumain = document.getElementById("collapseUtilities");
         var menusub = document.getElementById("utilitiesItem");
+        var menuzaro = document.getElementById("menuZaroItem");
+        var menuheading = document.getElementById("menuHeading");
+        var dividerone = document.getElementById("divider1");
+        var dividertwo = document.getElementById("divider2");
+        var summaryheading = document.getElementById("summaryHeading");
+        var summaryitem = document.getElementById("summaryItem");
+        var finaliseitem = document.getElementById("finaliseItem");
         btnzaro.setAttribute("class", "btn btn-primary btn-icon-split disabled");
         btnzaro.innerHTML = "Záróbeszámoló igénylés folyamatban";
         btnresz.setAttribute("class", "btn btn-secondary btn-icon-split disabled");
         menumain.setAttribute("class", "collapse show");
         menusub.setAttribute("class", "collapse-item active");
+        menuzaro.setAttribute("class", "nav-item");
+        menuheading.setAttribute("class", "sidebar-heading");
+        dividerone.setAttribute("class", "sidebar-divider");
+        dividertwo.setAttribute("class", "sidebar-divider");
+        summaryheading.setAttribute("class", "sidebar-heading");
+        summaryitem.setAttribute("class", "nav-item");
+        finaliseitem.setAttribute("class", "nav-item");
         btnresz.innerHTML = "Ez a beszámolótípus inaktív";
         tipus.innerHTML = "2023/2024-es pályázati év aktuális beszámoló típusa: <b>ZÁRÓBESZÁMOLÓ</b>";
     }
