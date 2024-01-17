@@ -99,7 +99,6 @@
             </li>
 
             <!-- Divider -->
-            <hr id="divider1" class="sidebar-divider invisible">
 
             <!-- Heading -->
             <div id="summaryHeading" class="sidebar-heading invisible">
@@ -118,6 +117,24 @@
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Beszámoló véglegesítése</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-info-circle"></i>
+                    <span>Aktuális időszak korábbi beszámolói</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-trash"></i>
+                    <span>Korábbi időszakok beszámolói</span></a>
             </li>
 
             <!-- Divider -->
@@ -428,7 +445,6 @@
             var menusub = document.getElementById("collapseItem");
             var menuresz = document.getElementById("menuReszItem");
             var menuheading = document.getElementById("menuHeading");
-            var dividerone = document.getElementById("divider1");
             var dividertwo = document.getElementById("divider2");
             var summaryheading = document.getElementById("summaryHeading");
             var summaryitem = document.getElementById("summaryItem");
@@ -440,7 +456,6 @@
             menusub.setAttribute("class", "collapse-item active");
             menuresz.setAttribute("class", "nav-item");
             menuheading.setAttribute("class", "sidebar-heading");
-            dividerone.setAttribute("class", "sidebar-divider");
             dividertwo.setAttribute("class", "sidebar-divider");
             summaryheading.setAttribute("class", "sidebar-heading");
             summaryitem.setAttribute("class", "nav-item");
@@ -459,7 +474,6 @@
         var menusub = document.getElementById("utilitiesItem");
         var menuzaro = document.getElementById("menuZaroItem");
         var menuheading = document.getElementById("menuHeading");
-        var dividerone = document.getElementById("divider1");
         var dividertwo = document.getElementById("divider2");
         var summaryheading = document.getElementById("summaryHeading");
         var summaryitem = document.getElementById("summaryItem");
@@ -471,7 +485,6 @@
         menusub.setAttribute("class", "collapse-item active");
         menuzaro.setAttribute("class", "nav-item");
         menuheading.setAttribute("class", "sidebar-heading");
-        dividerone.setAttribute("class", "sidebar-divider");
         dividertwo.setAttribute("class", "sidebar-divider");
         summaryheading.setAttribute("class", "sidebar-heading");
         summaryitem.setAttribute("class", "nav-item");
