@@ -12,6 +12,7 @@
 <body>
   <div class="container">
     <h2>Key Generator</h2>
+    <div id="keyGeneratorAlertContainer" class="mt-3"></div>
     <form id="keyGeneratorForm">
       <div class="mb-3">
         <label for="webAddress" class="form-label">Website Address:</label>
@@ -35,11 +36,12 @@
       
       <button type="button" class="btn btn-primary" onclick="generateKey()">Generate Key</button>
     </form>
-    <div id="keyGeneratorAlertContainer" class="mt-3"></div>
+    
 
     <hr>
 
     <h2>Note Encryption</h2>
+    <div id="encryptionAlertContainer" class="mt-3"></div>
     <form id="encryptionForm">
       <div class="mb-3">
         <label for="plaintext" class="form-label">Text to Encrypt:</label>
@@ -64,11 +66,12 @@
       <button type="button" class="btn btn-primary" onclick="encryptText()">Encrypt</button>
       <button type="button" class="btn btn-outline-secondary" onclick="copyEncryptedText()">Copy Encrypted Text</button>
     </form>
-    <div id="encryptionAlertContainer" class="mt-3"></div>
+    
 
     <hr>
 
     <h2>Note Decryption</h2>
+    <div id="decryptionAlertContainer" class="mt-3"></div>
     <form id="decryptionForm">
       <div class="mb-3">
         <label for="encryptedText" class="form-label">Encrypted Text:</label>
@@ -93,7 +96,7 @@
       <button type="button" class="btn btn-primary" onclick="decryptText()">Decrypt</button>
       <button type="button" class="btn btn-outline-secondary" onclick="copyDecryptedText()">Copy Decrypted Text</button>
     </form>
-    <div id="decryptionAlertContainer" class="mt-3"></div>
+    
   </div>
 
   <script>
