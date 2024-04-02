@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Generator with Note Encryption and Decryption</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include CryptoJS libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Key Generator</h2>
+    <form id="keyGeneratorForm">
+      <div class="mb-3">
+        <label for="webAddress" class="form-label">Website Address:</label>
+        <input type="text" id="webAddress" name="webAddress" class="form-control" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Master Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="captcha" class="form-label">CAPTCHA:</label>
+        <div class="input-group">
+          <input type="text" id="captcha" name="captcha" class="form-control" required>
+          <button type="button" class="btn btn-outline-secondary" onclick="resetCaptcha()">Reset</button>
+        </div>
+        <!-- Generate a simple CAPTCHA image here -->
+        <canvas id="captchaCanvas" width="150" height="50"></canvas>
+      </div>
+      
+      <button type="button" class="btn btn-primary" onclick="generateKey()">Generate Key</button>
+    </form>
+    <div id="keyGeneratorAlertContainer" class="mt-3"></div>
+
+    <hr>
+
+    <h2>Note Encryption</h2>
+    <form id="encryptionForm">
+      <div class="mb-3">
+        <label for="plaintext" class="form-label">Text to Encrypt:</label>
+        <textarea id="plaintext" name="plaintext" class="form-control" rows="3" required></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="encryptionPassword" class="form-label">Encryption Password:</label>
+        <input type="password" id="encryptionPassword" name="encryptionPassword" class="form-control" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="encryptionCaptcha" class="form-label">CAPTCHA:</label>
+        <div class="input-group">
+          <input type="text" id="encryptionCaptcha" name="encryptionCaptcha" class="form-control" required>
+          <button type="button" class="btn btn-outline-secondary" onclick="resetEncryptionCaptcha()">Reset</button>
+        </div>
+        <!-- Generate a simple CAPTCHA image here -->
+        <canvas id="encryptionCaptchaCanvas" width="150" height="50"></canvas>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="copyEncryptedText()">Copy Encrypted Text</button>
+    </form>
+    <div id="encryptionAlertContainer" class="mt-3"></div>
+
+    <hr>
+
+    <h2>Note Decryption</h2>
+    <form id="decryptionForm">
+      <div class="mb-3">
+        <label for="encryptedText" class="form-label">Encrypted Text:</label>
+        <textarea id="encryptedText" name="encryptedText" class="form-control" rows="3" required></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="decryptionPassword" class="form-label">Decryption Password:</label>
+        <input type="password" id="decryptionPassword" name="decryptionPassword" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="decryptionCaptcha" class="form-label">CAPTCHA:</label>
+        <div class="input-group">
+          <input type="text" id="decryptionCaptcha" name="decryptionCaptcha" class="form-control" required>
+          <button type="button" class="btn btn-outline-secondary" onclick="resetDecryptionCaptcha()">Reset</button>
+        </div>
+        <!-- Generate a simple CAPTCHA image here -->
+        <canvas id="decryptionCaptchaCanvas" width="150" height="50"></canvas>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="copyDecryptedText()">Copy Decrypted Text</button>
+    </form>
+    <div id="decryptionAlertContainer" class="mt-3"></div>
+  </div>
+
+  <script>
+    // Function to generate a simple CAPTCHA code
+    function generateCaptcha() {
+      let captcha = '';
+      let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+      for (let i = 0; i < 6; i++) {
+        captcha += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+
+      return captcha;
+    }
+
+    function drawCaptcha(captchaText, canvasId) {
+      let canvas = document.getElementById(canvasId);
+      let ctx = canvas.getContext("2d");
+
+      // Fill background
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw text
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "#000000";
+      for (let i = 0; i < captchaText.length; i++) {
+        let x = 10 + i * 20 + Math.random() * 5;
+        let y = 30 + Math.random() * 5;
+        ctx.fillText(captchaText.charAt(i), x, y);
+      }
+    }
+
+    // Generate CAPTCHA code and draw it on canvas
+    let keyGeneratorCaptchaText = generateCaptcha();
+    drawCaptcha(keyGeneratorCaptchaText, "captchaCanvas");
+    let encryptionCaptchaText = generateCaptcha();
+    drawCaptcha(encryptionCaptchaText, "encryptionCaptchaCanvas");
+    let decryptionCaptchaText = generateCaptcha();
+    drawCaptcha(decryptionCaptchaText, "decryptionCaptchaCanvas");
+
+    function generateRandomPasswordKey(webAddress, password) {
+      // Concatenate the input string and the salt
+      let inputStr = webAddress + password;
+      let salt = "SomeSalt"; // You can use any salt value here
+
+      let combinedStr = inputStr + salt;
+
+      // Hash the combined string using PBKDF2 with SHA-256
+      let iterations = 1000;
+      let hashBytes = CryptoJS.PBKDF2(combinedStr, '', { keySize: 21, iterations: iterations, hasher: CryptoJS.algo.SHA256 });
+
+      // Convert the hashed bytes to a string of alphanumeric characters
+      let encodedString = bytesToAlphaNumericString(hashBytes);
+
+      // Ensure the key follows the required pattern
+      let key = encodedString.slice(0, 7) + '-' + encodedString.slice(7, 14) + '-' + encodedString.slice(14, 21);
+
+      return key;
+    }
+
+    // Function to convert bytes to a string of alphanumeric characters
+    function bytesToAlphaNumericString(bytes) {
+      let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < bytes.words.length * 4; i++) {
+        let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+        result += charset.charAt(byte % charset.length);
+      }
+      return result;
+    }
+
+    function generateRandomInputKey(encryptionPassword, length) {
+      // Concatenate the input string and the salt
+      let combinedStr = encryptionPassword + encryptionPassword;
+
+      // Hash the combined string using PBKDF2 with SHA-256
+      let iterations = 1000;
+      let hashBytes = CryptoJS.PBKDF2(combinedStr, '', { keySize: length/8, iterations: iterations, hasher: CryptoJS.algo.SHA256 });
+
+      // Encode the hashed bytes using base64
+      let encodedString = CryptoJS.enc.Base64.stringify(hashBytes).slice(0, length);
+
+      return encodedString;
+    }
+
+    function generateKey() {
+      let webAddress = document.getElementById("webAddress").value;
+      let password = document.getElementById("password").value;
+      let enteredCaptcha = document.getElementById("captcha").value;
+      let alertContainer = document.getElementById("keyGeneratorAlertContainer");
+
+      // Validate CAPTCHA
+      if (enteredCaptcha !== keyGeneratorCaptchaText) {
+        showAlert("CAPTCHA verification failed. Please try again.", "alert-danger", alertContainer);
+        return;
+      }
+
+      let key = generateRandomPasswordKey(webAddress, password);
+
+      // Copy key to clipboard
+      copyToClipboard(key);
+
+      showAlert("Key copied to clipboard.", "alert-success", alertContainer);
+
+      // Clear fields
+      document.getElementById("webAddress").value = "";
+      document.getElementById("password").value = "";
+      
+      // Generate a new CAPTCHA code and redraw it on canvas
+      keyGeneratorCaptchaText = generateCaptcha();
+      drawCaptcha(keyGeneratorCaptchaText, "captchaCanvas");
+
+      // Clear CAPTCHA field
+      document.getElementById("captcha").value = "";
+    }
+
+    // Function to encrypt text
+    async function encrypt(msg, key) {
+      let encrypted = '';
+      for (let i = 0; i < msg.length; i++) {
+          encrypted += String.fromCharCode(msg.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      const encodedBytes = new TextEncoder().encode(encrypted);
+      const hexEncoded = Array.from(encodedBytes).map(byte => ('0' + byte.toString(16)).slice(-2)).join('');
+      return hexEncoded;
+    }
+
+    function encryptText() {
+      let plaintext = document.getElementById("plaintext").value;
+      let encryptionPassword = document.getElementById("encryptionPassword").value;
+      let encryptionCaptcha = document.getElementById("encryptionCaptcha").value;
+      let alertContainer = document.getElementById("encryptionAlertContainer");
+
+      // Validate CAPTCHA
+      if (encryptionCaptcha !== encryptionCaptchaText) {
+        showAlert("CAPTCHA verification failed. Please try again.", "alert-danger", alertContainer);
+        return;
+      }
+
+      encrypt(plaintext, generateRandomInputKey(encryptionPassword, 1000))
+        .then(encrypted => {
+          document.getElementById("encryptedText").value = encrypted;
+          showAlert("Text encrypted successfully.", "alert-success", alertContainer);
+
+          // Clear fields
+          document.getElementById("plaintext").value = "";
+          document.getElementById("encryptionPassword").value = "";
+          document.getElementById("encryptionCaptcha").value = "";
+          resetEncryptionCaptcha();
+        })
+        .catch(error => {
+          showAlert("Encryption failed. Please try again.", "alert-danger", alertContainer);
+        });
+    }
+
+    function copyEncryptedText() {
+      let encryptedText = document.getElementById("encryptedText").value;
+      let encryptionAlertContainer = document.getElementById("encryptionAlertContainer");
+      
+      if (encryptionAlertContainer) {
+        copyToClipboard(encryptedText);
+        showAlert("Encrypted text copied to clipboard.", "alert-success", encryptionAlertContainer);
+      } else {
+        copyToClipboard(encryptedText);
+        showAlert("Encrypted text copied to clipboard.", "alert-success");
+      }
+    }
+
+    // Function to decrypt text
+    async function decrypt(cipher, key) {
+      const bytes = new Uint8Array(cipher.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+      const decodedCipher = new TextDecoder().decode(bytes);
+      let decrypted = '';
+      for (let i = 0; i < decodedCipher.length; i++) {
+          decrypted += String.fromCharCode(decodedCipher.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      return decrypted;
+    }
+
+    function decryptText() {
+      let encryptedText = document.getElementById("encryptedText").value;
+      let decryptionPassword = document.getElementById("decryptionPassword").value;
+      let decryptionCaptcha = document.getElementById("decryptionCaptcha").value;
+      let alertContainer = document.getElementById("decryptionAlertContainer");
+
+      // Validate CAPTCHA
+      if (decryptionCaptcha !== decryptionCaptchaText) {
+        showAlert("CAPTCHA verification failed. Please try again.", "alert-danger", alertContainer);
+        return;
+      }
+
+      decrypt(encryptedText, generateRandomInputKey(decryptionPassword, 1000))
+        .then(decrypted => {
+          document.getElementById("plaintext").value = decrypted;
+          showAlert("Text decrypted successfully. See the decrypted text in the Text to Encrypt field.", "alert-success", alertContainer);
+
+          // Clear fields
+          document.getElementById("encryptedText").value = "";
+          document.getElementById("decryptionPassword").value = "";
+          document.getElementById("decryptionCaptcha").value = "";
+          resetDecryptionCaptcha();
+        })
+        .catch(error => {
+          showAlert("Decryption failed. Please check your password and try again.", "alert-danger", alertContainer);
+        });
+    }
+
+    function copyDecryptedText() {
+      let plaintext = document.getElementById("plaintext").value;
+      copyToClipboard(plaintext);
+      showAlert("Decrypted text copied to clipboard.", "alert-success");
+    }
+
+    // Function to copy text to clipboard
+    function copyToClipboard(text) {
+      let input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+
+    // Function to show Bootstrap alerts
+    function showAlert(message, alertType, container = null) {
+      let alertElement = document.createElement("div");
+      alertElement.className = "alert " + alertType + " alert-dismissible fade show";
+      alertElement.role = "alert";
+      alertElement.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      `;
+      if (container) {
+        container.prepend(alertElement);
+      } else {
+        document.getElementById("alertContainer").appendChild(alertElement);
+      }
+
+      // Automatically dismiss the alert after 3 seconds
+      setTimeout(function() {
+        alertElement.remove();
+      }, 3000);
+    }
+
+    // Function to reset CAPTCHA
+    function resetCaptcha() {
+      keyGeneratorCaptchaText = generateCaptcha();
+      drawCaptcha(keyGeneratorCaptchaText, "captchaCanvas");
+      document.getElementById("captcha").value = "";
+    }
+
+    // Function to reset Encryption CAPTCHA
+    function resetEncryptionCaptcha() {
+      encryptionCaptchaText = generateCaptcha();
+      drawCaptcha(encryptionCaptchaText, "encryptionCaptchaCanvas");
+      document.getElementById("encryptionCaptcha").value = "";
+    }
+
+    // Function to reset Decryption CAPTCHA
+    function resetDecryptionCaptcha() {
+      decryptionCaptchaText = generateCaptcha();
+      drawCaptcha(decryptionCaptchaText, "decryptionCaptchaCanvas");
+      document.getElementById("decryptionCaptcha").value = "";
+    }
+  </script>
+</body>
+</html>
