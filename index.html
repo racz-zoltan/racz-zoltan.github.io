@@ -53,7 +53,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1 style="color: darkblue;">Password privacy</h1>
-          <h1 style="color: darkblue; margin-left: 9rem;">peace of mind</h1>
+          <h1 style="color: darkblue; margin-left: 5rem;">peace of mind</h1>
           <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a>
         </div>
         <div class="col-md-6">
@@ -68,8 +68,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-                <h3 style="color: darkblue; margin-top: 3rem;">Create the Password</h3>
-                <div id="keyGeneratorAlertContainer" class="mt-3"></div>
+                <!-- <h3 style="color: darkblue; margin-top: 3rem;">Create a Password</h3> -->
+                
                 <form id="keyGeneratorForm">
                   <div class="mb-3">
                     <label for="webAddress" class="form-label">Website name</label>
@@ -79,16 +79,15 @@
                   <div class="mb-3">
                     <label for="password" class="form-label">Master key</label>
                     <div class="input-group">
-                    <input type="password" id="password" name="password" class="form-control" required>
-                    <button id="showbutton" type="button" class="btn btn-outline-secondary" onclick="showMaster()">Show</button>
+                    <input type="text" id="password" name="password" class="form-control" required>
+                    <button id="showbutton" type="button" class="btn btn-outline-primary" onclick="showMaster()">Hide</button>
                     </div>
                   </div>
                   
                   <div class="mb-3">
-                    <label for="length" class="form-label">Required password length</label>
+                    <label for="length" class="form-label">Password length</label>
                     <input type="number" id="length" name="length" class="form-control" value="21" required>
                   </div>
-                  <h4 style="color: darkblue;">Advanced settings</h4>
                   <div class="mb-3">
                     <label for="iterationCount" class="form-label">Iteration count</label>
                     <input type="number" id="iterationCount" name="iterationCount" class="form-control" value="10000" required>
@@ -96,34 +95,34 @@
             
                   <div class="mb-3">
                     <label for="salt" class="form-label">Salt</label>
+                    <div class="input-group">
                     <input type="text" id="salt" name="salt" class="form-control" value="KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5" required>
+                    <button class="btn btn-outline-primary" onclick="generateWithMaster()">My Salt</button>
+                    </div>
                   </div>
         
                 </form>
+                <div id="keyGeneratorAlertContainer" class="mt-3"></div>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateKey()">Create a [xX-7x] Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateLetterKey()">Create a [xXxX] Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateNumberKey()">Create a [7777] Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateSpecialKey()">Create a [!x%X>] Password</button>
         </div>
         <div class="col-md-6">
-            <div class="col-md-12 d-flex justify-content-center">
-            <div class="btn-container mt-3">
-            <button type="button" class="btn btn-primary" onclick="generateKey()">Standard</button>
-            <button type="button" class="btn btn-primary" onclick="generateLetterKey()">Letters</button>
-            <button type="button" class="btn btn-primary" onclick="generateNumberKey()">Numbers</button>
-            <button type="button" class="btn btn-primary" onclick="generateMixedKey()">Mixed</button>
-            <button type="button" class="btn btn-primary" onclick="generateSpecialKey()">Special</button>
+
           <!-- Second column content goes here -->
-            </div>
-            </div>
-            <h4 style="color: darkblue; margin-top: 2rem;">Use case</h4>
-            <p style="margin-top: 1rem;">I want to access the site: https://quotes.toscrape.com/login, so I type "Quotes" in  the Website name field. Then, I type my Master key "Password123"
-                and click on the Regular button. CarryPass creates and copies my password "7cgUK3I-oivkxzc-bmX9VR7" for this site to the clipboard so I can paste it in the password field on the login page.
-                As long as the parameters are the same I always get the same password, and while I do not have to remember its complexity, it stays private.
-            </p>
-            <p>In order to create a cryptographycally more secure password, I increase the Iteration count and generate a new Salt.
-            </p>
+
             <h4 style="color: darkblue; margin-top: 1rem;">Salt Generator</h4>
             <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
-            <button class="btn btn-outline-primary" onclick="generate()">Truly Random</button>
-            <button class="btn btn-outline-primary" onclick="generateWithMaster()">Based on Master Key</button>
+            <button class="btn btn-outline-primary" onclick="generate()">Generate Random Salt</button>
             <button class="btn btn-outline-secondary" onclick="copyToSalt()">Copy to Salt</button>
+            <h6 id="usecase" style="color: lightgray; margin-top: 2rem; margin-bottom: 2rem;">Click here to read a use case</h6>
+            <p id="explanation" style="display: none;">I want to log in to the site: https://quotes.toscrape.com/login, where I registered earlier with the password created with Carrypass.
+                I type "Quotes" in  the Website name field, then I type my Master key "Password123", and click on the Standard button. 
+                CarryPass creates and copies the password "7cgUK3I-oivkxzc-bmX9VR7" to the clipboard so I can paste it in the password field on the login page of "Quotes".
+                As long as the parameters are the same I always get the same password, and while I do not have to remember its complexity, it stays private.
+                In order to create a cryptographycally more secure password, I increase the Iteration count and use my own Salt. For some sites I generate a random salt that I keep secret.
+            </p>
         </div>
       </div>
     </div>
@@ -216,11 +215,11 @@
       <div class="container">
       <div class="row">
           <div class="col-md-6">
-          <h1 style="color: darkblue;">CarryPass is free</h1>
+          <h1 style="color:black;">CarryPass is free</h1>
           <h2 style="margin-left: 9rem;"></h2>
           </div>
           <div class="col-md-6">
-            <h4 style="color: darkblue; margin-bottom: 3rem;" class="section-text">Although CarryPass is free, it still has to be hosted and maintained, so every little support is appreciated. Thank you!</h2>
+            <h4 style="color: black; margin-bottom: 3rem;" class="section-text">Although CarryPass is free, it still has to be hosted and maintained, so every little support is appreciated. Thank you!</h2>
             <h4 class="section-text"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="zoltanracz" data-color="#5F7FFF" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script></h2>
           </div>
       </div>
@@ -752,7 +751,7 @@
       input = input.slice(0, 32); // Trim to 32 characters
       }
       else {
-        alert("Master Key input field cannot be empty if you want to use it as a base for code generation.")
+        alert("Master key input field cannot be empty.")
       }
       
       // Convert input to base64
@@ -775,7 +774,14 @@
       // Truncate result to 32 characters
       result = result.slice(0, 32);
 
-      document.getElementById('result').value = result;
+      document.getElementById('salt').value = result;
+
+      document.getElementById('keyGeneratorForm').addEventListener('submit', function(event) {
+      // Prevent the form from submitting
+      event.preventDefault();
+      
+      });
+
     }
 
     function copyToSalt() {
@@ -836,5 +842,15 @@
     }
   });
 </script>
+<script>
+  document.getElementById('usecase').addEventListener('click', function() {
+    var explanation = document.getElementById('explanation');
+    if (explanation.style.display === 'none') {
+      explanation.style.display = 'block';
+    } else {
+      explanation.style.display = 'none';
+    }
+  });
+  </script>
 </body>
 </html>
