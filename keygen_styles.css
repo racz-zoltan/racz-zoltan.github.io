@@ -1,0 +1,36 @@
+/* Custom Styles */
+/* .body {
+    font-family: 'Roboto', Arial, sans-serif;
+  } */
+  
+.first-section,
+.third-section {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 100px 0; /* Adjust padding if necessary */
+  height: 100vh; /* Set the height to cover the entire viewport */
+}
+
+.first-section {
+  background-image: url('leohoho-kXYExBLuZ9Q-unsplash.jpg');
+}
+
+.third-section {
+  background-image: url('leohoho-kXYExBLuZ9Q-unsplash.jpg');
+}
+
+.btn-scroll-up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: block;
+  font-size: 24px;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+}

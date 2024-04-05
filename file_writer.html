@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndexedDB Example</title>
+</head>
+<body>
+<h2>IndexedDB Example</h2>
+<form id="inputForm">
+    <label for="dataInput">Enter Data:</label>
+    <input type="text" id="dataInput" required>
+    <button type="submit">Save Data</button>
+</form>
+<div id="output"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const inputForm = document.getElementById('inputForm');
+    const dataInput = document.getElementById('dataInput');
+    const outputDiv = document.getElementById('output');
+
+    let db;
+
+    // Open or create the IndexedDB database
+    const request = window.indexedDB.open('userDataDB', 1);
+
+    request.onerror = (event) => {
+        console.error('IndexedDB error:', event.target.errorCode);
+    };
+
+    request.onsuccess = (event) => {
+        db = event.target.result;
+        console.log('IndexedDB opened successfully.');
+        displayData();
+    };
+
+    request.onupgradeneeded = (event) => {
+        db = event.target.result;
+        console.log('Creating object store');
+        const objectStore = db.createObjectStore('userData', { keyPath: 'id', autoIncrement: true });
+        objectStore.createIndex('data', 'data', { unique: false });
+    };
+
+    // Function to add data to IndexedDB
+    const addData = (data) => {
+        const transaction = db.transaction(['userData'], 'readwrite');
+        const objectStore = transaction.objectStore('userData');
+        const newData = {
+            data: data
+        };
+        const request = objectStore.add(newData);
+
+        request.onsuccess = () => {
+            console.log('Data added to IndexedDB:', data);
+            displayData();
+        };
+
+        request.onerror = (event) => {
+            console.error('Error adding data to IndexedDB:', event.target.error);
+        };
+    };
+
+    // Function to display stored data
+    const displayData = () => {
+        while (outputDiv.firstChild) {
+            outputDiv.removeChild(outputDiv.firstChild);
+        }
+
+        const objectStore = db.transaction(['userData']).objectStore('userData');
+        objectStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const data = cursor.value.data;
+                const listItem = document.createElement('div');
+                listItem.textContent = data;
+                outputDiv.appendChild(listItem);
+                cursor.continue();
+            }
+        };
+    };
+
+    // Event listener for form submission
+    inputForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = dataInput.value.trim();
+        if (data) {
+            addData(data);
+            dataInput.value = '';
+        }
+    });
+});
+</script>
+</body>
+</html>
