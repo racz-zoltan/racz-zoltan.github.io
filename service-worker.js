@@ -1,7 +1,6 @@
 const CACHE_NAME = 'key-generator-cache-v1';
 const urlsToCache = [
   '/',
-  '/keygen_index.html',
   'bootstrap.min.css',
   'jquery.min.js',
   'crypto-js.min.js',
