@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#keygen">Create Secure Password</a>
+          <a class="nav-link" href="#keygen">Create Password</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#encryption">Encrypt and Decrypt</a>
+          <a class="nav-link" href="#encryption">Encrypt Text or File</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#about">About</a>
@@ -38,7 +38,7 @@
           <a class="nav-link" href="#pricing">Pricing</a>
         </li>
         <li class="nav-item">
-            <a type="button" id="downloadButton" class="nav-link" href="">Download</a>
+            <a type="button" id="downloadButton" class="nav-link" href="">Offline Mode</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#contact">Contact</a>
@@ -55,6 +55,7 @@
           <h1 style="color: darkblue;">Password privacy</h1>
           <h1 style="color: darkblue; margin-left: 5rem;">peace of mind</h1>
           <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a>
+          <p style="color: red; margin-top: 1rem;">Site is under construction...</p>
         </div>
         <div class="col-md-6">
             <!-- Second column content goes here -->
@@ -72,7 +73,18 @@
                 
                 <form id="keyGeneratorForm">
                   <div class="mb-3">
+                    <div class="casecontainer">
                     <label for="webAddress" class="form-label">Website name</label>
+                    <h6 id="usecase" style="color: lightgray; margin-left: 7rem;">Click to read a use case</h6>
+                    </div>
+                      <p id="explanation" style="display: none;">I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.
+                          I type "Quotes" in  the Website name field, then I type my Master key "Password123", and click on the standard pattern [xX-7x] button. 
+                          CarryPass creates the password "7cgUK3I-oivkxzc-bmX9VR7" and copies it to the clipboard so I can paste it in the password field on the login page of "Quotes".
+                          As long as the parameters are the same I always get back the same password, and while I do not have to remember its complexity, it stays private using CarryPass.
+                          In order to create a cryptographycally more secure password, I increase the Iteration count and use my own Salt. For some sites I generate a random salt that I keep secret.
+                          CarryPass does not store passwords or any data generated or entered on this site.
+                      </p>
+                    
                     <input type="text" id="webAddress" name="webAddress" class="form-control" required>
                   </div>
                   
@@ -116,13 +128,6 @@
             <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
             <button class="btn btn-outline-primary" onclick="generate()">Generate Random Salt</button>
             <button class="btn btn-outline-secondary" onclick="copyToSalt()">Copy to Salt</button>
-            <h6 id="usecase" style="color: lightgray; margin-top: 2rem; margin-bottom: 2rem;">Click here to read a use case</h6>
-            <p id="explanation" style="display: none;">I want to log in to the site: https://quotes.toscrape.com/login, where I registered earlier with the password created with Carrypass.
-                I type "Quotes" in  the Website name field, then I type my Master key "Password123", and click on the Standard button. 
-                CarryPass creates and copies the password "7cgUK3I-oivkxzc-bmX9VR7" to the clipboard so I can paste it in the password field on the login page of "Quotes".
-                As long as the parameters are the same I always get the same password, and while I do not have to remember its complexity, it stays private.
-                In order to create a cryptographycally more secure password, I increase the Iteration count and use my own Salt. For some sites I generate a random salt that I keep secret.
-            </p>
         </div>
       </div>
     </div>
@@ -146,10 +151,10 @@
 
       <!-- Fourth Section -->
     <section id="encrypt" class="fourth-section">
-        <div class="container" style="margin-bottom: 9rem;">
+        <div class="container" style="margin-bottom: 3rem;">
         <div class="row">
             <div class="col-md-6">
-                <h2 style="color: darkblue; margin-top: 3rem;">Encrypt</h2>
+                <h2 style="color: darkblue; margin-top: 3rem;">Text Encryption</h2>
                 <div id="encryptionAlertContainer" class="mt-3"></div>
                 <form id="encryptionForm">
                   <div class="mb-3">
@@ -167,7 +172,7 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <h2 style="color: darkblue; margin-top: 3rem;">Decrypt</h2>
+                <h2 style="color: darkblue; margin-top: 3rem;">Text Decryption</h2>
                 <div id="decryptionAlertContainer" class="mt-3"></div>
                 <form id="decryptionForm">
                 <div class="mb-3">
@@ -187,6 +192,44 @@
         </div>
         </div>
     </section>
+
+          <!-- FILE ENCRYPT Section -->
+      <section id="fileencrypt" class="fourth-section">
+          <div class="container" style="margin-bottom: 9rem;">
+          <div class="row">
+              <div class="col-md-6">
+          
+                  <h2 style="color: darkblue;" class="mt-5">File Encryption</h2>
+            
+                
+                          <label for="fileInput">Choose File to Encrypt:</label>
+                          <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="fileInput" onchange="updateFileName('fileInput')">
+                              <label class="custom-file-label" id="fileInputLabel" for="fileInput">Choose file</label>
+                          </div>
+                          <label for="password" class="mt-3">Password:</label>
+                          <input type="password" id="password1" class="form-control">
+                          <button onclick="encryptFile()" class="btn btn-primary mt-3">Encrypt File</button>
+                      
+          
+        
+              </div>
+              <div class="col-md-6">
+                <h2 style="color: darkblue;" class="mt-5">File Decryption</h2>
+                
+                <label for="encryptedFileInput">Choose Encrypted File to Decrypt:</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="encryptedFileInput" onchange="updateFileName('encryptedFileInput')">
+                    <label class="custom-file-label" id="encryptedFileInputLabel" for="encryptedFileInput">Choose file</label>
+                </div>
+                <label for="password" class="mt-3">Password:</label>
+                <input type="password" id="password2" class="form-control">
+                <button onclick="decryptFile()" class="btn btn-primary mt-3">Decrypt File</button>
+        
+
+          </div>
+          </div>
+      </section>
 
         <!-- Third Section -->
       <section id="about" class="fourth-section">
@@ -215,12 +258,12 @@
       <div class="container">
       <div class="row">
           <div class="col-md-6">
-          <h1 style="color:black;">CarryPass is free</h1>
+          <h1 style="color:orange;">CarryPass is free</h1>
           <h2 style="margin-left: 9rem;"></h2>
           </div>
           <div class="col-md-6">
-            <h4 style="color: black; margin-bottom: 3rem;" class="section-text">Although CarryPass is free, it still has to be hosted and maintained, so every little support is appreciated. Thank you!</h2>
-            <h4 class="section-text"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="zoltanracz" data-color="#5F7FFF" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script></h2>
+            <h4 style="color: orange; margin-bottom: 3rem;" class="section-text">Although CarryPass is free for you, it still has to be hosted and maintained, so every little support is appreciated. Thank you!</h2>
+            <h4 class="section-text" style="margin-top: 17rem"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="zoltanracz" data-color="#5F7FFF" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script></h2>
           </div>
       </div>
       </div>
@@ -852,5 +895,141 @@
     }
   });
   </script>
+
+<script>
+  async function encryptFile() {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async function() {
+          const fileData = reader.result;
+          const password = document.getElementById('password1').value;
+
+          const salt = new TextEncoder().encode('MyFixedSalt');
+          const iv = new TextEncoder().encode('MyFixedIV');
+          const keyMaterial = await window.crypto.subtle.importKey(
+              'raw',
+              new TextEncoder().encode(password),
+              { name: 'PBKDF2' },
+              false,
+              ['deriveBits', 'deriveKey']
+          );
+
+          const derivedKey = await window.crypto.subtle.deriveKey(
+              {
+                  name: 'PBKDF2',
+                  salt,
+                  iterations: 100000,
+                  hash: 'SHA-256'
+              },
+              keyMaterial,
+              { name: 'AES-GCM', length: 256 },
+              true,
+              ['encrypt', 'decrypt']
+          );
+
+          const encryptedData = await window.crypto.subtle.encrypt(
+              {
+                  name: 'AES-GCM',
+                  iv
+              },
+              derivedKey,
+              fileData
+          );
+
+          const encryptedBlob = new Blob([encryptedData], { type: file.type });
+          const encryptedFileName = file.name.replace(/\.[^/.]+$/, '') + '[encrypted]' + file.name.substring(file.name.lastIndexOf('.'));
+          const encryptedUrl = URL.createObjectURL(encryptedBlob);
+          const downloadLink = document.createElement('a');
+          downloadLink.href = encryptedUrl;
+          downloadLink.download = encryptedFileName;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+      };
+
+      reader.readAsArrayBuffer(file);
+  }
+
+  async function decryptFile() {
+      const encryptedFileInput = document.getElementById('encryptedFileInput');
+      const encryptedFile = encryptedFileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async function() {
+          const encryptedFileData = reader.result;
+          const password = document.getElementById('password2').value;
+
+          const salt = new TextEncoder().encode('MyFixedSalt');
+          const iv = new TextEncoder().encode('MyFixedIV');
+          const keyMaterial = await window.crypto.subtle.importKey(
+              'raw',
+              new TextEncoder().encode(password),
+              { name: 'PBKDF2' },
+              false,
+              ['deriveBits', 'deriveKey']
+          );
+
+          const derivedKey = await window.crypto.subtle.deriveKey(
+              {
+                  name: 'PBKDF2',
+                  salt,
+                  iterations: 100000,
+                  hash: 'SHA-256'
+              },
+              keyMaterial,
+              { name: 'AES-GCM', length: 256 },
+              true,
+              ['encrypt', 'decrypt']
+          );
+
+          const decryptedData = await window.crypto.subtle.decrypt(
+              {
+                  name: 'AES-GCM',
+                  iv
+              },
+              derivedKey,
+              encryptedFileData
+          );
+
+          const decryptedBlob = new Blob([decryptedData], { type: encryptedFile.type });
+          const decryptedFileName = encryptedFile.name.replace(/\.[^/.]+$/, '') + '[decrypted]' + encryptedFile.name.substring(encryptedFile.name.lastIndexOf('.'));
+          const decryptedUrl = URL.createObjectURL(decryptedBlob);
+          const downloadLink = document.createElement('a');
+          downloadLink.href = decryptedUrl;
+          downloadLink.download = decryptedFileName;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+      };
+
+      reader.readAsArrayBuffer(encryptedFile);
+  }
+
+
+  function updateFileName(inputId) {
+        const fileInput = document.getElementById(inputId);
+        const fileName = fileInput.files[0].name;
+        const label = document.getElementById(inputId + 'Label');
+        label.innerText = fileName;
+    }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(function(navLink) {
+      navLink.addEventListener("click", function() {
+        const navbarCollapse = document.querySelector(".navbar-collapse");
+        if (navbarCollapse.classList.contains("show")) {
+          navbarCollapse.classList.remove("show");
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>

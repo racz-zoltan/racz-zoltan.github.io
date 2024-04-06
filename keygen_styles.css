@@ -35,3 +35,9 @@
   padding: 20px 0;
   text-align: center;
 }
+
+.casecontainer {
+  display: flex;
+  align-items: center;
+}
+

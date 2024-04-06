@@ -2,7 +2,10 @@ const CACHE_NAME = 'key-generator-cache-v1';
 const urlsToCache = [
   '/',
   'bootstrap.min.css',
+  'keygen_styles.css',
+  'bootstrap.bundle.min.js',
   'jquery.min.js',
+  'jquery-3.5.1.min.js',
   'crypto-js.min.js',
   // Add more files you want to cache here
 ];
