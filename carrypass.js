@@ -129,18 +129,13 @@
       return key;
     }
 
-
-    // function permuteString(str) {
-    //   // Fixed permutation of the charset string
-    //   return 's5zXK9tHyCkE2I8RvQcYfOu1MWr4eG3gZxDq6aFbhTjJiLN0lAUpP7nwBVdoS';
-    // }
     
     function bytesToAlphaNumericString(bytes) {
       let charset = 's5zXK9tHyCkE2I8RvQcYfOu1MWr4eG3gZxDq6aFbhTjJiLN0lAUpP7nwBVdoS';
     
       let result = '';
     
-      // Ensure at least one of each character type is present
+     
       let hasLowercase = false;
       let hasUppercase = false;
       let hasDigit = false;
@@ -160,11 +155,11 @@
         }
     
         if (hasLowercase && hasUppercase && hasDigit) {
-          break; // Break the loop if all required characters are found
+          break;
         }
       }
     
-      // Append characters from the charset until we reach the desired length
+     
       for (let i = result.length; i < bytes.words.length * 4; i++) {
         result += charset.charAt(i % charset.length);
       }
@@ -173,6 +168,7 @@
     }
     
 
+    // ALTERNATIVE
 // function bytesToAlphaNumericString(bytes) {
 //   let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 //   let result = '';
