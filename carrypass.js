@@ -2,12 +2,11 @@
     
     function generateRandomPasswordKey(webAddress, password, iterationCount, salt, length) {
       let inputStr = webAddress + password;
-      // let combinedStr = inputStr + salt;
 
       let iterations = iterationCount;
       let hashBytes = CryptoJS.PBKDF2(inputStr, salt, { keySize: length/4, iterations: iterations, hasher: CryptoJS.algo.SHA256 });
 
-      let encodedString = bytesToAlphaNumericString(hashBytes);
+      let encodedString = bytesToAlphaNumericString(hashBytes, password);
       let key = '';
 
       let fullSegments = Math.floor(length / 7);
@@ -131,40 +130,83 @@
     }
 
 
-function bytesToAlphaNumericString(bytes) {
-  let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  let hasLowercase = false;
-  let hasUppercase = false;
-  let hasDigit = false;
+    // function permuteString(str) {
+    //   // Fixed permutation of the charset string
+    //   return 's5zXK9tHyCkE2I8RvQcYfOu1MWr4eG3gZxDq6aFbhTjJiLN0lAUpP7nwBVdoS';
+    // }
+    
+    function bytesToAlphaNumericString(bytes) {
+      let charset = 's5zXK9tHyCkE2I8RvQcYfOu1MWr4eG3gZxDq6aFbhTjJiLN0lAUpP7nwBVdoS';
+    
+      let result = '';
+    
+      // Ensure at least one of each character type is present
+      let hasLowercase = false;
+      let hasUppercase = false;
+      let hasDigit = false;
+    
+      for (let i = 0; i < bytes.words.length * 4; i++) {
+        let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+        let char = charset.charAt(byte % charset.length);
+    
+        result += char;
+    
+        if (!hasLowercase && /[a-z]/.test(char)) {
+          hasLowercase = true;
+        } else if (!hasUppercase && /[A-Z]/.test(char)) {
+          hasUppercase = true;
+        } else if (!hasDigit && /[0-9]/.test(char)) {
+          hasDigit = true;
+        }
+    
+        if (hasLowercase && hasUppercase && hasDigit) {
+          break; // Break the loop if all required characters are found
+        }
+      }
+    
+      // Append characters from the charset until we reach the desired length
+      for (let i = result.length; i < bytes.words.length * 4; i++) {
+        result += charset.charAt(i % charset.length);
+      }
+    
+      return result;
+    }
+    
 
-  for (let i = 0; i < bytes.words.length * 4; i++) {
-    let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
-    let char = charset.charAt(byte % charset.length);
+// function bytesToAlphaNumericString(bytes) {
+//   let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+//   let result = '';
+//   let hasLowercase = false;
+//   let hasUppercase = false;
+//   let hasDigit = false;
+
+//   for (let i = 0; i < bytes.words.length * 4; i++) {
+//     let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+//     let char = charset.charAt(byte % charset.length);
 
    
-    if (!hasLowercase && /[a-z]/.test(char)) {
-      hasLowercase = true;
-    } else if (!hasUppercase && /[A-Z]/.test(char)) {
-      hasUppercase = true;
-    } else if (!hasDigit && /[0-9]/.test(char)) {
-      hasDigit = true;
-    }
+//     if (!hasLowercase && /[a-z]/.test(char)) {
+//       hasLowercase = true;
+//     } else if (!hasUppercase && /[A-Z]/.test(char)) {
+//       hasUppercase = true;
+//     } else if (!hasDigit && /[0-9]/.test(char)) {
+//       hasDigit = true;
+//     }
 
-    result += char;
-  }
+//     result += char;
+//   }
 
   
-  if (!(hasLowercase && hasUppercase && hasDigit)) {
+//   if (!(hasLowercase && hasUppercase && hasDigit)) {
    
-    return bytesToAlphaNumericString(bytes);
-  }
+//     return bytesToAlphaNumericString(bytes);
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 function bytesToAlphaString(bytes) {
-  let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let charset = 'cOpMniQyTmSvwklVJuIjgKtNrLEoRhXYZqaxHdsPWzDfUeGbAFB';
   let result = '';
   let hasLowercase = false;
   let hasUppercase = false;
@@ -194,7 +236,7 @@ function bytesToAlphaString(bytes) {
 
 
 function bytesToMoreSpecialString(bytes) {
-  let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+  let charset = 'QP}v7$D6{+[(Cw^,e&@uB^Jq.]Gd4=VLuPYN5o;Hk*WgF_aXh!lbczr8]Z2Iy9(R03N-1tA<EjSM|)iOTsfxK>mU%`:n?';
   let result = '';
   let hasLowercase = false;
   let hasUppercase = false;
@@ -229,7 +271,7 @@ function bytesToMoreSpecialString(bytes) {
 }
 
 function bytesToNumericString(bytes) {
-  let charset = '0123456789';
+  let charset = '7294053861';
   let result = '';
 
 
@@ -256,7 +298,7 @@ function bytesToNumericString(bytes) {
 
       document.getElementById("webAddress").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "10000";
+      document.getElementById("iterationCount").value = "21000";
       document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
       document.getElementById("length").value = "21";
 
@@ -276,7 +318,7 @@ function bytesToNumericString(bytes) {
 
       document.getElementById("webAddress").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "10000";
+      document.getElementById("iterationCount").value = "21000";
       document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
       document.getElementById("length").value = "21";
 
@@ -296,7 +338,7 @@ function bytesToNumericString(bytes) {
 
       document.getElementById("webAddress").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "10000";
+      document.getElementById("iterationCount").value = "21000";
       document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
       document.getElementById("length").value = "21";
 
@@ -316,7 +358,7 @@ function bytesToNumericString(bytes) {
 
       document.getElementById("webAddress").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "10000";
+      document.getElementById("iterationCount").value = "21000";
       document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
       document.getElementById("length").value = "21";
 
@@ -336,7 +378,7 @@ function bytesToNumericString(bytes) {
 
       document.getElementById("webAddress").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "10000";
+      document.getElementById("iterationCount").value = "21000";
       document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
       document.getElementById("length").value = "21";
 
@@ -349,7 +391,9 @@ function bytesToNumericString(bytes) {
 
       let encrypted = CryptoJS.AES.encrypt(plaintext, encryptionPassword).toString();
       document.getElementById("encryptedText").value = encrypted;
-      showAlert("Text encrypted successfully.", "success", document.getElementById("encryptionAlertContainer"));
+      document.getElementById("plaintext").value = "";
+      document.getElementById("encryptionPassword").value = "";
+      showAlert("Text encrypted successfully. See 'Encrypted Text' field", "success", document.getElementById("encryptionAlertContainer"));
     }
 
     function copyEncryptedText() {
@@ -367,7 +411,9 @@ function bytesToNumericString(bytes) {
             let decrypted = CryptoJS.AES.decrypt(encryptedText, decryptionPassword).toString(CryptoJS.enc.Utf8);
             if (decrypted) {
             document.getElementById("plaintext").value = decrypted;
-            showAlert("Text decrypted successfully.", "success", alertContainer);
+            document.getElementById("encryptedText").value = "";
+            document.getElementById("decryptionPassword").value = "";
+            showAlert("Text decrypted successfully. See 'Text to Encrypt' field", "success", alertContainer);
             } else {
             showAlert("Decryption failed: incorrect password.", "danger", alertContainer);
             }
@@ -424,20 +470,27 @@ function generate() {
 }
 
 function generateWithMaster() {
-  var input = document.getElementById('password').value;
+  var webAddress = document.getElementById('webAddress').value;
+  var password = document.getElementById('password').value;
+  var input = webAddress+password
   var base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; 
   
   
-  if (input != "") {
+  if ((webAddress != "") && (password != "")) {
   while (input.length < 32) {
     input += input; 
   }
   input = input.slice(0, 32); 
   }
   else {
-    alert("Master key input field cannot be empty.")
+    while (input.length < 32) {
+      input += input; 
+    }
+    input = input.slice(0, 32); 
+    alert("Website name and Master key input fields cannot be empty.")
   }
-  
+
+
   
   var base64 = btoa(input);
 
