@@ -7,6 +7,7 @@ const urlsToCache = [
   'jquery.min.js',
   'jquery-3.5.1.min.js',
   'crypto-js.min.js',
+  'carrypass.js',
   // Add more files you want to cache here
 ];
 
