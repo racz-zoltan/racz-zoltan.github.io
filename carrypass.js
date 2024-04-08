@@ -129,80 +129,81 @@
       return key;
     }
 
+    // NEW ALTERNATIVE
+    // function bytesToAlphaNumericString(bytes) {
+    //   let charset = 's5zX7K9tHy5CkE2I8RvQcYfOu1M8Wr42eG3gZxDq6aFbhT4jJi3LN0lAUpP7nwB6VdoS';
     
-    function bytesToAlphaNumericString(bytes) {
-      let charset = 's5zXK9tHyCkE2I8RvQcYfOu1MWr4eG3gZxDq6aFbhTjJiLN0lAUpP7nwBVdoS';
-    
-      let result = '';
-    
-     
-      let hasLowercase = false;
-      let hasUppercase = false;
-      let hasDigit = false;
-    
-      for (let i = 0; i < bytes.words.length * 4; i++) {
-        let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
-        let char = charset.charAt(byte % charset.length);
-    
-        result += char;
-    
-        if (!hasLowercase && /[a-z]/.test(char)) {
-          hasLowercase = true;
-        } else if (!hasUppercase && /[A-Z]/.test(char)) {
-          hasUppercase = true;
-        } else if (!hasDigit && /[0-9]/.test(char)) {
-          hasDigit = true;
-        }
-    
-        if (hasLowercase && hasUppercase && hasDigit) {
-          break;
-        }
-      }
+    //   let result = '';
     
      
-      for (let i = result.length; i < bytes.words.length * 4; i++) {
-        result += charset.charAt(i % charset.length);
-      }
+    //   let hasLowercase = false;
+    //   let hasUppercase = false;
+    //   let hasDigit = false;
     
-      return result;
-    }
+    //   for (let i = 0; i < bytes.words.length * 4; i++) {
+    //     let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+    //     let char = charset.charAt(byte % charset.length);
+    
+    //     result += char;
+    
+    //     if (!hasLowercase && /[a-z]/.test(char)) {
+    //       hasLowercase = true;
+    //     } else if (!hasUppercase && /[A-Z]/.test(char)) {
+    //       hasUppercase = true;
+    //     } else if (!hasDigit && /[0-9]/.test(char)) {
+    //       hasDigit = true;
+    //     }
+    
+    //     if (hasLowercase && hasUppercase && hasDigit) {
+    //       break;
+    //     }
+    //   }
+    
+     
+    //   for (let i = result.length; i < bytes.words.length * 4; i++) {
+    //     result += charset.charAt(i % charset.length);
+    //   }
+    
+    //   return result;
+    // }
     
 
     // ALTERNATIVE
-// function bytesToAlphaNumericString(bytes) {
-//   let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-//   let result = '';
-//   let hasLowercase = false;
-//   let hasUppercase = false;
-//   let hasDigit = false;
+function bytesToAlphaNumericString(bytes) {
+  let charset = 's5zX7K9tHy5CkE2I8RvQcYfOu1M8Wr42eG3gZxDq6aFbhT4jJi3LN0lAUpP7nwB6VdoS';
+  let result = '';
+  let hasLowercase = false;
+  let hasUppercase = false;
+  let hasDigit = false;
 
-//   for (let i = 0; i < bytes.words.length * 4; i++) {
-//     let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
-//     let char = charset.charAt(byte % charset.length);
+  for (let i = 0; i < bytes.words.length * 4; i++) {
+    let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+    let char = charset.charAt(byte % charset.length);
 
    
-//     if (!hasLowercase && /[a-z]/.test(char)) {
-//       hasLowercase = true;
-//     } else if (!hasUppercase && /[A-Z]/.test(char)) {
-//       hasUppercase = true;
-//     } else if (!hasDigit && /[0-9]/.test(char)) {
-//       hasDigit = true;
-//     }
+    if (!hasLowercase && /[a-z]/.test(char)) {
+      hasLowercase = true;
+    } else if (!hasUppercase && /[A-Z]/.test(char)) {
+      hasUppercase = true;
+    } else if (!hasDigit && /[0-9]/.test(char)) {
+      hasDigit = true;
+    }
 
-//     result += char;
-//   }
+    result += char;
+  }
 
   
-//   if (!(hasLowercase && hasUppercase && hasDigit)) {
+  if (!(hasLowercase && hasUppercase && hasDigit)) {
    
-//     return bytesToAlphaNumericString(bytes);
-//   }
+    return bytesToAlphaNumericString(bytes);
+  }
 
-//   return result;
-// }
+  return result;
+}
+
 
 function bytesToAlphaString(bytes) {
-  let charset = 'cOpMniQyTmSvwklVJuIjgKtNrLEoRhXYZqaxHdsPWzDfUeGbAFB';
+  let charset = 'cOpMniQyTmSvwklVJuIjgKtNrLEoRhXYZqaxiHdsPWzDfUeGbAFB';
   let result = '';
   let hasLowercase = false;
   let hasUppercase = false;
@@ -232,7 +233,7 @@ function bytesToAlphaString(bytes) {
 
 
 function bytesToMoreSpecialString(bytes) {
-  let charset = 'QP}v7$D6{+[(Cw^,e&@uB^Jq.]Gd4=VLuPYN5o;Hk*WgF_aXh!lbczr8]Z2Iy9(R03N-1tA<EjSM|)iOTsfxK>mU%`:n?';
+  let charset = 'QP}v7$D6{+[(Cw^,e5&@uB^Jq.]Gd4=VLuPYN5o;Hk*WgF_a4Xh!lbczr8]Z2Iy9(R03N-1tA<EjSM|)iOT2sfxK>mU1%`:n?';
   let result = '';
   let hasLowercase = false;
   let hasUppercase = false;
@@ -281,176 +282,176 @@ function bytesToNumericString(bytes) {
 }
 
 
-    function generateKey() {
-      let webAddress = document.getElementById("webAddress").value;
-      let password = document.getElementById("password").value;
-      let iterationCount = document.getElementById("iterationCount").value;
-      let salt = document.getElementById("salt").value;
-      let length = document.getElementById("length").value;
+function generateKey() {
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
 
-      let key = generateRandomPasswordKey(webAddress, password, iterationCount, salt, length);
+  let key = generateRandomPasswordKey(webAddress, password, iterationCount, salt, length);
 
-      copyToClipboard(key);
+  copyToClipboard(key);
 
-      document.getElementById("webAddress").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "21000";
-      document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-      document.getElementById("length").value = "21";
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
 
-      showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-    }
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+}
 
-    function generateLetterKey() {
-      let webAddress = document.getElementById("webAddress").value;
-      let password = document.getElementById("password").value;
-      let iterationCount = document.getElementById("iterationCount").value;
-      let salt = document.getElementById("salt").value;
-      let length = document.getElementById("length").value;
+function generateLetterKey() {
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
 
-      let key = generateRandomLetterKey(webAddress, password, iterationCount, salt, length);
+  let key = generateRandomLetterKey(webAddress, password, iterationCount, salt, length);
 
-      copyToClipboard(key);
+  copyToClipboard(key);
 
-      document.getElementById("webAddress").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "21000";
-      document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-      document.getElementById("length").value = "21";
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
 
-      showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-    }
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+}
 
-    function generateNumberKey() {
-      let webAddress = document.getElementById("webAddress").value;
-      let password = document.getElementById("password").value;
-      let iterationCount = document.getElementById("iterationCount").value;
-      let salt = document.getElementById("salt").value;
-      let length = document.getElementById("length").value;
+function generateNumberKey() {
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
 
-      let key = generateRandomNumberKey(webAddress, password, iterationCount, salt, length);
+  let key = generateRandomNumberKey(webAddress, password, iterationCount, salt, length);
 
-      copyToClipboard(key);
+  copyToClipboard(key);
 
-      document.getElementById("webAddress").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "21000";
-      document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-      document.getElementById("length").value = "21";
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
 
-      showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-    }
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+}
 
-    function generateMixedKey() {
-      let webAddress = document.getElementById("webAddress").value;
-      let password = document.getElementById("password").value;
-      let iterationCount = document.getElementById("iterationCount").value;
-      let salt = document.getElementById("salt").value;
-      let length = document.getElementById("length").value;
+function generateMixedKey() {
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
 
-      let key = generateRandomMixedKey(webAddress, password, iterationCount, salt, length);
+  let key = generateRandomMixedKey(webAddress, password, iterationCount, salt, length);
 
-      copyToClipboard(key);
+  copyToClipboard(key);
 
-      document.getElementById("webAddress").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "21000";
-      document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-      document.getElementById("length").value = "21";
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
 
-      showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-    }
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+}
 
-    function generateSpecialKey() {
-      let webAddress = document.getElementById("webAddress").value;
-      let password = document.getElementById("password").value;
-      let iterationCount = document.getElementById("iterationCount").value;
-      let salt = document.getElementById("salt").value;
-      let length = document.getElementById("length").value;
+function generateSpecialKey() {
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
 
-      let key = generateRandomSpecialKey(webAddress, password, iterationCount, salt, length);
+  let key = generateRandomSpecialKey(webAddress, password, iterationCount, salt, length);
 
-      copyToClipboard(key);
+  copyToClipboard(key);
 
-      document.getElementById("webAddress").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("iterationCount").value = "21000";
-      document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-      document.getElementById("length").value = "21";
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
 
-      showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-    }
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+}
 
-    function encryptText() {
-      let plaintext = document.getElementById("plaintext").value;
-      let encryptionPassword = document.getElementById("encryptionPassword").value;
+function encryptText() {
+  let plaintext = document.getElementById("plaintext").value;
+  let encryptionPassword = document.getElementById("encryptionPassword").value;
 
-      let encrypted = CryptoJS.AES.encrypt(plaintext, encryptionPassword).toString();
-      document.getElementById("encryptedText").value = encrypted;
-      document.getElementById("plaintext").value = "";
-      document.getElementById("encryptionPassword").value = "";
-      showAlert("Text encrypted successfully. See 'Encrypted Text' field", "success", document.getElementById("encryptionAlertContainer"));
-    }
+  let encrypted = CryptoJS.AES.encrypt(plaintext, encryptionPassword).toString();
+  document.getElementById("encryptedText").value = encrypted;
+  document.getElementById("plaintext").value = "";
+  document.getElementById("encryptionPassword").value = "";
+  showAlert("Text encrypted successfully. See 'Encrypted Text' field", "success", document.getElementById("encryptionAlertContainer"));
+}
 
-    function copyEncryptedText() {
-      let encryptedText = document.getElementById("encryptedText").value;
-      copyToClipboard(encryptedText);
-      showAlert("Encrypted text copied to clipboard.", "success", document.getElementById("encryptionAlertContainer"));
-    }
+function copyEncryptedText() {
+  let encryptedText = document.getElementById("encryptedText").value;
+  copyToClipboard(encryptedText);
+  showAlert("Encrypted text copied to clipboard.", "success", document.getElementById("encryptionAlertContainer"));
+}
 
-    function decryptText() {
-        let encryptedText = document.getElementById("encryptedText").value;
-        let decryptionPassword = document.getElementById("decryptionPassword").value;
-        let alertContainer = document.getElementById("decryptionAlertContainer");
-        
-        try {
-            let decrypted = CryptoJS.AES.decrypt(encryptedText, decryptionPassword).toString(CryptoJS.enc.Utf8);
-            if (decrypted) {
-            document.getElementById("plaintext").value = decrypted;
-            document.getElementById("encryptedText").value = "";
-            document.getElementById("decryptionPassword").value = "";
-            showAlert("Text decrypted successfully. See 'Text to Encrypt' field", "success", alertContainer);
-            } else {
-            showAlert("Decryption failed: incorrect password.", "danger", alertContainer);
-            }
-        } catch (error) {
-            showAlert("Decryption failed. Please check your password and try again.", "danger", alertContainer);
+function decryptText() {
+    let encryptedText = document.getElementById("encryptedText").value;
+    let decryptionPassword = document.getElementById("decryptionPassword").value;
+    let alertContainer = document.getElementById("decryptionAlertContainer");
+    
+    try {
+        let decrypted = CryptoJS.AES.decrypt(encryptedText, decryptionPassword).toString(CryptoJS.enc.Utf8);
+        if (decrypted) {
+        document.getElementById("plaintext").value = decrypted;
+        document.getElementById("encryptedText").value = "";
+        document.getElementById("decryptionPassword").value = "";
+        showAlert("Text decrypted successfully. See 'Text to Encrypt' field", "success", alertContainer);
+        } else {
+        showAlert("Decryption failed: incorrect password.", "danger", alertContainer);
         }
+    } catch (error) {
+        showAlert("Decryption failed. Please check your password and try again.", "danger", alertContainer);
     }
+}
 
 
-    function copyDecryptedText() {
-      let plaintext = document.getElementById("plaintext").value;
-      copyToClipboard(plaintext);
-      showAlert("Decrypted text copied to clipboard.", "alert-success", document.getElementById("decryptionAlertContainer"));
-    }
+function copyDecryptedText() {
+  let plaintext = document.getElementById("plaintext").value;
+  let alertContainer = document.getElementById("decryptionAlertContainer");
+  copyToClipboard(plaintext);
+  showAlert("Decrypted text copied to clipboard.", "success", alertContainer);
+}
 
-    function copyToClipboard(text) {
-      let input = document.createElement('textarea');
-      input.value = text;
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand('copy');
-      document.body.removeChild(input);
-    }
 
-    function showAlert(message, alertType, container) {
-        let alertElement = document.createElement("div");
-        alertElement.className = "alert alert-" + alertType + " alert-dismissible fade show";
-        alertElement.role = "alert";
-        alertElement.innerHTML = `
-            ${message}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        `;
-        container.prepend(alertElement);
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    console.error('Failed to copy text to clipboard:', err);
+  }
+}
 
-        setTimeout(function() {
-            $(alertElement).alert('close');
-        }, 3000);
-    }
+function showAlert(message, alertType, container) {
+    let alertElement = document.createElement("div");
+    alertElement.className = "alert alert-" + alertType + " alert-dismissible fade show";
+    alertElement.role = "alert";
+    alertElement.innerHTML = `
+        ${message}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    `;
+    container.prepend(alertElement);
 
+    setTimeout(function() {
+        $(alertElement).alert('close');
+    }, 3000);
+}
 
 
 function generate() {
@@ -516,6 +517,7 @@ function generateWithMaster() {
   });
 
 }
+
 
 function copyToSalt() {
     var resultInput = document.getElementById('result');
@@ -589,17 +591,100 @@ if (explanation.style.display === 'none') {
 });
 
 
+function generateAesVector(password) {
+  var input = password
+  var base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; 
+  
+  
+  if (password != "") {
+  while (input.length < 32) {
+    input += input; 
+  }
+  input = input.slice(0, 32); 
+  }
+  else {
+    alert("Password input field cannot be empty.");
+  }
+
+
+  
+  var base64 = btoa(input);
+
+  
+  var result = '';
+  for (var i = 0; i < base64.length; i++) {
+    var char = base64.charAt(i);
+    if (char !== '=') {
+      var index = char.charCodeAt(0);
+      if (index === 43) index = 62; 
+      else if (index === 47) index = 63; 
+      result += base32Chars[index >> 2]; 
+      result += base32Chars[((index & 0x03) << 3) | (base64.charCodeAt(++i) >> 5)]; 
+      result += base32Chars[base64.charCodeAt(i) & 0x1F]; 
+    }
+  }
+
+  
+  result = result.slice(0, 32);
+
+  return result;
+
+}
+
+function generateAesSalt(password) {
+  var input = password
+  var base32Chars = '8JKLM2PQRY9Z5VWX67SNTU3BCDEFGHO4A'; 
+  
+  
+  if (password != "") {
+  while (input.length < 32) {
+    input += input; 
+  }
+  input = input.slice(0, 32); 
+  }
+  else {
+    alert("Password input field cannot be empty.");
+  }
+
+
+  
+  var base64 = btoa(input);
+
+  
+  var result = '';
+  for (var i = 0; i < base64.length; i++) {
+    var char = base64.charAt(i);
+    if (char !== '=') {
+      var index = char.charCodeAt(0);
+      if (index === 43) index = 62; 
+      else if (index === 47) index = 63; 
+      result += base32Chars[index >> 2]; 
+      result += base32Chars[((index & 0x03) << 3) | (base64.charCodeAt(++i) >> 5)]; 
+      result += base32Chars[base64.charCodeAt(i) & 0x1F]; 
+    }
+  }
+
+  
+  result = result.slice(0, 32);
+
+  return result;
+
+}
+
 async function encryptFile() {
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
   const reader = new FileReader();
+  
 
   reader.onload = async function() {
       const fileData = reader.result;
       const password = document.getElementById('password1').value;
+      var myFixedIV = generateAesVector(password);
+      var myFixedSalt = generateAesSalt(password);
 
-      const salt = new TextEncoder().encode('MyFixedSalt');
-      const iv = new TextEncoder().encode('MyFixedIV');
+      const salt = new TextEncoder().encode(myFixedSalt);
+      const iv = new TextEncoder().encode(myFixedIV);
       const keyMaterial = await window.crypto.subtle.importKey(
           'raw',
           new TextEncoder().encode(password),
@@ -639,7 +724,12 @@ async function encryptFile() {
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+
+      document.getElementById('fileInputLabel').innerHTML = "Choose file";
+      document.getElementById('password1').value = "";
+
   };
+
 
   reader.readAsArrayBuffer(file);
 }
@@ -652,9 +742,11 @@ async function decryptFile() {
   reader.onload = async function() {
       const encryptedFileData = reader.result;
       const password = document.getElementById('password2').value;
+      var myFixedIV = generateAesVector(password);
+      var myFixedSalt = generateAesSalt(password);
 
-      const salt = new TextEncoder().encode('MyFixedSalt');
-      const iv = new TextEncoder().encode('MyFixedIV');
+      const salt = new TextEncoder().encode(myFixedSalt);
+      const iv = new TextEncoder().encode(myFixedIV);
       const keyMaterial = await window.crypto.subtle.importKey(
           'raw',
           new TextEncoder().encode(password),
@@ -694,6 +786,10 @@ async function decryptFile() {
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+
+      document.getElementById('encryptedFileInputLabel').innerHTML = "Choose file";
+      document.getElementById('password2').value = "";
+
   };
 
   reader.readAsArrayBuffer(encryptedFile);

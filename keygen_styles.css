@@ -1,7 +1,4 @@
 /* Custom Styles */
-/* .body {
-    font-family: 'Roboto', Arial, sans-serif;
-  } */
   
 .first-section,
 .third-section {
@@ -9,8 +6,8 @@
   background-position: center;
   color: white;
   text-align: center;
-  padding: 100px 0; /* Adjust padding if necessary */
-  height: 100vh; /* Set the height to cover the entire viewport */
+  padding: 100px 0; 
+  height: 100vh; 
 }
 
 .first-section {
