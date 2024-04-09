@@ -200,6 +200,7 @@
                   </div>
                   <label for="password" class="mt-3">Password for Encryption</label>
                   <input type="password" id="password1" class="form-control">
+                  <div id="fileEncryptionAlertContainer" class="mt-3"></div>
                   <button onclick="encryptFile()" class="btn btn-primary mt-3">Encrypt File</button>
                         
               </div>
@@ -293,7 +294,7 @@
         </div>
         <div class="col-md-6">
           <p style="color: black;">To install the progressive web app (PWA), simply follow these easy steps. First, ensure you have a compatible web browser 
-            installed on your device, such as Google Chrome, Mozilla Firefox, or Microsoft Edge.  If you have opened the CarryPass website 
+            installed on your device, such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari.  If you have opened the CarryPass website 
             in one of the PWA compatible browsers, click on the install button. That's it! Now you can enjoy the app's 
             features and functionalities with just a tap, even when you're offline.</p>
         <button id="downloadButton" type="button" style="width: 50%; margin-top: 20%;" class="btn btn-secondary">Install Progressive Web App</button>
@@ -302,6 +303,22 @@
     </div>
   </section>
 
+  <!-- Modal HTML -->
+<!-- Modal HTML -->
+<div id="alertModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="alertModalMessage"></p>
+  </div>
+</div>
+
+<div id="myModal" class="worker-modal">
+  <div class="worker-modal-content">
+    <p id="modalMessage"></p>
+    <button id="modalConfirm" class="btn btn-primary">Yes</button>
+    <button id="modalCancel" class="btn btn-outline-secondary">No</button>
+  </div>
+</div>
 
   <!-- Footer -->
   <footer class="footer">

@@ -130,46 +130,7 @@
       return key;
     }
 
-    // NEW ALTERNATIVE
-    // function bytesToAlphaNumericString(bytes) {
-    //   let charset = 's5zX7K9tHy5CkE2I8RvQcYfOu1M8Wr42eG3gZxDq6aFbhT4jJi3LN0lAUpP7nwB6VdoS';
-    
-    //   let result = '';
-    
-     
-    //   let hasLowercase = false;
-    //   let hasUppercase = false;
-    //   let hasDigit = false;
-    
-    //   for (let i = 0; i < bytes.words.length * 4; i++) {
-    //     let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
-    //     let char = charset.charAt(byte % charset.length);
-    
-    //     result += char;
-    
-    //     if (!hasLowercase && /[a-z]/.test(char)) {
-    //       hasLowercase = true;
-    //     } else if (!hasUppercase && /[A-Z]/.test(char)) {
-    //       hasUppercase = true;
-    //     } else if (!hasDigit && /[0-9]/.test(char)) {
-    //       hasDigit = true;
-    //     }
-    
-    //     if (hasLowercase && hasUppercase && hasDigit) {
-    //       break;
-    //     }
-    //   }
-    
-     
-    //   for (let i = result.length; i < bytes.words.length * 4; i++) {
-    //     result += charset.charAt(i % charset.length);
-    //   }
-    
-    //   return result;
-    // }
-    
 
-    // ALTERNATIVE
 function bytesToAlphaNumericString(bytes) {
   let charset = 's5zX7K9tHy5CkE2I8RvQcYfOu1M8Wr42eG3gZxDq6aFbhT4jJi3LN0lAUpP7nwB6VdoS';
   let result = '';
@@ -316,7 +277,7 @@ function bytesToNumericString(bytes) {
 
 function generateKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -343,7 +304,7 @@ function generateKey() {
 
 function generateAlphaNumKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -370,7 +331,7 @@ function generateAlphaNumKey() {
 
 function generateLetterKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -395,7 +356,7 @@ function generateLetterKey() {
 
 function generateNumberKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -420,7 +381,7 @@ function generateNumberKey() {
 
 function generateMixedKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -446,7 +407,7 @@ function generateMixedKey() {
 
 function generateSpecialKey() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let webAddress = document.getElementById("webAddress").value;
@@ -471,17 +432,22 @@ function generateSpecialKey() {
 
 function encryptText() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   let plaintext = document.getElementById("plaintext").value;
   let encryptionPassword = document.getElementById("encryptionPassword").value;
 
+  if (encryptionPassword != ""){
   let encrypted = CryptoJS.AES.encrypt(plaintext, encryptionPassword).toString();
   document.getElementById("encryptedText").value = encrypted;
   document.getElementById("plaintext").value = "";
   document.getElementById("encryptionPassword").value = "";
   showAlert("Text encrypted successfully. See 'Encrypted Text' field", "success", document.getElementById("encryptionAlertContainer"));
+  }
+  else {
+    showModal("Password input field cannot be empty.");
+  }
   updateCounter();
 }
 
@@ -493,13 +459,15 @@ function copyEncryptedText() {
 
 function decryptText() {
     if (isRateLimited()) {
-      alert("You have exceeded the rate limit. Please try again later.");
+      showModal("You have exceeded the rate limit. Please try again later.");
       return;
     }
     let encryptedText = document.getElementById("encryptedText").value;
     let decryptionPassword = document.getElementById("decryptionPassword").value;
     let alertContainer = document.getElementById("decryptionAlertContainer");
-    
+
+
+    if (decryptionPassword != ""){
     try {
         let decrypted = CryptoJS.AES.decrypt(encryptedText, decryptionPassword).toString(CryptoJS.enc.Utf8);
         if (decrypted) {
@@ -515,6 +483,11 @@ function decryptText() {
     } catch (error) {
         showAlert("Decryption failed. Please check your password and try again.", "danger", alertContainer);
     }
+  }
+  else {
+    showModal("Password input field cannot be empty.");
+  }
+  updateCounter();
 }
 
 
@@ -530,6 +503,7 @@ async function copyToClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
   } catch (err) {
+    showModal('Failed to copy text to clipboard.');
     console.error('Failed to copy text to clipboard:', err);
   }
 }
@@ -567,6 +541,7 @@ function generate() {
 function generateWithMaster() {
   var webAddress = document.getElementById('webAddress').value;
   var password = document.getElementById('password').value;
+  let alertContainer = document.getElementById("keyGeneratorAlertContainer");
   var input = webAddress+password
   var base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; 
   
@@ -578,11 +553,7 @@ function generateWithMaster() {
   input = input.slice(0, 32); 
   }
   else {
-    while (input.length < 32) {
-      input += input; 
-    }
-    input = input.slice(0, 32); 
-    alert("Website name and Master key input fields cannot be empty.")
+    showAlert("Website name and Master key input fields cannot be empty.", "danger", alertContainer);
   }
 
 
@@ -650,32 +621,61 @@ window.addEventListener('load', function() {
 });
 }
 
-document.getElementById('downloadButton').addEventListener('click', function() {
-if ('serviceWorker' in navigator && 'caches' in window) {
+// EARLY VERSION
+// document.getElementById('downloadButton').addEventListener('click', function() {
+// if ('serviceWorker' in navigator && 'caches' in window) {
   
-  if (confirm('Do you want to download resources for offline use?')) {
+//   if (confirm('Do you want to download resources for offline use?')) {
    
-    caches.open('key-generator-cache-v1').then(function(cache) {
-      cache.addAll([
-        '/',
-        'bootstrap.min.css',
-        'keygen_styles.css',
-        'bootstrap.bundle.min.js',
-        'jquery.min.js',
-        'jquery-3.5.1.min.js',
-        'crypto-js.min.js',
-        'carrypass.js',
+//     caches.open('key-generator-cache-v1').then(function(cache) {
+//       cache.addAll([
+//         '/',
+//         'bootstrap.min.css',
+//         'keygen_styles.css',
+//         'bootstrap.bundle.min.js',
+//         'jquery.min.js',
+//         'jquery-3.5.1.min.js',
+//         'crypto-js.min.js',
+//         'carrypass.js',
        
-      ]).then(function() {
-        alert('Resources downloaded successfully for offline use.');
-      }).catch(function(error) {
-        console.error('Cache error:', error);
-      });
+//       ]).then(function() {
+//         alert('Resources downloaded successfully for offline use.');
+//       }).catch(function(error) {
+//         console.error('Cache error:', error);
+//       });
+//     });
+//   }
+// } else {
+//   alert('Offline functionality is not supported on this browser.');
+// }
+// });
+
+
+document.getElementById('downloadButton').addEventListener('click', function() {
+  if ('serviceWorker' in navigator && 'caches' in window) {
+    showModalWorker('Do you want to download resources for offline use?', function(confirmed) {
+      if (confirmed) {
+        caches.open('key-generator-cache-v1').then(function(cache) {
+          cache.addAll([
+            '/',
+            'bootstrap.min.css',
+            'keygen_styles.css',
+            'bootstrap.bundle.min.js',
+            'jquery.min.js',
+            'jquery-3.5.1.min.js',
+            'crypto-js.min.js',
+            'carrypass.js',
+          ]).then(function() {
+            showModal("Resources downloaded successfully for offline use.");
+          }).catch(function(error) {
+            console.error('Cache error:', error);
+          });
+        });
+      }
     });
+  } else {
+    showModal("Offline functionality is not supported on this browser.");
   }
-} else {
-  alert('Offline functionality is not supported on this browser.');
-}
 });
 
 
@@ -693,7 +693,6 @@ function generateAesVector(password) {
   var input = password
   var base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; 
   
-  
   if (password != "") {
   while (input.length < 32) {
     input += input; 
@@ -701,14 +700,12 @@ function generateAesVector(password) {
   input = input.slice(0, 32); 
   }
   else {
-    alert("Password input field cannot be empty.");
+    showModal("Password input field cannot be empty.");
+
   }
-
-
   
   var base64 = btoa(input);
 
-  
   var result = '';
   for (var i = 0; i < base64.length; i++) {
     var char = base64.charAt(i);
@@ -728,6 +725,7 @@ function generateAesVector(password) {
   return result;
 
 }
+
 
 function generateAesSalt(password) {
   var input = password
@@ -741,14 +739,11 @@ function generateAesSalt(password) {
   input = input.slice(0, 32); 
   }
   else {
-    alert("Password input field cannot be empty.");
+
   }
-
-
   
   var base64 = btoa(input);
 
-  
   var result = '';
   for (var i = 0; i < base64.length; i++) {
     var char = base64.charAt(i);
@@ -769,9 +764,10 @@ function generateAesSalt(password) {
 
 }
 
+
 async function encryptFile() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   const fileInput = document.getElementById('fileInput');
@@ -837,9 +833,10 @@ async function encryptFile() {
   updateCounter();
 }
 
+
 async function decryptFile() {
   if (isRateLimited()) {
-    alert("You have exceeded the rate limit. Please try again later.");
+    showModal("You have exceeded the rate limit. Please try again later.");
     return;
   }
   const encryptedFileInput = document.getElementById('encryptedFileInput');
@@ -944,4 +941,42 @@ function isRateLimited() {
 
 function updateCounter() {
     callTimes.push(Date.now());
+}
+
+
+function showModal(message) {
+  const modal = document.getElementById('alertModal');
+  const modalMessage = document.getElementById('alertModalMessage');
+  modalMessage.textContent = message;
+  modal.style.display = 'block';
+
+  const closeButton = document.getElementsByClassName('close')[0];
+  closeButton.onclick = function() {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+}
+
+function showModalWorker(message, callback) {
+  const modal = document.getElementById('myModal');
+  const modalMessage = document.getElementById('modalMessage');
+  modalMessage.textContent = message;
+  modal.style.display = 'block';
+
+  const confirmButton = document.getElementById('modalConfirm');
+  confirmButton.onclick = function() {
+    modal.style.display = 'none';
+    callback(true);
+  };
+
+  const cancelButton = document.getElementById('modalCancel');
+  cancelButton.onclick = function() {
+    modal.style.display = 'none';
+    callback(false);
+  };
 }
