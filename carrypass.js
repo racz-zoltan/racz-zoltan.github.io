@@ -24,6 +24,7 @@
 
       return key;
     }
+    
 
     function generateRandomLetterKey(webAddress, password, iterationCount, salt, length) {
       let inputStr = webAddress + password;
@@ -83,7 +84,7 @@
       let iterations = iterationCount;
       let hashBytes = CryptoJS.PBKDF2(inputStr, salt, { keySize: length/4, iterations: iterations, hasher: CryptoJS.algo.SHA256 });
 
-      let encodedString = bytesToAlphaNumericString(hashBytes);
+      let encodedString = bytesToNumericAlphaString(hashBytes);
       let key = '';
 
       let fullSegments = Math.floor(length / 7);
@@ -201,6 +202,37 @@ function bytesToAlphaNumericString(bytes) {
   return result;
 }
 
+function bytesToNumericAlphaString(bytes) {
+  let charset = 'n0tHyaFX4GvE3IZ2qYf8WP1cKuC5s7Bw6jJi3L9RzDaVQp7oYlAM86gSdE42rXbKTU9x5ZDfGq1eC';
+  let result = '';
+  let hasLowercase = false;
+  let hasUppercase = false;
+  let hasDigit = false;
+
+  for (let i = 0; i < bytes.words.length * 4; i++) {
+    let byte = (bytes.words[Math.floor(i / 4)] >> (24 - (i % 4) * 8)) & 0xff;
+    let char = charset.charAt(byte % charset.length);
+
+   
+    if (!hasLowercase && /[a-z]/.test(char)) {
+      hasLowercase = true;
+    } else if (!hasUppercase && /[A-Z]/.test(char)) {
+      hasUppercase = true;
+    } else if (!hasDigit && /[0-9]/.test(char)) {
+      hasDigit = true;
+    }
+
+    result += char;
+  }
+
+  
+  if (!(hasLowercase && hasUppercase && hasDigit)) {
+   
+    return bytesToNumericAlphaString(bytes);
+  }
+
+  return result;
+}
 
 function bytesToAlphaString(bytes) {
   let charset = 'cOpMniQyTmSvwklVJuIjgKtNrLEoRhXYZqaxiHdsPWzDfUeGbAFB';
@@ -283,6 +315,10 @@ function bytesToNumericString(bytes) {
 
 
 function generateKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   let webAddress = document.getElementById("webAddress").value;
   let password = document.getElementById("password").value;
   let iterationCount = document.getElementById("iterationCount").value;
@@ -300,49 +336,16 @@ function generateKey() {
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+
+  updateCounter();
+
 }
 
-function generateLetterKey() {
-  let webAddress = document.getElementById("webAddress").value;
-  let password = document.getElementById("password").value;
-  let iterationCount = document.getElementById("iterationCount").value;
-  let salt = document.getElementById("salt").value;
-  let length = document.getElementById("length").value;
-
-  let key = generateRandomLetterKey(webAddress, password, iterationCount, salt, length);
-
-  copyToClipboard(key);
-
-  document.getElementById("webAddress").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-  document.getElementById("length").value = "21";
-
-  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-}
-
-function generateNumberKey() {
-  let webAddress = document.getElementById("webAddress").value;
-  let password = document.getElementById("password").value;
-  let iterationCount = document.getElementById("iterationCount").value;
-  let salt = document.getElementById("salt").value;
-  let length = document.getElementById("length").value;
-
-  let key = generateRandomNumberKey(webAddress, password, iterationCount, salt, length);
-
-  copyToClipboard(key);
-
-  document.getElementById("webAddress").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
-  document.getElementById("length").value = "21";
-
-  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
-}
-
-function generateMixedKey() {
+function generateAlphaNumKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   let webAddress = document.getElementById("webAddress").value;
   let password = document.getElementById("password").value;
   let iterationCount = document.getElementById("iterationCount").value;
@@ -360,9 +363,92 @@ function generateMixedKey() {
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+
+  updateCounter();
+
 }
 
+function generateLetterKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
+
+  let key = generateRandomLetterKey(webAddress, password, iterationCount, salt, length);
+
+  copyToClipboard(key);
+
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
+
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+  updateCounter();
+}
+
+function generateNumberKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
+
+  let key = generateRandomNumberKey(webAddress, password, iterationCount, salt, length);
+
+  copyToClipboard(key);
+
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
+
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+  updateCounter();
+}
+
+function generateMixedKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
+  let webAddress = document.getElementById("webAddress").value;
+  let password = document.getElementById("password").value;
+  let iterationCount = document.getElementById("iterationCount").value;
+  let salt = document.getElementById("salt").value;
+  let length = document.getElementById("length").value;
+
+  let key = generateRandomMixedKey(webAddress, password, iterationCount, salt, length);
+
+  copyToClipboard(key);
+
+  document.getElementById("webAddress").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("iterationCount").value = "21000";
+  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("length").value = "21";
+
+  showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+  updateCounter();
+}
+
+
 function generateSpecialKey() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   let webAddress = document.getElementById("webAddress").value;
   let password = document.getElementById("password").value;
   let iterationCount = document.getElementById("iterationCount").value;
@@ -380,9 +466,14 @@ function generateSpecialKey() {
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
+  updateCounter();
 }
 
 function encryptText() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   let plaintext = document.getElementById("plaintext").value;
   let encryptionPassword = document.getElementById("encryptionPassword").value;
 
@@ -391,6 +482,7 @@ function encryptText() {
   document.getElementById("plaintext").value = "";
   document.getElementById("encryptionPassword").value = "";
   showAlert("Text encrypted successfully. See 'Encrypted Text' field", "success", document.getElementById("encryptionAlertContainer"));
+  updateCounter();
 }
 
 function copyEncryptedText() {
@@ -400,6 +492,10 @@ function copyEncryptedText() {
 }
 
 function decryptText() {
+    if (isRateLimited()) {
+      alert("You have exceeded the rate limit. Please try again later.");
+      return;
+    }
     let encryptedText = document.getElementById("encryptedText").value;
     let decryptionPassword = document.getElementById("decryptionPassword").value;
     let alertContainer = document.getElementById("decryptionAlertContainer");
@@ -411,8 +507,10 @@ function decryptText() {
         document.getElementById("encryptedText").value = "";
         document.getElementById("decryptionPassword").value = "";
         showAlert("Text decrypted successfully. See 'Text to Encrypt' field", "success", alertContainer);
+        updateCounter();
         } else {
         showAlert("Decryption failed: incorrect password.", "danger", alertContainer);
+        updateCounter();
         }
     } catch (error) {
         showAlert("Decryption failed. Please check your password and try again.", "danger", alertContainer);
@@ -672,6 +770,10 @@ function generateAesSalt(password) {
 }
 
 async function encryptFile() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
   const reader = new FileReader();
@@ -732,9 +834,14 @@ async function encryptFile() {
 
 
   reader.readAsArrayBuffer(file);
+  updateCounter();
 }
 
 async function decryptFile() {
+  if (isRateLimited()) {
+    alert("You have exceeded the rate limit. Please try again later.");
+    return;
+  }
   const encryptedFileInput = document.getElementById('encryptedFileInput');
   const encryptedFile = encryptedFileInput.files[0];
   const reader = new FileReader();
@@ -793,6 +900,7 @@ async function decryptFile() {
   };
 
   reader.readAsArrayBuffer(encryptedFile);
+  updateCounter();
 }
 
 
@@ -817,3 +925,23 @@ navLinks.forEach(function(navLink) {
   });
 });
 });
+
+
+const MAX_CALLS_PER_MINUTE = 7;
+const RATE_LIMIT_WINDOW = 60 * 1000; 
+
+
+let callTimes = [];
+
+
+function isRateLimited() {
+    const currentTime = Date.now();
+   
+    callTimes = callTimes.filter(time => (currentTime - time) < RATE_LIMIT_WINDOW);
+    return callTimes.length >= MAX_CALLS_PER_MINUTE;
+}
+
+
+function updateCounter() {
+    callTimes.push(Date.now());
+}

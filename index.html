@@ -40,11 +40,8 @@
           <a class="nav-link" href="#pricing">Pricing</a>
         </li>
         <li class="nav-item">
-            <a type="button" id="downloadButton" class="nav-link" href="">Offline Mode</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>
+            <a class="nav-link" href="#download">Offline Mode</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -57,10 +54,8 @@
           <h1 style="color: darkblue;">Password privacy</h1>
           <h1 style="color: darkblue; margin-left: 5rem;">peace of mind</h1>
           <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a>
-          <p style="color: red; margin-top: 1rem;">Site is under construction...</p>
         </div>
-        <div class="col-md-6">
-            <!-- Second column content goes here -->
+        <div class="col-md-6">          
         </div>
       </div>
     </div>
@@ -78,11 +73,10 @@
                     <h6 id="usecase" style="color: lightgray; margin-left: 6rem;">Read a use case</h6>
                     </div>
                       <p id="explanation" style="display: none;">I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.
-                          In  the <b>Website name</b> field I type <em>'Quotes'</em>, then I type my <b>Master key</b> <em>'Password123'</em>, click on <b>My Salt</b> and the value changes to 'VKHRT2YZTZDWY3NULYTLKTSRWKYTT2ZB'. 
-                          After that I click on the <b>Create a [aB-4c] type Password</b> button. 
-                          CarryPass creates the password <em>'f5gHhXZ-2ur8JBD-uAP6Npu'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
+                          In  the <b>Website name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>My Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
+                          I push the <b>Create a [a2B-4cD] type Password</b> button and
+                          CarryPass creates the password <em>'V2aEM9u-83fWo9F-GYBIeSQ'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
                           As long as the parameters are the same I always get back the same password, and while I do not have to remember its complexity, it stays private using CarryPass.
-                          In order to create a cryptographycally more secure password, I increase the Iteration count. For some sites I generate a random salt that I keep secret.
                           CarryPass does not store passwords or any data generated or entered on this site.
                       </p>
                     
@@ -90,7 +84,7 @@
                   </div>
                   
                   <div class="mb-3">
-                    <label for="password" class="form-label">Master key</label>
+                    <label for="password" class="form-label">Master password</label>
                     <div class="input-group">
                     <input type="text" id="password" name="password" class="form-control" required>
                     <button id="showbutton" type="button" class="btn btn-outline-primary" onclick="showMaster()">Hide</button>
@@ -116,15 +110,13 @@
         
                 </form>
                 <div id="keyGeneratorAlertContainer" class="mt-3"></div>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateKey()">Create a [aB-4c] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateLetterKey()">Create a [aBcD] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateKey()">Create a [a2B-4cD] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateAlphaNumKey()">Create a [aB5cD1] type Password</button>
                 <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateNumberKey()">Create a [1234] type Password or PIN</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateSpecialKey()">Create a [!a%B>] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateLetterKey()">Create a [aBcDEf] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
         </div>
         <div class="col-md-6" style="margin-bottom: 5rem;">
-
-          <!-- Second column content goes here -->
-
             <h4 style="color: darkblue; margin-top: 1rem;">Random Salt Generator</h4>
             <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
             <button class="btn btn-outline-primary" onclick="generate()">Generate</button>
@@ -137,16 +129,15 @@
     <!-- Third Section -->
     <section id="encryption" class="third-section" style="background-image: url('saeed-karimi-JrrWC7Qcmhs-unsplash.jpg');">
         <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-            <h2>Keep your secret private</h2>
-            <h2 style="margin-left: 5rem;">even if you share it</h2>
-            <a href="#encrypt" style="margin-top: 9rem;" class="btn btn-danger">Encrypt</a>
-            </div>
-            <div class="col-md-6">
-            <!-- Second column content goes here -->
-            </div>
-        </div>
+          <div class="row">
+              <div class="col-md-6">
+              <h2>Keep your secret private</h2>
+              <h2 style="margin-left: 5rem;">even if you share it</h2>
+              <a href="#encrypt" style="margin-top: 12rem;" class="btn btn-danger">Encrypt</a>
+              </div>
+              <div class="col-md-6">
+              </div>
+          </div>
         </div>
     </section>
 
@@ -223,30 +214,56 @@
                 <label for="password" class="mt-3">Password for Decryption</label>
                 <input type="password" id="password2" class="form-control">
                 <button onclick="decryptFile()" class="btn btn-primary mt-3">Decrypt File</button>
-        
-
-          </div>
+              </div>
           </div>
       </section>
 
-        <!-- Third Section -->
-      <section id="about" class="fourth-section">
-          <div class="container">
+      <section id="about" class="third-section" style="background-image: url('shanthi-raja-inbDZypumis-unsplash.jpg');">
+        <div class="container">
           <div class="row">
               <div class="col-md-6">
-              <h2></h2>
-              <h2 style="margin-left: 9rem;"></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac hendrerit diam, sit amet pulvinar justo. Vivamus vitae magna at dolor pulvinar ultrices eget eu magna. Vivamus at placerat arcu. Pellentesque at lacus dolor. Cras tempor arcu quis diam bibendum sodales. Vivamus vitae odio porta, sagittis velit non, hendrerit quam. Pellentesque dapibus eu augue ac sagittis.
-
-                Duis erat tortor, dictum ac vestibulum quis, auctor in eros. Ut massa neque, lobortis et varius eget, ultrices a justo. Donec nec enim ac justo imperdiet imperdiet. Fusce sed semper nisi. Pellentesque eu pharetra ante. Proin convallis urna non odio volutpat porta. Nam tincidunt metus vitae odio finibus placerat sed id augue. Aenean justo odio, vehicula ac metus vel, suscipit consequat neque. Curabitur ornare vitae mi in rhoncus. 
-                Aenean eu quam a eros egestas pretium eu et enim. Nam sit amet ullamcorper quam, at lacinia arcu. Nulla ultricies, nibh a ultrices faucibus, libero quam mollis quam, ut mollis nisl nulla vel lectus. Aliquam dapibus est in elit accumsan faucibus.
-                
-                Sed vel fringilla tellus. Mauris aliquam tortor massa, sit amet congue ex pellentesque non. Suspendisse at erat metus. Nam luctus interdum rhoncus. Donec feugiat sapien ac dolor porttitor, at tincidunt nibh facilisis. Morbi commodo tincidunt varius. Suspendisse ultrices est vel lobortis placerat. Etiam placerat tincidunt vulputate. 
-                Vivamus facilisis, risus cursus ornare finibus, nisi nibh vulputate dolor, a mollis velit libero ultrices mauris. Aenean at nisi nisl. Curabitur malesuada elit a lobortis auctor. Aliquam efficitur laoreet eros id viverra. Proin viverra volutpat nunc at vestibulum. Maecenas erat lorem, faucibus quis enim quis, convallis pretium risus. Donec vehicula, lacus quis placerat convallis, lacus eros ultricies nunc, eu pretium est dolor sed turpis. Phasellus fringilla purus felis.</p>
+                <p style="margin: 1rem;">CarryPass is dedicated to revolutionizing the way you manage your passwords and safeguard your digital identity. 
+                  Its mission is to provide innovative solutions that prioritize security, privacy, and convenience, empowering users 
+                  to take control of their online accounts.</p>
+              <a href="#allabout" style="margin-top: 12rem;" class="btn btn-warning">Read on</a>
               </div>
               <div class="col-md-6">
-              <!-- Second column content goes here -->
               </div>
+          </div>
+        </div>
+      </section>
+
+        <!-- Third Section -->
+      <section id="allabout" class="fourth-section">
+          <div class="container">
+          <div class="row">
+                <h2 style="color: darkblue; margin: 1rem;">Progressive Web App (PWA) for Seamless Integration and Accessibility</h2>
+                <p style="margin: 1rem;">CarryPass offers unparalleled flexibility and accessibility, allowing you to manage your passwords seamlessly 
+                  across all your devices. With its PWA, you can enjoy the convenience of accessing your passwords from any browser, 
+                  eliminating the need for multiple applications or extensions. Say goodbye to device restrictions and hello 
+                  to effortless password management on the go.</p>
+                <h2 style="color: darkblue; margin: 1rem;">Offline Mode for Password Security</h2>
+                <p style="margin: 1rem;">Whether you're online or offline, CarryPass ensures uninterrupted access to your passwords whenever you need them. 
+                Thanks to advanced caching and service worker technology, your passwords are secure, because they are not stored and 
+                still readily available even when you're offline.</p>
+                <h2 style="color: darkblue; margin: 1rem;">How a Privacy-Focused Password Manager App Mitigates Privacy Concerns and Protects User Data</h2> 
+                <p style="margin: 1rem;">Privacy is not just a feature – it's the foundation. The privacy-focused approach of CarryPass ensures that your 
+                information remains strictly confidential and its zero-knowledge architecture safeguards your passwords from prying eyes. 
+                When you create a password, instead of sending the actual master password to a service provider or storing it on servers, 
+                the password is transformed in your browser using a one-way cryptographic hash function with key-stretching algorithm, 
+                and neither the master password nor the created password ever leave your device.</p>
+                <h2 style="color: darkblue; margin: 1rem;">Enhancing Privacy with AES 256 Encryption</h2>
+                <p style="margin: 1rem;">CarryPass takes privacy seriously by implementing robust AES 256 encryption for both text and file storage. AES 256 encryption is 
+                recognized as one of the most secure encryption standards available today, ensuring that your sensitive data remains protected 
+                from unauthorized access.
+                With AES 256 encryption, your texts and files are encrypted using a symmetric key algorithm, meaning that only authorized users 
+                with the correct key can decrypt and access the information. This ensures that even if your data were somehow stolen from you, 
+                it would be virtually impossible for anyone without the encryption key to decipher its contents.
+                Beyond just security, AES 256 encryption also enhances privacy by providing an additional layer of confidentiality. 
+                Your encrypted data remains indecipherable to anyone, including service providers or hackers, ensuring that your 
+                digital identity and sensitive information are kept private at all times.
+                </p>
+            
           </div>
           </div>
       </section>
@@ -268,37 +285,35 @@
     </section>
 
   <!-- Fifth Section -->
-  <section id="contact" class="fifth-section">
+  <section id="download" class="third-section" style="background-image: url('nik-MAgPyHRO0AA-unsplash.jpg');">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h2>Contact</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula est vitae elit pharetra, nec mollis ante feugiat.</p>
+
         </div>
         <div class="col-md-6">
-          <!-- Second column content goes here -->
+          <p style="color: black;">To install the progressive web app (PWA), simply follow these easy steps. First, ensure you have a compatible web browser 
+            installed on your device, such as Google Chrome, Mozilla Firefox, or Microsoft Edge.  If you have opened the CarryPass website 
+            in one of the PWA compatible browsers, click on the install button. That's it! Now you can enjoy the app's 
+            features and functionalities with just a tap, even when you're offline.</p>
+        <button id="downloadButton" type="button" style="width: 50%; margin-top: 20%;" class="btn btn-secondary">Install Progressive Web App</button>
         </div>
       </div>
     </div>
   </section>
 
-    <!-- Spinner Modal -->
-    <div class="modal" id="spinnerModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body text-center">
-              <div class="spinner-border text-success" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <span class="text-muted">CarryPass© 2022 | Rácz Zoltán | zoltan@carrypass.net | hosted by githubpages | domain provider godaddy</span>
+      <span class="text-muted">CarryPass© 2022 | Rácz Zoltán | zoltan@carrypass.net | hosted by GitHub Pages | domain provider GoDaddy | Image#1 Photo by <a href="https://unsplash.com/@leohoho?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Leohoho</a> on <a href="https://unsplash.com/photos/man-in-black-jacket-standing-near-body-of-water-during-daytime-kXYExBLuZ9Q?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
+      Image#2 Photo by <a href="https://unsplash.com/@saeedkarimi?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">saeed karimi</a> on <a href="https://unsplash.com/photos/woman-in-white-long-sleeve-shirt-kissing-girl-in-white-long-sleeve-shirt-JrrWC7Qcmhs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
+      Image#3 Photo by <a href="https://unsplash.com/@shanthiraja?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Shanthi Raja</a> on <a href="https://unsplash.com/photos/brown-wooden-figurine-on-white-table-inbDZypumis?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
+      Image#4 Photo by <a href="https://unsplash.com/@morganhousel?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Morgan Housel</a> on <a href="https://unsplash.com/photos/person-holding-yellow-round-analog-clock-X_fbh4Utwk4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
+      Image#5 Photo by <a href="https://unsplash.com/@helloimnik?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nik</a> on <a href="https://unsplash.com/photos/right-arrow-sign-on-wall-MAgPyHRO0AA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></span>
+  
+  
+  
     </div>
   </footer>
 
@@ -323,20 +338,6 @@
         });
       });
 
-      // Scroll to Top Button
-      $(document).ready(function(){
-        $(window).scroll(function(){
-          if ($(this).scrollTop() > 100) {
-            $('#scroll-up').fadeIn();
-          } else {
-            $('#scroll-up').fadeOut();
-          }
-        });
-        $('#scroll-up').click(function(){
-          $("html, body").animate({ scrollTop: 0 }, 600);
-          return false;
-        });
-      });
 
   </script>
 

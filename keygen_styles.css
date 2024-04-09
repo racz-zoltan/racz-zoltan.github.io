@@ -10,22 +10,6 @@
   height: 100vh; 
 }
 
-.first-section {
-  background-image: url('leohoho-kXYExBLuZ9Q-unsplash.jpg');
-}
-
-.third-section {
-  background-image: url('leohoho-kXYExBLuZ9Q-unsplash.jpg');
-}
-
-
-.btn-scroll-up {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: block;
-  font-size: 24px;
-}
 
 .footer {
   background-color: #f8f9fa;
