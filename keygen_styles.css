@@ -93,3 +93,67 @@
   margin-top: 10px;
 }
 
+
+
+/* CSS for the modal */
+.dot-modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
+}
+
+
+.dot-modal-content {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 300px;
+    height: 300px; 
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.loading-dots {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+    animation: pulsate 1s infinite alternate;
+}
+
+.blue {
+    background-color: #0f437b;
+}
+
+.light {
+    background-color: #b7e3fc;
+}
+
+@keyframes pulsate {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}

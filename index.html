@@ -18,6 +18,25 @@
 
 </head>
 <body>
+  <div id="loadingModal" class="dot-modal">
+    <!-- Modal content -->
+    <div class="dot-modal-content">
+      <div class="loading-dots">
+          <div class="dot light"></div>
+          
+          <div class="dot light"></div>
+          
+          <div class="dot light"></div>
+          
+          <div class="dot light"></div>
+          <div class="dot blue"></div>
+          <div class="dot blue"></div>
+          <div class="dot light"></div>
+          <div class="dot light"></div>
+          <div class="dot blue"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -65,7 +84,7 @@
   <section id="keygen" class="second-section">
     <div class="container">
       <div class="row">
-        <div class="col-md-6" style="margin-bottom: 3rem;">
+        <div class="col-md-6" style="margin-bottom: 1rem;">
                 <form id="keyGeneratorForm">
                   <div class="mb-3">
                     <div class="casecontainer">
@@ -76,7 +95,7 @@
                           In  the <b>Website name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>My Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
                           I push the <b>Create a [a2B-4cD] type Password</b> button and
                           CarryPass creates the password <em>'V2aEM9u-83fWo9F-GYBIeSQ'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
-                          As long as the parameters are the same I always get back the same password, and while I do not have to remember its complexity, it stays private using CarryPass.
+                          CarryPass also creates 5 additional passwords, so they are available if a password change is required. As long as the parameters are the same I always get back the same passwords, and while I do not have to remember their complexity, they stay private using CarryPass.
                           CarryPass does not store passwords or any data generated or entered on this site.
                       </p>
                     
@@ -86,8 +105,8 @@
                   <div class="mb-3">
                     <label for="password" class="form-label">Master password</label>
                     <div class="input-group">
-                    <input type="text" id="password" name="password" class="form-control" required>
-                    <button id="showbutton" type="button" class="btn btn-outline-primary" onclick="showMaster()">Hide</button>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <button id="showbutton" type="button" class="btn btn-outline-secondary" onclick="showMaster()">Show</button>
                     </div>
                   </div>
                   
@@ -116,11 +135,61 @@
                 <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateLetterKey()">Create a [aBcDEf] type Password</button>
                 <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
         </div>
-        <div class="col-md-6" style="margin-bottom: 5rem;">
-            <h4 style="color: darkblue; margin-top: 1rem;">Random Salt Generator</h4>
+        <div class="col-md-6" style="margin-bottom: 2rem;">
+            <h4 style="color: darkblue; margin-top: 0.5rem;">Created Passwords</h4>
+            <div id="manyKeysAlertContainer" class="mt-3"></div>
+            <div class="mb-3">
+              <label for="mainPassword" class="form-label">Main password</label>
+              <div class="input-group">
+              <input type="password" id="mainPassword" name="length" class="form-control" value="" disabled>
+              <button id="mainButton" class="btn btn-outline-secondary" name="mainPassword" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="mainPassword" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="supplementaryone" class="form-label">Additional password #1</label>
+              <div class="input-group">
+              <input type="password" id="supplementaryone" class="form-control" value="" readonly>
+              <button id="firstButton" class="btn btn-outline-secondary" name="supplementaryone" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="supplementaryone" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="supplementarytwo" class="form-label">Additional password #2</label>
+              <div class="input-group">
+              <input type="password" id="supplementarytwo"  class="form-control" value="" readonly>
+              <button id="secondButton" class="btn btn-outline-secondary" name="supplementarytwo" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="supplementarytwo" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="supplementarythree" class="form-label">Additional password #3</label>
+              <div class="input-group">
+              <input type="password" id="supplementarythree" class="form-control" value="" readonly>
+              <button id="thirdButton" class="btn btn-outline-secondary" name="supplementarythree" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="supplementarythree" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="supplementaryfour" class="form-label">Additional password #4</label>
+              <div class="input-group">
+              <input type="password" id="supplementaryfour" class="form-control" value="" readonly>
+              <button id="fourthButton" class="btn btn-outline-secondary" name="supplementaryfour" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="supplementaryfour" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="supplementaryfive" class="form-label">Additional password #5</label>
+              <div class="input-group">
+              <input type="password" id="supplementaryfive" class="form-control" value="" readonly>
+              <button id="fifthButton" class="btn btn-outline-secondary" name="supplementaryfive" onclick="showManyPassword(this)">Show</button>
+              <button class="btn btn-outline-warning" name="supplementaryfive" onclick="copyPassword(this)">Copy</button>
+              </div>
+            </div>
+            <h4 style="color: darkblue; margin-top: 0.5rem;">Random Salt Generator</h4>
             <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
-            <button class="btn btn-outline-primary" onclick="generate()">Generate</button>
-            <button class="btn btn-outline-secondary" onclick="copyToSalt()">Copy to Salt</button>
+            <button style="margin-bottom: 2rem;" class="btn btn-outline-primary" onclick="generate()">Generate</button>
+            <button style="margin-bottom: 2rem;" class="btn btn-outline-warning" onclick="copyToSalt()">Copy to Salt</button>
         </div>
       </div>
     </div>
@@ -150,17 +219,17 @@
                 
                 <form id="encryptionForm">
                   <div class="mb-3">
-                    <label for="plaintext" class="form-label">Text to Encrypt</label>
+                    <label for="plaintext" class="form-label">Text to encrypt</label>
                     <textarea id="plaintext" name="plaintext" class="form-control" rows="4" required></textarea>
                   </div>
                   
                   <div class="mb-3">
-                    <label for="encryptionPassword" class="form-label">Encryption Password</label>
+                    <label for="encryptionPassword" class="form-label">Encryption password</label>
                     <input type="password" id="encryptionPassword" name="encryptionPassword" class="form-control" required>
                   </div>
                   <div id="encryptionAlertContainer" class="mt-3"></div>
                   <button type="button" class="btn btn-primary" onclick="encryptText()">Encrypt</button>
-                  <button type="button" class="btn btn-outline-secondary" onclick="copyEncryptedText()">Copy Encrypted Text</button>
+                  <button type="button" class="btn btn-outline-warning" onclick="copyEncryptedText()">Copy Encrypted Text</button>
                 </form>
             </div>
             <div class="col-md-6">
@@ -168,17 +237,17 @@
                 
                 <form id="decryptionForm">
                 <div class="mb-3">
-                    <label for="encryptedText" class="form-label">Encrypted Text</label>
+                    <label for="encryptedText" class="form-label">Encrypted text</label>
                     <textarea id="encryptedText" name="encryptedText" class="form-control" rows="4" required></textarea>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="decryptionPassword" class="form-label">Decryption Password</label>
+                    <label for="decryptionPassword" class="form-label">Decryption password</label>
                     <input type="password" id="decryptionPassword" name="decryptionPassword" class="form-control" required>
                 </div>
                 <div id="decryptionAlertContainer" class="mt-3"></div>
                 <button type="button" class="btn btn-primary" onclick="decryptText()">Decrypt</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="copyDecryptedText()">Copy Decrypted Text</button>
+                <button type="button" class="btn btn-outline-warning" onclick="copyDecryptedText()">Copy Decrypted Text</button>
                 </form>
             </div>
         </div>
@@ -193,12 +262,12 @@
           
                   <h2 style="color: darkblue;" class="mt-5">File Encryption</h2>
                        
-                  <label for="fileInput">Choose File to Encrypt</label>
+                  <label for="fileInput">Choose file to encrypt</label>
                   <div class="custom-file">
                       <input type="file" class="custom-file-input" id="fileInput" onchange="updateFileName('fileInput')">
                       <label class="custom-file-label" id="fileInputLabel" for="fileInput">Choose file</label>
                   </div>
-                  <label for="password" class="mt-3">Password for Encryption</label>
+                  <label for="password" class="mt-3">Password for encryption</label>
                   <input type="password" id="password1" class="form-control">
                   <div id="fileEncryptionAlertContainer" class="mt-3"></div>
                   <button onclick="encryptFile()" class="btn btn-primary mt-3">Encrypt File</button>
@@ -207,12 +276,12 @@
               <div class="col-md-6">
                 <h2 style="color: darkblue;" class="mt-5">File Decryption</h2>
                 
-                <label for="encryptedFileInput">Choose Encrypted File to Decrypt</label>
+                <label for="encryptedFileInput">Choose encrypted file to decrypt</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="encryptedFileInput" onchange="updateFileName('encryptedFileInput')">
                     <label class="custom-file-label" id="encryptedFileInputLabel" for="encryptedFileInput">Choose file</label>
                 </div>
-                <label for="password" class="mt-3">Password for Decryption</label>
+                <label for="password" class="mt-3">Password for decryption</label>
                 <input type="password" id="password2" class="form-control">
                 <button onclick="decryptFile()" class="btn btn-primary mt-3">Decrypt File</button>
               </div>
