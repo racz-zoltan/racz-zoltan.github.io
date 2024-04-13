@@ -94,7 +94,7 @@
                     <h6 id="usecase" style="color: lightgray; margin-left: 6rem;">Read a use case</h6>
                     </div>
                       <p id="explanation" style="display: none;">I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.
-                          In  the <b>Website name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>My Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
+                          In  the <b>Website name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>Use Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
                           I push the <b>Create a [a2B-4cD] type Password</b> button and
                           CarryPass creates the password <em>'V2aEM9u-83fWo9F-GYBIeSQ'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
                           CarryPass also creates 5 additional passwords, so they are available if a password change is required. As long as the parameters are the same I always get back the same passwords, and while I do not have to remember their complexity, they stay private using CarryPass.
@@ -125,17 +125,17 @@
                     <label for="salt" class="form-label">Salt</label>
                     <div class="input-group">
                     <input type="text" id="salt" name="salt" class="form-control" value="KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5" required>
-                    <button class="btn btn-outline-primary" onclick="generateWithMaster()">My Salt</button>
+                    <button class="btn btn-outline-primary" onclick="generateWithMaster()">Use Salt</button>
                     </div>
                   </div>
         
                 </form>
                 <div id="keyGeneratorAlertContainer" class="mt-3"></div>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateKey()">Create a [a2B-4cD] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateAlphaNumKey()">Create a [aB5cD1] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateNumberKey()">Create a [1234] type Password or PIN</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateLetterKey()">Create a [aBcDEf] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateKey()">Create a [a2B-4cD] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateAlphaNumKey()">Create a [aB5cD1] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateNumberKey()">Create a [1234] type Password or PIN</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateLetterKey()">Create a [aBcDEf] type Password</button>
+                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
         </div>
         <div class="col-md-6" style="margin-bottom: 2rem;">
             <h4 style="color: darkblue; margin-top: 0.5rem;">Created Passwords</h4>
@@ -188,10 +188,12 @@
               <button class="btn btn-outline-warning" name="supplementaryfive" onclick="copyPassword(this)">Copy</button>
               </div>
             </div>
+            <button class="btn btn-outline-danger" style="width: 100%; margin-bottom: 3%; margin-top: 3%;" name="clearAll" onclick="clearAllPassword()">Clear All</button>
+            
             <h4 style="color: darkblue; margin-top: 0.5rem;">Random Salt Generator</h4>
             <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
             <button style="margin-bottom: 2rem;" class="btn btn-outline-primary" onclick="generate()">Generate</button>
-            <button style="margin-bottom: 2rem;" class="btn btn-outline-warning" onclick="copyToSalt()">Copy to Salt</button>
+            <button style="margin-bottom: 2rem;" class="btn btn-outline-primary" onclick="copyToSalt()">Copy to Salt</button>
         </div>
       </div>
     </div>
@@ -230,7 +232,7 @@
                     <input type="password" id="encryptionPassword" name="encryptionPassword" class="form-control" required>
                   </div>
                   <div id="encryptionAlertContainer" class="mt-3"></div>
-                  <button type="button" class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="encryptText()">Encrypt</button>
                   <button type="button" class="btn btn-outline-warning" onclick="copyEncryptedText()">Copy Encrypted Text</button>
                 </form>
             </div>
@@ -248,7 +250,7 @@
                     <input type="password" id="decryptionPassword" name="decryptionPassword" class="form-control" required>
                 </div>
                 <div id="decryptionAlertContainer" class="mt-3"></div>
-                <button type="button" class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+                <button type="button" class="btn btn-outline-primary" onclick="decryptText()">Decrypt</button>
                 <button type="button" class="btn btn-outline-warning" onclick="copyDecryptedText()">Copy Decrypted Text</button>
                 </form>
             </div>
@@ -272,7 +274,7 @@
                   <label for="password" class="mt-3">Password for encryption</label>
                   <input type="password" id="password1" class="form-control">
                   <div id="fileEncryptionAlertContainer" class="mt-3"></div>
-                  <button onclick="encryptFile()" class="btn btn-primary mt-3">Encrypt File</button>
+                  <button onclick="encryptFile()" class="btn btn-outline-primary mt-3">Encrypt File</button>
                         
               </div>
               <div class="col-md-6">
@@ -285,7 +287,7 @@
                 </div>
                 <label for="password" class="mt-3">Password for decryption</label>
                 <input type="password" id="password2" class="form-control">
-                <button onclick="decryptFile()" class="btn btn-primary mt-3">Decrypt File</button>
+                <button onclick="decryptFile()" class="btn btn-outline-primary mt-3">Decrypt File</button>
               </div>
           </div>
       </section>
@@ -317,7 +319,7 @@
                 <h2 style="color: darkblue; margin: 1rem;">Offline Mode for Password Security</h2>
                 <p style="margin: 1rem;">Whether you're online or offline, CarryPass ensures uninterrupted access to your passwords whenever you need them. 
                 Thanks to advanced caching and service worker technology, your passwords are secure, because they are not stored and 
-                still readily available even when you're offline.</p>
+                still readily available even when you're offline. Offline mode helps mitigate various network-based attacks. So, password generation or an encryption process done offline can enhance user privacy by eliminating the risk of transmitting sensitive information over the internet.</p>
                 <h2 style="color: darkblue; margin: 1rem;">How a Privacy-Focused Password Manager App Mitigates Privacy Concerns and Protects User Data</h2> 
                 <p style="margin: 1rem;">Privacy is not just a feature – it's the foundation. The privacy-focused approach of CarryPass ensures that your 
                 information remains strictly confidential and its zero-knowledge architecture safeguards your passwords from prying eyes. 

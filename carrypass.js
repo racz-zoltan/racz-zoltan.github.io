@@ -292,7 +292,9 @@ async function generateKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -364,7 +366,9 @@ async function generateAlphaNumKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -408,7 +412,9 @@ async function generateLetterKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -450,7 +456,9 @@ async function generateNumberKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -492,7 +500,9 @@ async function generateMixedKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -535,7 +545,9 @@ async function generateSpecialKey() {
 
   let supplementaryInputs = ["supplementaryone", "supplementarytwo", "supplementarythree", "supplementaryfour", "supplementaryfive"];
 
-  let initialInput = password+webAddress;
+  let stringIteration = iterationCount.toString();
+
+  let initialInput = stringIteration+password+salt+webAddress;
 
   let generatedNumbers = generateNumbers(initialInput);
   for (let i = 0; i < 5; i++) {
@@ -758,6 +770,15 @@ function showManyPassword(button) {
   }
 }
 
+function clearAllPassword() {
+  document.getElementById('mainPassword').value = "";
+  document.getElementById('supplementaryone').value = "";
+  document.getElementById('supplementarytwo').value = "";
+  document.getElementById('supplementarythree').value = "";
+  document.getElementById('supplementaryfour').value = "";
+  document.getElementById('supplementaryfive').value = "";
+
+}
 
 
 

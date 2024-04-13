@@ -140,7 +140,7 @@
 }
 
 .blue {
-    background-color: #0f437b;
+    background-color: #072546;
 }
 
 .light {
@@ -156,4 +156,14 @@
         transform: scale(1.5);
         opacity: 0.5;
     }
+}
+
+.clearcontainer {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-top: 0.6rem;
+}
+
+.clearcontainer h4 {
+  margin-right: 2rem; /* Adjust spacing between h4 and button */
 }
