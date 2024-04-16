@@ -310,6 +310,8 @@ async function generateKey() {
 
   document.getElementById("mainPassword").value = key;
 
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
+
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
@@ -383,6 +385,8 @@ async function generateAlphaNumKey() {
   copyToClipboard(key);
   document.getElementById("mainPassword").value = key;
 
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
+
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
@@ -429,6 +433,8 @@ async function generateLetterKey() {
   copyToClipboard(key);
   document.getElementById("mainPassword").value = key;
 
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
+
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
@@ -472,6 +478,8 @@ async function generateNumberKey() {
 
   copyToClipboard(key);
   document.getElementById("mainPassword").value = key;
+
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
 
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
@@ -517,6 +525,8 @@ async function generateMixedKey() {
   copyToClipboard(key);
   document.getElementById("mainPassword").value = key;
 
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
+
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
@@ -561,6 +571,8 @@ async function generateSpecialKey() {
 
   copyToClipboard(key);
   document.getElementById("mainPassword").value = key;
+
+  document.getElementById("createdfor").innerHTML = '<b>' + webAddress + '</b>';
 
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
@@ -1133,3 +1145,15 @@ function showLoadingDots() {
 function hideLoadingDots() {
   document.getElementById('loadingModal').style.display = 'none';
 }
+
+
+function loadPageNavItemClick() {
+  var navLink = document.querySelector('.nav-item .nav-link[href="#keygen"]');
+  if (navLink) {
+      navLink.click();
+  }
+}
+
+window.onload = function() {
+  setTimeout(loadPageNavItemClick, 1200);
+};

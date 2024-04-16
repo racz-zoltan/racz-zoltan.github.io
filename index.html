@@ -141,7 +141,10 @@
                 <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
         </div>
         <div class="col-md-6" style="margin-bottom: 2rem;">
-            <h4 style="color: darkblue; margin-top: 0.5rem;">Created Passwords</h4>
+          <div style="display: flex; align-items: center; margin-top: 0.5rem; flex-wrap: wrap;">
+            <h4 style="color: darkblue; margin-right: 1ch;">Passwords created for</h4>
+            <h4 id="createdfor" style="color: darkblue; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">the application</h4>
+          </div>
             <div id="manyKeysAlertContainer" class="mt-3"></div>
             <div class="mb-3">
               <label for="mainPassword" class="form-label">Main password</label>
