@@ -24,12 +24,9 @@
     <!-- Modal content -->
     <div class="dot-modal-content">
       <div class="loading-dots">
-          <div class="dot light"></div>
-          
-          <div class="dot light"></div>
-          
-          <div class="dot light"></div>
-          
+          <div class="dot light"></div>    
+          <div class="dot light"></div>     
+          <div class="dot light"></div>  
           <div class="dot light"></div>
           <div class="dot blue"></div>
           <div class="dot blue"></div>
@@ -43,7 +40,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="#home">
-      <img src="carrypass.webp" alt="Logo" width="30" height="30" class="d-inline-block align-top" loading="lazy">
+      <img src="CarryPass_circle_transparent.png" alt="Logo" width="30" height="30" class="d-inline-block align-top" loading="lazy">
       CarryPass
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +52,7 @@
           <a class="nav-link" href="#keygen">Create Password</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#encryption">Encrypt Text or File</a>
+          <a class="nav-link" href="#encrypt">Encrypt Text or File</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#about">About CarryPass</a>
@@ -64,7 +61,7 @@
           <a class="nav-link" href="#pricing">Pricing</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#download">Offline Mode</a>
+            <a class="nav-link" href="#download">Install App</a>
         </li>
       </ul>
     </div>
@@ -93,8 +90,8 @@
                 <form id="keyGeneratorForm">
                   <div class="mb-3">
                     <div class="casecontainer">
-                    <label for="webAddress" class="form-label">Application name</label>
-                    <h6 id="usecase" style="color: lightgray; margin-left: 6rem;">Read a use case</h6>
+                      <label for="webAddress" class="form-label">Application name</label>
+                      <h6 id="usecase" style="color: lightgray; margin-left: 6rem;">Read a use case</h6>
                     </div>
                       <p id="explanation" style="display: none;">I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.
                           In  the <b>Application name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>Use Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
@@ -102,11 +99,9 @@
                           CarryPass creates the password <em>'V2aEM9u-83fWo9F-GYBIeSQ'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
                           CarryPass also creates 5 additional passwords, so they are available if a password change is required. As long as the parameters are the same I always get back the same passwords, and while I do not have to remember their complexity, they stay private using CarryPass.
                           CarryPass does not store passwords or any data generated or entered on this site.
-                      </p>
-                    
+                      </p>            
                     <input type="text" id="webAddress" name="webAddress" class="form-control" required>
-                  </div>
-                  
+                  </div>  
                   <div class="mb-3">
                     <label for="password" class="form-label">Master password</label>
                     <div class="input-group">
@@ -212,7 +207,7 @@
               <div class="col-md-6">
               <h2>Keep your secret private</h2>
               <h2 style="margin-left: 5rem;">even if you share it</h2>
-              <a href="#encrypt" style="margin-top: 12rem;" class="btn btn-danger">Encrypt</a>
+              <!-- <a href="#encrypt" style="margin-top: 12rem;" class="btn btn-danger">Encrypt</a> -->
               </div>
               <div class="col-md-6">
               </div>
@@ -372,11 +367,15 @@
 
         </div>
         <div class="col-md-6">
-          <p style="color: black;">To install the progressive web app (PWA), simply follow these easy steps. First, ensure you have a compatible web browser 
-            installed on your device, such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari.  If you have opened the CarryPass website 
-            in one of the PWA compatible browsers, click on the install button. That's it! Now you can enjoy the app's 
-            features and functionalities with just a tap, even when you're offline.</p>
-        <button id="downloadButton" type="button" style="width: 50%; margin-top: 20%;" class="btn btn-secondary">Install Progressive Web App</button>
+          <h2 style="color: darkblue; margin-bottom: 1rem;">Desktop</h2>
+          <p style="color: black;">If you have opened the CarryPass website in one of the PWA compatible desktop browsers (such as Google Chrome, or Microsoft Edge), look for the <b>install button
+            in the address bar</b>, and click on it. You may also be prompted to pin the app to the taskbar. <br>That's it! Now you can enjoy the app's 
+            features and functionalities with just a click, even when you're offline.</p>
+            <h2 style="color: darkblue; margin: 1rem;">Mobile</h2>
+            <p style="color: black;">If you have opened the CarryPass website in one of the PWA compatible mobile browsers (such as Google Chrome, Mozilla Firefox, or Safari), once the website loads, <b>tap the Share button</b> (It usually resembles a square with an arrow pointing upwards). 
+              In the Share menu, <b>locate and tap the "Add to Home Screen" option</b>. After that, <b>tap the “Add” button</b>. <br>That's it! Now you can enjoy the app's 
+              features and functionalities with just a tap, even when you're offline.</p>
+        <!-- <button id="downloadButton" type="button" style="width: 50%; margin-top: 20%;" class="btn btn-secondary">Download app resources for offline use</button> -->
         </div>
       </div>
     </div>

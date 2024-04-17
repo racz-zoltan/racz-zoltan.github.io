@@ -714,7 +714,7 @@ function generateWithMaster() {
   input = input.slice(0, 32); 
   }
   else {
-    showAlert("Website name and Master password input fields cannot be empty.", "danger", alertContainer);
+    showAlert("Application name and Master password input fields cannot be empty.", "danger", alertContainer);
   }
 
 
