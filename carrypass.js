@@ -837,14 +837,14 @@ document.getElementById('downloadButton').addEventListener('click', function() {
 });
 
 
-document.getElementById('usecase').addEventListener('click', function() {
-var explanation = document.getElementById('explanation');
-if (explanation.style.display === 'none') {
-  explanation.style.display = 'block';
-} else {
-  explanation.style.display = 'none';
-}
-});
+// document.getElementById('usecase').addEventListener('click', function() {
+// var explanation = document.getElementById('explanation');
+// if (explanation.style.display === 'none') {
+//   explanation.style.display = 'block';
+// } else {
+//   explanation.style.display = 'none';
+// }
+// });
 
 document.getElementById('masterpass').addEventListener('click', function() {
   var explanation = document.getElementById('masterpassexplanation');
