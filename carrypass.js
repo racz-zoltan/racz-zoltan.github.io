@@ -315,7 +315,7 @@ async function generateKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -390,7 +390,7 @@ async function generateAlphaNumKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -438,7 +438,7 @@ async function generateLetterKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -484,7 +484,7 @@ async function generateNumberKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -530,7 +530,7 @@ async function generateMixedKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -577,7 +577,7 @@ async function generateSpecialKey() {
   document.getElementById("webAddress").value = "";
   document.getElementById("password").value = "";
   document.getElementById("iterationCount").value = "21000";
-  document.getElementById("salt").value = "KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5";
+  document.getElementById("salt").value = "";
   document.getElementById("length").value = "21";
 
   showAlert("Password copied to clipboard.", "success", document.getElementById("keyGeneratorAlertContainer"));
@@ -769,6 +769,8 @@ function showMaster() {
     }
 }
 
+
+
 function showManyPassword(button) {
   var passwordinput = document.getElementById(button.name);
   var showbutton = document.getElementById(button.id);
@@ -780,6 +782,7 @@ function showManyPassword(button) {
     showbutton.innerHTML = "Show";
     passwordinput.setAttribute('type', 'password');
   }
+
 }
 
 function clearAllPassword() {
@@ -842,6 +845,54 @@ if (explanation.style.display === 'none') {
   explanation.style.display = 'none';
 }
 });
+
+document.getElementById('masterpass').addEventListener('click', function() {
+  var explanation = document.getElementById('masterpassexplanation');
+  if (explanation.style.display === 'none') {
+    explanation.style.display = 'block';
+  } else {
+    explanation.style.display = 'none';
+  }
+  });
+
+  document.getElementById('passlength').addEventListener('click', function() {
+    var explanation = document.getElementById('lengthexplanation');
+    if (explanation.style.display === 'none') {
+      explanation.style.display = 'block';
+    } else {
+      explanation.style.display = 'none';
+    }
+    });
+
+    document.getElementById('appname').addEventListener('click', function() {
+      var explanation = document.getElementById('appnameexplanation');
+      if (explanation.style.display === 'none') {
+        explanation.style.display = 'block';
+      } else {
+        explanation.style.display = 'none';
+      }
+      });
+
+
+      document.getElementById('counterbutton').addEventListener('click', function() {
+        var explanation = document.getElementById('counterexplanation');
+        if (explanation.style.display === 'none') {
+          explanation.style.display = 'block';
+        } else {
+          explanation.style.display = 'none';
+        }
+        });
+
+
+        document.getElementById('saltbutton').addEventListener('click', function() {
+          var explanation = document.getElementById('saltexplanation');
+          if (explanation.style.display === 'none') {
+            explanation.style.display = 'block';
+          } else {
+            explanation.style.display = 'none';
+          }
+          });
+
 
 
 function generateAesVector(password) {
@@ -931,6 +982,7 @@ async function encryptFile() {
   
 
   reader.onload = async function() {
+    try {
       const fileData = reader.result;
       const password = document.getElementById('password1').value;
       var myFixedIV = generateAesVector(password);
@@ -978,18 +1030,23 @@ async function encryptFile() {
       downloadLink.click();
       document.body.removeChild(downloadLink);
 
-      document.getElementById('fileInputLabel').innerHTML = "Choose file";
+      // document.getElementById('fileInputLabel').innerHTML = "Choose file";
       document.getElementById('password1').value = "";
+    } catch (error) {
+      showModal('Encryption failed. Please try again.');
+    }
 
   };
 
 
   reader.readAsArrayBuffer(file);
   updateCounter();
+
 }
 
 
 async function decryptFile() {
+
   if (isRateLimited()) {
     showModal("You have exceeded the rate limit. Please try again later.");
     return;
@@ -999,6 +1056,7 @@ async function decryptFile() {
   const reader = new FileReader();
 
   reader.onload = async function() {
+    try {
       const encryptedFileData = reader.result;
       const password = document.getElementById('password2').value;
       var myFixedIV = generateAesVector(password);
@@ -1046,13 +1104,17 @@ async function decryptFile() {
       downloadLink.click();
       document.body.removeChild(downloadLink);
 
-      document.getElementById('encryptedFileInputLabel').innerHTML = "Choose file";
+      // document.getElementById('encryptedFileInputLabel').innerHTML = "Choose file";
       document.getElementById('password2').value = "";
+    } catch (error) {
+      showModal('Decryption failed. Incorrect password.');
+    }
 
   };
 
   reader.readAsArrayBuffer(encryptedFile);
   updateCounter();
+
 }
 
 
@@ -1147,13 +1209,13 @@ function hideLoadingDots() {
 }
 
 
-function loadPageNavItemClick() {
-  var navLink = document.querySelector('.nav-item .nav-link[href="#keygen"]');
-  if (navLink) {
-      navLink.click();
-  }
-}
+// function loadPageNavItemClick() {
+//   var navLink = document.querySelector('.nav-item .nav-link[href="#keygen"]');
+//   if (navLink) {
+//       navLink.click();
+//   }
+// }
 
-window.onload = function() {
-  setTimeout(loadPageNavItemClick, 1200);
-};
+// window.onload = function() {
+//   setTimeout(loadPageNavItemClick, 1200);
+// };

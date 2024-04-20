@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="CarryPass is the password manager for those who care about their online privacy. CarryPass works both online and offline giving you control over your personal information." />
   <title>CarryPass</title>
-  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
   
   <link href="bootstrap.min.css" rel="stylesheet">
   <script src="jquery.min.js"></script>
@@ -74,7 +74,7 @@
         <div class="col-md-6">
           <h1 style="color: darkblue;">Password privacy</h1>
           <h1 style="color: darkblue; margin-left: 5rem;">peace of mind</h1>
-          <!-- <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a> -->
+          <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a>
         </div>
         <div class="col-md-6">          
         </div>
@@ -91,38 +91,138 @@
                   <div class="mb-3">
                     <div class="casecontainer">
                       <label for="webAddress" class="form-label">Application name</label>
-                      <h6 id="usecase" style="color: lightgray; margin-left: 6rem;">Read a use case</h6>
+                      <h6 id="appname" style="color: lightgray; position: absolute; left: 11rem;">Why application name</h6>
+                      <h6 id="usecase" style="color: lightgray; position: absolute; left: 24rem;">A use case</h6>
                     </div>
-                      <p id="explanation" style="display: none;">I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.
-                          In  the <b>Application name</b> field I type <em>'Quotes'</em>, then I type my <b>Master password</b> <em>'LoV3DoNuT5#FeaR:STHeM:ND-K:||eR'</em>, click on <b>Use Salt</b> and the value changes to 'VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS'. 
-                          I push the <b>Create a [a2B-4cD] type Password</b> button and
-                          CarryPass creates the password <em>'V2aEM9u-83fWo9F-GYBIeSQ'</em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.
-                          CarryPass also creates 5 additional passwords, so they are available if a password change is required. As long as the parameters are the same I always get back the same passwords, and while I do not have to remember their complexity, they stay private using CarryPass.
-                          CarryPass does not store passwords or any data generated or entered on this site.
+                      <p id="appnameexplanation" style="display: none;">The application name is the name of the website or service you are logging into. This can be any 
+                        name you want, but it should be descriptive enough to help you remember what the password is for. If you always set the other parameters the same, this name will be
+                        the variable that makes the generated passwords unique to that website or service.
+                        <br>
+                
+                      </p>   
+                      <p id="explanation" style="display: none;"><br>Let's suppose I want to log into the https://quotes.toscrape.com site, where I registered earlier with the password created with CarryPass.<br><br>
+                          <em>Application name</em>: Quotes<br>
+                          <em>Master password</em>: LoV3DoNuT5#FeaR:STHeM:ND-K:||eR<br>
+                          <em>Password length</em>: 21<br>
+                          <em>Counter</em>: 21000<br>
+                          click on <b>Use Salt</b> <br>
+                          <em>Salt</em>: VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS<br>
+                          <br>
+                          CarryPass creates the main password <em><b>V2aEM9u-83fWo9F-GYBIeSQ</b></em> and copies it to the clipboard so I can paste it in the password field on the login page of 'Quotes'.<br>
+                          <br>CarryPass also creates 5 additional passwords, so they are available if a password change is required. <br><br>
+                          As long as the parameters are the same I always get back the same passwords, and while I do not have to remember their complexity, they stay private using CarryPass.
+                          CarryPass does not store passwords or any data generated or entered on this site.<br>
                       </p>            
                     <input type="text" id="webAddress" name="webAddress" class="form-control" required>
                   </div>  
                   <div class="mb-3">
+                    <div class="casecontainer">
                     <label for="password" class="form-label">Master password</label>
+                    <h6 id="masterpass" style="color: lightgray; position: absolute; left: 11rem;">Why master password</h6>
+                    </div>
                     <div class="input-group">
+                      <p id="masterpassexplanation" style="display: none;">
+                        A master password serves as a single, secure key to access a variety of accounts and services. 
+                        It's like having one powerful key that unlocks many doors. Instead of remembering dozens of different passwords 
+                        for different accounts, you only need to remember one master password.<br><br>
+                        However, it's crucial to choose a strong master password and keep it safe, as compromising it could potentially give unauthorized access to all your accounts. <br> Choose a master password that 
+                        you only use for CarryPass and never use it for other sites. A strong master password is long and complex - includes a mix of uppercase and lowercase letters, 
+                        numbers, and special characters. 
+                      </p> 
                     <input type="password" id="password" name="password" class="form-control" required>
                     <button id="showbutton" type="button" class="btn btn-outline-secondary" onclick="showMaster()">Show</button>
                     </div>
                   </div>
                   
                   <div class="mb-3">
+                    <div class="casecontainer">
                     <label for="length" class="form-label">Password length</label>
+                    <h6 id="passlength" style="color: lightgray; position: absolute; left: 11rem;">Why specify length</h6>
+                    </div>
+                    <p id="lengthexplanation" style="display: none;">
+                      Password length plays a significant role in determining its security because longer passwords generally 
+                      provide stronger protection against various types of attacks, including brute-force and dictionary attacks. 
+                      <br><br>Here's how password length affects security:<br>
+                      <b>Brute-force attacks</b>: These attacks involve trying all possible combinations of characters until the correct 
+                      password is found. Longer passwords increase the number of possible combinations, making brute-force attacks 
+                      exponentially more difficult and time-consuming.<br>
+                      <b>Dictionary attacks</b>: In these attacks, attackers use precompiled lists of commonly used passwords or words from 
+                      dictionaries to guess passwords. Longer passwords that include a mix of uppercase and lowercase letters, 
+                      numbers, and special characters are less likely to be found in these lists.<br>
+                      <b>Entropy</b>: Password entropy refers to the measure of randomness or uncertainty in a password. Longer passwords 
+                      typically have higher entropy, meaning they are more unpredictable and harder to crack.<br>
+                      Resistance to password cracking tools: Password cracking tools rely on algorithms to guess passwords by trying 
+                      various combinations. Longer passwords increase the time and computational resources required to crack them, 
+                      making them more resistant to these tools.<br>
+                      <br>In summary, longer passwords are generally more secure because they increase the complexity and difficulty of 
+                      guessing or cracking them, thereby enhancing the overall security of your accounts. However, it's essential to 
+                      balance length with other factors such as randomness and diversity of characters to create strong and 
+                      resilient passwords.<br>
+                    </p>
                     <input type="number" id="length" name="length" class="form-control" value="21" required>
                   </div>
                   <div class="mb-3">
+                    <div class="casecontainer">
                     <label for="iterationCount" class="form-label">Iteration count</label>
+                    <h6 id="counterbutton" style="color: lightgray; position: absolute; left: 11rem;">Why iteration count</h6>
+                    </div>
+                    <p id="counterexplanation" style="display: none;">
+                      CarryPass uses a key-stretching algorithm PBKDF2 (Password-Based Key Derivation Function 2) to generate the base for the password creation process. 
+                      By changing the iteration count value you change the created passwords even if all other parameters remain unchanged.<br><br>
+                      The iteration count in PBKDF2 is a parameter that determines the number of times 
+                      a cryptographic hash function is iterated during the key derivation process. This parameter is crucial for strengthening 
+                      the security of derived keys, particularly in the context of password hashing.<br><br>
+                      Here's why the iteration count is important:<br>
+                      <b>Key Strengthening</b>: Increasing the iteration count increases the computational effort required to derive the 
+                      key from the password. This effectively slows down the key derivation process, making it more resistant to 
+                      brute-force and dictionary attacks. Each additional iteration exponentially increases the time and resources 
+                      required to derive the key, thereby enhancing security.<br>
+                      <b>Resistance to Attacks</b>: A higher iteration count makes it significantly more difficult for attackers to 
+                      guess passwords through exhaustive search or dictionary-based attacks. Even if an attacker obtains a hashed 
+                      password, they would need to expend considerable computational resources to derive the original password through 
+                      brute force, especially if a sufficiently high iteration count is used.<br>
+                      <b>Adaptability to Hardware Improvements</b>: As computing power increases over time due to advancements in 
+                      hardware technology, what constitutes a secure iteration count may change. By adjusting the iteration count 
+                      based on current hardware capabilities, PBKDF2 can maintain its effectiveness against evolving threats.<br>
+                      <br>In summary, the iteration count in PBKDF2 is essential for enhancing the security of derived keys by 
+                      increasing the computational cost of key derivation, thereby making it more challenging for attackers to 
+                      compromise passwords through brute-force or dictionary attacks.
+                    </p>
                     <input type="number" id="iterationCount" name="iterationCount" class="form-control" value="21000" required>
                   </div>
             
                   <div class="mb-3">
+                    <div class="casecontainer">
                     <label for="salt" class="form-label">Salt</label>
+                    <h6 id="saltbutton" style="color: lightgray; position: absolute; left: 11rem;">Why salt</h6>
+                    </div>
+                    <p id="saltexplanation" style="display: none;">
+                      In PBKDF2 (Password-Based Key Derivation Function 2), a salt is a random value that is combined with the password before hashing. 
+                      The purpose of using a salt is to defend against various cryptographic attacks, particularly rainbow table attacks.
+                      <br>For convenience's sake CarryPass generates a salt using the application name and the master password provided by you.
+                      This process does not produce a random value, but still adds complexity to the password creation process.
+                      If you are willing to sacrifice convenience for security, you can use your own random salt. If you want the best of both worlds 
+                      you can use a long password as salt. This should be different from your master password, kept secret, not used in any other 
+                      application, and should be unique for each application that you create passwords for.<br><br>                
+                      Here's why salt is important in PBKDF2:<br>
+                      <b>Protection Against Rainbow Table Attacks</b>: A rainbow table is a precomputed table of hash values for commonly used passwords. 
+                      Attackers can use rainbow tables to quickly look up the hash of a known password and find the corresponding plaintext password. 
+                      By adding a salt to each password before hashing it, even if two users have the same password, their hashed passwords will be 
+                      different due to the unique salts. This prevents attackers from using precomputed tables effectively, as they would need to 
+                      generate new tables for each salt value.<br>
+                      <b>Increased Complexity</b>: Salting increases the complexity of the hashing process for attackers. Each unique salt requires 
+                      attackers to perform a separate brute-force or dictionary attack for each hashed password, significantly increasing the 
+                      computational effort required to crack passwords.<br>
+                      <b>Protection of Identical Passwords</b>: Without salt, identical passwords would result in identical hash values. 
+                      This means if an attacker compromises one hashed password, they could potentially gain access to all accounts using the same password.
+                       Salting ensures that even identical passwords produce different hash values, mitigating this risk.<br>
+                      <b>Enhanced Security</b>: By using a salt, PBKDF2 provides an additional layer of security for password storage in the application 
+                      you use it to log into, making it more resilient to various cryptographic attacks.<br>
+                      <br>In summary, the use of salt in PBKDF2 is crucial for defending against rainbow table attacks, increasing the complexity of 
+                      password cracking, protecting identical passwords, and enhancing overall security in password-based systems.
+                    </p>
                     <div class="input-group">
-                    <input type="text" id="salt" name="salt" class="form-control" value="KDV4ETAMVQB5FCEIXUKWT7V6ZFYVW7H5" required>
+                    <input type="text" id="salt" name="salt" class="form-control" value="" required>
                     <button class="btn btn-outline-primary" onclick="generateWithMaster()">Use Salt</button>
                     </div>
                   </div>
@@ -207,7 +307,7 @@
               <div class="col-md-6">
               <h2>Keep your secret private</h2>
               <h2 style="margin-left: 5rem;">even if you share it</h2>
-              <!-- <a href="#encrypt" style="margin-top: 12rem;" class="btn btn-danger">Encrypt</a> -->
+              <a href="#encrypt" style="margin-top: 12rem; display: none;" class="btn btn-danger">Encrypt</a>
               </div>
               <div class="col-md-6">
               </div>
@@ -221,39 +321,37 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 style="color: darkblue; margin-top: 3rem;">Text Encryption</h2>
-                
-                <form id="encryptionForm">
                   <div class="mb-3">
                     <label for="plaintext" class="form-label">Text to encrypt</label>
                     <textarea id="plaintext" name="plaintext" class="form-control" rows="4" required></textarea>
                   </div>
-                  
                   <div class="mb-3">
                     <label for="encryptionPassword" class="form-label">Encryption password</label>
+                    <div class="input-group">
                     <input type="password" id="encryptionPassword" name="encryptionPassword" class="form-control" required>
+                    <button id="encryptionbutton1" class="btn btn-outline-secondary" name="encryptionPassword" onclick="showManyPassword(this)">Show</button>
+                    </div>
                   </div>
                   <div id="encryptionAlertContainer" class="mt-3"></div>
                   <button type="button" class="btn btn-outline-primary" onclick="encryptText()">Encrypt</button>
                   <button type="button" class="btn btn-outline-warning" onclick="copyEncryptedText()">Copy Encrypted Text</button>
-                </form>
             </div>
             <div class="col-md-6">
                 <h2 style="color: darkblue; margin-top: 3rem;">Text Decryption</h2>
-                
-                <form id="decryptionForm">
                 <div class="mb-3">
                     <label for="encryptedText" class="form-label">Encrypted text</label>
                     <textarea id="encryptedText" name="encryptedText" class="form-control" rows="4" required></textarea>
                 </div>
-                
                 <div class="mb-3">
                     <label for="decryptionPassword" class="form-label">Decryption password</label>
+                    <div class="input-group">
                     <input type="password" id="decryptionPassword" name="decryptionPassword" class="form-control" required>
+                    <button id="encryptionbutton2" class="btn btn-outline-secondary" name="decryptionPassword" onclick="showManyPassword(this)">Show</button>
+                    </div>
                 </div>
                 <div id="decryptionAlertContainer" class="mt-3"></div>
                 <button type="button" class="btn btn-outline-primary" onclick="decryptText()">Decrypt</button>
                 <button type="button" class="btn btn-outline-warning" onclick="copyDecryptedText()">Copy Decrypted Text</button>
-                </form>
             </div>
         </div>
         </div>
@@ -273,7 +371,10 @@
                       <label class="custom-file-label" id="fileInputLabel" for="fileInput">Choose file</label>
                   </div>
                   <label for="password" class="mt-3">Password for encryption</label>
+                  <div class="input-group">
                   <input type="password" id="password1" class="form-control">
+                  <button id="encryptionbutton3" class="btn btn-outline-secondary" name="password1" onclick="showManyPassword(this)">Show</button>
+                  </div>
                   <div id="fileEncryptionAlertContainer" class="mt-3"></div>
                   <button onclick="encryptFile()" class="btn btn-outline-primary mt-3">Encrypt File</button>
                         
@@ -287,7 +388,11 @@
                     <label class="custom-file-label" id="encryptedFileInputLabel" for="encryptedFileInput">Choose file</label>
                 </div>
                 <label for="password" class="mt-3">Password for decryption</label>
+                <div class="input-group">
                 <input type="password" id="password2" class="form-control">
+                <button id="encryptionbutton4" class="btn btn-outline-secondary" name="password2" onclick="showManyPassword(this)">Show</button>
+                </div>
+                <div id="fileEncryptionAlertContainer" class="mt-3"></div>
                 <button onclick="decryptFile()" class="btn btn-outline-primary mt-3">Decrypt File</button>
               </div>
           </div>
