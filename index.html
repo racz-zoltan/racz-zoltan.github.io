@@ -1,544 +1,215 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CarryPass is the password manager for those who care about their online privacy. CarryPass works both online and offline giving you control over your personal information." />
-  <title>CarryPass</title>
-  <link rel="shortcut icon" href="favicon.ico">
-  
-  <link href="bootstrap.min.css" rel="stylesheet">
-  <script src="jquery.min.js"></script>
-
-  <link rel="stylesheet" href="keygen_styles.css">
-  <script src="crypto-js.min.js"></script>
-  
-
-  <link rel="manifest" href="/manifest.json">
-
-  <meta name="google-site-verification" content="Rj9N7qGFr0ErBfrTxKTcw3mvu94y1Baar1Vj28xEVkk" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryPass – Rebrandable Offline Security Tool</title>
+  <script src="lucide.min.js"></script>
+  <link rel="stylesheet" href="carrypass-multicolumn-theme.css">
 </head>
 <body>
-  <div id="loadingModal" class="dot-modal">
-    <!-- Modal content -->
-    <div class="dot-modal-content">
-      <div class="loading-dots">
-          <div class="dot light"></div>    
-          <div class="dot light"></div>     
-          <div class="dot light"></div>  
-          <div class="dot light"></div>
-          <div class="dot blue"></div>
-          <div class="dot blue"></div>
-          <div class="dot light"></div>
-          <div class="dot light"></div>
-          <div class="dot blue"></div>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="index.html" class="lang-link">EN</a>
+    |
+    <a href="index_hu.html" class="lang-link">HU</a>
+  </div>
+    
+<header class="hero">
+  <div class="container">
+    <h1>Secure Passwords. Encrypted Files. Fully Yours.</h1>
+    <p>Rebrand CarryPass and give your team a private, offline password and encryption tool — hosted and controlled by you.</p>
+    <a href="#contact" class="btn primary">Request Your Custom Version</a>
+  </div>
+</header>
+
+<section class="section alt">
+  <div class="container">
+    <h2>Why Choose CarryPass?</h2>
+    <div class="grid split">
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="cloud-off" class="icon-large"></i>
+        <h3>Offline First</h3>
+        <p>CarryPass can work entirely offline. No data collection, no cloud dependency, no sensitive-data transfer.</p>
+      </div>
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="book-lock" class="icon-large"></i>
+        <h3>Private by Design</h3>
+        <p>No accounts. No tracking. No ads. No subscriptions. Everything runs locally in your browser or device.</p>
+      </div>
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="shield-check" class="icon-large"></i>
+        <h3>Secure</h3>
+        <p>Your passwords and protected files remain under your control. No data is stored on remote servers.</p>
+      </div>
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="globe" class="icon-large"></i>
+        <h3>Cross-platform</h3>
+        <p>Its progressive web app design ensures that every feature works on Windows, macOS, and Linux. Expect a seamless experience no matter which operating system you use.</p>
+      </div>
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="monitor-smartphone" class="icon-large"></i>
+        <h3>Universal</h3>
+        <p>CarryPass works on your phone, tablet, or desktop — no installation needed, but installable with one tap. Use it anywhere, anytime, fully offline.</p>
+      </div>
+      <div class="card" style="height: 16rem; overflow: hidden;">
+        <i data-lucide="handshake" class="icon-large"></i>
+        <h3>Business-friendly</h3>
+        <p>CarryPass can be shared with your employees on any device, without setting up accounts.
+          It works online or offline, installs easily, and keeps passwords out of the cloud.</p>
       </div>
     </div>
   </div>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#home">
-      <img src="CarryPass_circle_transparent.png" alt="Logo" width="30" height="30" class="d-inline-block align-top" loading="lazy">
-      CarryPass
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#keygen">Create Password</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#encrypt">Encrypt Text or File</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About CarryPass</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#pricing">Pricing</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#download">Install App</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-<!-- First Section -->
-<section id="home" class="first-section" style="background-image: url('leohoho-kXYExBLuZ9Q-unsplash.jpg');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h1 style="color: darkblue;">Password privacy</h1>
-          <h1 style="color: darkblue; margin-left: 5rem;">peace of mind</h1>
-          <a href="#keygen" style="margin-top: 9rem;" class="btn btn-outline-primary">Create</a>
-        </div>
-        <div class="col-md-6">          
-        </div>
-      </div>
-    </div>
 </section>
 
-  <!-- Second Section -->
-  <section id="keygen" class="second-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6" style="margin-bottom: 1rem;">
-                <form id="keyGeneratorForm">
-                  <div class="mb-3">
-                    <div class="casecontainer">
-                      <label for="webAddress" class="form-label">Application name</label>
-                      <h6 id="appname" style="color: lightgray; position: absolute; left: 11rem;">Why application name</h6>
-                    </div>
-                      <p id="appnameexplanation" style="display: none;">The application name is the name of the website or service you are logging into. This can be any 
-                        name you want, but it should be descriptive enough to help you remember what the password is for. If you always set the other parameters the same, this name will be
-                        the variable that makes the generated passwords unique to that website or service.
-                        <br><br>
-                        <b>A use case that shows how CarryPass can be used for password creation.</b>
-                        <br>
-                        <br>Let's suppose you want to log into the https://quotes.toscrape.com site, where you registered earlier with the password created with CarryPass.<br><br>You type the following:<br><br>
-                        
-                          <em>Application name</em>: Quotes<br>
-                          <em>Master password</em>: LoV3DoNuT5#FeaR:STHeM:ND-K:||eR<br><br>
-                          You decide to leave the next two parameters on factory setting.<br>
-                          <em>Password length</em>: 21<br>
-                          <em>Counter</em>: 21000<br><br>
-                          You click on <b>Use Salt</b> <br>
-                          <em>Salt</em>: VKYVTWZCHVT2VCHOKXTJQUTWVDOVSVTS<br>
-                          <br>
-                          You click on <b>Create a [a2B-4cD] type Password</b><br><br>
-                          CarryPass creates the main password <em><b>V2aEM9u-83fWo9F-GYBIeSQ</b></em> and copies it to the clipboard so you can paste it in the password field on the login page of 'Quotes'.<br>
-                          <br>CarryPass also creates 5 additional passwords, so they are available if a password change is required. <br><br>
-                          As long as the parameters are the same you always get back the same passwords, and while you do not have to remember their complexity, they stay private using CarryPass.
-                          CarryPass does not store passwords or any data generated or entered on this site.<br>
-                      </p>              
-                    <input type="text" id="webAddress" name="webAddress" class="form-control" required>
-                  </div>  
-                  <div class="mb-3">
-                    <div class="casecontainer">
-                    <label for="password" class="form-label">Master password</label>
-                    <h6 id="masterpass" style="color: lightgray; position: absolute; left: 11rem;">Why master password</h6>
-                    </div>
-                    <div class="input-group">
-                      <p id="masterpassexplanation" style="display: none;">
-                        A master password serves as a single, secure key to access a variety of accounts and services. 
-                        It's like having one powerful key that unlocks many doors. Instead of remembering dozens of different passwords 
-                        for different accounts, you only need to remember one master password.<br><br>
-                        However, it's crucial to choose a strong master password and keep it safe, as compromising it could potentially give unauthorized access to all your accounts. <br> Choose a master password that 
-                        you only use for CarryPass and never use it for other sites. A strong master password is long and complex - includes a mix of uppercase and lowercase letters, 
-                        numbers, and special characters. 
-                      </p> 
-                    <input type="password" id="password" name="password" class="form-control" required>
-                    <button id="showbutton" type="button" class="btn btn-outline-secondary" onclick="showMaster()">Show</button>
-                    </div>
-                  </div>
-                  
-                  <div class="mb-3">
-                    <div class="casecontainer">
-                    <label for="length" class="form-label">Password length</label>
-                    <h6 id="passlength" style="color: lightgray; position: absolute; left: 11rem;">Why password length</h6>
-                    </div>
-                    <p id="lengthexplanation" style="display: none;">
-                      Password length plays a significant role in determining its security because longer passwords generally 
-                      provide stronger protection against various types of attacks, including brute-force and dictionary attacks. 
-                      <br><br>Here's how password length affects security:<br>
-                      <b>Brute-force attacks</b>: These attacks involve trying all possible combinations of characters until the correct 
-                      password is found. Longer passwords increase the number of possible combinations, making brute-force attacks 
-                      exponentially more difficult and time-consuming.<br>
-                      <b>Dictionary attacks</b>: In these attacks, attackers use precompiled lists of commonly used passwords or words from 
-                      dictionaries to guess passwords. Longer passwords that include a mix of uppercase and lowercase letters, 
-                      numbers, and special characters are less likely to be found in these lists.<br>
-                      <b>Entropy</b>: Password entropy refers to the measure of randomness or uncertainty in a password. Longer passwords 
-                      typically have higher entropy, meaning they are more unpredictable and harder to crack.<br>
-                      <b>Resistance to password cracking tools</b>: Password cracking tools rely on algorithms to guess passwords by trying 
-                      various combinations. Longer passwords increase the time and computational resources required to crack them, 
-                      making them more resistant to these tools.<br>
-                      <br>In summary, longer passwords are generally more secure because they increase the complexity and difficulty of 
-                      guessing or cracking them, thereby enhancing the overall security of your accounts. However, it's essential to 
-                      balance length with other factors such as randomness and diversity of characters to create strong and 
-                      resilient passwords.<br>
-                    </p>
-                    <input type="number" id="length" name="length" class="form-control" value="21" required>
-                  </div>
-                  <div class="mb-3">
-                    <div class="casecontainer">
-                    <label for="iterationCount" class="form-label">Iteration count</label>
-                    <h6 id="counterbutton" style="color: lightgray; position: absolute; left: 11rem;">Why iteration count</h6>
-                    </div>
-                    <p id="counterexplanation" style="display: none;">
-                      CarryPass uses a key-stretching algorithm PBKDF2 (Password-Based Key Derivation Function 2) to generate the base for the password creation process. 
-                      By changing the iteration count value you change the created passwords even if all other parameters remain unchanged.<br><br>
-                      The iteration count in PBKDF2 is a parameter that determines the number of times 
-                      a cryptographic hash function is iterated during the key derivation process. This parameter is crucial for strengthening 
-                      the security of derived keys, particularly in the context of password hashing.<br><br>
-                      Here's why the iteration count is important:<br>
-                      <b>Key Strengthening</b>: Increasing the iteration count increases the computational effort required to derive the 
-                      key from the password. This effectively slows down the key derivation process, making it more resistant to 
-                      brute-force and dictionary attacks. Each additional iteration exponentially increases the time and resources 
-                      required to derive the key, thereby enhancing security.<br>
-                      <b>Resistance to Attacks</b>: A higher iteration count makes it significantly more difficult for attackers to 
-                      guess passwords through exhaustive search or dictionary-based attacks. Even if an attacker obtains a hashed 
-                      password, they would need to expend considerable computational resources to derive the original password through 
-                      brute force, especially if a sufficiently high iteration count is used.<br>
-                      <b>Adaptability to Hardware Improvements</b>: As computing power increases over time due to advancements in 
-                      hardware technology, what constitutes a secure iteration count may change. By adjusting the iteration count 
-                      based on current hardware capabilities, PBKDF2 can maintain its effectiveness against evolving threats.<br>
-                      <br>In summary, the iteration count in PBKDF2 is essential for enhancing the security of derived keys by 
-                      increasing the computational cost of key derivation, thereby making it more challenging for attackers to 
-                      compromise passwords through brute-force or dictionary attacks.
-                    </p>
-                    <input type="number" id="iterationCount" name="iterationCount" class="form-control" value="21000" required>
-                  </div>
-            
-                  <div class="mb-3">
-                    <div class="casecontainer">
-                    <label for="salt" class="form-label">Salt</label>
-                    <h6 id="saltbutton" style="color: lightgray; position: absolute; left: 11rem;">Why salt</h6>
-                    </div>
-                    <p id="saltexplanation" style="display: none;">
-                      In PBKDF2 (Password-Based Key Derivation Function 2), a salt is a random value that is combined with the password before hashing. 
-                      The purpose of using a salt is to defend against various cryptographic attacks, particularly rainbow table attacks.
-                      <br>For convenience's sake CarryPass generates a salt using the application name and the master password provided by you.
-                      This process does not produce a random value, but still adds complexity to the password creation process.
-                      If you are willing to sacrifice convenience for security, you can use your own random salt. If you want the best of both worlds 
-                      you can use a long password as salt. This should be different from your master password, kept secret, not used in any other 
-                      application, and should be unique for each application that you create passwords for.<br><br>                
-                      Here's why salt is important in PBKDF2:<br>
-                      <b>Protection Against Rainbow Table Attacks</b>: A rainbow table is a precomputed table of hash values for commonly used passwords. 
-                      Attackers can use rainbow tables to quickly look up the hash of a known password and find the corresponding plaintext password. 
-                      By adding a salt to each password before hashing it, even if two users have the same password, their hashed passwords will be 
-                      different due to the unique salts. This prevents attackers from using precomputed tables effectively, as they would need to 
-                      generate new tables for each salt value.<br>
-                      <b>Increased Complexity</b>: Salting increases the complexity of the hashing process for attackers. Each unique salt requires 
-                      attackers to perform a separate brute-force or dictionary attack for each hashed password, significantly increasing the 
-                      computational effort required to crack passwords.<br>
-                      <b>Protection of Identical Passwords</b>: Without salt, identical passwords would result in identical hash values. 
-                      This means if an attacker compromises one hashed password, they could potentially gain access to all accounts using the same password.
-                       Salting ensures that even identical passwords produce different hash values, mitigating this risk.<br>
-                      <b>Enhanced Security</b>: By using a salt, PBKDF2 provides an additional layer of security for password storage in the application 
-                      you use it to log into, making it more resilient to various cryptographic attacks.<br>
-                      <br>In summary, the use of salt in PBKDF2 is crucial for defending against rainbow table attacks, increasing the complexity of 
-                      password cracking, protecting identical passwords, and enhancing overall security in password-based systems.
-                    </p>
-                    <div class="input-group">
-                    <input type="text" id="salt" name="salt" class="form-control" value="" required>
-                    <button class="btn btn-outline-primary" onclick="generateWithMaster()">Use Salt</button>
-                    </div>
-                  </div>
-        
-                </form>
-                <div id="keyGeneratorAlertContainer" class="mt-3"></div>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateKey()">Create a [a2B-4cD] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateAlphaNumKey()">Create a [aB5cD1] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateNumberKey()">Create a [1234] type Password or PIN</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateLetterKey()">Create a [aBcDEf] type Password</button>
-                <button type="button" style="width: 100%; margin-bottom: 1%;" class="btn btn-outline-primary" onclick="generateSpecialKey()">Create a [!a%B>c?] type Password</button>
-        </div>
-        <div class="col-md-6" style="margin-bottom: 2rem;">
-          <div style="display: flex; align-items: center; margin-top: 0.5rem; flex-wrap: wrap;">
-            <h4 style="color: darkblue; margin-right: 1ch;">Passwords created for</h4>
-            <h4 id="createdfor" style="color: darkblue; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">the application</h4>
-          </div>
-            <div id="manyKeysAlertContainer" class="mt-3"></div>
-            <div class="mb-3">
-              <label for="mainPassword" class="form-label">Main password</label>
-              <div class="input-group">
-              <input type="password" id="mainPassword" name="length" class="form-control" value="" disabled>
-              <button id="mainButton" class="btn btn-outline-secondary" name="mainPassword" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="mainPassword" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="supplementaryone" class="form-label">Additional password #1</label>
-              <div class="input-group">
-              <input type="password" id="supplementaryone" class="form-control" value="" readonly>
-              <button id="firstButton" class="btn btn-outline-secondary" name="supplementaryone" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="supplementaryone" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="supplementarytwo" class="form-label">Additional password #2</label>
-              <div class="input-group">
-              <input type="password" id="supplementarytwo"  class="form-control" value="" readonly>
-              <button id="secondButton" class="btn btn-outline-secondary" name="supplementarytwo" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="supplementarytwo" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="supplementarythree" class="form-label">Additional password #3</label>
-              <div class="input-group">
-              <input type="password" id="supplementarythree" class="form-control" value="" readonly>
-              <button id="thirdButton" class="btn btn-outline-secondary" name="supplementarythree" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="supplementarythree" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="supplementaryfour" class="form-label">Additional password #4</label>
-              <div class="input-group">
-              <input type="password" id="supplementaryfour" class="form-control" value="" readonly>
-              <button id="fourthButton" class="btn btn-outline-secondary" name="supplementaryfour" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="supplementaryfour" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="supplementaryfive" class="form-label">Additional password #5</label>
-              <div class="input-group">
-              <input type="password" id="supplementaryfive" class="form-control" value="" readonly>
-              <button id="fifthButton" class="btn btn-outline-secondary" name="supplementaryfive" onclick="showManyPassword(this)">Show</button>
-              <button class="btn btn-outline-warning" name="supplementaryfive" onclick="copyPassword(this)">Copy</button>
-              </div>
-            </div>
-            <button class="btn btn-outline-danger" style="width: 100%; margin-bottom: 3%; margin-top: 3%;" name="clearAll" onclick="clearAllPassword()">Clear All</button>
-            
-            <h4 style="color: darkblue; margin-top: 0.5rem;">Random Salt Generator</h4>
-            <input style="margin-bottom: 1rem;" type="text" class="form-control" id="result" readonly>
-            <button style="margin-bottom: 2rem;" class="btn btn-outline-primary" onclick="generate()">Generate</button>
-            <button style="margin-bottom: 2rem;" class="btn btn-outline-primary" onclick="copyToSalt()">Copy to Salt</button>
-        </div>
+<section class="section">
+  <div class="container">
+    <h2>What’s Included</h2>
+    <div class="grid split">
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="key-round"></i>
+        <h4>Password Manager</h4>
+        <p>Deterministic, strong passwords without saving a thing.</p>
+      </div>
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="file-lock"></i>
+        <h4>File and Text Encryption</h4>
+        <p>Securely encrypt and decrypt files or messages — offline, on-device.</p>
+      </div>
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="share-2"></i>
+        <h4>Team Configs</h4>
+        <p>Securely share and manage service credentials within your team.</p>
+      </div>
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="server"></i>
+        <h4>Self-Hosted PWA</h4>
+        <p>Install on your infrastructure or devices with no backend required.</p>
+      </div>
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="shield-check"></i>
+        <h4>Custom Salt</h4>
+        <p>Each rebrand gets a unique algorithm tweak to ensure password separation.</p>
+      </div>
+      <div class="card" style="height: 12rem; overflow: hidden;">
+        <i data-lucide="code-2"></i>
+        <h4>Source Code Access</h4>
+        <p>Transparency matters. You get full access to your version’s code.</p>
       </div>
     </div>
-  </section>
-
-    <!-- Third Section -->
-    <section id="encryption" class="third-section" style="background-image: url('saeed-karimi-JrrWC7Qcmhs-unsplash.jpg');">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-              <h2>Keep your secret private</h2>
-              <h2 style="margin-left: 5rem;">even if you share it</h2>
-              <a href="#encrypt" style="margin-top: 12rem; display: none;" class="btn btn-danger">Encrypt</a>
-              </div>
-              <div class="col-md-6">
-              </div>
-          </div>
-        </div>
-    </section>
-
-      <!-- Fourth Section -->
-    <section id="encrypt" class="fourth-section">
-        <div class="container" style="margin-bottom: 3rem;">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 style="color: darkblue; margin-top: 3rem;">Text Encryption</h2>
-                  <div class="mb-3">
-                    <label for="plaintext" class="form-label">Text to encrypt</label>
-                    <textarea id="plaintext" name="plaintext" class="form-control" rows="4" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="encryptionPassword" class="form-label">Encryption password</label>
-                    <div class="input-group">
-                    <input type="password" id="encryptionPassword" name="encryptionPassword" class="form-control" required>
-                    <button id="encryptionbutton1" class="btn btn-outline-secondary" name="encryptionPassword" onclick="showManyPassword(this)">Show</button>
-                    </div>
-                  </div>
-                  <div id="encryptionAlertContainer" class="mt-3"></div>
-                  <button type="button" class="btn btn-outline-primary" onclick="encryptText()">Encrypt</button>
-                  <button type="button" class="btn btn-outline-warning" onclick="copyEncryptedText()">Copy Encrypted Text</button>
-            </div>
-            <div class="col-md-6">
-                <h2 style="color: darkblue; margin-top: 3rem;">Text Decryption</h2>
-                <div class="mb-3">
-                    <label for="encryptedText" class="form-label">Encrypted text</label>
-                    <textarea id="encryptedText" name="encryptedText" class="form-control" rows="4" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="decryptionPassword" class="form-label">Decryption password</label>
-                    <div class="input-group">
-                    <input type="password" id="decryptionPassword" name="decryptionPassword" class="form-control" required>
-                    <button id="encryptionbutton2" class="btn btn-outline-secondary" name="decryptionPassword" onclick="showManyPassword(this)">Show</button>
-                    </div>
-                </div>
-                <div id="decryptionAlertContainer" class="mt-3"></div>
-                <button type="button" class="btn btn-outline-primary" onclick="decryptText()">Decrypt</button>
-                <button type="button" class="btn btn-outline-warning" onclick="copyDecryptedText()">Copy Decrypted Text</button>
-            </div>
-        </div>
-        </div>
-    </section>
-
-          <!-- FILE ENCRYPT Section -->
-      <section id="fileencrypt" class="fourth-section">
-          <div class="container" style="margin-bottom: 9rem;">
-          <div class="row">
-              <div class="col-md-6">
-          
-                  <h2 style="color: darkblue;" class="mt-5">File Encryption</h2>
-                       
-                  <label for="fileInput">Choose file to encrypt</label>
-                  <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="fileInput" onchange="updateFileName('fileInput')">
-                      <label class="custom-file-label" id="fileInputLabel" for="fileInput">Choose file</label>
-                  </div>
-                  <label for="password" class="mt-3">Password for encryption</label>
-                  <div class="input-group">
-                  <input type="password" id="password1" class="form-control">
-                  <button id="encryptionbutton3" class="btn btn-outline-secondary" name="password1" onclick="showManyPassword(this)">Show</button>
-                  </div>
-                  <div id="fileEncryptionAlertContainer" class="mt-3"></div>
-                  <button onclick="encryptFile()" class="btn btn-outline-primary mt-3">Encrypt File</button>
-                        
-              </div>
-              <div class="col-md-6">
-                <h2 style="color: darkblue;" class="mt-5">File Decryption</h2>
-                
-                <label for="encryptedFileInput">Choose encrypted file to decrypt</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="encryptedFileInput" onchange="updateFileName('encryptedFileInput')">
-                    <label class="custom-file-label" id="encryptedFileInputLabel" for="encryptedFileInput">Choose file</label>
-                </div>
-                <label for="password" class="mt-3">Password for decryption</label>
-                <div class="input-group">
-                <input type="password" id="password2" class="form-control">
-                <button id="encryptionbutton4" class="btn btn-outline-secondary" name="password2" onclick="showManyPassword(this)">Show</button>
-                </div>
-                <div id="fileEncryptionAlertContainer" class="mt-3"></div>
-                <button onclick="decryptFile()" class="btn btn-outline-primary mt-3">Decrypt File</button>
-              </div>
-          </div>
-      </section>
-
-      <section id="about" class="third-section" style="background-image: url('shanthi-raja-inbDZypumis-unsplash.jpg');">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-                <p style="margin: 1rem;">CarryPass is dedicated to revolutionizing the way you manage your passwords and safeguard your digital identity. 
-                  Its mission is to provide innovative solutions that prioritize privacy, security, and convenience, empowering users 
-                  to take control of their online accounts.</p>
-              <a href="#allabout" style="margin-top: 12rem;" class="btn btn-warning">Read on</a>
-              </div>
-              <div class="col-md-6">
-              </div>
-          </div>
-        </div>
-      </section>
-
-        <!-- Third Section -->
-      <section id="allabout" class="fourth-section">
-          <div class="container">
-          <div class="row">
-                <h2 style="color: darkblue; margin: 1rem;">Progressive Web App (PWA) for Seamless Integration and Accessibility</h2>
-                <p style="margin: 1rem;">CarryPass offers unparalleled flexibility and accessibility, allowing you to manage your passwords seamlessly 
-                  across all your devices. With its PWA, you can enjoy the convenience of accessing your passwords from any browser, 
-                  eliminating the need for multiple applications or extensions. Say goodbye to device restrictions and hello 
-                  to effortless password management on the go.</p>
-                <h2 style="color: darkblue; margin: 1rem;">Offline Mode for Password Security</h2>
-                <p style="margin: 1rem;">Whether you're online or offline, CarryPass ensures uninterrupted access to your passwords whenever you need them. 
-                Thanks to advanced caching and service worker technology, your passwords are secure, because they are not stored and 
-                still readily available even when you're offline. Offline mode helps mitigate various network-based attacks. So, password generation or an encryption process done offline can enhance user privacy by eliminating the risk of transmitting sensitive information over the internet.</p>
-                <h2 style="color: darkblue; margin: 1rem;">How a Privacy-Focused Password Manager App Mitigates Privacy Concerns and Protects User Data</h2> 
-                <p style="margin: 1rem;">Privacy is not just a feature – it's the foundation. The privacy-focused approach of CarryPass ensures that your 
-                information remains strictly confidential and its zero-knowledge architecture safeguards your passwords from prying eyes. 
-                When you create a password, instead of sending the actual master password to a service provider or storing it on servers, 
-                the password is transformed in your browser using a one-way cryptographic hash function with key-stretching algorithm, 
-                and neither the master password nor the created password ever leave your device.</p>
-                <h2 style="color: darkblue; margin: 1rem;">Enhancing Privacy with AES 256 Encryption</h2>
-                <p style="margin: 1rem;">CarryPass takes privacy seriously by implementing robust AES 256 encryption for both text and file storage. AES 256 encryption is 
-                recognized as one of the most secure encryption standards available today, ensuring that your sensitive data remains protected 
-                from unauthorized access.
-                With AES 256 encryption, your texts and files are encrypted using a symmetric key algorithm, meaning that only authorized users 
-                with the correct key can decrypt and access the information. This ensures that even if your data were somehow stolen from you, 
-                it would be virtually impossible for anyone without the encryption key to decipher its contents.
-                Beyond just security, AES 256 encryption also enhances privacy by providing an additional layer of confidentiality. 
-                Your encrypted data remains indecipherable to anyone, including service providers or hackers, ensuring that your 
-                digital identity and sensitive information are kept private at all times.
-                </p>
-            
-          </div>
-          </div>
-      </section>
-
-          <!-- Third Section -->
-    <section id="pricing" class="third-section" style="background-image: url('morgan-housel-X_fbh4Utwk4-unsplash.jpg');">
-      <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-          <h1 style="color:orange;">CarryPass is free</h1>
-          <h2 style="margin-left: 9rem;"></h2>
-          </div>
-          <div class="col-md-6">
-            <h4 style="color: orange; margin-bottom: 3rem;" class="section-text">Although CarryPass is free for you, it still has to be hosted and maintained, so every little support is appreciated. Thank you!</h2>
-            <h4 class="section-text" style="margin-top: 17rem"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="zoltanracz" data-color="#5F7FFF" data-emoji=""  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script></h2>
-          </div>
-      </div>
-      </div>
-    </section>
-
-  <!-- Fifth Section -->
-  <section id="download" class="third-section" style="background-image: url('nik-MAgPyHRO0AA-unsplash.jpg');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-
-        </div>
-        <div class="col-md-6">
-          <h2 style="color: darkblue; margin-bottom: 1rem;">Install on Desktop</h2>
-          <p style="color: black;">If you have opened the CarryPass website in one of the PWA compatible desktop browsers (such as Microsoft Edge, or Google Chrome), look for the <b>install button
-            in the address bar</b>, and click on it. You may also be prompted to pin the app to the taskbar. <br>That's it! Now you can enjoy the app's 
-            features and functionalities with just a click, even when you're offline.</p>
-            <h2 style="color: darkblue; margin: 1rem;">Install on Mobile</h2>
-            <p style="color: black;">If you have opened the CarryPass website in one of the PWA compatible mobile browsers (such as Microsoft Edge, Google Chrome, Mozilla Firefox, or Safari), once the website loads, <b>tap the Share button</b> (It usually resembles a square with an arrow pointing upwards). 
-              In the Share menu, <b>locate and tap the "Add to Home Screen" option</b>. After that, <b>tap the “Add” button</b>. <br>That's it! Now you can enjoy the app's 
-              features and functionalities with just a tap, even when you're offline.</p>
-        <button id="downloadButton" type="button" style="width: 50%; margin-top: 20%; display: none;" class="btn btn-secondary">Download app resources for offline use</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal HTML -->
-<!-- Modal HTML -->
-<div id="alertModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p id="alertModalMessage"></p>
   </div>
-</div>
+</section>
 
-<div id="myModal" class="worker-modal">
-  <div class="worker-modal-content">
-    <p id="modalMessage"></p>
-    <button id="modalConfirm" class="btn btn-primary">Yes</button>
-    <button id="modalCancel" class="btn btn-outline-secondary">No</button>
+<section class="section alt">
+  <div class="container">
+    <h2>Try It Yourself</h2>
+    <p>Explore the live demos in your browser.</p>
+    <p style="font-size: 0.9rem; color: #555; margin-top: 1rem;">You will be prompted to choose an ID: It can be any 6 characters or a longer passphrase.</p>
+    <p style="font-size: 0.9rem; color: #555; margin-top: 1rem;"><strong>Important:</strong> The ID will be stored locally by the application, so make sure to remember it, since there is no way to recover it. Without your ID, you will be locked out.</p>
+    <a href="pwa-carrypass-password.html" type="button" class="btn strong">Launch Demo</a>
   </div>
-</div>
+</section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <span class="text-muted">CarryPass© 2022-2024 | Rácz Zoltán | zoltan@carrypass.net | hosted by GitHub Pages | domain provider GoDaddy | Image#1 Photo by <a href="https://unsplash.com/@leohoho?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Leohoho</a> on <a href="https://unsplash.com/photos/man-in-black-jacket-standing-near-body-of-water-during-daytime-kXYExBLuZ9Q?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
-      Image#2 Photo by <a href="https://unsplash.com/@saeedkarimi?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">saeed karimi</a> on <a href="https://unsplash.com/photos/woman-in-white-long-sleeve-shirt-kissing-girl-in-white-long-sleeve-shirt-JrrWC7Qcmhs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
-      Image#3 Photo by <a href="https://unsplash.com/@shanthiraja?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Shanthi Raja</a> on <a href="https://unsplash.com/photos/brown-wooden-figurine-on-white-table-inbDZypumis?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
-      Image#4 Photo by <a href="https://unsplash.com/@morganhousel?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Morgan Housel</a> on <a href="https://unsplash.com/photos/person-holding-yellow-round-analog-clock-X_fbh4Utwk4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a> | 
-      Image#5 Photo by <a href="https://unsplash.com/@helloimnik?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nik</a> on <a href="https://unsplash.com/photos/right-arrow-sign-on-wall-MAgPyHRO0AA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></span>
-  
-  
-  
+
+<section class="section">
+<div class="container">
+  <h2>Pricing</h2>
+<section class="pricing-section">
+  <div class="pricing-cards">
+    <div class="card">
+      <h2>Professional Plan</h2>
+      <div class="price">From € 1250</div>
+      <ul>
+        <li>Rebranding</li>
+        <li>Use on any device</li>
+        <li>PWA (Offline-first)</li>
+        <li>Deterministic Password Manager (High security)</li>
+        <li>Text & File Encryption [AES-GCM]</li>
+        <li>Custom Salt Algorithm</li>
+        <li>3 Encryption Flavors</li>
+        <li>No tracking, no ads, no cloud</li>
+        <li>Unlimited Users</li>
+        <li>Single payment, Unlimted Access</li>
+      </ul>
+      <a href="#contact">Request Branding</a>
     </div>
-  </footer>
- 
-  <script src="jquery-3.5.1.min.js"></script>
-  <script src="bootstrap.bundle.min.js"></script>
-  <script src="carrypass.js"></script>
-  <script>
-      
-      $(document).ready(function() {
-        $('a[href^="#"]').on('click', function(event) {
-          var target = $(this.getAttribute('href'));
-          if (target.length) {
-            event.preventDefault();
-            $('html, body').stop().animate({
-              scrollTop: target.offset().top - $('.navbar').outerHeight() 
-            }, 1000);
-          }
-        });
-      });
 
+    <div class="card">
+      <h2>Enterprise Plan</h2>
+      <div class="price">From € 2250</div>
+      <ul>
+        <li>Custom Branding (logo, name, colors)</li>
+        <li>Use on any device</li>
+        <li>PWA (Offline-first)</li>
+        <li>All CarryPass features</li>
+        <li>Deterministic Password Manager (High security)</li>
+        <li>Text & File Encryption [AES-GCM]</li>
+        <li>Advanced Security Options</li>
+        <li>Custom Salt Algorithms</li>
+        <li>5 Encryption Flavors</li>
+        <li>Team Credential Management [AES-GCM]</li>
+        <li>No tracking, no ads, no cloud</li>
+        <li>Private/internal deployment help</li>
+        <li>Consultation for team usage</li>
+        <li>Unlimited Users</li>
+        <li>Single payment, Unlimted Access</li>
+      </ul>
+      <a href="#contact">Request Branding</a>
+    </div>
 
-  </script>
+    <div class="card">
+      <h2>White Label</h2>
+      <div class="price">From € 9250</div>
+      <ul>
+        <li>White Label Branding</li>
+        <li>Tailored Encryption and Algorithm Settings</li>
+        <li>Private/internal deployment help</li>
+        <li>Consultation for Team Usage</li>
+        <li>No CarryPass Branding</li>
+        <li>Custom UI/UX</li>
+        <li>Dedicated Customization Support</li>
+        <li>Full Access to Source Code</li>
+        <li>Licence to modify source code</li>
+      </ul>
+      <a href="#contact">Get in Touch</a>
+    </div>
+  </div>
+</section>
+</div>
+</section>
 
+<section class="section" id="contact">
+  <div class="container">
+    <h2>Let’s Make CarryPass Yours</h2>
+    <div class="grid split">
+      <div>
+        <form action="https://formspree.io/f/mldjaqgo" method="POST">
+          <input type="text" name="company" placeholder="Company Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Tell us what you need..."></textarea>
+          <input type="url" name="brandAssets" placeholder="Link to your logo or branding (optional)">
+          <input type="submit" value="Request Rebranded Version" class="btn primary">
+        </form>
+      </div>
+      <div>
+        <h4>Need help?</h4>
+        <p>If you need guidance setting up, deploying, or customizing CarryPass, just let us know. We'll make sure your version fits your exact needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2022-2025 CarryPass. Built for privacy. All rights reserved.</p> <a href="pwa-carrypass-privacy-policy.html">Privacy Policy</a>
+    <p> Built by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy </p>
+  </div>
+</footer>
+<script>
+  lucide.createIcons();
+</script>
 
 </body>
 </html>

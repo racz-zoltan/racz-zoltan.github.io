@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarryPass – Text Encryption</title>
+  <script src="lucide.min.js"></script>
+  <link rel="stylesheet" href="carrypass-multicolumn-theme.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <a href="pwa-carrypass-password.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="pwa-carrypass-password.html" class="lang-link">PASSWORD</a>
+    |
+    <a href="pwa-carrypass-file-encryption.html" class="lang-link">FILE</a>
+    |
+    <a href="pwa-carrypass-teams.html" class="lang-link">TEAMS</a>
+    |
+    <a href="#" onclick="switchOff()" class="lang-link"><i data-lucide="power"></i></span></a>
+  </div>
+<div class="container">
+  <header class="hero">
+  <h1>CarryPass – Text Encryption</h1>
+  <p>Protect your messages simply, with secure encryption.
+    CarryPass helps you encrypt and decrypt text snippets right in your browser. Ideal for sharing secrets without third-party apps or accounts.</p>
+    <div class="button-wrapper">
+      <a type="button" class="btn primary btn-vertical" href="#start">
+        <span></span>
+        <i data-lucide="chevrons-down"></i>
+      </a>
+    </div>
+  </header>
+  <div id="alert-container" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;"></div>
+  <div class="section">
+    <div id="start"></div>
+    <div class="container functions">
+    <label for="plaintext">Text to Encrypt</label>
+    <textarea id="plaintext" placeholder="Enter text...(decrypted output will also appear here)"></textarea>
+
+    <label for="encryptionPassword">Password</label>
+    <div class="input-group">
+      <input type="password" id="encryptionPassword" />
+      <button type="button" class="btn secondary" name="encryptionPassword" onclick="showManyPassword(this)">Show</button>
+    </div>
+
+    <div class="input-group">
+      <button type="button" class="btn strong" onclick="encryptText()">Encrypt</button>
+      <button data-password-id="copyPlain" type="button" name="plaintext" class="btn outline-gold" style="margin-left: 1rem;" onclick="copyInputValue(this)">Copy</button>
+      <span id="copySuccessIcon-copyPlain" class="icon" style="display: none;"></span>   
+    </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div id="encrypted"></div>
+    <div class="container functions">
+    <label for="encryptedText">Encrypted Text</label>
+    <textarea id="encryptedText" placeholder="Encrypted output will appear here"></textarea>
+
+    <label for="decryptionPassword">Password</label>
+    <div class="input-group">
+      <input type="password" id="decryptionPassword" />
+      <button type="button" class="btn secondary" name="decryptionPassword" onclick="showManyPassword(this)">Show</button>
+    </div>
+
+    <div class="input-group">
+      <button type="button" class="btn strong" onclick="decryptText()">Decrypt</button>
+      <button data-password-id="copyEncrypted" type="button" name="encryptedText" class="btn outline-gold" style="margin-left: 1rem;" onclick="copyInputValue(this)">Copy</button>
+      <span id="copySuccessIcon-copyEncrypted" class="icon" style="display: none;"></span>  
+    </div>
+  </div>
+</div>
+<div id="alertModal" class="carrypass-modal">
+  <div class="carrypass-modal-content">
+    <span class="close" aria-label="Close">&times;</span>
+    <p id="alertModalMessage">Modal message here.</p>
+  </div>
+</div>
+
+<!-- Modal for PASS Code -->
+<div id="passCodeModal" class="carrypass-modal-login">
+  <div class="carrypass-modal-login-content">
+    <h4>LOGIN</h4>
+    <h4>Enter the passcode for your app</h4>
+    <input type="text" id="passCodeInput" placeholder="Enter passcode (min. 6 char)">
+    <p id="errorMessage" style="color: red;"></p>
+    <div class="modal-footer">
+      <button id="submitPassCode" class="btn">Submit</button>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2022-2025 CarryPass. Built for privacy. All rights reserved.</p>
+  </div>
+</footer>
+<script src="jquery.min.js"></script>
+<script src="crypto-js.min.js"></script>
+<script src="carrypass.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Initialize Lucide Icons after the DOM is fully loaded
+    lucide.createIcons();
+  });
+</script>
+</body>
+</html>
