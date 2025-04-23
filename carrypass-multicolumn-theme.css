@@ -508,7 +508,8 @@ textarea:focus {
 
 .carrypass-modal-content {
   background-color: #fff;
-  margin: 15% auto;
+  margin: 5% auto;
+  margin-top: 10%;
   padding: 2rem;
   border: 2px solid #FFD43B;
   border-radius: 12px;
@@ -516,8 +517,14 @@ textarea:focus {
   max-width: 500px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+  .carrypass-modal-content {
+    margin-top: 30%; /* Adjust for smaller screens */
+  }
+}
 
 .carrypass-modal-login {
   display: none;

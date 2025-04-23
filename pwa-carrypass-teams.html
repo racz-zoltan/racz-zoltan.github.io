@@ -35,6 +35,7 @@
   </header>
   <div class="section">
     <div class="container functions">
+      <div>
         <div id="alert-container" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;"></div>
         <label id="start" for="code">Access Code</label>
         <input id="code" placeholder="e.g. CWXb330ZZc">
@@ -44,20 +45,18 @@
 
         <button type="button" class="btn strong" onclick="unlock()">Unlock</button>
         <button type="button" id="showImageButton" class="btn outline-gold">Show demo QR</button>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container functions">
+      </div>
+      <div style="margin-top: 3rem;">
         <div id="output"></div>
         <p id="flavorTag"></p>
         <div id="flavorStrength" style="display:none; margin-top: 0.25rem; font-size: 0.9rem;"></div>
-
         <div class="custom-dropdown-container">
           <div class="custom-dropdown">
             <select id="serviceSelect" class="form-control"></select>
           </div>
         </div>
         <button id="showBtn" type="button" class="btn primary" onclick="showPassword()">Show Credentials</button>
+      </div>
     </div>
   </div>
 
@@ -102,7 +101,7 @@
 
 <!-- Modal for PASS Code -->
 <div id="passCodeModal" class="carrypass-modal-login">
-  <div class="carrypass-modal-login-content">
+  <div class="carrypass-modal-content">
     <h4>LOGIN</h4>
     <h4>Enter the passcode for your app</h4>
     <input type="text" id="passCodeInput" placeholder="Enter passcode (min. 6 char)">
