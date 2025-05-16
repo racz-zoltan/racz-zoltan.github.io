@@ -536,11 +536,13 @@
     width: 100%;
   }
 
-  .column-left,
-  .column-right {
-    min-width: 0;
-    overflow: hidden;
-  }
+.column-left,
+.column-right {
+  min-width: 0;
+  overflow-x: visible;
+  overflow-y: auto; /* optional: control vertical scroll */
+}
+
 
   ::placeholder {
     color: #999;               
@@ -1068,9 +1070,28 @@
 
   .toggles {
     display: flex;
-    justify-content: center; 
-    gap: 32px; 
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    overflow-x: auto;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
   }
+
+  .toggles::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .toggles::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .toggles::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
   
   .toggle-container {
     display: flex;
