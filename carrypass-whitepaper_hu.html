@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryPass Biztonsági Fehér Könyv</title>
+  <script src="lucide.min.js"></script>
+  <link rel="stylesheet" href="carrypass-theme.css">
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logó" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-whitepaper.html" class="lang-link">EN</a>
+    |
+    <a href="carrypass-whitepaper_hu.html" class="lang-link active">HU</a>
+  </div>
+<header class="hero">
+  <div class="container">
+    <h1>CarryPass Biztonsági Fehér Könyv</h1>
+    <p>Hogyan találkozik az adatvédelem, a titkosítás és a használhatóság egy offline-első jelszó- és hitelesítőadat-kezelő eszközben.</p>
+  </div>
+</header>
+
+<section class="section alt">
+  <div class="container">
+    <h2>1. Architektúra áttekintése</h2>
+    <p>A CarryPass teljes mértékben kliensoldali alkalmazás, amely progresszív webalkalmazásként (PWA) terjesztett. Teljes egészében a böngészőben fut, és minden titkos adatot helyileg tárol. Nincs háttérszerver, nincsenek naplózások vagy felhőszolgáltatások.</p>
+    <ul>
+      <li><strong>Frontend:</strong> HTML, JavaScript, CryptoJS, Web Crypto API</li>
+      <li><strong>Adattárolás:</strong> localStorage (titkosítva)</li>
+      <li><strong>Hozzáférés:</strong> Jelszó + opcionális TOTP</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+  <h2>2. Jelszógenerálás</h2>
+  <p>A CarryPass determinisztikus módszerrel generál jelszavakat Argon2id, PBKDF2 és AES-CTR stream cipher kombinációjával.</p>
+  <ul>
+    <li><strong>Bemenetek:</strong> Szolgáltatásnév, mesterjelszó, iterációs szám, karaktertípusok, hossz</li>
+    <li><strong>Folyamat:</strong> Argon2id megerősíti a bemenetet &rarr; PBKDF2 kulcsot származtat &rarr; AES-CTR stream-et generál &rarr; ebből jön létre a jelszó</li>
+  </ul>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>3. Jelszótároló titkosítási modell</h2>
+    <p>Az admin eszköz lehetővé teszi, hogy titkosított jelszótárolókat hozzunk létre, felhasználónkkénti blokkokkal és opcionális csapatszintű kulcsokkal. Ezek AES-GCM algoritmussal titkosított statikus JSON-fájlok.</p>
+    <ul>
+      <li>Minden blokk egyedi sóval és PBKDF2 kulccsal van titkosítva</li>
+      <li>Minden blokk tartalmaz <em>ellenőrző összeget</em> és <em>lejárati időt</em></li>
+      <li>A csapatkulcsok elkülönítve titkosítottak, csak a hozzárendelt felhasználó láthatja őket</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>4. Taghozzáférési folyamat</h2>
+    <p>A csapattagok egy jelszóval (opcionálisan TOTP kóddal) feloldhatják a saját blokkjukat. Csak a hozzájuk rendelt csapatokat látják, mást nem.</p>
+    <ul>
+      <li>A jelszótároló JSON offline kerül betöltésre</li>
+      <li>Felhasználó blokk dekódolása &rarr; csapatkulcsok dekódolása &rarr; jelszavak előállítása</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>5. Biztonsági modell</h2>
+    <p>A CarryPass erős titkosítást, szigorú kliensoldali futtatást és az adatok szétválasztását alkalmazza, hogy megelőzze az adatszivárgást.</p>
+    <ul>
+      <li><strong>Nincs jelszótárolás.</strong> Minden azonnal számítódik.</li>
+      <li><strong>Nincs titkosítatlan tároló.</strong> Még a helyi adatok is AES-GCM-mel titkosítottak.</li>
+      <li><strong>Nincs backend kockázat.</strong> Nem létezik backend szerver.</li>
+      <li><strong>Ellenőrző összeg ellenőrzés.</strong> Minden blokk SHA-256-alapú ellenőrző összeget tartalmaz.</li>
+      <li><strong>Lejárati szabályozás.</strong> Az admin meghatározhat lejárati időt.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>6. Összegzés</h2>
+    <p>A CarryPass biztonságos offline használatra készült. Determinisztikus jelszógenerálással, erős titkosítással, felhőmentes architektúrával és átlátható vezérléssel szolgálja ki az adatvédelmet előtérbe helyező felhasználókat és csapatokat.</p>
+    <ul>
+      <li>🔐 Offline-első, nincs naplózás</li>
+      <li>🧪 Jelszavak helyben generálva AES-CTR-rel</li>
+      <li>🧱 Jelszótárolók AES-GCM-mel titkosítva</li>
+      <li>🔍 Kód megtekinthető és testreszabható</li>
+    </ul>
+    <a href="carrypass-marketing_hu.html#contact" class="btn primary">Egyedi változat igénylése</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2022–2025 CarryPass. Adatvédelemre építve.</p>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

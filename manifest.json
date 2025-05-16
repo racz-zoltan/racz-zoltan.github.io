@@ -1,21 +1,23 @@
 {
-    "name": "CarryPass",
-    "short_name": "CarryPass",
-    "icons": [
-      {
-        "src": "/carrypass-gold.webp",
-        "sizes": "192x192",
-        "type": "image/webp"
-      },
-      {
-        "src": "/carrypass-gold.webp",
-        "sizes": "512x512",
-        "type": "image/webp"
-      }
-    ],
-    "start_url": "/pwa-carrypass-password.html",
-    "display": "standalone",
-    "theme_color": "#B4B4B4",
-    "background_color": "#ffffff"
-  }
-  
+  "name": "CarryPass",
+  "short_name": "CarryPass",
+  "description": "CarryPass is a privacy-first, offline password and encryption manager.",
+  "icons": [
+    {
+      "src": "/carrypass-icon.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/carrypass-icon.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1E003B",
+  "background_color": "#FFD43B" 
+}

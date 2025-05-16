@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryPass Security Whitepaper</title>
+  <script src="lucide.min.js"></script>
+  <link rel="stylesheet" href="carrypass-theme.css">
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-whitepaper.html" class="lang-link active">EN</a>
+    |
+    <a href="carrypass-whitepaper_hu.html" class="lang-link">HU</a>
+  </div>
+<header class="hero">
+  <div class="container">
+    <h1>CarryPass Security Whitepaper</h1>
+    <p>How privacy, encryption, and usability meet in an offline-first password and credential tool.</p>
+  </div>
+</header>
+
+<section class="section alt">
+  <div class="container">
+    <h2>1. Architecture Overview</h2>
+    <p>CarryPass is a fully client-side application distributed as a Progressive Web App (PWA). It runs entirely in the browser and stores all secrets locally. There is no backend, no telemetry, and no cloud sync.</p>
+    <ul>
+      <li><strong>Frontend:</strong> HTML, JavaScript, CryptoJS, Web Crypto API</li>
+      <li><strong>Storage:</strong> localStorage (encrypted)</li>
+      <li><strong>Access Control:</strong> Passcode + TOTP (optional)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+  <h2>2. Password Generation</h2>
+  <p>CarryPass generates deterministic passwords using a combination of Argon2id, PBKDF2, and AES-CTR stream cipher.</p>
+  <ul>
+    <li><strong>Inputs:</strong> Service name, master password, iteration count, character types, length</li>
+    <li><strong>Flow:</strong> Argon2id hardens the input → PBKDF2 derives a key → AES-CTR generates a stream → Password derived from stream</li>
+  </ul>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>3. Vault Encryption Model</h2>
+    <p>The Admin tool allows encrypted vault creation with per-member credential blocks and optional team-level keys. These vaults are encrypted using AES-GCM and distributed as static JSON files.</p>
+    <ul>
+      <li>Each block is encrypted with a derived key using PBKDF2 + unique salt</li>
+      <li>Each block has a <em>checksum</em> and <em>expiry</em> field</li>
+      <li>Team keys are encrypted separately and matched only to assigned members</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>4. Member Access Flow</h2>
+    <p>Team members can unlock their portion of the vault using a password (and optionally TOTP). Each member can only see the teams assigned to them, and nothing else.</p>
+    <ul>
+      <li>Vault JSON is fetched and parsed offline</li>
+      <li>Member block is decrypted → team keys are decrypted → credentials are revealed</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>5. Security Model</h2>
+    <p>CarryPass applies strong cryptography, strict client-side execution, and aggressive separation of concerns to prevent data exposure.</p>
+    <ul>
+      <li><strong>No passwords stored.</strong> Everything is derived on the fly.</li>
+      <li><strong>No plaintext vaults.</strong> Even local data is encrypted with AES-GCM.</li>
+      <li><strong>No backend risk.</strong> There is no backend to compromise.</li>
+      <li><strong>Checksum validation.</strong> Every block includes a SHA-256 based checksum.</li>
+      <li><strong>Expiration control.</strong> Admin can enforce vault expiry dates.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>6. Summary</h2>
+    <p>CarryPass is built for secure offline use. By applying deterministic password generation, strong encryption, no-cloud architecture, and transparent controls, it meets the privacy needs of modern teams and security-focused individuals.</p>
+    <ul>
+      <li>🔐 Offline-first, no telemetry</li>
+      <li>🧪 Passwords generated locally with AES-CTR</li>
+      <li>🧱 Vaults encrypted with AES-GCM</li>
+      <li>🔍 Code is inspectable and rebrandable</li>
+    </ul>
+    <a href="carrypass-marketing_en.html#contact" class="btn primary">Request a Branded White Label Version</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2022–2025 CarryPass. Built for privacy.</p>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

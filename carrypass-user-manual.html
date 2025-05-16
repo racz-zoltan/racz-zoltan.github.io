@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryPass User Manual</title>
+  <link rel="stylesheet" href="carrypass-theme.css">
+  <script src="lucide.min.js"></script>
+  <style>
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-user-manual.html" class="lang-link active">EN</a>
+    |
+    <a href="carrypass-user-manual_hu.html" class="lang-link">HU</a>
+  </div>
+  <header class="hero">
+    <div class="container">
+      <h1>CarryPass User Manual</h1>
+      <p>A practical guide to help you get started with your secure, offline CarryPass experience.</p>
+    </div>
+  </header>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>1. Introduction</h2>
+      <p>CarryPass is a privacy-first, deterministic password and credential manager designed for offline use. It does not store your passwords — instead, it regenerates them securely on demand based on inputs you control.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>2. Getting Started</h2>
+      <p>CarryPass is a Progressive Web App (PWA), which means you can install it like a native app — no tracking, no account, and full offline support.</p>
+
+      <div class="grid split">
+        <div class="card">
+          <h3><i data-lucide="monitor-smartphone" class="icon-small"></i> Install on Desktop</h3>
+          <p>Open CarryPass in a compatible browser such as <strong>Chrome</strong> or <strong>Edge</strong> Look for the <strong>install icon</strong> in the address bar, then click it to install.</p>
+          <p>Optionally, pin it to your taskbar. You can now launch it like a regular app — even offline.</p>
+        </div>
+
+        <div class="card">
+          <h3><i data-lucide="smartphone" class="icon-small"></i> Install on Mobile</h3>
+          <p>In <strong>Chrome</strong> <strong>Safari</strong> or <strong>Firefox</strong> open the CarryPass website and tap the <strong>Share</strong> icon (a square with an upward arrow).</p>
+          <p>Then tap <strong>“Add to Home Screen”</strong> and confirm with <strong>“Add”</strong> CarryPass now behaves like a native app — offline and just a tap away.</p>
+        </div>
+      </div>
+
+      <ul style="margin-top: 2rem;">
+        <li><strong>No account required:</strong> You are never tracked.</li>
+        <li><strong>No cloud storage:</strong> All data stays on your device.</li>
+        <li><strong>Fully offline:</strong> Works without internet after install.</li>
+        <li><strong>Browser support:</strong> Chrome, Edge, Firefox, Safari.</li>
+      </ul>
+    </div>
+  </section>
+
+
+<section class="section alt"> 
+  <div class="container">
+    <h2>3. Password Generator</h2>
+    <p>CarryPass uses a <strong>deterministic</strong> password generator. This means the same inputs will always produce the same secure password — without ever saving it. No syncing, no cloud, no leaks.</p>
+
+    <div class="grid split">
+      <div class="card">
+        <h3><i data-lucide="fingerprint" class="icon-small"></i> How It Works</h3>
+        <ul>
+          <li><strong>Service Name:</strong> Like "facebook.com" or "My Bank"</li>
+          <li><strong>Master Password:</strong> Known only to you, never stored (same for all services, so you only have to remember one strong password)</li>
+          <li><strong>Length & Character set:</strong> Choose how long the generated password to be and what types of characters (letters, numbers, symbols) should it have</li>
+          <li><strong>Password Security:</strong> An advanced option to generate different outputs per service or version.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><i data-lucide="lock-keyhole" class="icon-small"></i> How It’s Secured</h3>
+        <ul>
+        <li><strong>Argon2id:</strong> Adds memory-hard security to slow down attackers</li>
+        <li><strong>PBKDF2:</strong> Further derives a strong key from your inputs</li>
+        <li><strong>AES-CTR:</strong> Stream cipher ensures deterministic, secure password output</li>
+        <li><strong>Offline-only:</strong> Everything happens in your browser — no data is sent or stored</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <h3>First Time? Here's What to Do:</h3>
+      <ol>
+        <li>Pick a master password that only you know and can remember</li>
+        <li>Enter the name of the service you need a password for (e.g. "twitter.com")</li>
+        <li>Choose your character types and length (defaults are strong)</li>
+        <li>Tap <strong>Get Password</strong> — your secure password will appear</li>
+        <li>You can return anytime and regenerate it with the same inputs</li>
+      </ol>
+      <p><em>Tip: You can also save your password generation settings (not the password!) for easier reuse — encrypted in your local storage.</em></p>
+    </div>
+  </div>
+</section>
+
+
+  <section class="section">
+    <div class="container">
+      <h2>4. Optional: Encrypted Local Storage</h2>
+      <p>You may choose to store your password <em>settings</em> (not the password itself) in encrypted localStorage for convenience.</p>
+      <ul>
+        <li>This feature remembers your preferred settings per service.</li>
+        <li>The data is encrypted locally using your passcode.</li>
+        <li>You can delete this data at any time from within the app.</li>
+        <li>You can optionally export the encrypted settings and import them if you change the device.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>5. Team Configs & Admin Options</h2>
+      <p>CarryPass allows an admin to securely distribute credentials to team members using encrypted vaults and QR onboarding.</p>
+      <ul>
+        <li>Admins encrypt credentials per team or user.</li>
+        <li>Each user unlocks their vault using their member ID and their member password + optional TOTP code.</li>
+        <li>Vaults can expire and are validated with a checksum.</li>
+        <li>Admin never sees passwords after onboarding.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>6. Security Tips</h2>
+      <ul>
+        <li>Use a strong master password (minimum 12 characters).</li>
+        <li>Do not reuse short or ambiguous service names.</li>
+        <li>Regenerate your password on any device with the same inputs.</li>
+        <li>Clear local storage if switching or handing over your device.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>7. Frequently Asked Questions</h2>
+      <details class="faq-item">
+        <summary>What if I forget my master password?</summary>
+        <p>There’s no way to recover your password. CarryPass never stores it. But if you remember the same inputs (service name + master password), it will regenerate the same password every time.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Are any passwords saved?</summary>
+        <p>No. Your passwords are calculated, not stored. Only your settings can be optionally encrypted and saved locally — nothing else.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I move CarryPass to another device?</summary>
+        <p>Yes. Since CarryPass doesn’t store your credentials, you can simply reinstall it on a new device. Use the same inputs to get the same results.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is CarryPass secure even without internet?</summary>
+        <p>Yes. It is designed to be offline-first. All cryptographic operations run in your browser using standard AES, PBKDF2 and Argon2id.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2022–2025 CarryPass. Built for privacy.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

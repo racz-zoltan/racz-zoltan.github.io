@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryPass Felhasználói Útmutató</title>
+  <link rel="stylesheet" href="carrypass-theme.css">
+  <script src="lucide.min.js"></script>
+  <style>
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-user-manual.html" class="lang-link">EN</a>
+    |
+    <a href="carrypass-user-manual_hu.html" class="lang-link active">HU</a>
+  </div>
+  <header class="hero">
+    <div class="container">
+      <h1>CarryPass Felhasználói Útmutató</h1>
+      <p>Gyakorlati útmutató a CarryPass biztonságos, offline használatának megkezdéséhez.</p>
+    </div>
+  </header>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>1. Bevezetés</h2>
+      <p>A CarryPass egy adatvédelmet előtérbe helyező, determinisztikus jelszó- és hitelesítőkezelő, amely offline használatra készült. Nem tárol jelszavakat — helyette biztonságosan újragenerálja azokat az általad megadott adatok alapján.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>2. Első Lépések</h2>
+      <p>A CarryPass egy progresszív webalkalmazás (PWA), amely natív alkalmazásként is telepíthető — felhasználói fiók nélkül, követés nélkül, teljes offline támogatással.</p>
+
+      <div class="grid split">
+        <div class="card">
+          <h3><i data-lucide="monitor-smartphone" class="icon-small"></i> Telepítés Asztali Gépen</h3>
+          <p>Nyisd meg a CarryPass oldalt egy kompatibilis böngészőben, például a <strong>Chrome</strong> vagy <strong>Edge</strong> alkalmazásban. Keresd meg a <strong>telepítő ikont</strong> a böngésző címsorában, majd kattints rá.</p>
+          <p>Ha szeretnéd, rögzítheted az alkalmazást a tálcára is. Ezentúl úgy használhatod, mint egy hagyományos appot — akár internetkapcsolat nélkül is.</p>
+        </div>
+
+        <div class="card">
+          <h3><i data-lucide="smartphone" class="icon-small"></i> Telepítés Mobilon</h3>
+          <p>A <strong>Chrome</strong> <strong>Safari</strong> vagy <strong>Firefox</strong> böngészőben nyisd meg a CarryPass weboldalt, majd koppints a <strong>Megosztás</strong> ikonra (egy felfelé mutató nyíllal jelölt négyzet).</p>
+          <p>Ezután válaszd a <strong>„Hozzáadás a kezdőképernyőhöz”</strong> lehetőséget, majd erősítsd meg a <strong>„Hozzáadás”</strong> gombbal. Ezután a CarryPass úgy működik, mint egy natív alkalmazás — offline is, egy koppintással elérhető.</p>
+        </div>
+      </div>
+
+      <ul style="margin-top: 2rem;">
+        <li><strong>Nincs szükség felhasználói fiókra:</strong> Nem történik követés.</li>
+        <li><strong>Nincs felhőtárolás:</strong> Az összes adat az eszközön marad.</li>
+        <li><strong>Teljesen offline:</strong> Az alkalmazás internet nélkül is működik.</li>
+        <li><strong>Támogatott böngészők:</strong> Chrome, Edge, Firefox, Safari.</li>
+      </ul>
+    </div>
+  </section>
+
+<section class="section alt"> 
+  <div class="container">
+    <h2>3. Jelszógenerátor</h2>
+    <p>A CarryPass <strong>determinisztikus</strong> jelszógenerátort használ. Ugyanazok a bemeneti adatok mindig ugyanazt a biztonságos jelszót eredményezik — anélkül, hogy azt valaha elmentenénk. Nincs szinkronizálás, nincs felhő, nincs kiszivárgás.</p>
+
+    <div class="grid split">
+      <div class="card">
+        <h3><i data-lucide="fingerprint" class="icon-small"></i> Hogyan működik</h3>
+        <ul>
+          <li><strong>Szolgáltatás neve:</strong> Például "facebook.com" vagy "Bankom"</li>
+          <li><strong>Mesterjelszó:</strong> Csak Te ismered, nem kerül tárolásra (minden szolgáltatáshoz ugyanaz, így csak egyet kell megjegyezni)</li>
+          <li><strong>Hossz és karakterkészlet:</strong> Válaszd ki a kívánt jelszójellemzőket (betűk, számok, szimbólumok)</li>
+          <li><strong>Jelszóbiztonság:</strong> Haladó opció különböző jelszavak generálásához akár ugyanazon szolgáltatásnál is</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><i data-lucide="lock-keyhole" class="icon-small"></i> Hogyan védett</h3>
+        <ul>
+        <li><strong>Argon2id:</strong> Memóriaigényes algoritmus, amely lassítja a jelszavakat visszafejteni próbáló támadókat</li>
+        <li><strong>PBKDF2:</strong> Kriptográfiai kulcsot hoz létre a megadott adatok alapján</li>
+        <li><strong>AES-CTR:</strong> Ebből generálódik a biztonságos, reprodukálható jelszó</li>
+        <li><strong>Csak offline:</strong> Az összes művelet a böngésződben történik, semmilyen adat nem kerül továbbításra</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <h3>Először használod? Kövesd ezeket a lépéseket:</h3>
+      <ol>
+        <li>Válassz egy erős, csak általad ismert mesterjelszót</li>
+        <li>Írd be a szolgáltatás nevét (pl. "twitter.com")</li>
+        <li>Válaszd ki a karaktertípusokat és hosszúságot (az alapbeállítások biztonságosak)</li>
+        <li>Kattints a <strong>Get Password</strong> (jelszó létrehozása) gombra</li>
+        <li>Regisztrálj a választott szolgáltatásba, vagy cseréld le a szolgáltatásban használt jelszavadat egy CarryPass jelszóra</li>
+        <li>Bármikor újragenerálhatod ugyanazokkal a bemeneti adatokkal és beállításokkal ugyanazt a jelszót</li>
+      </ol>
+      <p><em>Tipp: Az alkalmazás el tudja menteni a jelszógenerálási beállításaidat (a jelszót nem!), így a későbbiekben könnyebben újragenerálhatók.</em></p>
+    </div>
+  </div>
+</section>
+
+  <section class="section">
+    <div class="container">
+      <h2>4. Opcionális: Titkosított Helyi Tárolás</h2>
+      <p>Lehetőséged van a jelszó <em>beállításaidat</em> (nem a jelszót magát) titkosítva elmenteni a böngésződ helyi tárolójába a kényelmesebb használat érdekében.</p>
+      <ul>
+        <li>Ez a funkció megjegyzi a szolgáltatásonkénti kedvenc beállításaidat.</li>
+        <li>Az adatokat saját jelszóval (pl.: a belépési kódoddal) titkosítja.</li>
+        <li>Bármikor törölheted ezeket az adatokat az alkalmazáson belül.</li>
+        <li>Lehetőség van az adatok exportálására is, ha eszközt cserélsz.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>5. Csapatkonfigurációk & Admin Beállítások</h2>
+      <p>A CarryPass lehetőséget ad az adminok számára, hogy titkosított jelszótárolókon keresztül biztonságosan osszanak meg hozzáféréseket a csapattagokkal, QR-kódos beléptetéssel.</p>
+      <ul>
+        <li>Az admin titkosítja a hitelesítő adatokat csapatonként vagy felhasználónként.</li>
+        <li>Minden felhasználó saját azonosítóval és jelszóval (opcionálisan TOTP kóddal) fér hozzá a saját tárolójához.</li>
+        <li>A jelszótárolók lejárhatnak (biztonsági funkció), és ellenőrzésre kerülnek egy ellenőrzőösszeggel (checksum; hamisítás elleni védelem).</li>
+        <li>Az admin a beléptetés után nem látja a jelszavakat.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>6. Biztonsági Tippek</h2>
+      <ul>
+        <li>Használj erős mesterjelszót (minimum 12 karakter).</li>
+        <li>Kerüld az általános vagy rövid szolgáltatásnevek újrafelhasználását.</li>
+        <li>Ugyanazokkal a bemenetekkel bármely eszközön újra létrehozhatod a jelszavaidat.</li>
+        <li>Ha új eszközre váltasz, vagy átadod a meglévőt, töröld a helyi tárolót.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>7. Gyakran Ismételt Kérdések</h2>
+      <details class="faq-item">
+        <summary>Mi történik, ha elfelejtem a mesterjelszót?</summary>
+        <p>Nem lehet visszaállítani a jelszót. A CarryPass soha nem tárolja. De ha emlékszel ugyanazokra a bemenetekre (szolgáltatás neve + mesterjelszó), a jelszó mindig újra előállítható.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Elmentésre kerülnek a jelszavak?</summary>
+        <p>Nem. A jelszavakat mindig újraszámítja az alkalmazás. Csak a beállításokat lehet opcionálisan titkosítva elmenteni — mást nem.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Át tudom vinni a CarryPass-t másik eszközre?</summary>
+        <p>Igen. Mivel a CarryPass nem tárol hitelesítő adatokat, elég csak újra telepíteni az új eszközön. Ugyanazokat a bemeneteket használva ugyanazokat az eredményeket kapod.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Biztonságos a CarryPass internet nélkül is?</summary>
+        <p>Igen. Kifejezetten offline használatra készült. Minden titkosítási művelet a böngészőben történik, szabványos AES, PBKDF2 és Argon2id algoritmusokkal.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2022–2025 CarryPass. Adatvédelemre építve.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
