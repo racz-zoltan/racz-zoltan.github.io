@@ -478,7 +478,7 @@
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 2rem;">Stored Settings</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 2rem;">Store</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -626,7 +626,7 @@
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper" style="text-align: left">
                     <label for="iterationCount" class="label-with-icon">
-                      Security<span id="argonTierLabel" class="argon-tier-label">🔹 Standard</span>
+                      Security
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-iteration">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -639,16 +639,16 @@
                     </div>
                   </div>
                   <div class="input-group">
-                    <input maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCount" name="iterationCount" class="form-control" value="100" step="1" placeholder="" required>
-                    <button id="iterCount" type="button" class="btn secondary-outline" name="iterationCount">Show</button>
+                    <input maxlength="5" max="99999" min="1" type="number" inputmode="numeric" pattern="\d*" id="iterationCount" name="iterationCount" class="form-control" value="100" step="1" placeholder="" required>
+                    <!-- <button id="iterCount" type="button" class="btn secondary-outline" name="iterationCount">Show</button> -->
                   </div>
               </div>
               <div class="toggle-container" style="margin-left: 0.5rem;">
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper">
                     <div class="input-group">
-                    <label for="slider2">Store</label>
-                    <label for="slider2" class="label-with-icon">&nbsp;Settings
+              
+                    <label for="slider2" class="label-with-icon">Store&nbsp;Settings
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-storesettings">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>

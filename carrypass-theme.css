@@ -39,7 +39,10 @@
     height: 100%;
   }
   
-  
+  body {
+    overflow-x: hidden;
+  }
+
 
   .screen {
     display: none;
@@ -149,7 +152,7 @@
   }
   
   
-  .grid.split {
+  /* .grid.split {
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 2rem;
@@ -161,7 +164,7 @@
     .grid.split {
       grid-template-columns: 1fr; 
     }
-  }
+  } */
   
   .grid.cards {
     display: grid;
@@ -360,6 +363,21 @@
     gap: 0.1rem;
   }
   
+  /* THIS CAUSES TROUBLE WITH LENGTH STRENGTH STORE SETTINGS */
+
+/* .input-group .toggle-container {
+    flex: 1 1 100%;
+    min-width: 240px;
+  } */
+
+  /* @media (min-width: 768px) {
+    .input-group .toggle-container {
+      flex: 1 1 calc(33.33% - 1rem);
+      min-width: unset;
+    }
+  } */
+  /* THIS CAUSES TRUBLE WITH LENGTH STRENGTH STORE SETTINGS */
+
   .field-group {
     display: flex;
     align-items: stretch; 
@@ -495,12 +513,35 @@
     flex: 1;
   }
   
-  .grid.split {
+  /* .grid.split {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
+  } */
   
+  .grid.split {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .grid.split > * {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .toggle-container {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .column-left,
+  .column-right {
+    min-width: 0;
+    overflow: hidden;
+  }
+
   ::placeholder {
     color: #999;               
     font-style: italic;       
