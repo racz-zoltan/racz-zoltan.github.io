@@ -355,13 +355,19 @@
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
-  
+
   .input-group {
+    display: flex;
+    align-items: stretch; /* instead of stretch */
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+  
+  /* .input-group {
     display: flex;
     align-items: stretch; 
     gap: 0.1rem;
-  }
+  } */
   
   /* THIS CAUSES TROUBLE WITH LENGTH STRENGTH STORE SETTINGS */
 
@@ -507,23 +513,19 @@
     border-radius: 8px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    white-space: nowrap;
   }
   
   .input-group input {
     flex: 1;
   }
   
-  /* .grid.split {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  } */
   
   .grid.split {
     display: grid;
     gap: 2rem;
     align-items: start;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 
   .grid.split > * {
@@ -531,10 +533,7 @@
     overflow-wrap: break-word;
   }
 
-  .toggle-container {
-    box-sizing: border-box;
-    width: 100%;
-  }
+
 
 .column-left,
 .column-right {
@@ -1092,13 +1091,55 @@
     background: transparent;
   }
 
-  
   .toggle-container {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin: 10px; 
+    flex-direction: column;
+    align-items: flex-start; 
+    min-width: 100px;        
+    max-width: 180px;        
+    flex: 0 0 auto;          
+    box-sizing: border-box;
   }
+
+  .toggle-container-security {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    min-width: 160px;        
+    max-width: 200px;        
+    flex: 0 0 auto;         
+    box-sizing: border-box;
+  }
+
+  .toggle-container-store {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    min-width: 100px;       
+    max-width: 160px;       
+    flex: 0 0 auto;         
+    box-sizing: border-box;
+  }
+
+  .toggle-container .input-group {
+    width: 100%;             
+  }
+
+  .input-group-length input[type="number"] {
+    width: 30px;             
+  }
+
+  .input-group-password input[type="password"] {
+    width: 30px;             
+  }
+
+  .label-tooltip-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
   
   
   .toggle {
@@ -1180,8 +1221,17 @@
     font-size: 14px; 
     margin-bottom: 5px; 
   }
+
+    .toggle-container-security label {
+    font-size: 14px; 
+    margin-bottom: 5px; 
+  }
+
+    .toggle-container-store label {
+    font-size: 14px; 
+    margin-bottom: 5px; 
+  }  
   
- 
   .custom-slider-container {
     position: relative;
     width: 59px; 
@@ -1819,6 +1869,36 @@
   }
 }
 
+#globalTooltip {
+  position: fixed;
+  background: #1E003B;
+  color: #fff;
+  /* font-size: 13px; */
+  padding: 8px 12px;
+  border-radius: 4px;
+  z-index: 9999;
+  display: none;
+  line-height: 1.5;
+  max-width: 40vw; 
+  /* max-width: 200px; */
+  min-width: 160px;
+  white-space: normal;
+  word-wrap: break-word;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease;
+  left: 50%;                          /* Center horizontally */
+  transform: translateX(-50%);  
+}
+
+#globalTooltip {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#globalTooltip.visible {
+  opacity: 1;
+}
+
 
 
 .tooltip {
@@ -1827,9 +1907,9 @@
   top: 120%;
   left: 50%;
   transform: translateX(-50%);
-  background: #333;
+  background: #1E003B;
   color: #fff;
-  font-size: 13px;
+  /* font-size: 13px; */
   padding: 6px 10px;
   border-radius: 4px;
   z-index: 100;
@@ -1845,6 +1925,20 @@
 .tooltip.visible {
   display: block;       
 }
+
+.tooltip-title {
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.tooltip-body {
+  font-size: 13px !important;
+  color: #eee;
+  line-height: 1.5;
+}
+
 
 
 .info-icon-wrapper {
@@ -1938,6 +2032,8 @@
 .label-with-icon {
   display: flex;
   align-items: center;
-  gap: 6px; 
-  flex-wrap: nowrap;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-weight: 400;
 }
+

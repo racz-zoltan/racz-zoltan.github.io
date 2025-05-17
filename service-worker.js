@@ -53,13 +53,13 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // ✅ Always allow vault fetches
+
   if (url.pathname.startsWith('/vault/')) {
     event.respondWith(handleConfigRequest(request));
     return;
   }
 
-  // ✅ Allow local dev over HTTP
+  
   if (
     url.protocol !== 'https:' &&
     url.hostname !== 'localhost' &&
@@ -74,7 +74,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // ✅ Allow from allowed domains
+  
   if (url.origin === ALLOWED_DOMAIN || url.origin === self.origin) {
     event.respondWith(
       caches.match(request).then(cached => {
@@ -94,24 +94,60 @@ self.addEventListener('fetch', event => {
   }
 });
 
+
 async function handleConfigRequest(request) {
+  const cache = await caches.open(CONFIG_CACHE);
+
   try {
-    const networkResponse = await fetch(request);
-    if (!networkResponse || networkResponse.status !== 200) return networkResponse;
+    // Force bypass of internal HTTP cache
+    const networkResponse = await fetch(request, { cache: "no-store" });
+
+    if (!networkResponse || networkResponse.status !== 200) {
+      throw new Error("Network fetch failed");
+    }
 
     const headers = new Headers(networkResponse.headers);
-    headers.set('x-cached-at', new Date().toISOString());
+    headers.set("x-cached-at", new Date().toISOString()); 
+    headers.set("x-cache-source", "network");
 
-    const cache = await caches.open(CONFIG_CACHE);
-    await cache.put(request, networkResponse.clone());
+    await cache.put(
+      request,
+      new Response(await networkResponse.clone().blob(), {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers
+      })
+    );
 
+  
     return new Response(networkResponse.body, {
       status: networkResponse.status,
       statusText: networkResponse.statusText,
-      headers: headers
+      headers
     });
+
   } catch (error) {
-    const cache = await caches.open(CONFIG_CACHE);
-    return cache.match(request);
+    const cached = await cache.match(request);
+
+    if (cached) {
+     
+      const blob = await cached.blob();
+
+      const originalHeaders = cached.headers;
+      const cachedAt = originalHeaders.get("x-cached-at") || "unknown";
+
+      const headers = new Headers(originalHeaders);
+      headers.set("x-cached-at", cachedAt);
+      headers.set("x-cache-source", "cache");
+
+      return new Response(blob, {
+        status: cached.status,
+        statusText: cached.statusText,
+        headers
+      });
+    }
+
+    return new Response("Vault not available offline", { status: 404 });
   }
 }
+
