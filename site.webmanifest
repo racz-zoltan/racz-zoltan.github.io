@@ -2,22 +2,36 @@
   "name": "CarryPass",
   "short_name": "CarryPass",
   "description": "CarryPass is a privacy-first, offline password manager and credential distribution tool.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFD43B",
+  "theme_color": "#1E003B",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png",
-      "sizes": "192x192",
+      "src": "/icon-192.png",
       "type": "image/png",
-      "purpose": "maskable"
+      "sizes": "192x192"
     },
     {
-      "src": "/web-app-manifest-512x512.png",
-      "sizes": "512x512",
+      "src": "/icon-512.png",
       "type": "image/png",
-      "purpose": "maskable"
+      "sizes": "512x512"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#1E003B",
-  "background_color": "#FFD43B"
-} 
+  "screenshots": [
+    {
+      "src": "password_desktop.png",
+      "sizes": "1339x680",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Password Generator - Desktop"
+    },
+    {
+      "src": "password_mobile.png",
+      "sizes": "480x670",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Password Generator - Mobile"
+    }
+  ]
+}

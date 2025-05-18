@@ -8,7 +8,8 @@ const urlsToCache = [
   'jquery.min.js', 'argon2-bundled.min.js', 'crypto-js.min.js', 'carrypass.min.js',
   'qrcode.min.js', 'lucide.min.js',
   'carrypass-gold-transparent.png',
-  'carrypass-icon.webp',
+  'icon-192.png',
+  'icon-512.png',
   'favicon.ico',
   'favicon.svg',
   'favicon-96x96.png',
@@ -17,10 +18,6 @@ const urlsToCache = [
   'carrypass-theme.css',
   'member_finalize_qr.png',
   'site.webmanifest',
-  '/fonts/Inter_18pt-Regular.ttf',
-  '/fonts/Inter_18pt-Medium.ttf',
-  '/fonts/Inter_18pt-SemiBold.ttf',
-  '/fonts/Inter_24pt-Bold.ttf',
   '/vault/README.md',
   '/vault/team-vault.json',
   '/splash-640x1136.png',
@@ -49,17 +46,18 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
-
+  // ✅ Handle vault files with special logic
   if (url.pathname.startsWith('/vault/')) {
     event.respondWith(handleConfigRequest(request));
     return;
   }
 
-  
+  // ✅ HTTPS enforcement (skip localhost)
   if (
     url.protocol !== 'https:' &&
     url.hostname !== 'localhost' &&
@@ -74,25 +72,38 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  
-  if (url.origin === ALLOWED_DOMAIN || url.origin === self.origin) {
-    event.respondWith(
-      caches.match(request).then(cached => {
-        if (cached) return cached;
-        return fetch(request).then(response => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          const cloned = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, cloned));
+  // ✅ Main fetch logic (cache-first for static assets)
+  event.respondWith(
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+
+      return fetch(request).then(response => {
+        // Only cache valid basic responses (not opaque, not errors)
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
+        }
+
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, responseClone);
         });
-      })
-    );
-  } else {
-    event.respondWith(fetch(request));
-  }
+
+        return response;
+      }).catch(() => {
+        // ✅ Fallback: serve index.html if navigation request and offline
+        if (request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+        // Optional: fallback to offline.html or blank response
+        return new Response("Offline and no cached version found.", {
+          status: 503,
+          statusText: "Service Unavailable"
+        });
+      });
+    })
+  );
 });
+
 
 
 async function handleConfigRequest(request) {

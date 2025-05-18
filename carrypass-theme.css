@@ -1,5 +1,5 @@
 
-@font-face {
+/* @font-face {
     font-family: 'Inter';
     src: url('/fonts/Inter_18pt-Regular.ttf') format('truetype');
     font-weight: 400;
@@ -26,7 +26,7 @@
     font-weight: 700;
     font-style: normal;
   }
-  
+   */
   
   
   html, body {
@@ -43,6 +43,9 @@
     overflow-x: hidden;
   }
 
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 
   .screen {
     display: none;
