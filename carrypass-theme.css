@@ -1,33 +1,4 @@
 
-/* @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter_18pt-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter_18pt-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter_24pt-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-   */
-  
   
   html, body {
     margin: 0;
@@ -361,31 +332,11 @@
 
   .input-group {
     display: flex;
-    align-items: stretch; /* instead of stretch */
+    align-items: stretch;
     gap: 0.25rem;
     flex-wrap: nowrap;
   }
   
-  /* .input-group {
-    display: flex;
-    align-items: stretch; 
-    gap: 0.1rem;
-  } */
-  
-  /* THIS CAUSES TROUBLE WITH LENGTH STRENGTH STORE SETTINGS */
-
-/* .input-group .toggle-container {
-    flex: 1 1 100%;
-    min-width: 240px;
-  } */
-
-  /* @media (min-width: 768px) {
-    .input-group .toggle-container {
-      flex: 1 1 calc(33.33% - 1rem);
-      min-width: unset;
-    }
-  } */
-  /* THIS CAUSES TRUBLE WITH LENGTH STRENGTH STORE SETTINGS */
 
   .field-group {
     display: flex;
@@ -409,12 +360,14 @@
     background-color: #FFD43B;
     color: #1E003B;
     border: none;
+    padding: 0.7rem 1rem;
   }
   
   .btn.secondary {
     background-color: #f3f3f3;
     color: #1E003B;
     border: 1px solid #ccc;
+    padding: 0.7rem 1rem;
   }
   
   .btn.secondary:hover {
@@ -425,6 +378,7 @@
     background-color: #1E003B;
     color: #FFD43B;
     border: 1px solid #ccc;
+    padding: 0.7rem 1rem;
   }
   
   .btn.strong:hover {
@@ -480,9 +434,9 @@
   .btn.secondary-outline {
     background-color: transparent;
     color: #ccc;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     font-weight: 500;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 0.5rem;
     border-radius: 8px;
     transition: all 0.2s ease;
   }
@@ -693,6 +647,10 @@
     display: none;
   }
   
+  .hidden { 
+    display: none; 
+  }
+
   @media (max-width: 600px) {
     .modal-content {
       padding: 1.5rem;
@@ -1563,7 +1521,11 @@
     justify-content: flex-end;
     gap: 10px;
   }
-  
+
+  .modal-edit.hidden {
+    display: none;
+  }
+
   .team-chip {
     display: inline-flex;
     align-items: center;
@@ -2040,3 +2002,95 @@
   font-weight: 400;
 }
 
+.trusted-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e7f1ff;
+  color: #1E003B;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: max-content;
+}
+
+.trusted-indicator.untrusted {
+  background-color: #999;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  padding: 0.5rem;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* light hover feedback */
+}
+
+.btn.icon-only {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+}
+
+.btn.icon-only.small {
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1rem;
+}
+
+.btn.icon-only i {
+  pointer-events: none;
+}
+
+.pending { 
+  color: #d9534f; 
+  font-weight: bold; 
+}
+
+.inline-edit { 
+  background: #f9f9f9; 
+  padding: 8px; 
+  border-radius: 6px; 
+  margin-top: 5px; 
+}
+
+.highlight {
+  font-weight: bold;
+  color: #0a8754; 
+}
+
+.highlight-orange {
+  color: #c75b00; /* dark orange */
+  font-weight: bold;
+}
+
+#trustedDeviceIndicator {
+  /* all: unset; */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.team-card, .member-card, .credential-card { 
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+  border-radius: 8px; 
+}

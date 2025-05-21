@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>CarryPass</title>
     
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data: 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-src 'none'; script-src 'self' 'wasm-unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-src 'none'; script-src 'self' 'wasm-unsafe-eval'">
     <script src="argon2-bundled.min.js"></script>
     <!-- Viewport and Progressive Web App Basics -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,17 +39,7 @@
     <!-- Styles and Icons -->
     <link rel="stylesheet" href="carrypass-theme.css">
     <script src="lucide.min.js"></script>
-    
-    <!-- Basic Screen Style -->
-    <style>
-        .screen { display: none; min-height: 100vh; }
-        .screen.active { display: block; }
-        .hidden { display: none; }
-        .team-card, .member-card, .credential-card { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 8px; }
-        .pending { color: #d9534f; font-weight: bold; }
-        .inline-edit { background: #f9f9f9; padding: 8px; border-radius: 6px; margin-top: 5px; }
-        .icon-button { background: none; border: none; cursor: pointer; margin-left: 5px; }
-    </style>
+
 </head>
       
 <body>
@@ -189,6 +179,15 @@
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
+    <div class="logo link">
+    <div id="trustedDeviceIndicator" class="trusted-indicator" style="margin-top: 3.3rem;" title="" data-trusted-indicator>
+      <i data-lucide="monitor-dot" class="trusted-icon"></i>
+      <span class="trusted-label">Trusted Device</span>
+      <button id="exportTrustedQRButton" class="btn icon-only small export-qr-button" title="Share TOTP with another device">
+        <i data-lucide="qr-code"></i>
+      </button>
+    </div>
+    </div>
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
       |
@@ -196,19 +195,19 @@
       |
       <a href="" class="lang-link"><i id="adminEditorLoginLogout" data-lucide="log-out"></i></span></a>
     </div>
-    <div class="container" style="margin-top: 4rem;">
+    <div class="container" style="margin-top: 5rem;">
       <form id="adminVaultEditorForm" class="grid split">
         <div>
-          <h2>Admin Vault Editor Access</h2>
+          <h2>Vault Editor Access</h2>
           <div class="input-group">
             <input type="password" id="adminPasswordEditorInput" placeholder="Admin Vault Password">
           <button id="adminPasswordEditorInputToggle" type="button" name="adminPasswordEditorInput" class="btn secondary-outline">Show</button>
           </div>
           <br><br>
-          <input id="adminEditorTOTPInput" type="text" placeholder="2FA (not required in demo)" maxlength="6">
+          <input id="adminEditorTOTPInput" type="text" placeholder="2FA (6-digit code)" maxlength="6">
           <br><br>
           <div class="input-group">
-          <button type="button" class="btn strong" id="handleCompleteAdminVault" style="margin-right: 0.5rem;">Unlock&nbsp;Admin&nbsp;Vault</button>
+          <button type="button" class="btn strong" id="handleCompleteAdminVault" style="margin-right: 0.5rem;">Access&nbsp;Admin&nbsp;Vault</button>
           <div class="input-group" style="margin-left: auto;">
               <input type="text" class="form-control" id="adminEditFileInputText" disabled placeholder="Upload vault file" />
               <div class="input-group-append">
@@ -220,10 +219,11 @@
         </div>
         <div>
           <p style="margin-top: 2rem;">This is the admin unlock & edit panel - it is used for editing the complete vault, when there is a team vault already set up.</p>
-          <h3>Demo Admin Password</h3>
+           <h4>To access the editor, first you have to make yours a trusted device - see Team Member Access Panel</h4>
+          <h4>Demo Admin Password</h4>
           <p>6bbLpO1-flCP1Oz-VQIRK04-1p4pNjj-Z52z13u-Bm6iZ21-f</p>
           <div style="margin-top: 3rem; margin-left: auto;">
-          <button id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Access Panel</button>
+          <button id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Member Access Panel</button>
           </div>
         </div>
       </form>
@@ -238,6 +238,10 @@
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
+    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
+      <i data-lucide="monitor-dot" class="trusted-icon"></i>
+      <span class="trusted-label">Trusted Device</span>
+    </div>
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
       |
@@ -275,6 +279,10 @@
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
+    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
+      <i data-lucide="monitor-dot" class="trusted-icon"></i>
+      <span class="trusted-label">Trusted Device</span>
+    </div>
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
       |
@@ -309,6 +317,10 @@
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
+    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
+      <i data-lucide="monitor-dot" class="trusted-icon"></i>
+      <span class="trusted-label">Trusted Device</span>
+    </div>
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
       |
@@ -327,8 +339,6 @@
           <button id="memberPasswordToggle" type="button" name="memberPassword" class="btn secondary-outline">Show</button>
           </div>
           <br><br>
-          <input id="memberTOTPInput" type="text" placeholder="2FA (not required in demo)" maxlength="6">
-          <br><br>
           <div class="input-group">
           <button id="memberVaultImportButton" type="button" class="btn strong" style="margin-right: 0.5rem;">Access&nbsp;Vault</button>
           <div class="input-group" style="margin-left: auto;">
@@ -341,13 +351,31 @@
           </div>
         </div>
         <div>
-          <h3>Demo Member ID</h3>
-          <p>fs4upetr</p>
-          <h3>Demo Member Access Password</h3>
-          <p>qu67y9ha5OVtxbEAyThB6y5dPDARCPPFvXY94GBNRic</p>
-          <h3>Demo TOTP QR code</h3>
           <img src="member_finalize_qr.png" alt="Demo onboarding QR code" class="qr-image" style="margin-bottom: 1rem;">
-          <p>Unlock the admin vault to manage teams, members, credentials and assignments.</p>
+           <h4>
+            1) Scan this Demo TOTP QR Code <span class="highlight"> with CarryPass</span> to make yours a trusted device
+          </h4>
+           <p>Alternatively, download image (right click - Save image as...) and upload.</p>
+          <div id="qr-reader" style="width: 300px; max-height: 300px; margin: auto;"></div>
+          <div class="input-group">
+          <button type="button" id="startQrScan" class="btn outline"><i data-lucide="scan-qr-code"></i> Scan</button>
+          <button type="button" id="stopScanButton" class="btn outline-delete" style="display: none;"><i data-lucide="camera-off"></i></button>
+          <div class="input-group" style="margin-left: auto;">
+              <input type="text" class="form-control" id="qr-file-inputText" disabled placeholder="Upload QR image" />
+              <div class="input-group-append">
+                  <button class="btn primary" type="button" id="qr-file-inputButton">Browse</button>
+              </div>
+              <input type="file" class="custom-file-input" accept="image/*" id="qr-file-input">
+          </div>
+          </div>
+          <h4>2) Then, scan this Demo TOTP QR Code with <span class="highlight">an Authenticator app</span> e.g.: FreeOTP; Microsoft/Google Authenticator</h4>
+          <h4>3) Read Demo Member ID from Authenticator app and type</h4>
+          <h4>4) Type (copy&paste) Demo Member Access Password:</h4>
+          <p>qu67y9ha5OVtxbEAyThB6y5dPDARCPPFvXY94GBNRic</p>
+          <h4>6) Click Access Vault</h4>
+          <h4>5) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
+          <h4>6) Click OK</h4>
+          <p style="margin-top: 2rem;">Unlock the admin vault to manage teams, members, credentials and assignments.</p>
           <button id="onAdminEntryCheck" type="button" class="btn secondary" style="margin-bottom: 2rem;">Unlock Admin Vault</button>
         </div>
       </form>
@@ -452,8 +480,11 @@
                 </div>
                 <!-- Vault Export -->
               <div id="exportVaultSection" class="admin-section" style="margin-top: 3rem;">
+                <div class="input-group">
+                  <button id="exportAuditLogFile" type="button" class="btn outline-gold">Export Log&nbsp;&nbsp;<i data-lucide="file-clock"></i></button>
                   <button id="vaultExportModalShow" type="button" class="btn strong">Export Vault&nbsp;&nbsp;<i data-lucide="folder-symlink"></i></button>
                   <div id="vaultExportFeedback"></div>
+                </div>
               </div>
             </div>
           </form>
@@ -468,6 +499,10 @@
     <a href="#" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
+    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
+      <i data-lucide="monitor-dot" class="trusted-icon"></i>
+      <span class="trusted-label">Trusted Device</span>
+    </div>
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link active">PASSWORDS</a>
       |
@@ -476,12 +511,12 @@
       <a href="" class="lang-link"><i id="appViewLogout" data-lucide="log-out"></i></span></a>
     </div>
 
-    <div class="container" style="margin-top: 4rem;">
+    <div class="container" style="margin-top: 5rem;">
       <div id="globalTooltip" class="tooltip" style="display: none;"></div>
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 2rem;">Store</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Manage Settings</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -491,14 +526,14 @@
               </div>
             </label>
             <div class="tooltip" id="tooltip-store" role="tooltip">
-              <div class="tooltip-title">Store</div>
+              <div class="tooltip-title">Manage Settings</div>
               <div class="tooltip-body">
-                Lists your custom password generation settings by service name. Default settings automatically adjust when a service is chosen from this list.
+                Lists your custom password generation settings by service name. Default settings automatically adjust when a service is chosen from this list. Settings can be exported and imported in an encrypted file.
               </div>
             </div>
           </div>
           <button type="button" id="exportSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
-          <div class="label-tooltip-wrapper tooltip-anchor">
+          <!-- <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="exportSettingsButton">
               <div class="label-tooltip-reset">
               <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-export">
@@ -512,9 +547,9 @@
                 Export your stored settings in an encrypted file to use on a new device or to prevent loss if browser's local storage is cleared.
               </div>
             </div>
-          </div>
+          </div> -->
           <button type="button" id="importSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
-          <div class="label-tooltip-wrapper tooltip-anchor">
+          <!-- <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="importSettingsButton">
               <div class="label-tooltip-reset">
               <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-import">
@@ -528,7 +563,7 @@
               Import encrypted settings from file. Use same password as at export.
               </div>
             </div>
-          </div>
+          </div> -->
           </div>
           <div id="savedServicesPanel" class="saved-services-panel">
             <input type="text" id="savedServicesSearch" placeholder="Search saved services..." style="width: 100%; margin-bottom: 0.5rem;">
@@ -818,10 +853,13 @@
   <div id="exportImportModal" class="modal hidden">
     <div class="modal-content">
       <h4 id="exportImportModalTitle">Enter Passcode</h4>
+      <div class="input-group">
       <input type="password" id="exportImportModalInput" placeholder="" />
+      <button type="button" id="exportImportShow" class="btn secondary-outline" name="exportImportModalInput">Show</button>
+      </div>
       <div id="exportImportModalError" class="modal-error hidden"></div>
       <br><br>
-      <button type="button" class="btn secondary" id="exportImportModalCancel">Cancel</button>
+      <button type="button" style="padding: 0.7rem 1rem;" class="btn secondary-outline" id="exportImportModalCancel">Cancel</button>
       <button type="button" class="btn strong" style="margin-left: auto;" id="exportImportModalOK">OK</button>
     </div>
   </div>
@@ -1052,10 +1090,21 @@
     </div>
   </div>
 </div>
+<!-- ===================== MAKE ANOTHER DEVICE TRUSTED MODAL ===================== -->
+<div id="qrExportModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Trust Another Device</h2>
+    <div id="qrExportContainer" style="display: flex; justify-content: center;"></div>
+    <p>Scan this QR code on another CarryPass device to enable 2FA access.</p>
+    <button id="trustAnotherDeviceButton" type="button" class="btn outline-secondary">Close</button>
+    <p id="qrTimeoutMessage" style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;"></p>
+  </div>
+</div>
 
-  <script src="jquery.min.js"></script>
+
   <script src="crypto-js.min.js"></script>
   <script src="qrcode.min.js"></script>
+  <script src="html5-qrcode.min.js"></script>
   <script src="carrypass.min.js" defer></script>
 
 </body>
