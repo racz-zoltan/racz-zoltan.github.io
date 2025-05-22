@@ -36,25 +36,3 @@ If you deploy CarryPass on **static platforms** like GitHub Pages or Netlify:
 ---
 
 > This folder is a staging location only. For actual deployment, vaults are typically downloaded or delivered via secure channels — not served from the web root.
-
-
-This directory supports:
-- Admin exports of encrypted vaults for secure delivery or backup
-- Import into the CarryPass frontend via manual upload or QR delivery
-- Clear separation between admin, team, and member data
-
-## 🔒 Security Notes
-
-- All files are encrypted **client-side** using AES-GCM with new nonces per export
-- No plaintext credentials are ever written here
-- Files are not included in the default PWA cache to prevent accidental exposure
-
-## 🚫 Deployment Warning
-
-If you deploy CarryPass on **static platforms** like GitHub Pages or Netlify:
-- This `README.md` ensures the `vault/` folder is preserved even if it’s empty
-- You may still need manual upload mechanisms for working with vault files
-
----
-
-> This folder is a staging location only. For actual deployment, vaults are typically downloaded or delivered via secure channels — not served from the web root.
