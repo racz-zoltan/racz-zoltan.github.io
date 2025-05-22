@@ -1,0 +1,9 @@
+# CarryPass Security Contact
+
+Contact: mailto:info.carrypass@proton.me
+Preferred-Languages: en, hu
+Canonical: https://carrypass.net/.well-known/security.txt
+Policy: https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/SECURITY.md
+Expires: 2025-12-31T23:59:00.000Z
+Acknowledgements: https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/SECURITY.md#-responsible-disclosure-acknowledgments
+Encryption: not-supported
