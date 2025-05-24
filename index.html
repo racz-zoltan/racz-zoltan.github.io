@@ -356,7 +356,7 @@
             1) Scan this Demo TOTP QR Code <span class="highlight"> with CarryPass</span> to make yours a trusted device
           </h4>
            <p>Alternatively, download image (right click - Save image as...) and upload.</p>
-          <div id="qr-reader" style="width: 300px; max-height: 300px; margin: auto;"></div>
+          <div id="qr-reader" style="width: 300px; margin: auto;"></div>
           <div class="input-group">
           <button type="button" id="startQrScan" class="btn outline"><i data-lucide="scan-qr-code"></i> Scan</button>
           <button type="button" id="stopScanButton" class="btn outline-delete" style="display: none;"><i data-lucide="camera-off"></i></button>
@@ -516,7 +516,7 @@
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Manage Settings</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-no-outline" style="margin-bottom: 1rem;">Manage Settings</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -532,8 +532,8 @@
               </div>
             </div>
           </div>
-          <button type="button" id="exportSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
-          <button type="button" id="importSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
+          <button type="button" id="exportSettingsButton" class="btn secondary-no-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
+          <button type="button" id="importSettingsButton" class="btn secondary-no-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
           </div>
           <div id="savedServicesPanel" class="saved-services-panel">
             <input type="text" id="savedServicesSearch" placeholder="Search saved services..." style="width: 100%; margin-bottom: 0.5rem;">

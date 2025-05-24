@@ -196,7 +196,7 @@
     font-size: 1rem;
     font-weight: 500;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     text-decoration: none;
     text-align: center;
     cursor: pointer;
@@ -445,7 +445,22 @@
     background-color: #f3f3f3;
     border-color: #aaa;
   }
+
+  .btn.secondary-no-outline {
+    background-color: #f3f3f3;
+    color: #ccc;
+    /* border: 1px solid #ccc; */
+    font-weight: 500;
+    padding: 0.4rem 0.5rem;
+    /* border-radius: 8px; */
+    transition: all 0.2s ease;
+  }
   
+  .btn.secondary-no-outline:hover {
+    background-color: #e0e0e0;
+    /* border-color: #aaa; */
+  }  
+
   
   .button-wrapper {
     display: flex;
@@ -462,7 +477,17 @@
   
   
   
-  .input-group input,
+  .input-group input {
+    height: 42px;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+
   .input-group button {
     height: 42px;
     font-size: 1rem;
@@ -472,7 +497,18 @@
     box-sizing: border-box;
     white-space: nowrap;
   }
-  
+
+  .input-group .btn.secondary-no-outline {
+    height: 42px;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    /* border: 1px solid #ccc; */
+    border: none;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
   .input-group input {
     flex: 1;
   }
@@ -1149,7 +1185,7 @@
   
   
   .toggle:checked::before {
-    transform: translateX(37px); 
+    transform: translateX(34px); 
   }
   
   
