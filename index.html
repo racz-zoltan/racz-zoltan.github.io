@@ -53,8 +53,9 @@
       <form id="registrationForm" class="grid split">
         <div class="column-left">
           <h2>Start Using CarryPass</h2>
+          <label for="passCodeInputRegister">Application ID</label>
           <div class="input-group">
-            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Appication ID" required>
+            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="e.g. cp4322" required>
             <button id="passCodeInputRegisterShow" type="button" class="btn secondary-outline" name="passCodeInputRegister">Show</button>
           </div>
           <button id="submitPassCodeRegister" type="button" class="btn primary">Open My App</button>
@@ -65,27 +66,59 @@
             </div>
         </div>
         <div style="margin-top: 2rem;">
-          <p><strong>Choose an ID</strong> — this can be a nickname, passphrase, or PIN — and start exploring CarryPass right away.<br><b>Important:</b> This ID is not recoverable. If you forget it, all application settings will be permanently lost. </p>
+          <p><strong>Choose an Application ID</strong> — this can be a nickname, passphrase, or PIN — and start exploring CarryPass right away.<br><b>Important:</b> The Application ID is not recoverable. If you forget it, all application settings will be permanently lost. </p>
           <p style="margin-top: 3rem;">
             <strong>CarryPass</strong> is a <strong>privacy-first</strong>, <strong>deterministic password manager</strong> and <strong>credential distribution tool</strong> that runs entirely in your browser — <strong>no storage</strong>, <strong>no syncing</strong>, just your browser.<br>
           </p>
-          <div class="info-card">
-            <button type="button" id="toggleInfoWhatisit" class="info-toggle"> Want to know more?<span id="infoArrow" class="arrow">▼</span></button>
-            <div class="info-content" id="infoContent">
-              <ul>
-                <li>Privacy-first <br>password manager – <a href="carrypass-privacy-policy.html" class="lang-link active">PRIVACY&nbsp;POLICY</a></li>
-                <li>Password management <br>and credential distribution – <a href="carrypass-user-manual.html" class="lang-link active">USER&nbsp;MANUAL</a></li>
-                <li>Unparalleled privacy <br>and robust security – <a href="carrypass-whitepaper.html" class="lang-link active">PUBLIC&nbsp;WHITEPAPER</a></li>
-                <li>Free for individual use – <a href="carrypass-marketing_en.html" class="lang-link active">PURCHASE&nbsp;OPTIONS</a></li>
-                <li>Demo version limitations – <a href="carrypass-disclaimer.html" class="lang-link active">DISCLAIMER</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
       </form>
     </div>
+    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
+    <div class="input-group">
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="github" class="trusted-icon"></i>
+        </a>
+        <label for="github">Github</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="messages-square" class="trusted-icon"></i>
+        </a>
+        <label for="discussions">Discussions</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="shield-check" class="trusted-icon"></i>
+        </a>
+        <label for="privacypolicy">Privacy</label>
+      </div>
+    </div>
+    </footer>
+    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
+    <div class="input-group">
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="purchase" href="carrypass-marketing_en.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="credit-card" class="trusted-icon"></i>
+        </a>
+        <label for="purchase">Purchase</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="book-open" class="trusted-icon"></i>
+        </a>
+        <label for="aboutsection">About</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="triangle-alert" class="trusted-icon"></i>
+        </a>
+        <label for="disclaimer">Disclaimer</label>
+      </div>
+    </div>
+    </footer>
     <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Rácz Zoltán | hosted by GitHub Pages | domain provider GoDaddy
+      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
     </footer>
   </div>
 
@@ -110,30 +143,58 @@
           </div>
         </div>
         <div>
-          <p style="margin-top: 6rem;"><strong>Unlock with your application ID.</strong></p>
+          <p style="margin-top: 6rem;"><strong>Unlock with your Application ID.</strong></p>
           <p>If you've lost it, you'll need to reset the app and start over.</p>
-          <p style="margin-top: 4rem;">
-            <strong>CarryPass</strong> is a <strong>privacy-first</strong>, <strong>deterministic password manager</strong> and <strong>credential distribution tool</strong> that runs entirely in your browser — <strong>no storage</strong>, <strong>no syncing</strong>, just your browser.<br>
-          </p>
-          <div class="info-card" style="margin-top: 1rem;">
-            <button type="button" id="toggleInfoWhatisitEntry" class="info-toggle"> Want to know more?<span id="infoArrowEntry" class="arrow">▼</span></button>
-            <div class="info-content" id="infoContentEntry">
-              <ul>
-                <li>Privacy-first <br>password manager – <a href="carrypass-privacy-policy.html" class="lang-link active">PRIVACY&nbsp;POLICY</a></li>
-                <li>Password management <br>and credential distribution – <a href="carrypass-user-manual.html" class="lang-link active">USER&nbsp;MANUAL</a></li>
-                <li>Unparalleled privacy <br>and robust security – <a href="carrypass-whitepaper.html" class="lang-link active">PUBLIC&nbsp;WHITEPAPER</a></li>
-                <li>Free for individual use – <a href="carrypass-marketing_en.html" class="lang-link active">PURCHASE&nbsp;OPTIONS</a></li>
-                <li>Demo version limitations – <a href="carrypass-disclaimer.html" class="lang-link active">DISCLAIMER</a></li>
-                <li>First CarryPass password generator - <a href="legacy-password-generator.html" class="lang-link active">LEGACY&nbsp;VERSION</a></li>
-              </ul>
-            </div>
-          </div>  
           <button type="button" id="resetAppButton" class="btn outline-delete" style="margin-top: 2rem;">Reset Application</button>
         </div>
       </form>
     </div>
+    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
+    <div class="input-group">
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="github" class="trusted-icon"></i>
+        </a>
+        <label for="github">Github</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="messages-square" class="trusted-icon"></i>
+        </a>
+        <label for="discussions">Discussions</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="shield-check" class="trusted-icon"></i>
+        </a>
+        <label for="privacypolicy">Privacy</label>
+      </div>
+    </div>
+    </footer>
+    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
+    <div class="input-group">
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="purchase" href="carrypass-marketing_en.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="credit-card" class="trusted-icon"></i>
+        </a>
+        <label for="purchase">Purchase</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="book-open" class="trusted-icon"></i>
+        </a>
+        <label for="aboutsection">About</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="triangle-alert" class="trusted-icon"></i>
+        </a>
+        <label for="disclaimer">Disclaimer</label>
+      </div>
+    </div>
+    </footer>
     <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Rácz Zoltán | hosted by GitHub Pages | domain provider GoDaddy
+      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
     </footer>
   </div>
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About CarryPass</title>
+  <link rel="stylesheet" href="carrypass-theme.css" />
+  <script src="lucide.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+  </script>
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img" />
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-about.html" class="lang-link active">EN</a>
+    |
+    <a href="carrypass-about_hu.html" class="lang-link">HU</a>
+  </div>
+  <header class="hero">
+    <div class="container">
+      <h1>About CarryPass</h1>
+      <p>CarryPass is a zero-knowledge password and credential manager built for offline use, privacy, and transparency.</p>
+    </div>
+  </header>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Why CarryPass?</h2>
+      <p>Most password managers rely on cloud sync, database storage, or browser extensions. CarryPass takes a different path: it never stores passwords at all. Instead, it <strong>calculates them on the fly</strong>, using a master password, service name, and your character type preferences.</p>
+      <p>This means there's no sync to set up, no database to breach. You can regenerate the same secure password from any device — even offline.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>How It Works</h2>
+      <p>CarryPass uses a deterministic model combining <strong>Argon2id</strong>, <strong>PBKDF2</strong>, and <strong>AES-CTR</strong> to derive secure passwords. For shared credentials, it uses <strong>AES-GCM</strong> to encrypt vaults per user or team.</p>
+
+      <ul>
+        <li>Passwords are derived — never stored</li>
+        <li>Vaults are encrypted with per-user keys</li>
+        <li>All encryption runs client-side in your browser</li>
+        <li>No account, telemetry, or server ever involved</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>For Teams and Individuals</h2>
+      <p>CarryPass supports secure credential sharing via <strong>team vaults</strong> and <strong>QR onboarding</strong>. Each team member can access only what they’ve been assigned — nothing more. TOTP verification is supported for extra protection.</p>
+
+      <p>Admins can prepare encrypted configs, assign members, and rotate credentials — all without accessing passwords themselves.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Built for Privacy</h2>
+      <ul>
+        <li>🔐 No cloud, sync, or tracking</li>
+        <li>📦 Fully installable as a PWA</li>
+        <li>🧱 Runs 100% client-side</li>
+        <li>📝 Open-source under the MIT license</li>
+      </ul>
+      <p>CarryPass was designed to solve real privacy challenges — like using your password manager on a new device, in airplane mode, or on systems you don’t trust. It requires no backend and leaves nothing behind.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Documentation</h2>
+      <p>For detailed usage instructions and security design, see:</p>
+      <ul>
+        <li><a href="carrypass-user-manual.html"><i data-lucide="book-open" class="trusted-icon"></i> CarryPass User Manual</a></li>
+        <li><a href="carrypass-whitepaper.html"><i data-lucide="file-text" class="trusted-icon"></i> Technical Whitepaper</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2022–2025 CarryPass. Built for privacy.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rólunk – CarryPass</title>
+  <link rel="stylesheet" href="carrypass-theme.css" />
+  <script src="lucide.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+  </script>
+</head>
+<body>
+  <a href="index.html" class="logo-link">
+    <img src="carrypass-gold-transparent.png" alt="CarryPass logó" class="logo-img" />
+  </a>
+  <div class="lang-toggle">
+    <a href="carrypass-about.html" class="lang-link">EN</a>
+    |
+    <a href="carrypass-about_hu.html" class="lang-link active">HU</a>
+  </div>
+  <header class="hero">
+    <div class="container">
+      <h1>Rólunk – CarryPass</h1>
+      <p>A CarryPass egy "zero-knowledge" jelszó- és hitelesítő-adat kezelő, amely offline használatra, adatvédelemre és átláthatóságra épül.</p>
+    </div>
+  </header>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Miért CarryPass?</h2>
+      <p>A legtöbb jelszókezelő felhőszinkronra, adatbázisokra vagy böngészőbővítményekre támaszkodik. A CarryPass más utat választ: soha nem tárol jelszavakat. Ehelyett <strong>valós időben számolja ki</strong> azokat, egy mesterjelszó, szolgáltatásnév és karakterbeállítások alapján.</p>
+      <p>Nincs szükség szinkronizálásra vagy adatbázisra, amit feltörhetnek. Ugyanaz a biztonságos jelszó bármilyen eszközön újra előállítható – akár offline is.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Hogyan működik?</h2>
+      <p>A CarryPass determinisztikus modellt használ, amely az <strong>Argon2id</strong>, a <strong>PBKDF2</strong> és az <strong>AES-CTR</strong> algoritmusokat kombinálja a biztonságos jelszavak előállításához. Megosztott hitelesítési adatok esetén a <strong>AES-GCM</strong> gondoskodik a felhasználónkénti vagy csapatonkénti titkosításról.</p>
+
+      <ul>
+        <li>A jelszavak kiszámításra kerülnek — az alkalmazás nem tárolja azokat</li>
+        <li>A titkosított "széfek" felhasználónkénti kulcsokat használnak</li>
+        <li>Minden titkosítás a böngészőben, kliensoldalon történik</li>
+        <li>Nincs fiók, nyomkövetés vagy kiszolgáló</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Egyéni és csapat használatra</h2>
+      <p>A CarryPass támogatja a biztonságos hozzáférés-megosztást <strong>csapatalapú széfeken</strong> és <strong>QR-kódos beléptetésen</strong> keresztül. A csapattagok kizárólag a kapott adatokhoz férhetnek hozzá – semmi máshoz. TOTP-alapú megerősítés is elérhető extra védelemként.</p>
+
+      <p>Az adminisztrátorok titkosított konfigurációkat készíthetnek, felhasználókat rendelhetnek hozzá, és "forgathatják" a hitelesítő adatokat – anélkül, hogy valaha is látnák a tagok jelszavait.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Adatvédelem az alapoktól</h2>
+      <ul>
+        <li>🔐 Nincs felhő, szinkronizálás vagy nyomkövetés</li>
+        <li>📦 Telepíthető PWA formában</li>
+        <li>🧱 100%-ban kliensoldali működés</li>
+        <li>📝 Nyílt forráskódú, MIT licenc alatt</li>
+      </ul>
+      <p>A CarryPass valós adatvédelmi kihívások megoldására készült — például jelszavaid elérésére egy új eszközön, offline módban vagy nem megbízható környezetben. Nem igényel háttérszolgáltatást, és semmilyen nyomot nem hagy maga után.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Dokumentáció</h2>
+      <p>A részletes útmutatót és a biztonsági megoldások leírását lásd:</p>
+      <ul>
+        <li><a href="carrypass-user-manual_hu.html"><i data-lucide="book-open" class="trusted-icon"></i> Felhasználói kézikönyv</a></li>
+        <li><a href="carrypass-whitepaper_hu.html"><i data-lucide="file-text" class="trusted-icon"></i> Technikai leírás (Whitepaper)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2022–2025 CarryPass. Adatvédelemre építve.</p>
+    </div>
+  </footer>
+</body>
+</html>
