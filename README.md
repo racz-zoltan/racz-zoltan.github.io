@@ -177,7 +177,7 @@ You can run CarryPass locally using any static file server.
 
 ## 📄 Legal & Privacy
 
-- [MIT License](./LICENSE)
+- [MIT License](./LICENSE.md)
 - [Commercial License Terms](./LICENSE-commercial.md)
 - [Third-Party Library Attributions](./ATTRIBUTIONS.md)
 - [Privacy Policy](./PRIVACY.md)
