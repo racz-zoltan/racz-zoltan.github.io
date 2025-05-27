@@ -6,7 +6,7 @@ const ALLOWED_DOMAIN = 'https://carrypass.net';
 const urlsToCache = [
   '/', '/index.html',
   'argon2-bundled.min.js', 'crypto-js.min.js', 'carrypass.min.js',
-  'qrcode.min.js', 'lucide.min.js', 'html5-qrcode.min.js',
+  'qrcode.min.js', 'lucide.min.js', 'html5-qrcode.min.js', 'eff_words_real.js',
   'carrypass-gold-transparent.png',
   'icon-192.png',
   'icon-512.png',

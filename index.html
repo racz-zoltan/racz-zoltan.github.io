@@ -43,7 +43,8 @@
 </head>
       
 <body>
-
+<button type="button" id="clearClipboardBtn" class="btn outline-delete"><i data-lucide="clipboard-x" style="vertical-align: middle; margin-right: 0.3em;"></i> 
+  Clear Clipboard</button>
   <!-- REGISTRATION VIEW -->
   <div id="registrationView" class="screen">
     <a href="" class="logo-link">
@@ -53,9 +54,8 @@
       <form id="registrationForm" class="grid split">
         <div class="column-left">
           <h2>Start Using CarryPass</h2>
-          <label for="passCodeInputRegister">Application ID</label>
           <div class="input-group">
-            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="e.g. cp4322" required>
+            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Application ID" required>
             <button id="passCodeInputRegisterShow" type="button" class="btn secondary-outline" name="passCodeInputRegister">Show</button>
           </div>
           <button id="submitPassCodeRegister" type="button" class="btn primary">Open My App</button>
@@ -98,10 +98,10 @@
     <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
     <div class="input-group">
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="purchase" href="carrypass-marketing_en.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="credit-card" class="trusted-icon"></i>
+        <a id="purchase" href="carrypass-landing.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="key-round" class="trusted-icon"></i>
         </a>
-        <label for="purchase">Purchase</label>
+        <label for="purchase">Get CarryPass</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
@@ -113,7 +113,7 @@
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer">Disclaimer</label>
+        <label for="disclaimer">Demo Disclaimer</label>
       </div>
     </div>
     </footer>
@@ -174,10 +174,10 @@
     <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
     <div class="input-group">
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="purchase" href="carrypass-marketing_en.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="credit-card" class="trusted-icon"></i>
+        <a id="purchase" href="carrypass-landing.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="key-round" class="trusted-icon"></i>
         </a>
-        <label for="purchase">Purchase</label>
+        <label for="purchase">Get CarryPass</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
@@ -189,7 +189,7 @@
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer">Disclaimer</label>
+        <label for="disclaimer">Demo Disclaimer</label>
       </div>
     </div>
     </footer>
@@ -577,7 +577,7 @@
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-no-outline" style="margin-bottom: 1rem;">Manage Settings</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Manage Settings</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -593,8 +593,8 @@
               </div>
             </div>
           </div>
-          <button type="button" id="exportSettingsButton" class="btn secondary-no-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
-          <button type="button" id="importSettingsButton" class="btn secondary-no-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
+          <button type="button" id="exportSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
+          <button type="button" id="importSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
           </div>
           <div id="savedServicesPanel" class="saved-services-panel">
             <input type="text" id="savedServicesSearch" placeholder="Search saved services..." style="width: 100%; margin-bottom: 0.5rem;">
@@ -632,14 +632,17 @@
           </div>
           <div class="input-group">
             <input type="password" id="password" name="password" autocomplete="off" class="form-control" placeholder="Your secret password" disabled required>
-            <button id="masterPass" type="button" class="btn secondary-outline" name="password">Show</button>
+            <button id="masterPass" type="button" class="btn secondary-outline" name="password">
+              <i data-lucide="square-asterisk" class="feedback-icon" style="color: gainsboro; margin-right: 0.4rem;"></i>
+              <span class="toggle-text">Show</span>
+            </button>
           </div>
           <div style="align-items: center; display: flex; margin-bottom: 0.5rem;">
           <button id="collectInput" type="button" class="btn strong" style="margin-top: 1rem;font-weight: 500;">GET PASSWORD</button>
         
           <div id="slider1" class="custom-slider-container" style="margin-top: auto; margin-left: auto;">
               <div id="btn1" class="custom-slider-ball">
-              <i data-lucide="sliders-horizontal" class="slider-icon"></i> 
+              <i data-lucide="sliders-horizontal" class="slider-icon feedback-icon-settings"></i> 
               </div>
               <div id="dot" class="dot-signal"></div>
           </div>
@@ -1053,11 +1056,13 @@
 
     <label for="webAddressAdmin">Service</label>
     <input type="text" id="webAddressAdmin" class="form-control" autocomplete="off" placeholder="Service or Username" required>
-
     <label for="passwordAdmin">Master Password</label>
     <div class="input-group">
       <input type="password" id="passwordAdmin" class="form-control" placeholder="Master Password" required>
-      <button id="masterPassAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="passwordAdmin" name="passwordAdmin">Show</button>
+      <button id="masterPassAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="passwordAdmin" name="passwordAdmin">
+        <i data-lucide="square-asterisk" class="feedback-icon-admin" style="color: gainsboro; margin-right: 0.4rem;"></i>
+        <span class="toggle-text">Show</span>
+      </button>
     </div>
 
     <div class="toggles">
@@ -1136,6 +1141,7 @@
   <script src="crypto-js.min.js"></script>
   <script src="qrcode.min.js"></script>
   <script src="html5-qrcode.min.js"></script>
+  <script src="eff_words_real.js"></script>
   <script src="carrypass.min.js" defer></script>
 
 </body>

@@ -2130,3 +2130,62 @@
   margin-bottom: 10px; 
   border-radius: 8px; 
 }
+
+#clearClipboardBtn {
+  position: fixed;
+  top: 4rem;
+  right: 20px;
+  z-index: 9999;
+  display: none; /* Hidden until shown after copy */
+}
+
+.clear-clipboard {
+  position: fixed;
+  top: 4rem;
+  right: 10px;
+  z-index: 9999;
+  display: none;
+  background: transparent;
+  color: #842029;
+  border: 2px solid #842029;
+  font-weight: 500;
+  padding: 0.2rem 0.4rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.clear-clipboard:hover {
+  background-color: #842029;
+  color: #fff;
+}
+
+.clear-clipboard:hover .clear-icon,
+.clear-clipboard:hover .btn.icon-only i {
+  color: #fff;
+}
+
+.clear-icon {
+  color: #842029;
+}
+
+.clear-label {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.btn.icon-only.small {
+  background: transparent;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+.btn.icon-only.small:hover {
+  background-color: rgba(132, 32, 41, 0.1);
+  border-radius: 4px;
+}
