@@ -51,7 +51,7 @@
     <h2>3. Jelszótároló titkosítási modell</h2>
     <p>Az admin eszköz lehetővé teszi, hogy titkosított jelszótárolókat hozzunk létre, felhasználónkkénti blokkokkal és opcionális csapatszintű kulcsokkal. Ezek AES-GCM algoritmussal titkosított statikus JSON-fájlok.</p>
     <ul>
-      <li>Minden blokk egyedi sóval és PBKDF2 kulccsal van titkosítva</li>
+      <li>Minden blokk egyedi Argon2id-vel megerősített sóval és PBKDF2 kulccsal van titkosítva</li>
       <li>Minden blokk tartalmaz <em>ellenőrző összeget</em> és <em>lejárati időt</em></li>
       <li>A csapatkulcsok elkülönítve titkosítottak, csak a hozzárendelt felhasználó láthatja őket</li>
     </ul>

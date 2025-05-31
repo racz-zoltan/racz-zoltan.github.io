@@ -37,7 +37,7 @@
   <section class="section">
     <div class="container">
       <h2>How It Works</h2>
-      <p>CarryPass uses a deterministic model combining <strong>Argon2id</strong>, <strong>PBKDF2</strong>, and <strong>AES-CTR</strong> to derive secure passwords. For shared credentials, it uses <strong>AES-GCM</strong> to encrypt vaults per user or team.</p>
+      <p>CarryPass uses a deterministic model combining <strong>Argon2id</strong>, <strong>PBKDF2</strong>, and <strong>AES-CTR</strong> to derive secure passwords. For shared credentials, it uses <strong>Argon2id</strong>, <strong>PBKDF2</strong>, and <strong>AES-GCM</strong> to encrypt vaults per user or team.</p>
 
       <ul>
         <li>Passwords are derived — never stored</li>
@@ -48,14 +48,32 @@
     </div>
   </section>
 
-  <section class="section alt">
-    <div class="container">
-      <h2>For Teams and Individuals</h2>
-      <p>CarryPass supports secure credential sharing via <strong>team vaults</strong> and <strong>QR onboarding</strong>. Each team member can access only what they’ve been assigned — nothing more. TOTP verification is supported for extra protection.</p>
+<section class="section alt">
+  <div class="container">
+    <h2>For Teams and Individuals</h2>
 
-      <p>Admins can prepare encrypted configs, assign members, and rotate credentials — all without accessing passwords themselves.</p>
-    </div>
-  </section>
+    <p>
+      CarryPass supports secure credential sharing via <strong>team vaults</strong> and <strong>QR onboarding</strong>. Each team member can access only what they’ve been assigned — nothing more. <strong>TOTP verification</strong> is supported for extra protection.
+    </p>
+
+    <p>
+      Admins can prepare encrypted configs, assign members, and rotate credentials — all without accessing passwords themselves.
+    </p>
+
+    <p class="mt-6">
+      <strong>CarryPass implements full end-to-end encryption (E2EE)</strong> for all sensitive data, including password vaults, credentials, and team configurations. All encryption and decryption operations are performed exclusively on the user's device, using keys derived locally from user-provided passcodes or credentials.
+    </p>
+
+    <p>
+      Encrypted vaults may be stored locally or delivered via a server (including through service workers for offline use), but only in encrypted form. <strong>CarryPass servers and infrastructure never store or process plaintext data or encryption keys</strong>, and cannot access user vaults, passwords, or configurations at any time.
+    </p>
+
+    <p class="font-semibold text-green-700">
+      This architecture ensures that only the intended recipient, using their local device and passcode, can access the decrypted content — even if encrypted data is intercepted, exfiltrated, or hosted on third-party infrastructure.
+    </p>
+  </div>
+</section>
+
 
   <section class="section">
     <div class="container">
@@ -85,6 +103,9 @@
     <div class="container">
       <h2>Legacy Version</h2>
       <p>For how it started out, see:</p>
+      <ul>
+        <li><a href="version_two_index.html"><i data-lucide="history" class="trusted-icon"></i> Password Generator Version2</a></li>
+      </ul>
       <ul>
         <li><a href="legacy-password-generator.html"><i data-lucide="history" class="trusted-icon"></i> Legacy Password Generator</a></li>
       </ul>

@@ -43,93 +43,38 @@
 </head>
       
 <body>
-<button type="button" id="clearClipboardBtn" class="btn outline-delete"><i data-lucide="clipboard-x" style="vertical-align: middle; margin-right: 0.3em;"></i>
-Clear Clipboard</button>
-<div id="globalTooltip" class="tooltip" style="display: none;">
-  <div class="tooltip-title" id="globalTooltipTitle"></div>
-  <div class="tooltip-body" id="globalTooltipBody"></div>
-</div>
+<button type="button" id="clearClipboardBtn" class="btn outline-delete"><i data-lucide="clipboard-x" style="vertical-align: middle; margin-right: 0.3em;"></i> 
+  Clear Clipboard</button>
   <!-- REGISTRATION VIEW -->
   <div id="registrationView" class="screen">
     <a href="" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div class="custom-dropdown" style="margin-top: 0.4rem; margin-left: auto; max-width: 7rem;">
-    <select id="languageSwitcher" class="form-control">
-      <option value="en">English</option>
-      <option value="hu">Magyar</option>
-    </select>
-    </div>
-    <p class="subtitle" data-i18n="appSubtitle" style="text-align: center; margin-top: 2rem; font-size: 1.05rem; color: #333;">
-      A privacy-first password manager — no accounts, no tracking, end-to-end encryption for credential sharing.
-    </p>
     <div class="container" style="margin-top: 4rem;">
       <form id="registrationForm" class="grid split">
         <div class="column-left">
-          <div id="type-container" style="height: 7em; margin-bottom: 3rem;">
-            <h2 style="margin: 0;">
-              <span id="type-line-1"></span><br>
-              <span id="type-line-2"></span>
-            </h2>
-          </div>
-            <div class="label-tooltip-wrapper tooltip-anchor">
-              <div class="label-flex-wrapper">
-              <label for="passCodeInputRegister" style="margin-right: auto;" class="label-with-icon">
-                Application ID
-                <div class="label-tooltip-reset">
-                <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-register" data-tooltip-key="tooltipApplicationID" data-tooltip-title="Application ID">
-                  <i data-lucide="info" class="lucide-icon info-icon"></i>
-                </button>
-                </div>
-              </label>
-              <div class="tooltip" id="tooltip-register" role="tooltip">
-                <div class="tooltip-title">Application ID</div>
-                <div class="tooltip-body" data-i18n-tooltip="tooltipApplicationID">
-                Choose an Application ID — a nickname, passphrase, or PIN. It links CarryPass to this browser for local encrypted storage. It’s not an account, and if forgotten, there’s no way to recover your settings.
-                </div>
-              </div>
-              </div>
-            </div>
+          <h2>Start Using CarryPass</h2>
           <div class="input-group">
-            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="" required>
+            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Application ID" required>
             <button id="passCodeInputRegisterShow" type="button" class="btn secondary-outline" name="passCodeInputRegister">Show</button>
           </div>
-          <button id="submitPassCodeRegister" type="button" class="btn primary">Start Using CarryPass</button>
+          <button id="submitPassCodeRegister" type="button" class="btn primary">Open My App</button>
           <p id="errorMessageRegister" style="color: #d9534f;"></p>
+            <div class="container">
+              <p class="qr-image-front">Try me on your mobile.</p>
+              <img src="carrypass-qr-code.svg" alt="QR Code to CarryPass" class="qr-image-front">
+            </div>
         </div>
-        <section class="section alt" style="padding-top: 0 !important; margin-top: 0 !important;">
-          <div class="container" style="margin-top: 0.1rem;">
-            <h2 class="text-2xl font-bold mb-4" style="color: #FFD43B;" data-i18n="privacyByDesignTitle">
-              Privacy by Design <i data-lucide="shield-user"></i>
-            </h2>
-            <p class="mb-4" data-i18n="privacyByDesignIntro"></p>
-            <ul class="list-disc list-inside space-y-2 mb-4">
-              <li data-i18n="designPoint1"></li>
-              <li data-i18n="designPoint2"></li>
-              <li data-i18n="designPoint3"></li>
-              <li data-i18n="designPoint4"></li>
-            </ul>
-
-            <h2 class="text-2xl font-bold mb-4" style="color: #FFD43B;" data-i18n="privacyByDefaultTitle">
-              Privacy by Default <i data-lucide="eye-off"></i>
-            </h2>
-            <p class="mb-4" data-i18n="privacyByDefaultIntro"></p>
-            <ul class="list-disc list-inside space-y-2 mb-4">
-              <li data-i18n="defaultPoint1"></li>
-              <li data-i18n="defaultPoint2"></li>
-              <li data-i18n="defaultPoint3"></li>
-              <li data-i18n="defaultPoint4"></li>
-              <li data-i18n="defaultPoint5"></li>
-            </ul>
-          </div>
-        </section>
+        <div style="margin-top: 2rem;">
+          <p><strong>Choose an Application ID</strong> — this can be a nickname, passphrase, or PIN — and start exploring CarryPass right away.<br><b>Important:</b> The Application ID is not recoverable. If you forget it, all application settings will be permanently lost. </p>
+          <p style="margin-top: 3rem;">
+            <strong>CarryPass</strong> is a <strong>privacy-first</strong>, <strong>deterministic password manager</strong> and <strong>credential distribution tool</strong> that runs entirely in your browser — <strong>no storage</strong>, <strong>no syncing</strong>, just your browser.<br>
+          </p>
+        </div>
       </form>
     </div>
     <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
-    <p data-i18n="footerDescription">
-      CarryPass is a lightweight, offline-first password manager designed for privacy and control — built on true end-to-end encryption and zero server dependency.
-    </p>
-    <div class="input-group" style="margin-top: 1rem;">
+    <div class="input-group">
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="github" class="trusted-icon"></i>
@@ -185,35 +130,22 @@ Clear Clipboard</button>
     <div class="container" style="margin-top: 4rem;">
       <form id="loginForm" class="grid split">
         <div style="margin-top: 1rem;" class="column-left">
-          <h2 style="color: #1E003B; margin-bottom: 3rem;">Privacy Protected <i data-lucide="shield-user" class="trusted-icon"></i></h2>
-            <div class="label-tooltip-wrapper tooltip-anchor">
-              <div class="label-flex-wrapper">
-              <label for="passCodeInput" style="margin-right: auto;" class="label-with-icon">
-                Application ID
-                <div class="label-tooltip-reset">
-                <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-login">
-                  <i data-lucide="info" class="lucide-icon info-icon"></i>
-                </button>
-                </div>
-              </label>
-              <div class="tooltip" id="tooltip-login" role="tooltip">
-                <div class="tooltip-title">Application ID</div>
-                <div class="tooltip-body" data-i18n-tooltip="tooltipUnlockWithAppID">
-                Unlock with your Application ID. If you've lost it, you'll need to reset the application and start over.
-                </div>
-              </div>
-              </div>
-            </div>
+          <h2>Welcome back!</h2>
           <div class="input-group">
-            <input type="password" id="passCodeInput" autocomplete="off" class="form-control" placeholder="" required>
+            <input type="password" id="passCodeInput" autocomplete="off" class="form-control" placeholder="Application ID" required>
             <button id="passCodeInputShow" type="button" class="btn secondary-outline" name="passCodeInput">Show</button>
           </div>
           <button id="submitPassCode" type="button" class="btn primary">Unlock</button>
           <p id="errorMessageLogin" style="color: #d9534f;"></p>
-          <button type="button" id="resetAppButton" class="btn outline-delete" style="margin-top: 10rem;">Reset Application</button>
+          <div class="container">
+            <p class="qr-image-front">Try me on your mobile.</p>
+            <img src="carrypass-qr-code.svg" alt="QR Code to CarryPass" class="qr-image-front">
+          </div>
         </div>
         <div>
-          
+          <p style="margin-top: 6rem;"><strong>Unlock with your Application ID.</strong></p>
+          <p>If you've lost it, you'll need to reset the app and start over.</p>
+          <button type="button" id="resetAppButton" class="btn outline-delete" style="margin-top: 2rem;">Reset Application</button>
         </div>
       </form>
     </div>
@@ -347,10 +279,10 @@ Clear Clipboard</button>
           </div>
         </div>
         <div>
-          <p style="margin-top: 2rem;" data-i18n="adminPanelIntro">This is the admin unlock & edit panel - it is used for editing the complete vault, when there is a team vault already set up.</p>
-           <h4 data-i18n="adminTrustStep">To access the editor, first you have to make yours a trusted device - see Team Member Access Panel</h4>
-          <h4 data-i18n="demoAdminPassword">Demo Admin Password</h4>
-          <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
+          <p style="margin-top: 2rem;">This is the admin unlock & edit panel - it is used for editing the complete vault, when there is a team vault already set up.</p>
+           <h4>To access the editor, first you have to make yours a trusted device - see Team Member Access Panel</h4>
+          <h4>Demo Admin Password</h4>
+          <p>6bbLpO1-flCP1Oz-VQIRK04-1p4pNjj-Z52z13u-Bm6iZ21-f</p>
           <div style="margin-top: 3rem; margin-left: auto;">
           <button id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Member Access Panel</button>
           </div>
@@ -481,10 +413,10 @@ Clear Clipboard</button>
         </div>
         <div>
           <img src="member_finalize_qr.png" alt="Demo onboarding QR code" class="qr-image" style="margin-bottom: 1rem;">
-           <h4 data-i18n="qrStep1">
+           <h4>
             1) Scan this Demo TOTP QR Code <span class="highlight"> with CarryPass</span> to make yours a trusted device
           </h4>
-           <p data-i18n="qrAltText">Alternatively, download image (right click (long-press on mobile) - Save image as...) and upload.</p>
+           <p>Alternatively, download image (right click - Save image as...) and upload.</p>
           <div id="qr-reader" style="width: 300px; margin: auto;"></div>
           <div class="input-group">
           <button type="button" id="startQrScan" class="btn outline"><i data-lucide="scan-qr-code"></i> Scan</button>
@@ -497,13 +429,13 @@ Clear Clipboard</button>
               <input type="file" class="custom-file-input" accept="image/*" id="qr-file-input">
           </div>
           </div>
-          <h4 data-i18n="qrStep2">2) Then, scan this Demo TOTP QR Code with <span class="highlight">an Authenticator app</span> e.g.: FreeOTP; Microsoft/Google Authenticator</h4>
-          <h4 data-i18n="qrStep3">3) Read Demo Member ID from Authenticator app and type</h4>
-          <h4 data-i18n="qrStep4">4) Type or copy&paste the Demo Member Access Password:</h4>
-          <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
-          <h4 data-i18n="qrStep5">5) Click Access Vault</h4>
-          <h4 data-i18n="qrStep6">6) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
-          <h4 data-i18n="qrStep7">7) Click OK</h4>
+          <h4>2) Then, scan this Demo TOTP QR Code with <span class="highlight">an Authenticator app</span> e.g.: FreeOTP; Microsoft/Google Authenticator</h4>
+          <h4>3) Read Demo Member ID from Authenticator app and type</h4>
+          <h4>4) Type (copy&paste) Demo Member Access Password:</h4>
+          <p>qu67y9ha5OVtxbEAyThB6y5dPDARCPPFvXY94GBNRic</p>
+          <h4>6) Click Access Vault</h4>
+          <h4>5) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
+          <h4>6) Click OK</h4>
           <p style="margin-top: 2rem;">Unlock the admin vault to manage teams, members, credentials and assignments.</p>
           <button id="onAdminEntryCheck" type="button" class="btn secondary" style="margin-bottom: 2rem;">Unlock Admin Vault</button>
         </div>
@@ -641,11 +573,11 @@ Clear Clipboard</button>
     </div>
 
     <div class="container" style="margin-top: 5rem;">
-      
+      <div id="globalTooltip" class="tooltip" style="display: none;"></div>
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Services</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Manage Settings</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -655,9 +587,9 @@ Clear Clipboard</button>
               </div>
             </label>
             <div class="tooltip" id="tooltip-store" role="tooltip">
-              <div class="tooltip-title">Services</div>
-              <div class="tooltip-body" data-i18n-tooltip="tooltipStore">
-                This list contains your custom password generation settings, organized by service name. When you select a service from the list, its settings are automatically applied. You can export and import these settings as an encrypted file.
+              <div class="tooltip-title">Manage Settings</div>
+              <div class="tooltip-body">
+                Lists your custom password generation settings by service name. Default settings automatically adjust when a service is chosen from this list. Settings can be exported and imported in an encrypted file.
               </div>
             </div>
           </div>
@@ -678,12 +610,12 @@ Clear Clipboard</button>
             </label>
             <div class="tooltip" id="tooltip-service" role="tooltip">
               <div class="tooltip-title">Service</div>
-              <div class="tooltip-body" data-i18n-tooltip="tooltipService">
-              The site or app name that you want to access. The service name affects password generation consistency. All service names are converted to lowercase during normalization.
+              <div class="tooltip-body">
+              The site or app name that you want to access. The service name affects password generation consistency.
               </div>
             </div>
           </div>
-          <input type="text" id="webAddress" autocomplete="off" name="webAddress" class="form-control" placeholder="examplecom" required>
+          <input type="text" id="webAddress" autocomplete="off" name="webAddress" class="form-control" placeholder="example.com" required>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="password">
               Master Password
@@ -693,7 +625,7 @@ Clear Clipboard</button>
             </label>
             <div class="tooltip" id="tooltip-password" role="tooltip">
               <div class="tooltip-title">Master Password</div>
-              <div class="tooltip-body" data-i18n-tooltip="tooltipPassword">
+              <div class="tooltip-body">
               Your main password. Never shared or stored, long and complex. Used to derive all your secure passwords. All your generated passwords are as secure as long and complex this one Master Password is! 
               </div>
             </div>
@@ -727,7 +659,7 @@ Clear Clipboard</button>
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper">
                     <label for="toggle1" style="margin-right: auto;" class="label-with-icon">
-                      Uppercase
+                      Letters
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-separator">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -735,8 +667,8 @@ Clear Clipboard</button>
                       </div>
                     </label>
                     <div class="tooltip" id="tooltip-separator" role="tooltip">
-                    <div class="tooltip-title">Character types</div>
-                    <div class="tooltip-body" data-i18n-tooltip="tooltipSeparator">
+                    <div class="tooltip-title">Settings</div>
+                    <div class="tooltip-body">
                     These define what kind of characters are allowed in your generated password. Separator is for readability, also counts as symbol. 
                     </div>
                     </div>
@@ -746,23 +678,18 @@ Clear Clipboard</button>
             </div>
   
             <div class="toggle-container">
-              <label for="toggle2">Lowercase</label>
+              <label for="toggle2">Numbers</label>
               <input type="checkbox" id="toggle2" class="toggle">
-            </div>
-  
-            <div class="toggle-container">
-              <label for="toggle3">Numbers</label>
-              <input type="checkbox" id="toggle3" class="toggle">
             </div>
             
             <div class="toggle-container">
-              <label for="toggle4">Symbols</label>
-              <input type="checkbox" id="toggle4" class="toggle">
+              <label for="toggle3">Symbols</label>
+              <input type="checkbox" id="toggle3" class="toggle">
             </div>
   
             <div class="toggle-container">
-              <label for="toggle5">Separator</label>
-              <input type="checkbox" id="toggle5" class="toggle">
+              <label for="toggle4">Separator</label>
+              <input type="checkbox" id="toggle4" class="toggle">
             </div>  
             <input type="hidden" id="salt" name="salt" value="">          
           </div>
@@ -782,7 +709,7 @@ Clear Clipboard</button>
                     </label>
                     <div class="tooltip" id="tooltip-length" role="tooltip">
                     <div class="tooltip-title">Length</div>
-                    <div class="tooltip-body" data-i18n-tooltip="tooltipLength">
+                    <div class="tooltip-body">
                     Desired length of the generated password. More is stronger.
                     </div>
                     </div>
@@ -802,9 +729,9 @@ Clear Clipboard</button>
                       </div>
                     </label>
                     <div class="tooltip" id="tooltip-iteration" role="tooltip">
-                    <div class="tooltip-title">Security</div>
-                    <div class="tooltip-body" data-i18n-tooltip="tooltipIteration">
-                    Controls computation rounds and memory usage. Higher number = more secure passwords, but slower generation. Performance thresholds at 33,333 and 66,666.
+                    <div class="tooltip-title">Password Security</div>
+                    <div class="tooltip-body">
+                    Controls computation rounds and memory usage. Higher number = more secure passwords, but slower generation.
                     </div>
                     </div>
                     </div>
@@ -819,7 +746,7 @@ Clear Clipboard</button>
                     <div class="label-flex-wrapper">
                     <div class="input-group">
               
-                    <label for="slider2" class="label-with-icon">Save&nbsp;Settings
+                    <label for="slider2" class="label-with-icon">Store&nbsp;Settings
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-storesettings">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -828,16 +755,16 @@ Clear Clipboard</button>
                     </label>
                     </div>
                     <div class="tooltip" id="tooltip-storesettings" role="tooltip">
-                    <div class="tooltip-title">Save Settings</div>
-                    <div class="tooltip-body" data-i18n-tooltip="tooltipStoreSettings">
-                    Toggle 'Save Settings' before password generation and your custom settings are saved to local storage. You can manage them under 'Services'.
+                    <div class="tooltip-title">Store Settings</div>
+                    <div class="tooltip-body">
+                    Toggle 'Store Settings' before password generation and your custom settings are saved to local storage. You can manage them under 'Manage Settings'.
                     </div>
                     </div>
                     </div>
                   </div>
                 <div id="slider2" class="custom-slider-container" >
                 <div id="btn2" class="custom-slider-ball">
-                <i data-lucide="notebook-pen" class="slider-icon"></i> 
+                <i data-lucide="archive" class="slider-icon"></i> 
                 </div>
                 </div>
               </div>
@@ -847,10 +774,10 @@ Clear Clipboard</button>
         </div>
         <div class="column-right"> 
           <div id="generatedPassword" class="smooth-toggle">
-            <label for="mainPassword">Generated Password</label>
+            <label for="mainPassword">Derived Password</label>
             <label id="createdfor" class="form-label"></label>
             <div class="input-group">
-              <input type="password" id="mainPassword" class="form-control input-pwd generated-password" readonly>
+              <input type="password" id="mainPassword" class="form-control input-pwd" readonly>
               <button id="mainButton" type="button" class="btn secondary-outline" name="mainPassword">Show</button>
               <button data-password-id="mainCopy" type="button" class="btn outline-gold" name="mainPassword">Copy
               </button>
@@ -871,13 +798,13 @@ Clear Clipboard</button>
               </label>
               <div class="tooltip" id="tooltip-username" role="tooltip">
               <div class="tooltip-title">Username</div>
-              <div class="tooltip-body" data-i18n-tooltip="tooltipUsername">
+              <div class="tooltip-body">
               If a service requires a username, separate from your email address, you may use this.
               </div>
               </div>
             </div>
             <div class="input-group">
-              <input type="password" id="username" class="form-control generated-password" readonly>
+              <input type="password" id="username" class="form-control" readonly>
               <button id="sixthButton" type="button" class="btn secondary-outline" name="username">Show</button>
               <button data-password-id="usernameCopy" type="button" class="btn outline-gold" name="username">Copy</button>
               <span id="copySuccessIcon-usernameCopy" class="icon" style="display: none;"></span>
@@ -901,34 +828,34 @@ Clear Clipboard</button>
               </label>
               <div class="tooltip" id="tooltip-additional" role="tooltip">
                 <div class="tooltip-title">Additional Passwords</div>
-                <div class="tooltip-body" data-i18n-tooltip="tooltipAdditional">
+                <div class="tooltip-body">
                 Additional passwords allow for password rotation if a service requires it.
                 </div>
               </div>
               </div>
             </div>
             <div id="extraPasswords">
-              <div class="input-group"><input type="password" id="supplementaryone" class="form-control generated-password" readonly>
+              <div class="input-group"><input type="password" id="supplementaryone" class="form-control" readonly>
               <button type="button" id="firstButton" class="btn secondary-outline" name="supplementaryone">Show</button>
               <button data-password-id="extra1Copy" type="button" class="btn outline-gold" name="supplementaryone">Copy</button>
               <span id="copySuccessIcon-extra1Copy" class="icon" style="display: none;"></span></div>
     
-              <div class="input-group"><input type="password" id="supplementarytwo" class="form-control generated-password" readonly>
+              <div class="input-group"><input type="password" id="supplementarytwo" class="form-control" readonly>
               <button type="button" id="secondButton" class="btn secondary-outline" name="supplementarytwo">Show</button>
               <button data-password-id="extra2Copy" type="button" class="btn outline-gold" name="supplementarytwo">Copy</button>
               <span id="copySuccessIcon-extra2Copy" class="icon" style="display: none;"></span></div>
     
-              <div class="input-group"><input type="password" id="supplementarythree" class="form-control generated-password" readonly>
+              <div class="input-group"><input type="password" id="supplementarythree" class="form-control" readonly>
               <button type="button" id="thirdButton" class="btn secondary-outline" name="supplementarythree">Show</button>
               <button data-password-id="extra3Copy" type="button" class="btn outline-gold" name="supplementarythree">Copy</button>
               <span id="copySuccessIcon-extra3Copy" class="icon" style="display: none;"></span></div>
     
-              <div class="input-group"><input type="password" id="supplementaryfour" class="form-control generated-password" readonly>
+              <div class="input-group"><input type="password" id="supplementaryfour" class="form-control" readonly>
               <button type="button" id="fourthButton" class="btn secondary-outline" name="supplementaryfour">Show</button>
               <button data-password-id="extra4Copy" type="button" class="btn outline-gold" name="supplementaryfour">Copy</button>
               <span id="copySuccessIcon-extra4Copy" class="icon" style="display: none;"></span></div>
     
-              <div class="input-group"><input type="password" id="supplementaryfive" class="form-control generated-password" readonly>
+              <div class="input-group"><input type="password" id="supplementaryfive" class="form-control" readonly>
               <button type="button" id="fifthButton" class="btn secondary-outline" name="supplementaryfive">Show</button>
               <button data-password-id="extra5Copy" type="button" class="btn outline-gold" name="supplementaryfive">Copy</button>
               <span id="copySuccessIcon-extra5Copy" class="icon" style="display: none;"></span></div>
@@ -1140,24 +1067,20 @@ Clear Clipboard</button>
 
     <div class="toggles">
       <div class="toggle-container">
-        <label for="toggle1Admin">Uppercase</label>
-        <input type="checkbox" id="toggle1Admin" class="toggle">
+        <label for="toggle1Admin">Letters</label>
+        <input type="checkbox" id="toggle1Admin" class="toggle active">
       </div>
       <div class="toggle-container">
-        <label for="toggle2Admin">Lowercase</label>
-        <input type="checkbox" id="toggle2Admin" class="toggle">
+        <label for="toggle2Admin">Numbers</label>
+        <input type="checkbox" id="toggle2Admin" class="toggle active">
       </div>
       <div class="toggle-container">
-        <label for="toggle3Admin">Numbers</label>
+        <label for="toggle3Admin">Symbols</label>
         <input type="checkbox" id="toggle3Admin" class="toggle">
       </div>
       <div class="toggle-container">
-        <label for="toggle4Admin">Symbols</label>
-        <input type="checkbox" id="toggle4Admin" class="toggle">
-      </div>
-      <div class="toggle-container">
-        <label for="toggle5Admin">Separator</label>
-        <input type="checkbox" id="toggle5Admin" class="toggle">
+        <label for="toggle4Admin">Separator</label>
+        <input type="checkbox" id="toggle4Admin" class="toggle active">
       </div>
       <input type="hidden" id="saltAdmin" value="">
     </div>
@@ -1185,7 +1108,7 @@ Clear Clipboard</button>
       <label for="mainPasswordAdmin">Main Password</label>
       <label id="createdforAdmin" class="form-label"></label>
       <div class="input-group">
-        <input type="password" id="mainPasswordAdmin" class="form-control input-pwd generated-password" readonly>
+        <input type="password" id="mainPasswordAdmin" class="form-control input-pwd" readonly>
         <button id="mainButtonAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="mainPasswordAdmin" name="mainPasswordAdmin">Show</button>
         <button data-password-id="mainCopyAdmin" type="button" class="btn outline-gold" name="mainPasswordAdmin">Copy</button>
         <span id="copySuccessIcon-mainCopyAdmin" class="icon" style="display: none;"></span>
@@ -1219,7 +1142,7 @@ Clear Clipboard</button>
   <script src="qrcode.min.js"></script>
   <script src="html5-qrcode.min.js"></script>
   <script src="eff_words_real.js"></script>
-  <script src="carrypass.min.js" defer></script>
+  <script src="carrypass_version2.min.js" defer></script>
 
 </body>
 </html>

@@ -51,7 +51,7 @@
     <h2>3. Vault Encryption Model</h2>
     <p>The Admin tool allows encrypted vault creation with per-member credential blocks and optional team-level keys. These vaults are encrypted using AES-GCM and distributed as static JSON files.</p>
     <ul>
-      <li>Each block is encrypted with a derived key using PBKDF2 + unique salt</li>
+      <li>Each block is encrypted with a derived key using PBKDF2 + unique Argon2id hardened salt</li>
       <li>Each block has a <em>checksum</em> and <em>expiry</em> field</li>
       <li>Team keys are encrypted separately and matched only to assigned members</li>
     </ul>

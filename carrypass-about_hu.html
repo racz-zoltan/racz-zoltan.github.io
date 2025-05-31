@@ -37,7 +37,7 @@
   <section class="section">
     <div class="container">
       <h2>Hogyan működik?</h2>
-      <p>A CarryPass determinisztikus modellt használ, amely az <strong>Argon2id</strong>, a <strong>PBKDF2</strong> és az <strong>AES-CTR</strong> algoritmusokat kombinálja a biztonságos jelszavak előállításához. Megosztott hitelesítési adatok esetén a <strong>AES-GCM</strong> gondoskodik a felhasználónkénti vagy csapatonkénti titkosításról.</p>
+      <p>A CarryPass determinisztikus modellt használ, amely az <strong>Argon2id</strong>, a <strong>PBKDF2</strong> és az <strong>AES-CTR</strong> algoritmusokat kombinálja a biztonságos jelszavak előállításához. Megosztott hitelesítési adatok esetén az <strong>Argon2id</strong>, a <strong>PBKDF2</strong> és az <strong>AES-GCM</strong> gondoskodik a felhasználónkénti vagy csapatonkénti titkosításról.</p>
 
       <ul>
         <li>A jelszavak kiszámításra kerülnek — az alkalmazás nem tárolja azokat</li>
@@ -48,14 +48,32 @@
     </div>
   </section>
 
-  <section class="section alt">
-    <div class="container">
-      <h2>Egyéni és csapat használatra</h2>
-      <p>A CarryPass támogatja a biztonságos hozzáférés-megosztást <strong>csapatalapú széfeken</strong> és <strong>QR-kódos beléptetésen</strong> keresztül. A csapattagok kizárólag a kapott adatokhoz férhetnek hozzá – semmi máshoz. TOTP-alapú megerősítés is elérhető extra védelemként.</p>
+<section class="section alt">
+  <div class="container">
+    <h2>Csapatoknak és egyéni felhasználóknak</h2>
 
-      <p>Az adminisztrátorok titkosított konfigurációkat készíthetnek, felhasználókat rendelhetnek hozzá, és "forgathatják" a hitelesítő adatokat – anélkül, hogy valaha is látnák a tagok jelszavait.</p>
-    </div>
-  </section>
+    <p>
+      A CarryPass biztonságos jelszómegosztást tesz lehetővé <strong>csapat-tárolók</strong> és <strong>QR-kódos beléptetés</strong> segítségével. Minden csapattag kizárólag a hozzá rendelt adatokhoz fér hozzá — semmi máshoz. <strong>TOTP-alapú hitelesítés</strong> is támogatott a fokozott védelem érdekében.
+    </p>
+
+    <p>
+      Az adminisztrátorok titkosított konfigurációkat készíthetnek, tagokat rendelhetnek hozzá, és "forgathatják" a hitelesítő adatokat – anélkül, hogy valaha is látnák a tagok jelszavait.
+    </p>
+
+    <p class="mt-6">
+      A CarryPass alkalmazás valódi <strong>végponttól végpontig terjedő titkosítást (E2EE)</strong> valósít meg minden érzékeny adat esetén, beleértve a jelszótárolókat, hitelesítő adatokat és csapatbeállításokat. Minden titkosítási és visszafejtési művelet kizárólag a felhasználó eszközén történik, a jelszavakból vagy kódokból <strong>helyben származtatott kulcsokkal</strong>.
+    </p>
+
+    <p>
+      A titkosított tárolók helyileg is elmenthetők, vagy kiszolgálón keresztül is elérhetők, de <strong>mindig csak titkosított formában</strong>. A CarryPass szerverei és infrastruktúrája <strong>soha nem tárolnak vagy dolgoznak fel semmilyen visszafejthető adatot vagy kulcsot</strong>, így nem férnek hozzá a felhasználói tárolókhoz, jelszavakhoz vagy beállításokhoz.
+    </p>
+
+    <p class="font-semibold text-green-700">
+      Ez az architektúra garantálja, hogy kizárólag a megfelelő felhasználó — saját eszközén és kódjával — férhet hozzá a visszafejtett tartalomhoz, még akkor is, ha az adatokat valaki elfogja, ellopja, vagy harmadik fél infrastruktúráján tárolják.
+    </p>
+  </div>
+</section>
+
 
   <section class="section">
     <div class="container">
@@ -84,7 +102,10 @@
   <section class="section alt">
     <div class="container">
       <h2>A kezdetek</h2>
-      <p>Az első konstrukciót lásd:</p>
+      <p>Az első konstrukciókat lásd:</p>
+      <ul>
+        <li><a href="version_two_index.html"><i data-lucide="history" class="trusted-icon"></i> Jelszó Generátor Verzió2</a></li>
+      </ul>
       <ul>
         <li><a href="legacy-password-generator.html"><i data-lucide="history" class="trusted-icon"></i> Jelszó Generátor Kezdetek</a></li>
       </ul>
