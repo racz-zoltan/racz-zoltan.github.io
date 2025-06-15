@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CarryPass Felhasználói Útmutató</title>
   <link rel="stylesheet" href="carrypass-theme.css">
-  <script src="lucide.min.js"></script>
+  <script src="lucide.min.js"></script> 
   <style>
     .faq-item summary {
       cursor: pointer;
@@ -63,7 +63,7 @@
 
       <ul style="margin-top: 2rem;">
         <li><strong>Nincs szükség felhasználói fiókra:</strong> Nem történik követés.</li>
-        <li><strong>Nincs felhőtárolás:</strong> Az összes adat az eszközön marad.</li>
+        <li><strong>Nincs felhő alapú tárolás:</strong> Az összes adat az eszközön marad.</li>
         <li><strong>Teljesen offline:</strong> Az alkalmazás internet nélkül is működik.</li>
         <li><strong>Támogatott böngészők:</strong> Chrome, Edge, Firefox, Safari.</li>
       </ul>
@@ -118,7 +118,7 @@
       <p>Lehetőséged van a jelszó <em>beállításaidat</em> (nem a jelszót magát) titkosítva elmenteni a böngésződ helyi tárolójába a kényelmesebb használat érdekében.</p>
       <ul>
         <li>Ez a funkció megjegyzi a szolgáltatásonkénti kedvenc beállításaidat.</li>
-        <li>Az adatokat saját jelszóval (pl.: a belépési kódoddal) titkosítja.</li>
+        <li>Az adatokat saját jelszóval (az alkalmazásazonosítóval) titkosítja.</li>
         <li>Bármikor törölheted ezeket az adatokat az alkalmazáson belül.</li>
         <li>Lehetőség van az adatok exportálására is, ha eszközt cserélsz.</li>
       </ul>
@@ -127,13 +127,13 @@
 
   <section class="section alt">
     <div class="container">
-      <h2>5. Csapatkonfigurációk & Admin Beállítások</h2>
-      <p>A CarryPass lehetőséget ad az adminok számára, hogy titkosított jelszótárolókon keresztül biztonságosan osszanak meg hozzáféréseket a csapattagokkal, QR-kódos beléptetéssel.</p>
+      <h2>5. Csoportkonfigurációk & Admin Beállítások</h2>
+      <p>A CarryPass lehetőséget ad az adminok számára, hogy titkosított jelszótárolókon keresztül biztonságosan osszanak meg hozzáféréseket a csoporttagokkal, QR-kódos beléptetéssel.</p>
       <ul>
-        <li>Az admin titkosítja a hitelesítő adatokat csapatonként vagy felhasználónként.</li>
+        <li>Az admin titkosítja a hitelesítő adatokat csoportonként vagy felhasználónként.</li>
         <li>Minden felhasználó saját azonosítóval és jelszóval (opcionálisan TOTP kóddal) fér hozzá a saját tárolójához.</li>
         <li>A jelszótárolók lejárhatnak (biztonsági funkció), és ellenőrzésre kerülnek egy ellenőrzőösszeggel (checksum; hamisítás elleni védelem).</li>
-        <li>Az admin a beléptetés után nem látja a jelszavakat.</li>
+        <li>Az adminisztrátor nem látja sem a csoporttagok, sem a csoportok jelszavait.</li>
       </ul>
     </div>
   </section>

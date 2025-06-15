@@ -43,63 +43,111 @@
 </head>
       
 <body>
-<button type="button" id="clearClipboardBtn" class="btn outline-delete"><i data-lucide="clipboard-x" style="vertical-align: middle; margin-right: 0.3em;"></i>
-Clear Clipboard</button>
+<button type="button" id="clearClipboardBtn" class="btn outline-delete" style="align-items: center; justify-content: center; gap: 0.3rem;">
+  <span><i data-lucide="clipboard-x"></i></span>
+  <span data-i18n="clearClipboardButton">Clear Clipboard</span>
+</button>
 <div id="globalTooltip" class="tooltip" style="display: none;">
   <div class="tooltip-title" id="globalTooltipTitle"></div>
   <div class="tooltip-body" id="globalTooltipBody"></div>
 </div>
   <!-- REGISTRATION VIEW -->
   <div id="registrationView" class="screen">
-    <a href="" class="logo-link">
-      <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
-    </a>
-    <div class="custom-dropdown" style="margin-top: 0.4rem; margin-left: auto; max-width: 7rem;">
-    <select id="languageSwitcher" class="form-control">
-      <option value="en">English</option>
-      <option value="hu">Magyar</option>
-    </select>
+
+    <header class="navbar">
+      <div class="navbar-left">
+        <a href="" class="logo-link">
+          <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
+        </a>
+      </div>
+      <div class="navbar-right">
+        <a href="#demo" class="btn primary" data-i18n="CTAfree">Use It For Free</a>
+        <a href="#contact" class="btn strong" data-i18n="CTAcustom">Get Custom Build</a>
+      </div>
+    </header>
+    <div class="custom-dropdown" style="margin-left: 1rem; max-width: 7rem;">
+      <select id="languageSwitcher" class="form-control">
+        <option value="en">English</option>
+        <option value="hu">Magyar</option>
+      </select>
     </div>
-    <p class="subtitle" data-i18n="appSubtitle" style="text-align: center; margin-top: 2rem; font-size: 1.05rem; color: #333;">
-      A privacy-first password manager — no accounts, no tracking, end-to-end encryption for credential sharing.
-    </p>
-    <div class="container" style="margin-top: 4rem;">
-      <form id="registrationForm" class="grid split">
-        <div class="column-left">
-          <div id="type-container" style="height: 7em; margin-bottom: 3rem;">
-            <h2 style="margin: 0;">
-              <span id="type-line-1"></span><br>
-              <span id="type-line-2"></span>
-            </h2>
+
+    <header class="hero">
+      <!-- <div class="container"> -->
+        <h2 style="color: #1E003B;" data-i18n="appSubtitle">CarryPass: A privacy-first password manager — built on end-to-end encryption for credential sharing, with no accounts and no tracking.</h2>
+        <p data-i18n="appSubtitleSub">Keep total control over your data with zero-knowledge, offline-first design, and customizable cryptography.</p>
+      <!-- </div> -->
+    </header>
+    <section class="section alt">
+      <div class="container">
+         <h2 data-i18n="ownSecurity">Own Your Security</h2>
+        <div class="grid split">
+          <div class="card" style="height: 16rem; overflow: hidden;">
+            <i data-lucide="shield-check" class="icon-large"></i>
+            <h3 data-i18n="protectReputation">Protect Your Reputation</h3>
+            <p data-i18n="protectReputationHow">No servers. No syncing. No leaks. Credentials stay local, encrypted, and under your control — always.</p>
           </div>
-            <div class="label-tooltip-wrapper tooltip-anchor">
-              <div class="label-flex-wrapper">
-              <label for="passCodeInputRegister" style="margin-right: auto;" class="label-with-icon">
-                Application ID
-                <div class="label-tooltip-reset">
-                <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-register" data-tooltip-key="tooltipApplicationID" data-tooltip-title="Application ID">
-                  <i data-lucide="info" class="lucide-icon info-icon"></i>
-                </button>
-                </div>
-              </label>
-              <div class="tooltip" id="tooltip-register" role="tooltip">
-                <div class="tooltip-title">Application ID</div>
-                <div class="tooltip-body" data-i18n-tooltip="tooltipApplicationID">
-                Choose an Application ID — a nickname, passphrase, or PIN. It links CarryPass to this browser for local encrypted storage. It’s not an account, and if forgotten, there’s no way to recover your settings.
-                </div>
-              </div>
-              </div>
-            </div>
-          <div class="input-group">
-            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="" required>
-            <button id="passCodeInputRegisterShow" type="button" class="btn secondary-outline" name="passCodeInputRegister">Show</button>
+          <div class="card" style="height: 16rem; overflow: hidden;">
+            <i data-lucide="alert-octagon" class="icon-large"></i>
+            <h3 data-i18n="preventBreach">Prevent Costly Breaches</h3>
+            <p data-i18n="preventBreachHow">Eliminate one of the most common attack surfaces: cloud-based password storage. With CarryPass, there’s nothing to steal.</p>
           </div>
-          <button id="submitPassCodeRegister" type="button" class="btn primary">Start Using CarryPass</button>
-          <p id="errorMessageRegister" style="color: #d9534f;"></p>
+          <div class="card" style="height: 16rem; overflow: hidden;">
+            <i data-lucide="share-2" class="icon-large"></i>
+            <h3 data-i18n="credShare">Simplify Credential Sharing</h3>
+            <p data-i18n="credShareHow">Securely distribute passwords to team members using encrypted vaults and smooth QR-based onboarding — even without internet access.</p>
+          </div>
+          <div class="card" style="height: 16rem; overflow: hidden;">
+            <i data-lucide="euro" class="icon-large"></i>
+            <h3 data-i18n="cutCost">Cut Costs</h3>
+            <p data-i18n="cutCostHow">Say goodbye to recurring license fees. CarryPass is a one-time, privacy-first investment that scales with your team.</p>
+          </div>
+          <div class="card" style="height: 22rem; overflow: hidden;">
+            <i data-lucide="lock-keyhole" class="icon-large"></i>
+            <h3 data-i18n="securityDesign">Uncompromising Security by Design</h3>
+            <p data-i18n="securityDesignHow">CarryPass doesn’t cut corners for scalability — it doesn’t need to. All encryption happens locally on your device, allowing the application to use strong, resource-intensive cryptographic methods without worrying about server cost or performance tradeoffs.</p>
+          </div>
+          <div class="card" style="height: 22rem; overflow: hidden;">
+            <i data-lucide="cpu" class="icon-large"></i>
+            <h3 data-i18n="noPerformanceBottleneck">Performance without Bottlenecks</h3>
+            <p data-i18n="noPerformanceBottleneckHow">CarryPass runs instantly on any device — no infrastructure required. Because everything runs client-side, there are no rate limits, no server queues, and no dependency on infrastructure availability. It works instantly, wherever you are.</p>
+          </div>
         </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="builtForYou">Built For You</h2>
+        <div class="grid split">
+          <div class="card" style="height: 18rem; overflow: hidden;">
+            <i data-lucide="shield" class="icon-large"></i>
+            <h3 data-i18n="cisoTeams">CISOs & Security Teams</h3>
+            <p data-i18n="cisoTeamsWhy">Keep credentials out of the cloud. Enforce zero-trust. Stay audit-ready. No backdoors. No exposure. No excuses.</p>
+          </div>
+          <div class="card" style="height: 18rem; overflow: hidden;">
+            <i data-lucide="server-cog" class="icon-large"></i>
+            <h3 data-i18n="itManagers">IT Managers & DevOps</h3>
+            <p data-i18n="itManagersWhy">Distribute sensitive access credentials securely — without risky workarounds: relying on emails, chats, or manual copy-paste.</p>
+          </div>
+          <div class="card" style="height: 20rem; overflow: hidden;">
+            <i data-lucide="briefcase" class="icon-large"></i>
+            <h3 data-i18n="procurement">Procurement & Leadership</h3>
+            <p data-i18n="procurementWhy">Reduce tool bloat and subscription creep. Achieve better security outcomes at lower cost — no cloud, no compliance headaches.</p>
+          </div>
+          <div class="card" style="height: 20rem; overflow: hidden;">
+          <i data-lucide="radio" class="icon-large"></i>
+          <h3 data-i18n="airGappedPrivacy">Privacy-Focused Environments & Air-Gapped systems</h3>
+          <p data-i18n="airGappedPrivacyWhy">Perfect for use cases that demand complete device-side control — from air-gapped systems to regulated and privacy-sensitive contexts where zero network dependency is essential.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container" style="margin-top: 1rem;">
+      <form id="defaultDesign" class="grid split">
+        <div class="column-left">
         <section class="section alt" style="padding-top: 0 !important; margin-top: 0 !important;">
-          <div class="container" style="margin-top: 0.1rem;">
-            <h2 class="text-2xl font-bold mb-4" style="color: #FFD43B;" data-i18n="privacyByDesignTitle">
+          <div class="container responsive-container">
+            <h2 class="text-2xl font-bold mb-4" style="color: #1E003B;" data-i18n="privacyByDesignTitle">
               Privacy by Design <i data-lucide="shield-user"></i>
             </h2>
             <p class="mb-4" data-i18n="privacyByDesignIntro"></p>
@@ -109,8 +157,14 @@ Clear Clipboard</button>
               <li data-i18n="designPoint3"></li>
               <li data-i18n="designPoint4"></li>
             </ul>
+          </div>
+        </section>
+        </div>
+        <div class="column-right">
+        <section class="section alt" style="padding-top: 0 !important; margin-top: 0 !important;">
+          <div class="container responsive-container">
 
-            <h2 class="text-2xl font-bold mb-4" style="color: #FFD43B;" data-i18n="privacyByDefaultTitle">
+            <h2 class="text-2xl font-bold mb-4" style="color: #1E003B;" data-i18n="privacyByDefaultTitle">
               Privacy by Default <i data-lucide="eye-off"></i>
             </h2>
             <p class="mb-4" data-i18n="privacyByDefaultIntro"></p>
@@ -123,6 +177,48 @@ Clear Clipboard</button>
             </ul>
           </div>
         </section>
+        </div>
+      </form>
+    </div>
+    <div class="container" style="margin-top: 1rem;" id="demo">
+      <form id="registrationForm" class="grid split">
+        <div class="column-left" style="margin-top: 1rem;">
+        <section class="section">
+          <h4 data-i18n="wantTry">Want to try the application?</h4>
+          <p data-i18n="applicationID">Choose an Application ID — a nickname, passphrase, or PIN. It links CarryPass to this browser for local encrypted storage. It’s not an account, and if forgotten, there’s no way to recover your settings.</p>
+        </section>
+        <section class="section" id="appIdHow">
+          <div class="container">
+          <h2 data-i18n="tryApp">Try the application</h2>
+          <div class="input-group">
+            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Application ID"  data-i18n-placeholder="placeholderAppID" required>
+            <button id="passCodeInputRegisterShow" type="button" style="width: 4rem;" class="btn secondary-outline" name="passCodeInputRegister" data-i18n="showButton">Show</button>
+          </div>
+          <button id="submitPassCodeRegister" type="button" class="btn primary" style="margin-top: 2rem;" data-i18n="startAppButton">Start Using CarryPass</button>
+          <p id="errorMessageRegister" style="color: #d9534f;"></p>
+          </div>
+        </section>
+        </div>
+        <div class="column-right"  style="margin-top: 1rem;" id="contact">
+        <section class="section">
+          <div>
+            <h4 data-i18n="helpCutomize">Need help customizing CarryPass?</h4>
+            <p data-i18n="helpCutomizeGuide">If you need guidance setting up, deploying, or customizing CarryPass, just let us know. We'll make sure your version fits your exact needs.</p>
+          </div>
+        </section>
+        <section class="section" id="needHelp">
+          <div class="container">
+            <h2 data-i18n="makeItYours">Let's Make CarryPass Yours</h2>
+            <form action="https://formspree.io/f/mldjaqgo" method="POST">
+              <input type="text" name="company" placeholder="Company Name" data-i18n-placeholder="companyName" required>
+              <input type="email" name="email" placeholder="Your Email" data-i18n-placeholder="companyEmail" required>
+              <textarea name="message" placeholder="Tell us what you need..." data-i18n-placeholder="whatYouNeed"></textarea>
+              <input type="url" name="brandAssets" placeholder="Link to your logo or branding (optional)" data-i18n-placeholder="logoBranding">
+              <input type="submit" value="Get CarryPass" data-i18n-value="submitRequest" class="btn primary">
+            </form>
+          </div>
+        </section>
+        </div>
       </form>
     </div>
     <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
@@ -134,19 +230,19 @@ Clear Clipboard</button>
         <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="github" class="trusted-icon"></i>
         </a>
-        <label for="github">Github</label>
+        <label for="github">GitHub</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="messages-square" class="trusted-icon"></i>
         </a>
-        <label for="discussions">Discussions</label>
+        <label for="discussions" data-i18n="discussionsLabel">Discussions</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="shield-check" class="trusted-icon"></i>
         </a>
-        <label for="privacypolicy">Privacy</label>
+        <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
       </div>
     </div>
     </footer>
@@ -156,19 +252,19 @@ Clear Clipboard</button>
         <a id="purchase" href="carrypass-landing.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="key-round" class="trusted-icon"></i>
         </a>
-        <label for="purchase">Get CarryPass</label>
+        <label for="purchase" data-i18n="getModelLabel">Get CarryPass</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="book-open" class="trusted-icon"></i>
         </a>
-        <label for="aboutsection">About</label>
+        <label for="aboutsection" data-i18n="aboutUs">About</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer">Demo Disclaimer</label>
+        <label for="disclaimer" data-i18n="demoDisclaimer">Demo Disclaimer</label>
       </div>
     </div>
     </footer>
@@ -182,60 +278,46 @@ Clear Clipboard</button>
     <a href="" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div class="container" style="margin-top: 4rem;">
+    <div style="margin-top: 0.4rem; display: flex; justify-content: flex-end;">
+      <button type="button" id="resetAppButton" class="btn outline-delete" data-i18n="resetButton">
+        Reset
+      </button>
+    </div>
+    <div class="container" style="margin-top: 3rem;">
       <form id="loginForm" class="grid split">
         <div style="margin-top: 1rem;" class="column-left">
-          <h2 style="color: #1E003B; margin-bottom: 3rem;">Privacy Protected <i data-lucide="shield-user" class="trusted-icon"></i></h2>
-            <div class="label-tooltip-wrapper tooltip-anchor">
-              <div class="label-flex-wrapper">
-              <label for="passCodeInput" style="margin-right: auto;" class="label-with-icon">
-                Application ID
-                <div class="label-tooltip-reset">
-                <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-login">
-                  <i data-lucide="info" class="lucide-icon info-icon"></i>
-                </button>
-                </div>
-              </label>
-              <div class="tooltip" id="tooltip-login" role="tooltip">
-                <div class="tooltip-title">Application ID</div>
-                <div class="tooltip-body" data-i18n-tooltip="tooltipUnlockWithAppID">
-                Unlock with your Application ID. If you've lost it, you'll need to reset the application and start over.
-                </div>
-              </div>
-              </div>
-            </div>
+          <h2 style="color: #1E003B; margin-bottom: 8rem;">CarryPass</h2>
           <div class="input-group">
-            <input type="password" id="passCodeInput" autocomplete="off" class="form-control" placeholder="" required>
-            <button id="passCodeInputShow" type="button" class="btn secondary-outline" name="passCodeInput">Show</button>
+            <input type="password" id="passCodeInput" autocomplete="off" class="form-control" placeholder="Application ID" data-i18n-placeholder="placeholderAppID" required>
+            <button id="passCodeInputShow" type="button" style="width: 4rem;" class="btn secondary-outline" name="passCodeInput" data-i18n="showButton">Show</button>
           </div>
-          <button id="submitPassCode" type="button" class="btn primary">Unlock</button>
+          <button id="submitPassCode" style="margin-top: 2rem; margin-bottom: 7rem;" type="button" class="btn primary" data-i18n="unlock">Unlock</button>
           <p id="errorMessageLogin" style="color: #d9534f;"></p>
-          <button type="button" id="resetAppButton" class="btn outline-delete" style="margin-top: 10rem;">Reset Application</button>
         </div>
         <div>
           
         </div>
       </form>
     </div>
-    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
+    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.9rem;">
     <div class="input-group">
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="github" class="trusted-icon"></i>
         </a>
-        <label for="github">Github</label>
+        <label for="github">GitHub</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="messages-square" class="trusted-icon"></i>
         </a>
-        <label for="discussions">Discussions</label>
+        <label for="discussions" data-i18n="discussionsLabel">Discussions</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="shield-check" class="trusted-icon"></i>
         </a>
-        <label for="privacypolicy">Privacy</label>
+        <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
       </div>
     </div>
     </footer>
@@ -251,13 +333,13 @@ Clear Clipboard</button>
         <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="book-open" class="trusted-icon"></i>
         </a>
-        <label for="aboutsection">About</label>
+        <label for="aboutsection" data-i18n="aboutUs">About</label>
       </div>
       <div class="toggle-container" style="display: inline-flex; align-items: center;">
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer">Demo Disclaimer</label>
+        <label for="disclaimer" data-i18n="demoDisclaimer">Demo Disclaimer</label>
       </div>
     </div>
     </footer>
@@ -272,29 +354,29 @@ Clear Clipboard</button>
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockScreen" class="lang-link active">TEAMS</a>
+      <a href="" data-section="memberUnlockScreen" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="adminBootstrapLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="adminBootstrapLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
     <div class="container" style="margin-top: 4rem;">
       <form id="adminConfigForm" class="grid split">
         <div>
-          <p>No vault detected. Upload your Admin Config to proceed.</p>
-              <label for="adminFileInput">Choose admin config file</label>
+          <p data-i18n="noVault">No vault detected. Upload your Admin Config to proceed.</p>
+              <label for="adminFileInput" data-i18n="chooseAdminFile">Choose admin config file</label>
               <div class="input-group">
-                  <input type="text" class="form-control" id="adminFileInputText" disabled placeholder="Choose file" />
+                  <input type="text" class="form-control" id="adminFileInputText" disabled placeholder="Choose file" data-i18n-placeholder="chooseFile"/>
                   <div class="input-group-append">
-                      <button class="btn primary" type="button" id="adminFileButton">Browse</button>
+                      <button class="btn primary" type="button" id="adminFileButton" data-i18n="browseButton">Browse</button>
                   </div>
                   <input type="file" class="custom-file-input" accept=".json" id="adminFileInput">
               </div>
           <br><br>
-          <button id="uploadConfigToMemberPanel" type="button" class="btn secondary">Back</button>
+          <button id="uploadConfigToMemberPanel" type="button" class="btn secondary" data-i18n="backButton">Back</button>
         </div>
         <div>
-          <p>No vault detected. Upload your Admin Config to proceed.</p>
+          <p data-i18n="noVault">No vault detected. Upload your Admin Config to proceed.</p>
         </div>
       </form>
     </div>
@@ -311,36 +393,36 @@ Clear Clipboard</button>
     <div class="logo link">
     <div id="trustedDeviceIndicator" class="trusted-indicator" style="margin-top: 3.3rem;" title="" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label">Trusted Device</span>
+      <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
       <button id="exportTrustedQRButton" class="btn icon-only small export-qr-button" title="Share TOTP with another device">
         <i data-lucide="qr-code"></i>
       </button>
     </div>
     </div>
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockPanel" class="lang-link active">TEAMS</a>
+      <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="adminEditorLoginLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="adminEditorLoginLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
     <div class="container" style="margin-top: 5rem;">
       <form id="adminVaultEditorForm" class="grid split">
         <div>
-          <h2>Vault Editor Access</h2>
+          <h2 data-i18n="editorAccess">Vault Editor Access</h2>
           <div class="input-group">
-            <input type="password" id="adminPasswordEditorInput" placeholder="Admin Vault Password">
-          <button id="adminPasswordEditorInputToggle" type="button" name="adminPasswordEditorInput" class="btn secondary-outline">Show</button>
+            <input type="password" id="adminPasswordEditorInput" placeholder="Admin Vault Password" data-i18n-placeholder="adminVaultPwd">
+          <button id="adminPasswordEditorInputToggle" type="button" name="adminPasswordEditorInput" class="btn secondary-outline" data-i18n="showButton">Show</button>
           </div>
           <br><br>
-          <input id="adminEditorTOTPInput" type="text" placeholder="2FA (6-digit code)" maxlength="6">
+          <input id="adminEditorTOTPInput" type="text" placeholder="2FA (6-digit code)" data-i18n-placeholder="adminTOTP" maxlength="6">
           <br><br>
           <div class="input-group">
-          <button type="button" class="btn strong" id="handleCompleteAdminVault" style="margin-right: 0.5rem;">Access&nbsp;Admin&nbsp;Vault</button>
+          <button type="button" class="btn strong" id="handleCompleteAdminVault" style="margin-right: 0.5rem;" data-i18n="editorAccessButton">Access&nbsp;Admin&nbsp;Vault</button>
           <div class="input-group" style="margin-left: auto;">
-              <input type="text" class="form-control" id="adminEditFileInputText" disabled placeholder="Upload vault file" />
+              <input type="text" class="form-control" id="adminEditFileInputText" disabled placeholder="Upload vault file" data-i18n-placeholder="uploadVault" />
               <div class="input-group-append">
-                  <button class="btn primary" type="button" id="adminEditFileButton">Browse</button>
+                  <button class="btn primary" type="button" id="adminEditFileButton" data-i18n="browseButton">Browse</button>
               </div>
               <input type="file" class="custom-file-input" accept=".json" id="adminEditFileInput">
           </div>
@@ -352,7 +434,7 @@ Clear Clipboard</button>
           <h4 data-i18n="demoAdminPassword">Demo Admin Password</h4>
           <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
           <div style="margin-top: 3rem; margin-left: auto;">
-          <button id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Member Access Panel</button>
+          <button data-i18n="backToTeamMemberPanel" id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Member Access Panel</button>
           </div>
         </div>
       </form>
@@ -369,32 +451,32 @@ Clear Clipboard</button>
     </a>
     <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label">Trusted Device</span>
+      <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
     </div>
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockPanel" class="lang-link active">TEAMS</a>
+      <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="adminSetupLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="adminSetupLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
     <div class="container" style="margin-top: 4rem;">
       <form id="adminUnlockForm" class="grid split">
         <div>
-          <h2>Admin Vault Unlock</h2>
-          <input id="adminAccessInput" placeholder="Access Settings">
+          <h2 data-i18n="firstUnlockAdminVaultTitle">Admin Vault Unlock</h2>
+          <input id="adminAccessInput" placeholder="Access Settings" data-i18n-placeholder="accessSettings">
           <div class="input-group">
-            <input type="password" id="adminPasswordInput" placeholder="Master Password">
-          <button id="adminPasswordInputToggle" type="button" name="adminPasswordInput" class="btn secondary-outline">Show</button>
+            <input type="password" id="adminPasswordInput" placeholder="Master Password" data-i18n-placeholder="password">
+          <button id="adminPasswordInputToggle" type="button" name="adminPasswordInput" class="btn secondary-outline" data-i18n="showButton">Show</button>
           </div>
           <br><br>
-          <input id="adminTOTPInput" type="text" placeholder="2FA Code" maxlength="6">
+          <input id="adminTOTPInput" type="text" placeholder="2FA Code" data-i18n-placeholder="adminTOTP" maxlength="6">
           <br><br>
-          <button type="button" id="firstUnlockAdminVault" class="btn strong">Unlock Admin Vault</button>
-          <button type="button" id="backToTeamsPanel" class="btn secondary">Back</button>
+          <button type="button" id="firstUnlockAdminVault" class="btn strong" data-i18n="firstUnlockAdminVault">Unlock Admin Vault</button>
+          <button type="button" id="backToTeamsPanel" class="btn secondary" data-i18n="backButton">Back</button>
         </div>
         <div>
-          <p>This is the admin unlock panel - used for initial setup - bootstrapping the app.</p>
+          <p data-i18n="bootStrap">This is the admin unlock panel - used for initial setup - bootstrapping the app.</p>
         </div>
       </form>
     </div>
@@ -408,29 +490,25 @@ Clear Clipboard</button>
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
-      <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label">Trusted Device</span>
-    </div>
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockPanel" class="lang-link active">TEAMS</a>
+      <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="memberVaultLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="memberVaultLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
     <div class="container" style="margin-top: 4rem;">
       <form id="memberVaultForm" class="grid split">
         <div>
-          <p id="vaultSourceLabel" style="font-size: 0.9rem; margin-bottom: 0.2rem;"></p>
+          <p id="vaultSourceLabel" style="font-size: 0.9rem; margin-bottom: 0.2rem;" data-i18n="vaultLoadedFrom"></p>
           <button type="button" class="btn secondary" style="margin-bottom: 1.4rem;" id="logoutMemberFromVault">
-            Clear Vault&nbsp;&nbsp;<i data-lucide="database-zap"></i>
+            <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
           </button>
-          <div class="logout-mobile" style="margin-left: auto;"><p style="margin-bottom: 1rem;">You can see only the teams that have been assigned to you. Teams without credentials also appear if team is already assigned.</p></div>
+          <div class="logout-mobile" style="margin-left: auto;"><p style="margin-bottom: 1rem;" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
           <div id="memberVaultContent1"></div>
         </div>
         <div>
-          <div class="logout-desktop" style="margin-left: auto;"><p style="margin-bottom: 1rem;">You can see only the teams that have been assigned to you. Teams without credentials also appear if team is already assigned.</p></div>
+          <div class="logout-desktop" style="margin-left: auto;"><p style="margin-bottom: 1rem;" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
           <div id="memberVaultContent2"></div>
         </div>
       </form>
@@ -446,34 +524,39 @@ Clear Clipboard</button>
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
+    <!-- <div class="logo link"> -->
+    <div id="trustedDeviceIndicatorMember" class="trusted-indicator" style="margin-top: 3.3rem; margin-right: auto;" title="" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label">Trusted Device</span>
+      <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
+      <button id="exportTrustedQRButtonMember" class="btn icon-only small export-qr-button" title="Share TOTP with another device">
+        <i data-lucide="qr-code"></i>
+      </button>
     </div>
+    <!-- </div> -->
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockPanel" class="lang-link active">TEAMS</a>
+      <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="memberPanelLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="memberPanelLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
     <div class="container" style="margin-top: 4rem;">
       <form id="memberUnlockForm" class="grid split">
         <div>
-          <h2>Team Member Access</h2>
-          <input id="memberId" placeholder="Member ID" type="text">
-          <br><br>
+          <h2 data-i18n="teamMemberAccess">Team Member Access</h2>
+          <!-- <input id="memberId" placeholder="Member ID" type="text">
+          <br><br> -->
           <div class="input-group">
-            <input type="password" id="memberPassword" placeholder="Member Access Password">
-          <button id="memberPasswordToggle" type="button" name="memberPassword" class="btn secondary-outline">Show</button>
+            <input type="password" id="memberPassword" placeholder="Member Access Password" data-i18n-placeholder="memberPassword">
+          <button id="memberPasswordToggle" type="button" name="memberPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
           </div>
           <br><br>
           <div class="input-group">
-          <button id="memberVaultImportButton" type="button" class="btn strong" style="margin-right: 0.5rem;">Access&nbsp;Vault</button>
+          <button id="memberVaultImportButton" type="button" class="btn strong" style="margin-right: 0.5rem;" data-i18n="memberAccessVault">Access&nbsp;Vault</button>
           <div class="input-group" style="margin-left: auto;">
-              <input type="text" class="form-control" id="memberGappedFileInputText" disabled placeholder="Upload vault file" />
+              <input type="text" class="form-control" id="memberGappedFileInputText" disabled placeholder="Upload vault file" data-i18n-placeholder="uploadVault" />
               <div class="input-group-append">
-                  <button class="btn primary" type="button" id="memberGappedFileButton">Browse</button>
+                  <button class="btn primary" type="button" id="memberGappedFileButton" data-i18n="browseButton">Browse</button>
               </div>
               <input type="file" class="custom-file-input" accept=".json" id="memberGappedFileInput">
           </div>
@@ -490,22 +573,22 @@ Clear Clipboard</button>
           <button type="button" id="startQrScan" class="btn outline"><i data-lucide="scan-qr-code"></i> Scan</button>
           <button type="button" id="stopScanButton" class="btn outline-delete" style="display: none;"><i data-lucide="camera-off"></i></button>
           <div class="input-group" style="margin-left: auto;">
-              <input type="text" class="form-control" id="qr-file-inputText" disabled placeholder="Upload QR image" />
+              <input type="text" class="form-control" id="qr-file-inputText" disabled placeholder="Upload QR image" data-i18n-placeholder="uploadQrImage" />
               <div class="input-group-append">
-                  <button class="btn primary" type="button" id="qr-file-inputButton">Browse</button>
+                  <button class="btn primary" type="button" id="qr-file-inputButton" data-i18n="browseButton">Browse</button>
               </div>
               <input type="file" class="custom-file-input" accept="image/*" id="qr-file-input">
           </div>
           </div>
           <h4 data-i18n="qrStep2">2) Then, scan this Demo TOTP QR Code with <span class="highlight">an Authenticator app</span> e.g.: FreeOTP; Microsoft/Google Authenticator</h4>
-          <h4 data-i18n="qrStep3">3) Read Demo Member ID from Authenticator app and type</h4>
-          <h4 data-i18n="qrStep4">4) Type or copy&paste the Demo Member Access Password:</h4>
+          <!-- <h4 data-i18n="qrStep3">3) Read Demo Member ID from Authenticator app and type</h4> -->
+          <h4 data-i18n="qrStep4">3) Copy&paste the Demo Member Access Password:</h4>
           <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
-          <h4 data-i18n="qrStep5">5) Click Access Vault</h4>
-          <h4 data-i18n="qrStep6">6) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
-          <h4 data-i18n="qrStep7">7) Click OK</h4>
-          <p style="margin-top: 2rem;">Unlock the admin vault to manage teams, members, credentials and assignments.</p>
-          <button id="onAdminEntryCheck" type="button" class="btn secondary" style="margin-bottom: 2rem;">Unlock Admin Vault</button>
+          <h4 data-i18n="qrStep5">4) Click Access Vault</h4>
+          <h4 data-i18n="qrStep6">5) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
+          <h4 data-i18n="qrStep7">6) Click OK</h4>
+          <p data-i18n="qrStep8" style="margin-top: 2rem;">Unlock the admin vault to manage teams, members, credentials and assignments.</p>
+          <button data-i18n="qrStep9" id="onAdminEntryCheck" type="button" class="btn secondary" style="margin-bottom: 2rem;">Unlock Admin Vault</button>
         </div>
       </form>
     </div>
@@ -520,76 +603,82 @@ Clear Clipboard</button>
             <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
         </a>
           <div class="lang-toggle">
-            <a href="" data-section="appView" class="lang-link">PASSWORDS</a>
+            <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
             |
-            <a href="" data-section="memberUnlockPanel" class="lang-link active">TEAMS</a>
+            <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
             |
-            <a href="" class="lang-link"><i id="adminEditViewLogout" data-lucide="log-out"></i></span></a>
+            <a href="" id="adminEditViewLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
           </div>
         <div class="container" style="margin-top: 4rem;">
           <form id="adminFullForm" class="grid split">
             <div class="desktop-margin-right">
               <div class="logout-mobile" style="margin-left: auto;">
-                <button type="button" class="btn secondary" id="adminPasswordGenerator1" style="margin-right: 1rem;">
-                  Generate Password&nbsp;&nbsp;<i data-lucide="shield-user"></i>
+                <button type="button" class="btn secondary" id="adminPasswordGenerator1" style="margin-right: 1rem; margin-bottom: 0.2rem;">
+                  <span data-i18n="generatePasswordButton">Generate Password&nbsp;&nbsp;</span><i data-lucide="shield-ellipsis"></i>
                 </button>
-                <button type="button" class="btn secondary" id="logoutAdminEditMobile">
-                  Clear Vault&nbsp;&nbsp;<i data-lucide="database-zap"></i>
+                <button type="button" class="btn secondary" id="logoutAdminEditMobile" style="margin-bottom: 0.2rem;">
+                  <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
                 </button>
               </div>
+                <div id="sessionCountdown" style="display: none; color: #1E003B;">
+                  <span data-i18n="sessionLock">Session locks in</span> <span id="countdownTime">15:00</span>
+                </div>
                 <div id="vaultInfoSection" class="admin-section">
                   <p id="vaultSourceLabelAdmin" style="font-size: 0.9rem;"></p>
-                  <p><strong>Vault Expiration:</strong> <span id="vaultExpirationDisplay">Unknown</span></p>
+                  <p><span data-i18n="vaultExpiryDate"><strong>Vault Expiration:</strong></span> <span id="vaultExpirationDisplay">Unknown</span></p>
                 </div>
                   <!-- Teams -->
                 <div id="teamsSection" class="admin-section" style="margin-top: 2.6rem;">
-                    <h3>Teams&nbsp;&nbsp;<i data-lucide="group"></i></h3>
-                    <input type="text" id="teamSearchInput" placeholder="Search Teams...">
+                    <h3><span data-i18n="teamsTitle">Teams&nbsp;&nbsp;</span><i data-lucide="group"></i></h3>
+                    <input type="text" id="teamSearchInput" placeholder="Search Teams..." data-i18n-placeholder="searchTeams">
                     <div id="teamsList" class="compact-list"></div>
-                    <button type="button" class="btn outline-gold" id="createTeamModal"> Create New Team</button>
+                    <button type="button" class="btn outline-gold" id="createTeamModal" data-i18n="addTeamButton"> Create New Team</button>
                 </div>
                     <!-- Credentials -->
                 <div id="credentialsSection" class="admin-section" style="margin-top: 2rem;">
-                    <h3>Credentials&nbsp;&nbsp;<i data-lucide="globe-lock"></i></h3>
+                    <h3><span data-i18n="addCredentialTitle">Credentials&nbsp;&nbsp;</span><i data-lucide="globe-lock"></i></h3>
                     <div class="input-group">
-                    <input type="text" id="credentialSearchInput" placeholder="Search by Title...">
-                    <input type="text" id="credentialSearchByTeam" placeholder="Search by Team...">
+                    <input type="text" id="credentialSearchInput" placeholder="Search by Title..." data-i18n-placeholder="searchTitle">
+                    <input type="text" id="credentialSearchByTeam" placeholder="Search by Team..." data-i18n-placeholder="searchByTeam">
                     </div>
                     <div id="credentialsList"></div>
-                    <button id="addCredentialButton" type="button" class="btn outline-gold"> Add New Credential</button>
+                    <button id="addCredentialButton" type="button" class="btn outline-gold" data-i18n="addCredential"> Add New Credential</button>
                 </div>
             </div>
             <div class="desktop-margin-left">
                 <!-- Members -->
                 <div class="logout-desktop" style="margin-left: auto; margin-top: 2rem;">
-                  <button type="button" class="btn secondary" id="adminPasswordGenerator2" style="margin-right: 3rem;">
-                    Generate Password&nbsp;&nbsp;<i data-lucide="shield-user"></i>
+                  <!-- <div id="sessionCountdown2" style="display: none;">
+                    Session locks in <span id="countdownTime2">15:00</span>
+                  </div> -->
+                  <button type="button" class="btn secondary" id="adminPasswordGenerator2" style="margin-right: 3rem; margin-bottom: 2.5rem;">
+                    <span data-i18n="generatePasswordButton">Generate Password&nbsp;&nbsp;</span><i data-lucide="shield-ellipsis"></i>
                   </button>
-                  <button type="button" class="btn secondary" id="logoutAdminEditDesktop">
-                    Clear Vault&nbsp;&nbsp;<i data-lucide="database-zap"></i>
+                  <button type="button" class="btn secondary" id="logoutAdminEditDesktop" style="margin-bottom: 2.5rem;">
+                    <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
                   </button>
                 </div>
                 <div id="membersSection" class="admin-section responsive-margin-top" style="margin-top: 2rem;">
-                    <h3>Members&nbsp;&nbsp;<i data-lucide="user"></i></h3>
+                    <h3><span data-i18n="membersTitle">Members&nbsp;&nbsp;</span><i data-lucide="user"></i></h3>
                     <div id="hiddenQr" class="input-group" style="display: none; margin-bottom: 1rem;">
                     <div id="qrOutput"></div>
-                    <button id="deleteQrOutput" type="button" class="btn outline-delete" style="margin-top: 1rem;"> Delete QR</button>
+                    <button id="deleteQrOutput" type="button" class="btn outline-delete" style="margin-top: 1rem;" data-i18n="deleteQr"> Delete QR</button>
                     </div>
                     <div class="input-group">
-                    <input type="text" id="memberSearchInput" placeholder="Search Members...">
-                    <button type="button" id="toggleExpirySort" class="btn outline-secondary" data-active="false" style="margin-left: 1rem;">
+                    <input type="text" id="memberSearchInput" placeholder="Search Members..." data-i18n-placeholder="searchMember">
+                    <button type="button" id="toggleExpirySort" class="btn outline-secondary" data-active="false" style="margin-left: 1rem;" data-i18n="sortByExpiry">
                       Sort by Expiry
                     </button>
                     </div>
                     <div id="membersList" class="compact-list"></div>
-                    <button id="createMemberShow" type="button" class="btn outline-gold"> Create New Member</button>
+                    <button id="createMemberShow" type="button" class="btn outline-gold" data-i18n="createMemberButton"> Create New Member</button>
                 </div>
                 <!-- ===== Assignments Management ===== -->
                 <div id="assignmentsSection" class="admin-section" style="margin-top: 2rem;">
-                    <h3>Assignments&nbsp;&nbsp;<i data-lucide="share-2"></i></h3>
+                    <h3><span data-i18n="assignmentsTitle">Assignments&nbsp;&nbsp;</span><i data-lucide="share-2"></i></h3>
                     <div class="input-group">
-                    <input type="text" id="assignmentSearchInput" placeholder="Search by Memeber...">
-                    <input type="text" id="assignmentSearchByTeam" placeholder="Search by Team...">
+                    <input type="text" id="assignmentSearchInput" placeholder="Search by Memeber..." data-i18n-placeholder="searchByMember">
+                    <input type="text" id="assignmentSearchByTeam" placeholder="Search by Team..." data-i18n-placeholder="searchByTeam">
                     </div>
                     <div id="assignmentsList" class="compact-list">
                     <div class="assignment-card">
@@ -610,8 +699,8 @@ Clear Clipboard</button>
                 <!-- Vault Export -->
               <div id="exportVaultSection" class="admin-section" style="margin-top: 3rem;">
                 <div class="input-group">
-                  <button id="exportAuditLogFile" type="button" class="btn outline-gold">Export Log&nbsp;&nbsp;<i data-lucide="file-clock"></i></button>
-                  <button id="vaultExportModalShow" type="button" class="btn strong">Export Vault&nbsp;&nbsp;<i data-lucide="folder-symlink"></i></button>
+                  <button id="exportAuditLogFile" type="button" class="btn outline-gold"><span data-i18n="logExport">Export Log&nbsp;&nbsp;</span><i data-lucide="file-clock"></i></button>
+                  <button id="vaultExportModalShow" type="button" class="btn strong"><span data-i18n="vaultExport">Export Vault&nbsp;&nbsp;</span><i data-lucide="folder-symlink"></i></button>
                   <div id="vaultExportFeedback"></div>
                 </div>
               </div>
@@ -630,14 +719,14 @@ Clear Clipboard</button>
     </a>
     <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label">Trusted Device</span>
+      <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
     </div>
     <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link active">PASSWORDS</a>
+      <a href="" data-section="appView" class="lang-link active" data-i18n="menuPasswords">PASSWORDS</a>
       |
-      <a href="" data-section="memberUnlockPanel" class="lang-link">TEAMS</a>
+      <a href="" data-section="memberUnlockPanel" class="lang-link" data-i18n="menuVaults">TEAMS</a>
       |
-      <a href="" class="lang-link"><i id="appViewLogout" data-lucide="log-out"></i></span></a>
+      <a href="" id="appViewLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
 
     <div class="container" style="margin-top: 5rem;">
@@ -645,7 +734,7 @@ Clear Clipboard</button>
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
           <div class="input-group">
-          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;">Services</button>
+          <button type="button" id="toggleSavedServices" class="btn secondary-outline" style="margin-bottom: 1rem;" data-i18n="savedSettings">Services</button>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="toggleSavedServices">
               <div class="label-tooltip-reset">
@@ -655,58 +744,58 @@ Clear Clipboard</button>
               </div>
             </label>
             <div class="tooltip" id="tooltip-store" role="tooltip">
-              <div class="tooltip-title">Services</div>
+              <div class="tooltip-title" data-i18n-title="tooltipStoreTitle">Services</div>
               <div class="tooltip-body" data-i18n-tooltip="tooltipStore">
                 This list contains your custom password generation settings, organized by service name. When you select a service from the list, its settings are automatically applied. You can export and import these settings as an encrypted file.
               </div>
             </div>
           </div>
-          <button type="button" id="exportSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Export</button>
-          <button type="button" id="importSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;">Import</button>
+          <button type="button" id="exportSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;" data-i18n="settingsExport">Export</button>
+          <button type="button" id="importSettingsButton" class="btn secondary-outline" style="margin-bottom: 2rem; margin-left: auto;" data-i18n="settingsImport">Import</button>
           </div>
           <div id="savedServicesPanel" class="saved-services-panel">
-            <input type="text" id="savedServicesSearch" placeholder="Search saved services..." style="width: 100%; margin-bottom: 0.5rem;">
+            <input type="text" id="savedServicesSearch" placeholder="Search saved services..." data-i18n-placeholder="servicesSearch" style="width: 100%; margin-bottom: 0.5rem;">
             <ul id="savedServicesList"></ul>
           </div>
           <p></p>
           <div class="label-tooltip-wrapper tooltip-anchor">
-            <label for="webAddress">
-              Service
+            <label for="webAddress" >
+              <span data-i18n="webAddress">Service</span>
               <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-service">
                 <i data-lucide="info" class="lucide-icon info-icon"></i>
               </button>
             </label>
             <div class="tooltip" id="tooltip-service" role="tooltip">
-              <div class="tooltip-title">Service</div>
+              <div class="tooltip-title" data-i18n-title="tooltipServiceTitle">Service</div>
               <div class="tooltip-body" data-i18n-tooltip="tooltipService">
               The site or app name that you want to access. The service name affects password generation consistency. All service names are converted to lowercase during normalization.
               </div>
             </div>
           </div>
-          <input type="text" id="webAddress" autocomplete="off" name="webAddress" class="form-control" placeholder="examplecom" required>
+          <input type="text" id="webAddress" autocomplete="off" name="webAddress" class="form-control" placeholder="examplecom" data-i18n-placeholder="examplecom" required>
           <div class="label-tooltip-wrapper tooltip-anchor">
             <label for="password">
-              Master Password
+              <span data-i18n="password">Master Password</span>
               <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-password">
                 <i data-lucide="info" class="lucide-icon info-icon"></i>
               </button>
             </label>
             <div class="tooltip" id="tooltip-password" role="tooltip">
-              <div class="tooltip-title">Master Password</div>
+              <div class="tooltip-title" data-i18n-title="tooltipPasswordTitle">Master Password</div>
               <div class="tooltip-body" data-i18n-tooltip="tooltipPassword">
               Your main password. Never shared or stored, long and complex. Used to derive all your secure passwords. All your generated passwords are as secure as long and complex this one Master Password is! 
               </div>
             </div>
           </div>
           <div class="input-group">
-            <input type="password" id="password" name="password" autocomplete="off" class="form-control" placeholder="Your secret password" disabled required>
+            <input type="password" id="password" name="password" autocomplete="off" class="form-control" placeholder="Your secret password" data-i18n-placeholder="secretMaster" disabled required>
             <button id="masterPass" type="button" class="btn secondary-outline" name="password">
               <i data-lucide="square-asterisk" class="feedback-icon" style="color: gainsboro; margin-right: 0.4rem;"></i>
-              <span class="toggle-text">Show</span>
+              <span class="toggle-text" data-i18n="showButton">Show</span>
             </button>
           </div>
           <div style="align-items: center; display: flex; margin-bottom: 0.5rem;">
-          <button id="collectInput" type="button" class="btn strong" style="margin-top: 1rem;font-weight: 500;">GET PASSWORD</button>
+          <button id="collectInput" type="button" class="btn strong" style="margin-top: 1rem;font-weight: 500;" data-i18n="getPassword">GET PASSWORD</button>
         
           <div id="slider1" class="custom-slider-container" style="margin-top: auto; margin-left: auto;">
               <div id="btn1" class="custom-slider-ball">
@@ -716,9 +805,8 @@ Clear Clipboard</button>
           </div>
           </div>
           <p id="generationStatus" style="visibility: hidden; color: #1E003B; margin-left: 1rem;">
-            Generating passwords<span class="dot-loader">
-              <span>.</span><span>.</span><span>.</span>
-            </span>
+            <span data-i18n="generatingLoader">Generating passwords</span>
+            <span class="dot-loader"><span>.</span><span>.</span><span>.</span></span>
           </p>
           <div id="settings" class="smooth-toggle">
 
@@ -727,7 +815,7 @@ Clear Clipboard</button>
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper">
                     <label for="toggle1" style="margin-right: auto;" class="label-with-icon">
-                      Uppercase
+                      <span data-i18n="uppercase">Uppercase</span>
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-separator">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -735,7 +823,7 @@ Clear Clipboard</button>
                       </div>
                     </label>
                     <div class="tooltip" id="tooltip-separator" role="tooltip">
-                    <div class="tooltip-title">Character types</div>
+                    <div class="tooltip-title" data-i18n-title="tooltipSeparatorTitle">Character types</div>
                     <div class="tooltip-body" data-i18n-tooltip="tooltipSeparator">
                     These define what kind of characters are allowed in your generated password. Separator is for readability, also counts as symbol. 
                     </div>
@@ -746,22 +834,22 @@ Clear Clipboard</button>
             </div>
   
             <div class="toggle-container">
-              <label for="toggle2">Lowercase</label>
+              <label for="toggle2" data-i18n="lowercase">Lowercase</label>
               <input type="checkbox" id="toggle2" class="toggle">
             </div>
   
             <div class="toggle-container">
-              <label for="toggle3">Numbers</label>
+              <label for="toggle3" data-i18n="numbers">Numbers</label>
               <input type="checkbox" id="toggle3" class="toggle">
             </div>
             
             <div class="toggle-container">
-              <label for="toggle4">Symbols</label>
+              <label for="toggle4" data-i18n="symbols">Symbols</label>
               <input type="checkbox" id="toggle4" class="toggle">
             </div>
   
             <div class="toggle-container">
-              <label for="toggle5">Separator</label>
+              <label for="toggle5" data-i18n="separator">Separator</label>
               <input type="checkbox" id="toggle5" class="toggle">
             </div>  
             <input type="hidden" id="salt" name="salt" value="">          
@@ -769,11 +857,11 @@ Clear Clipboard</button>
           
           <div class="input-group" style="margin-bottom: 1.5rem;">
             <div class="toggles">
-              <div class="toggle-container">
+              <div class="toggle-container" style="margin-right: 1rem;">
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper">
                     <label for="length" style="margin-right: auto;" class="label-with-icon">
-                      Length
+                      <span data-i18n="length">Length</span>
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-length">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -781,7 +869,7 @@ Clear Clipboard</button>
                       </div>
                     </label>
                     <div class="tooltip" id="tooltip-length" role="tooltip">
-                    <div class="tooltip-title">Length</div>
+                    <div class="tooltip-title" data-i18n-title="tooltipLengthTitle">Length</div>
                     <div class="tooltip-body" data-i18n-tooltip="tooltipLength">
                     Desired length of the generated password. More is stronger.
                     </div>
@@ -794,7 +882,8 @@ Clear Clipboard</button>
                   <div class="label-tooltip-wrapper tooltip-anchor">
                     <div class="label-flex-wrapper" style="text-align: left">
                     <label for="iterationCount" class="label-with-icon">
-                      Security<span id="argonTierLabel" class="argon-tier-label">🔹 Standard</span>
+                      <span data-i18n="security">Security</span>
+                      <span id="argonTierLabel" class="argon-tier-label">🔹 Standard</span>
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-iteration">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -802,7 +891,7 @@ Clear Clipboard</button>
                       </div>
                     </label>
                     <div class="tooltip" id="tooltip-iteration" role="tooltip">
-                    <div class="tooltip-title">Security</div>
+                    <div class="tooltip-title" data-i18n-title="tooltipIterationTitle">Security</div>
                     <div class="tooltip-body" data-i18n-tooltip="tooltipIteration">
                     Controls computation rounds and memory usage. Higher number = more secure passwords, but slower generation. Performance thresholds at 33,333 and 66,666.
                     </div>
@@ -811,7 +900,7 @@ Clear Clipboard</button>
                   </div>
                   <div class="input-group">
                     <input class="input-group-password" maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCount" name="iterationCount" class="form-control" value="100" step="1" placeholder="" required>
-                    <button id="iterCount" type="button" class="btn secondary-outline" name="iterationCount">Show</button>
+                    <button id="iterCount" type="button" class="btn secondary-outline" name="iterationCount" data-i18n="show">Show</button>
                   </div>
               </div>
               <div class="toggle-container-store" style="margin-left: 0.5rem;">
@@ -819,7 +908,7 @@ Clear Clipboard</button>
                     <div class="label-flex-wrapper">
                     <div class="input-group">
               
-                    <label for="slider2" class="label-with-icon">Save&nbsp;Settings
+                    <label for="slider2" class="label-with-icon"><span data-i18n="saveSettingsSlider">Save&nbsp;Settings</span>
                       <div class="label-tooltip-reset">
                       <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-storesettings">
                         <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -828,7 +917,7 @@ Clear Clipboard</button>
                     </label>
                     </div>
                     <div class="tooltip" id="tooltip-storesettings" role="tooltip">
-                    <div class="tooltip-title">Save Settings</div>
+                    <div class="tooltip-title" data-i18n-title="tooltipStoreSettingsTitle">Save Settings</div>
                     <div class="tooltip-body" data-i18n-tooltip="tooltipStoreSettings">
                     Toggle 'Save Settings' before password generation and your custom settings are saved to local storage. You can manage them under 'Services'.
                     </div>
@@ -847,12 +936,13 @@ Clear Clipboard</button>
         </div>
         <div class="column-right"> 
           <div id="generatedPassword" class="smooth-toggle">
-            <label for="mainPassword">Generated Password</label>
+            <label for="mainPassword" data-i18n="generatedLabel">Generated Password for</label>
             <label id="createdfor" class="form-label"></label>
+            <label id="createdforExtra" data-i18n="generatedLabelTag" class="form-label"></label>
             <div class="input-group">
               <input type="password" id="mainPassword" class="form-control input-pwd generated-password" readonly>
-              <button id="mainButton" type="button" class="btn secondary-outline" name="mainPassword">Show</button>
-              <button data-password-id="mainCopy" type="button" class="btn outline-gold" name="mainPassword">Copy
+              <button id="mainButton" type="button" class="btn secondary-outline" name="mainPassword" data-i18n="showButton">Show</button>
+              <button data-password-id="mainCopy" type="button" class="btn outline-gold" name="mainPassword" data-i18n="copyButton">Copy
               </button>
               <span id="copySuccessIcon-mainCopy" class="icon" style="display: none;">         
               </span>
@@ -864,13 +954,13 @@ Clear Clipboard</button>
             </div>
             <div class="label-tooltip-wrapper tooltip-anchor">
               <label for="username">
-                Username
+                <span data-i18n="generatedUsernameLabel">Username</span>
                 <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-username">
                   <i data-lucide="info" class="lucide-icon info-icon"></i>
                 </button>
               </label>
               <div class="tooltip" id="tooltip-username" role="tooltip">
-              <div class="tooltip-title">Username</div>
+              <div class="tooltip-title" data-i18n-title="tooltipUsernameTitle">Username</div>
               <div class="tooltip-body" data-i18n-tooltip="tooltipUsername">
               If a service requires a username, separate from your email address, you may use this.
               </div>
@@ -878,8 +968,8 @@ Clear Clipboard</button>
             </div>
             <div class="input-group">
               <input type="password" id="username" class="form-control generated-password" readonly>
-              <button id="sixthButton" type="button" class="btn secondary-outline" name="username">Show</button>
-              <button data-password-id="usernameCopy" type="button" class="btn outline-gold" name="username">Copy</button>
+              <button id="sixthButton" type="button" class="btn secondary-outline" name="username" data-i18n="showButton">Show</button>
+              <button data-password-id="usernameCopy" type="button" class="btn outline-gold" name="username" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-usernameCopy" class="icon" style="display: none;"></span>
             </div>
 
@@ -892,7 +982,7 @@ Clear Clipboard</button>
             <div class="label-tooltip-wrapper tooltip-anchor">
               <div class="label-flex-wrapper">
               <label for="supplementaryfive" style="margin-right: auto;" class="label-with-icon">
-                Additional passwords
+                <span data-i18n="additionalPasswords">Additional passwords</span>
                 <div class="label-tooltip-reset">
                 <button type="button" class="info-icon-wrapper" tabindex="0" aria-describedby="tooltip-additional">
                   <i data-lucide="info" class="lucide-icon info-icon"></i>
@@ -900,7 +990,7 @@ Clear Clipboard</button>
                 </div>
               </label>
               <div class="tooltip" id="tooltip-additional" role="tooltip">
-                <div class="tooltip-title">Additional Passwords</div>
+                <div class="tooltip-title" data-i18n-title="tooltipAdditionalTitle">Additional Passwords</div>
                 <div class="tooltip-body" data-i18n-tooltip="tooltipAdditional">
                 Additional passwords allow for password rotation if a service requires it.
                 </div>
@@ -909,28 +999,28 @@ Clear Clipboard</button>
             </div>
             <div id="extraPasswords">
               <div class="input-group"><input type="password" id="supplementaryone" class="form-control generated-password" readonly>
-              <button type="button" id="firstButton" class="btn secondary-outline" name="supplementaryone">Show</button>
-              <button data-password-id="extra1Copy" type="button" class="btn outline-gold" name="supplementaryone">Copy</button>
+              <button type="button" id="firstButton" class="btn secondary-outline" name="supplementaryone" data-i18n="showButton">Show</button>
+              <button data-password-id="extra1Copy" type="button" class="btn outline-gold" name="supplementaryone" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-extra1Copy" class="icon" style="display: none;"></span></div>
     
               <div class="input-group"><input type="password" id="supplementarytwo" class="form-control generated-password" readonly>
-              <button type="button" id="secondButton" class="btn secondary-outline" name="supplementarytwo">Show</button>
-              <button data-password-id="extra2Copy" type="button" class="btn outline-gold" name="supplementarytwo">Copy</button>
+              <button type="button" id="secondButton" class="btn secondary-outline" name="supplementarytwo" data-i18n="showButton">Show</button>
+              <button data-password-id="extra2Copy" type="button" class="btn outline-gold" name="supplementarytwo" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-extra2Copy" class="icon" style="display: none;"></span></div>
     
               <div class="input-group"><input type="password" id="supplementarythree" class="form-control generated-password" readonly>
-              <button type="button" id="thirdButton" class="btn secondary-outline" name="supplementarythree">Show</button>
-              <button data-password-id="extra3Copy" type="button" class="btn outline-gold" name="supplementarythree">Copy</button>
+              <button type="button" id="thirdButton" class="btn secondary-outline" name="supplementarythree" data-i18n="showButton">Show</button>
+              <button data-password-id="extra3Copy" type="button" class="btn outline-gold" name="supplementarythree" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-extra3Copy" class="icon" style="display: none;"></span></div>
     
               <div class="input-group"><input type="password" id="supplementaryfour" class="form-control generated-password" readonly>
-              <button type="button" id="fourthButton" class="btn secondary-outline" name="supplementaryfour">Show</button>
-              <button data-password-id="extra4Copy" type="button" class="btn outline-gold" name="supplementaryfour">Copy</button>
+              <button type="button" id="fourthButton" class="btn secondary-outline" name="supplementaryfour" data-i18n="showButton">Show</button>
+              <button data-password-id="extra4Copy" type="button" class="btn outline-gold" name="supplementaryfour" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-extra4Copy" class="icon" style="display: none;"></span></div>
     
               <div class="input-group"><input type="password" id="supplementaryfive" class="form-control generated-password" readonly>
-              <button type="button" id="fifthButton" class="btn secondary-outline" name="supplementaryfive">Show</button>
-              <button data-password-id="extra5Copy" type="button" class="btn outline-gold" name="supplementaryfive">Copy</button>
+              <button type="button" id="fifthButton" class="btn secondary-outline" name="supplementaryfive" data-i18n="showButton">Show</button>
+              <button data-password-id="extra5Copy" type="button" class="btn outline-gold" name="supplementaryfive" data-i18n="copyButton">Copy</button>
               <span id="copySuccessIcon-extra5Copy" class="icon" style="display: none;"></span></div>
             </div>
             </div> 
@@ -946,7 +1036,7 @@ Clear Clipboard</button>
     <div class="modal-confirm-content">
       <h3 id="alertMessage">Notice</h3>
       <div class="modal-confirm-buttons">
-        <button id="alertOkBtn">OK</button>
+        <button id="alertOkBtn" data-i18n="ok">OK</button>
       </div>
     </div>
   </div>
@@ -962,33 +1052,33 @@ Clear Clipboard</button>
       <h4 id="exportImportModalTitle">Enter Passcode</h4>
       <div class="input-group">
       <input type="password" id="exportImportModalInput" placeholder="" />
-      <button type="button" id="exportImportShow" class="btn secondary-outline" name="exportImportModalInput">Show</button>
+      <button type="button" id="exportImportShow" class="btn secondary-outline" name="exportImportModalInput" data-i18n="showButton">Show</button>
       </div>
       <div id="exportImportModalError" class="modal-error hidden"></div>
       <br><br>
-      <button type="button" style="padding: 0.7rem 1rem;" class="btn secondary-outline" id="exportImportModalCancel">Cancel</button>
-      <button type="button" class="btn strong" style="margin-left: auto;" id="exportImportModalOK">OK</button>
+      <button type="button" style="padding: 0.7rem 1rem;" class="btn secondary-outline" id="exportImportModalCancel" data-i18n="cancelButton">Cancel</button>
+      <button type="button" class="btn strong" style="margin-left: auto;" id="exportImportModalOK" data-i18n="okButton">OK</button>
     </div>
   </div>
 <!-- ===== Create Team Modal ===== -->
   <div id="teamModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Create New Team</h3>
-      <input type="text" id="newTeamName" placeholder="Team Name">
+      <h3 data-i18n="createTeamLabel">Create New Team</h3>
+      <input type="text" id="newTeamName" placeholder="Team Name" data-i18n-placeholder="teamName">
       <br><br>
-      <button type="button" class="btn secondary" id="hideCreateTeamUnit">Cancel</button>
-      <button type="button" class="btn strong" id="createTeamUnit">Create</button>
+      <button type="button" class="btn secondary" id="hideCreateTeamUnit" data-i18n="cancelButton">Cancel</button>
+      <button type="button" class="btn strong" id="createTeamUnit" data-i18n="createButton">Create</button>
     </div>
   </div>
   
 
   <div id="createMemberModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Create New Member</h3>
-      <input id="newMemberName" placeholder="Member Name" type="text" class="input-field">
+      <h3 data-i18n="createMemberLabel">Create New Member</h3>
+      <input id="newMemberName" placeholder="Member Name" data-i18n-placeholder="memberName" type="text" class="input-field">
       <br><br>    
-        <button type="button" id="realCreateMemberHide" class="btn secondary">Cancel</button>
-        <button type="button" id="realCreateMember" class="btn strong">Create</button>
+        <button type="button" id="realCreateMemberHide" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+        <button type="button" id="realCreateMember" class="btn strong" data-i18n="createButton">Create</button>
     </div>
   </div>
   
@@ -996,75 +1086,64 @@ Clear Clipboard</button>
   
   <div id="assignMemberModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Assign Team to Member</h3>
+      <h3 data-i18n="assignLabel">Assign Team to Member</h3>
       <p id="assignMemberNameLabel"></p>
       <div class="custom-dropdown" style="margin-bottom: 1rem;">
       <select id="assignTeamSelect" class="form-control"></select>
       </div>
       <br><br>
-      <button type="button" class="btn secondary" id="cancelAssignButton">Cancel</button>
-      <button type="button" class="btn strong" id="assignMemberButton">Assign</button>
+      <button type="button" class="btn secondary" id="cancelAssignButton" data-i18n="cancelButton">Cancel</button>
+      <button type="button" class="btn strong" id="assignMemberButton" data-i18n="assignButton">Assign</button>
     </div>
   </div>
 
 <!-- ===== Add Credential Modal ===== -->
 <div id="credentialModal" class="modal hidden">
   <div class="modal-content">
-    <h3>Add New Credential</h3>
-    <label>Team:
+    <h3 data-i18n="addCredTitle">Add New Credential</h3>
+    <label for="credentialTeam" data-i18n="addCredTeam">Team</label>
       <div class="custom-dropdown" style="margin-bottom: 1rem;">
       <select id="credentialTeam" class="form-control"></select>
       </div>
-    </label>
-    <label>Label:
-      <input id="credentialLabel" placeholder="Credential Label (e.g. Website or Service)">
-    </label>
-    <label>Login URL:
-      <input id="credentialURL" placeholder="Login URL (optional)">
-    </label>
-    <label>Username:
-      <input id="credentialUsername" placeholder="Username">
-    </label>
-    <label>Password:
+    <label for="credentialLabel" data-i18n="editCredLabel">Label</label>
+      <input id="credentialLabel" placeholder="Credential Label (e.g. Website or Service)" data-i18n-placeholder="credLabel">
+    <label for="credentialURL" data-i18n="editCredUrl">URL</label>
+      <input id="credentialURL" placeholder="Login URL (optional)" data-i18n-placeholder="loginURL">
+    <label for="credentialUsername">Username</label>
+      <input id="credentialUsername" placeholder="Username" data-i18n-placeholder="generatedUsernameLabel">
+    <label for="credentialPassword" data-i18n="editCredPassword">Password</label>
       <div class="input-group">
-        <input type="password" id="credentialPassword" placeholder="Password">
-        <button id="createPasswordToggle" type="button" name="credentialPassword" class="btn secondary-outline">Show</button>
+        <input type="password" id="credentialPassword" placeholder="Password" data-i18n-placeholder="simplyPassword">
+        <button id="createPasswordToggle" type="button" name="credentialPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
       </div>
-    </label>
-    <label>Notes:
-      <textarea id="credentialNotes" placeholder="Additional notes (optional)"></textarea>
-    </label>
+    <label for="credentialNotes" data-i18n="editCredNotes">Notes</label>
+      <textarea id="credentialNotes" placeholder="Additional notes (optional)" data-i18n-placeholder="credNotes"></textarea>
      <br><br>
-    <button id="hideCredentialAddModal" type="button" class="btn secondary">Cancel</button>
-    <button id="addCredentialByModal" type="button" class="btn strong">Save</button>
+    <button id="hideCredentialAddModal" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+    <button id="addCredentialByModal" type="button" class="btn strong" data-i18n="saveButton">Save</button>
   </div>
 </div>
 
 <!-- ===== Edit Credential Modal ===== -->
   <div id="editCredentialModal" class="modal-edit hidden">
     <div class="modal-edit-content">
-      <h3>Edit Credential</h3>
-      <label>Label:
-        <input type="text" id="editCredentialLabel" placeholder="Label">
-      </label>
-      <label>URL:
-        <input type="text" id="editCredentialURL" placeholder="URL">
-      </label>
-      <label>Username:
-        <input type="text" id="editCredentialUsername" placeholder="Username">
-      </label>
-      <label>Password:
+      <h3 data-i18n="editCredTitle">Edit Credential</h3>
+      <label for="editCredentialLabel" data-i18n="editCredLabel">Label</label>
+        <input type="text" id="editCredentialLabel" placeholder="">
+      <label for="editCredentialURL" data-i18n="editCredUrl">URL</label>
+        <input type="text" id="editCredentialURL" placeholder="">
+      <label for="editCredentialUsername" data-i18n="editCredUsername">Username</label>
+        <input type="text" id="editCredentialUsername" placeholder="">
+      <label for="editCredentialPassword" data-i18n="editCredPassword">Password</label>
         <div class="input-group">
-          <input type="password" id="editCredentialPassword" placeholder="Password">
-          <button id="editPasswordToggle" type="button" name="editCredentialPassword" class="btn secondary-outline">Show</button>
+          <input type="password" id="editCredentialPassword" placeholder="">
+          <button id="editPasswordToggle" type="button" name="editCredentialPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
         </div>
-      </label>
-      <label>Notes:
-        <textarea id="editCredentialNotes" placeholder="Additional notes (optional)"></textarea>
-      </label>
+      <label for="editCredentialNotes" data-i18n="editCredNotes">Notes</label>
+        <textarea id="editCredentialNotes" placeholder=""></textarea> 
       <br><br>
-      <button id="cancelEditCredential" type="button" class="btn secondary">Cancel</button>
-      <button id="saveEditCredential" type="button" class="btn strong">Save</button>
+      <button id="cancelEditCredential" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+      <button id="saveEditCredential" type="button" class="btn strong" data-i18n="saveButton">Save</button>
     </div>
   </div>
   
@@ -1072,8 +1151,8 @@ Clear Clipboard</button>
     <div class="modal-confirm-content">
       <h3 id="confirmationMessage">Are you sure?</h3>
       <div class="modal-confirm-buttons">
-        <button id="confirmYesBtn">Yes</button>
-        <button id="confirmNoBtn">No</button>
+        <button id="confirmYesBtn" data-i18n="confirmYesBtn">Yes</button>
+        <button id="confirmNoBtn" data-i18n="confirmNoBtn">No</button>
       </div>
     </div>
   </div>
@@ -1081,11 +1160,11 @@ Clear Clipboard</button>
  <!-- ===== Member Finalization Step ===== -->
 <div id="memberFinalizeModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Member Finalization</h3>
+      <h3 data-i18n="finalizeMemberTitle">Member Finalization</h3>
       <input id="memberFinalizeUsername" type="text" readonly>
       <div class="input-group">
-        <input type="password" id="memberFinalizeMasterPassword" placeholder="Member Master Password">
-      <button id="memberFinalizePasswordToggle" type="button" name="memberFinalizeMasterPassword" class="btn secondary-outline">Show</button>
+        <input type="password" id="memberFinalizeMasterPassword" placeholder="Member Access Password" data-i18n-placeholder="memberPassword">
+      <button id="memberFinalizePasswordToggle" type="button" name="memberFinalizeMasterPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
       </div>
       <div id="passwordStrengthContainerMember">
         <div id="passwordStrengthBarMember" class=""></div>
@@ -1093,8 +1172,8 @@ Clear Clipboard</button>
         <span id="entropyTextMember"></span>
       </div>
       <br><br>
-      <button type="button" class="btn secondary" id="closeMemberFinalizeButton">Cancel</button>
-      <button type="button" class="btn strong" id="memberFinalizeButton">Finalize Member</button>
+      <button type="button" class="btn secondary" id="closeMemberFinalizeButton" data-i18n="cancelButton">Cancel</button>
+      <button type="button" class="btn strong" id="memberFinalizeButton" data-i18n="finalizeMember">Finalize Member</button>
     </div>
   </div>
   <!-- ===================== MODAL BACKDROP ===================== -->
@@ -1104,59 +1183,59 @@ Clear Clipboard</button>
 <!-- ===================== EXPORT VAULT MODAL ===================== -->
 <div id="exportVaultModal" class="modal hidden">
   <div class="modal-content">
-    <h3>Export Vault</h3>
-    <label for="adminExportPassword">Admin Master Password</label>
+    <h3 data-i18n="vaultExportLabel">Export Vault</h3>
+    <label for="adminExportPassword" data-i18n="adminMaster">Admin Password</label>
     <div class="input-group">
-      <input type="password" id="adminExportPassword" placeholder="Admin Master Password">
-    <button id="adminExportPasswordToggle" type="button" name="adminExportPassword" class="btn secondary-outline">Show</button>
+      <input type="password" id="adminExportPassword" placeholder="">
+    <button id="adminExportPasswordToggle" type="button" name="adminExportPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
     </div>
     <div id="passwordStrengthContainerAdmin" style="margin-bottom: 2rem;">
       <div id="passwordStrengthBarAdmin" class=""></div>
       <span id="passwordStrengthTextAdmin"></span>
       <span id="entropyTextAdmin"></span>
     </div>
-    <label for="vaultExpiry">Vault Expiration Date (optional)</label>
+    <label for="vaultExpiry" data-i18n="vaultExpiration">Vault Expiration Date (optional)</label>
     <input type="date" id="vaultExpiry">
     <div id="vaultExportFeedback" class="feedback"></div>
     <br><br>
-    <button type="button" class="btn secondary" id="cancelAdminExport">Cancel</button>
-    <button type="button" class="btn strong" id="adminExportsVault">Export Vault</button>
+    <button type="button" class="btn secondary" id="cancelAdminExport" data-i18n="cancelButton">Cancel</button>
+    <button type="button" class="btn strong" id="adminExportsVault" data-i18n="exportVaultButton">Export Vault</button>
   </div>
 </div>
 <!-- ===================== PASSWORD GENERATOR MODAL ===================== -->
 <div id="adminPasswordGeneratorModal" class="modal hidden">
   <div class="modal-content">
 
-    <label for="webAddressAdmin">Service</label>
-    <input type="text" id="webAddressAdmin" class="form-control" autocomplete="off" placeholder="Service or Username" required>
-    <label for="passwordAdmin">Master Password</label>
+    <label for="webAddressAdmin" data-i18n="webAddress">Service</label>
+    <input type="text" id="webAddressAdmin" class="form-control" autocomplete="off" placeholder="" required>
+    <label for="passwordAdmin" data-i18n="password">Master Password</label>
     <div class="input-group">
-      <input type="password" id="passwordAdmin" class="form-control" placeholder="Master Password" required>
+      <input type="password" id="passwordAdmin" class="form-control" placeholder="Master Password" data-i18n-placeholder="password" required>
       <button id="masterPassAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="passwordAdmin" name="passwordAdmin">
         <i data-lucide="square-asterisk" class="feedback-icon-admin" style="color: gainsboro; margin-right: 0.4rem;"></i>
-        <span class="toggle-text">Show</span>
+        <span class="toggle-text" data-i18n="showButton">Show</span>
       </button>
     </div>
 
     <div class="toggles">
       <div class="toggle-container">
-        <label for="toggle1Admin">Uppercase</label>
+        <label for="toggle1Admin" data-i18n="uppercase">Uppercase</label>
         <input type="checkbox" id="toggle1Admin" class="toggle">
       </div>
       <div class="toggle-container">
-        <label for="toggle2Admin">Lowercase</label>
+        <label for="toggle2Admin" data-i18n="lowercase">Lowercase</label>
         <input type="checkbox" id="toggle2Admin" class="toggle">
       </div>
       <div class="toggle-container">
-        <label for="toggle3Admin">Numbers</label>
+        <label for="toggle3Admin" data-i18n="numbers">Numbers</label>
         <input type="checkbox" id="toggle3Admin" class="toggle">
       </div>
       <div class="toggle-container">
-        <label for="toggle4Admin">Symbols</label>
+        <label for="toggle4Admin" data-i18n="symbols">Symbols</label>
         <input type="checkbox" id="toggle4Admin" class="toggle">
       </div>
       <div class="toggle-container">
-        <label for="toggle5Admin">Separator</label>
+        <label for="toggle5Admin" data-i18n="separator">Separator</label>
         <input type="checkbox" id="toggle5Admin" class="toggle">
       </div>
       <input type="hidden" id="saltAdmin" value="">
@@ -1164,30 +1243,34 @@ Clear Clipboard</button>
 
     <div class="input-group">
       <div class="toggle-container">
-        <label for="lengthAdmin" style="margin-right: auto;">Length</label>
+        <label for="lengthAdmin" style="margin-right: auto;" data-i18n="length">Length</label>
         <input max="999" min="1" type="number" id="lengthAdmin" class="form-control" value="43" step="1" required>
       </div>
       <div class="toggle-container" style="margin-left: auto;">
-        <label for="iterationCountAdmin" style="margin-right: auto;">Password Security</label>
+        <label for="iterationCountAdmin" style="margin-right: auto;">
+          <span data-i18n="security">Password Security</span>
+        </label>
         <div class="input-group">
           <input maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCountAdmin" class="form-control" value="50000" step="1" required>
-          <button id="iterCountAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="iterationCountAdmin" name="iterationCountAdmin">Show</button>
+          <button id="iterCountAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="iterationCountAdmin" name="iterationCountAdmin" data-i18n="showButton">Show</button>
         </div>
       </div>
     </div>
 
-      <button id="collectInputAdmin" type="button" class="btn strong" style="margin-top: 1rem; font-weight: 500;">GET PASSWORD</button>
+      <button id="collectInputAdmin" type="button" class="btn strong" style="margin-top: 1rem; font-weight: 500;" data-i18n="getPassword">GET PASSWORD</button>
       <p id="generationStatusAdmin" style="visibility: hidden; color: #1E003B; margin-left: 1rem; margin-bottom: 2rem;">
-        Generating passwords<span class="dot-loader"><span>.</span><span>.</span><span>.</span></span>
+        <span data-i18n="generatingLoader">Generating passwords</span>
+        <span class="dot-loader"><span>.</span><span>.</span><span>.</span></span>
       </p>
 
     <div id="generatedPasswordAdmin">
-      <label for="mainPasswordAdmin">Main Password</label>
+      <label for="mainPasswordAdmin" data-i18n="generatedLabel">Generated Password</label>
       <label id="createdforAdmin" class="form-label"></label>
+      <label id="createdforExtra" data-i18n="generatedLabelTag" class="form-label"></label>
       <div class="input-group">
         <input type="password" id="mainPasswordAdmin" class="form-control input-pwd generated-password" readonly>
-        <button id="mainButtonAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="mainPasswordAdmin" name="mainPasswordAdmin">Show</button>
-        <button data-password-id="mainCopyAdmin" type="button" class="btn outline-gold" name="mainPasswordAdmin">Copy</button>
+        <button id="mainButtonAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="mainPasswordAdmin" name="mainPasswordAdmin" data-i18n="showButton">Show</button>
+        <button data-password-id="mainCopyAdmin" type="button" class="btn outline-gold" name="mainPasswordAdmin" data-i18n="copyButton">Copy</button>
         <span id="copySuccessIcon-mainCopyAdmin" class="icon" style="display: none;"></span>
       </div>
 
@@ -1199,17 +1282,17 @@ Clear Clipboard</button>
     </div>
 
     <div style="margin-top: 2rem;">
-      <button id="closeAdminPasswordGenerator" type="button" class="btn secondary">Cancel</button>
+      <button id="closeAdminPasswordGenerator" type="button" class="btn secondary" data-i18n="closeButton">Close</button>
     </div>
   </div>
 </div>
 <!-- ===================== MAKE ANOTHER DEVICE TRUSTED MODAL ===================== -->
 <div id="qrExportModal" class="modal hidden">
   <div class="modal-content">
-    <h2>Trust Another Device</h2>
+    <h2 data-i18n="trustAnother">Trust Another Device</h2>
     <div id="qrExportContainer" style="display: flex; justify-content: center;"></div>
-    <p>Scan this QR code on another CarryPass device to enable 2FA access.</p>
-    <button id="trustAnotherDeviceButton" type="button" class="btn outline-secondary">Close</button>
+    <p data-i18n="trustAnotherText">Scan this QR code on another CarryPass device to enable 2FA access.</p>
+    <button id="trustAnotherDeviceButton" type="button" class="btn outline-secondary" data-i18n="closeButton">Close</button>
     <p id="qrTimeoutMessage" style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;"></p>
   </div>
 </div>
