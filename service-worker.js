@@ -20,6 +20,8 @@ const urlsToCache = [
   'site.webmanifest',
   '/vault/README.md',
   '/vault/team-vault.json',
+  '/lang/en.json',
+  '/lang/hu.json',
   '/splash-640x1136.png',
   '/splash-750x1334.png',
   '/splash-1125x2436.png',
