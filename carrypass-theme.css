@@ -311,7 +311,18 @@
     color: #FFD43B;
     margin-bottom: 1rem;
   }
-  
+
+  .icon-large-challenge {
+    width: 36px;
+    height: 36px;
+    color: #FFD43B;
+  }  
+
+  .icon-large-challenge-dark {
+    width: 36px;
+    height: 36px;
+    color: #1E003B;
+  } 
   .dot-modal {
     display: none; 
     position: fixed; 

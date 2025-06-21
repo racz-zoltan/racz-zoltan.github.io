@@ -82,32 +82,32 @@
       <div class="container">
          <h2 data-i18n="ownSecurity">Own Your Security</h2>
         <div class="grid split">
-          <div class="card" style="height: 16rem; overflow: hidden;">
+          <div class="card" style="height: 18rem; overflow: hidden;">
             <i data-lucide="shield-check" class="icon-large"></i>
             <h3 data-i18n="protectReputation">Protect Your Reputation</h3>
             <p data-i18n="protectReputationHow">No servers. No syncing. No leaks. Credentials stay local, encrypted, and under your control — always.</p>
           </div>
-          <div class="card" style="height: 16rem; overflow: hidden;">
+          <div class="card" style="height: 18rem; overflow: hidden;">
             <i data-lucide="alert-octagon" class="icon-large"></i>
             <h3 data-i18n="preventBreach">Prevent Costly Breaches</h3>
             <p data-i18n="preventBreachHow">Eliminate one of the most common attack surfaces: cloud-based password storage. With CarryPass, there’s nothing to steal.</p>
           </div>
-          <div class="card" style="height: 16rem; overflow: hidden;">
+          <div class="card" style="height: 18rem; overflow: hidden;">
             <i data-lucide="share-2" class="icon-large"></i>
             <h3 data-i18n="credShare">Simplify Credential Sharing</h3>
             <p data-i18n="credShareHow">Securely distribute passwords to team members using encrypted vaults and smooth QR-based onboarding — even without internet access.</p>
           </div>
-          <div class="card" style="height: 16rem; overflow: hidden;">
+          <div class="card" style="height: 18rem; overflow: hidden;">
             <i data-lucide="euro" class="icon-large"></i>
             <h3 data-i18n="cutCost">Cut Costs</h3>
             <p data-i18n="cutCostHow">Say goodbye to recurring license fees. CarryPass is a one-time, privacy-first investment that scales with your team.</p>
           </div>
-          <div class="card" style="height: 22rem; overflow: hidden;">
+          <div class="card" style="height: 24rem; overflow: hidden;">
             <i data-lucide="lock-keyhole" class="icon-large"></i>
             <h3 data-i18n="securityDesign">Uncompromising Security by Design</h3>
             <p data-i18n="securityDesignHow">CarryPass doesn’t cut corners for scalability — it doesn’t need to. All encryption happens locally on your device, allowing the application to use strong, resource-intensive cryptographic methods without worrying about server cost or performance tradeoffs.</p>
           </div>
-          <div class="card" style="height: 22rem; overflow: hidden;">
+          <div class="card" style="height: 24rem; overflow: hidden;">
             <i data-lucide="cpu" class="icon-large"></i>
             <h3 data-i18n="noPerformanceBottleneck">Performance without Bottlenecks</h3>
             <p data-i18n="noPerformanceBottleneckHow">CarryPass runs instantly on any device — no infrastructure required. Because everything runs client-side, there are no rate limits, no server queues, and no dependency on infrastructure availability. It works instantly, wherever you are.</p>
@@ -129,12 +129,12 @@
             <h3 data-i18n="itManagers">IT Managers & DevOps</h3>
             <p data-i18n="itManagersWhy">Distribute sensitive access credentials securely — without risky workarounds: relying on emails, chats, or manual copy-paste.</p>
           </div>
-          <div class="card" style="height: 20rem; overflow: hidden;">
+          <div class="card" style="height: 22rem; overflow: hidden;">
             <i data-lucide="briefcase" class="icon-large"></i>
             <h3 data-i18n="procurement">Procurement & Leadership</h3>
             <p data-i18n="procurementWhy">Reduce tool bloat and subscription creep. Achieve better security outcomes at lower cost — no cloud, no compliance headaches.</p>
           </div>
-          <div class="card" style="height: 20rem; overflow: hidden;">
+          <div class="card" style="height: 22rem; overflow: hidden;">
           <i data-lucide="radio" class="icon-large"></i>
           <h3 data-i18n="airGappedPrivacy">Privacy-Focused Environments & Air-Gapped systems</h3>
           <p data-i18n="airGappedPrivacyWhy">Perfect for use cases that demand complete device-side control — from air-gapped systems to regulated and privacy-sensitive contexts where zero network dependency is essential.</p>
@@ -244,6 +244,12 @@
         </a>
         <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
       </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="ctfchallenge" href="ctf-whatsmypassword.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="goal" class="trusted-icon"></i>
+        </a>
+        <label for="ctfchallenge" data-i18n="ctfLabel">CTF</label>
+      </div>
     </div>
     </footer>
     <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
@@ -278,7 +284,7 @@
     <a href="" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div style="margin-top: 0.4rem; display: flex; justify-content: flex-end;">
+    <div style="margin-top: 0.4rem; display: flex; justify-content: flex-end; margin-right: 0.5rem;">
       <button type="button" id="resetAppButton" class="btn outline-delete" data-i18n="resetButton">
         Reset
       </button>
@@ -318,6 +324,12 @@
           <i data-lucide="shield-check" class="trusted-icon"></i>
         </a>
         <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
+      </div>
+      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+        <a id="ctfchallenge" href="ctf-whatsmypassword.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="goal" class="trusted-icon"></i>
+        </a>
+        <label for="ctfchallenge" data-i18n="ctfLabel">CTF</label>
       </div>
     </div>
     </footer>
