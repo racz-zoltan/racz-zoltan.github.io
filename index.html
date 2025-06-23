@@ -62,7 +62,7 @@
       </div>
       <div class="navbar-right">
         <a href="#demo" class="btn primary" data-i18n="CTAfree">Use It For Free</a>
-        <a href="#contact" class="btn strong" data-i18n="CTAcustom">Get Custom Build</a>
+        <a href="carrypass-privacy-policy.html#contactprivacy" class="btn strong" data-i18n="CTAcustom">Get Custom Build</a>
       </div>
     </header>
     <div class="custom-dropdown" style="margin-left: 1rem; max-width: 7rem;">
@@ -102,12 +102,12 @@
             <h3 data-i18n="cutCost">Cut Costs</h3>
             <p data-i18n="cutCostHow">Say goodbye to recurring license fees. CarryPass is a one-time, privacy-first investment that scales with your team.</p>
           </div>
-          <div class="card" style="height: 24rem; overflow: hidden;">
+          <div class="card" style="height: 26rem; overflow: hidden;">
             <i data-lucide="lock-keyhole" class="icon-large"></i>
             <h3 data-i18n="securityDesign">Uncompromising Security by Design</h3>
             <p data-i18n="securityDesignHow">CarryPass doesn’t cut corners for scalability — it doesn’t need to. All encryption happens locally on your device, allowing the application to use strong, resource-intensive cryptographic methods without worrying about server cost or performance tradeoffs.</p>
           </div>
-          <div class="card" style="height: 24rem; overflow: hidden;">
+          <div class="card" style="height: 26rem; overflow: hidden;">
             <i data-lucide="cpu" class="icon-large"></i>
             <h3 data-i18n="noPerformanceBottleneck">Performance without Bottlenecks</h3>
             <p data-i18n="noPerformanceBottleneckHow">CarryPass runs instantly on any device — no infrastructure required. Because everything runs client-side, there are no rate limits, no server queues, and no dependency on infrastructure availability. It works instantly, wherever you are.</p>
@@ -187,37 +187,19 @@
           <h4 data-i18n="wantTry">Want to try the application?</h4>
           <p data-i18n="applicationID">Choose an Application ID — a nickname, passphrase, or PIN. It links CarryPass to this browser for local encrypted storage. It’s not an account, and if forgotten, there’s no way to recover your settings.</p>
         </section>
-        <section class="section" id="appIdHow">
-          <div class="container">
-          <h2 data-i18n="tryApp">Try the application</h2>
-          <div class="input-group">
-            <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Application ID"  data-i18n-placeholder="placeholderAppID" required>
-            <button id="passCodeInputRegisterShow" type="button" style="width: 4rem;" class="btn secondary-outline" name="passCodeInputRegister" data-i18n="showButton">Show</button>
-          </div>
-          <button id="submitPassCodeRegister" type="button" class="btn primary" style="margin-top: 2rem;" data-i18n="startAppButton">Start Using CarryPass</button>
-          <p id="errorMessageRegister" style="color: #d9534f;"></p>
-          </div>
-        </section>
         </div>
-        <div class="column-right"  style="margin-top: 1rem;" id="contact">
-        <section class="section">
-          <div>
-            <h4 data-i18n="helpCutomize">Need help customizing CarryPass?</h4>
-            <p data-i18n="helpCutomizeGuide">If you need guidance setting up, deploying, or customizing CarryPass, just let us know. We'll make sure your version fits your exact needs.</p>
-          </div>
-        </section>
-        <section class="section" id="needHelp">
-          <div class="container">
-            <h2 data-i18n="makeItYours">Let's Make CarryPass Yours</h2>
-            <form action="https://formspree.io/f/mldjaqgo" method="POST">
-              <input type="text" name="company" placeholder="Company Name" data-i18n-placeholder="companyName" required>
-              <input type="email" name="email" placeholder="Your Email" data-i18n-placeholder="companyEmail" required>
-              <textarea name="message" placeholder="Tell us what you need..." data-i18n-placeholder="whatYouNeed"></textarea>
-              <input type="url" name="brandAssets" placeholder="Link to your logo or branding (optional)" data-i18n-placeholder="logoBranding">
-              <input type="submit" value="Get CarryPass" data-i18n-value="submitRequest" class="btn primary">
-            </form>
-          </div>
-        </section>
+        <div class="column-right"  style="margin-top: 1rem;" id="appRight">
+          <section class="section" id="appIdHow">
+            <div class="container">
+            <h2 data-i18n="tryApp">Try the application</h2>
+            <div class="input-group">
+              <input type="password" id="passCodeInputRegister" autocomplete="off" class="form-control" placeholder="Application ID"  data-i18n-placeholder="placeholderAppID" required>
+              <button id="passCodeInputRegisterShow" type="button" style="width: 4rem;" class="btn secondary-outline" name="passCodeInputRegister" data-i18n="showButton">Show</button>
+            </div>
+            <button id="submitPassCodeRegister" type="button" class="btn primary" style="margin-top: 2rem;" data-i18n="startAppButton">Start Using CarryPass</button>
+            <p id="errorMessageRegister" style="color: #d9534f;"></p>
+            </div>
+          </section>
         </div>
       </form>
     </div>
