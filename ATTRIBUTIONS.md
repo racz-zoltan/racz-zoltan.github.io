@@ -43,6 +43,15 @@ CarryPass makes use of the following open-source libraries. Each is used in acco
 
 ---
 
+### 📝 [EFF Diceware Wordlists](https://www.eff.org/dice)
+- **Purpose:** Wordlists used for generating deterministic passphrases (Diceware-style)
+- **License:** [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
+- **Author:** Electronic Frontier Foundation (EFF)
+- **Source:** [https://www.eff.org/dice](https://www.eff.org/dice)
+- **Note:** Used with appreciation under CC-BY 4.0. Redistribution encouraged with attribution.
+
+---
+
 
 
 > These libraries are included under permissive licenses (MIT, ISC) and do not impose obligations beyond attribution.  
