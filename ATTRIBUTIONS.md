@@ -35,6 +35,16 @@ CarryPass makes use of the following open-source libraries. Each is used in acco
 
 ---
 
+### 🎲 [Mulberry32 PRNG](https://github.com/bryc/code/blob/master/jshash/PRNGs.md)
+- **Purpose:** Lightweight, deterministic pseudo-random number generator (used for rejection sampling fallback and randomized icon arrangement)
+- **Author:** Bryan ([@bryc](https://github.com/bryc))
+- **License:** Public Domain (CC0)
+- **Source:** [https://github.com/bryc/code/blob/master/jshash/PRNGs.md](https://github.com/bryc/code/blob/master/jshash/PRNGs.md)
+
+---
+
+
+
 > These libraries are included under permissive licenses (MIT, ISC) and do not impose obligations beyond attribution.  
-> See the [LICENSE](./LICENSE) file for CarryPass’s open-source terms.  
+> See the [LICENSE](./LICENSE.md) file for CarryPass’s open-source terms.  
 > See [LICENSE-commercial.md](./LICENSE-commercial.md) if you're using a commercial copy of CarryPass.

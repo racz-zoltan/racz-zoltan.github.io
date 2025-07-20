@@ -31,7 +31,7 @@
   }
 
 .navbar {
-  position: fixed; /* or sticky, depending on your use */
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
@@ -39,14 +39,14 @@
   background: var(--background-color);
   padding: 0.75rem 1.5rem;
   display: flex;
-  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  flex-wrap: wrap; 
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  gap: 0.7rem; /* spacing between wrapped rows */
+  gap: 0.7rem; 
 }
 
-/* Make both sides align items properly */
+
 .navbar-left,
 .navbar-right {
   display: flex;
@@ -55,22 +55,9 @@
   gap: 1rem;
 }
 
-  /* #registrationView .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: var(--background-color);
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-  } */
 
   #registrationView {
-  padding-top: 70px; /* or whatever the height of your navbar is */
+  padding-top: 70px; 
   }
 
 
@@ -83,7 +70,7 @@
   input::placeholder,
   textarea::placeholder {
     font-family: var(--ui-font-stack);
-    color: #888; /* optional: softer color for placeholder text */
+    color: #888; 
   }
 
 
@@ -434,11 +421,36 @@
   }
   
 
+  .input-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+
   .field-group {
     display: flex;
-    align-items: stretch; 
-    gap: 0.1rem;
+    flex-direction: column;
+    justify-content: flex-end;
   }
+
+  .field-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .field-group select,
+  .field-group input {
+    font-size: 1rem;
+    padding: 0.4rem;
+    box-sizing: border-box;
+    line-height: 1.4; 
+  }
+
+  .field-group.narrow {
+    flex: 0 0 80px;
+  }
+
+
   
   input.form-control {
     padding: 0.5rem 0.75rem;
@@ -1011,7 +1023,7 @@
   
   
   .custom-dropdown::after {
-    content: "▼";  
+    content: "\25BC";  
     font-size: 18px;
     position: absolute;
     right: 15px;
@@ -1019,8 +1031,14 @@
     transform: translateY(-50%);
     pointer-events: none;
     color: #495057;  
+    font-family: 'Segoe UI Symbol', 'Arial', sans-serif;
   }
-  
+
+  .custom-dropdown.dropdown-lower::after {
+    top: 70%;
+    /* flex: 1; */
+  }
+
   
   .custom-dropdown select option:hover {
     background-color: #f1f1f1;  
@@ -1035,7 +1053,21 @@
     cursor: not-allowed;
   }
   
-  
+  .dropdown {
+    border: 1px solid #ccc;
+    margin-top: 4px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  .username-suggestion {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .username-suggestion:hover {
+    background-color: #eef;
+  }
+
+
   .header-wrapper {
     margin-left: 10%; 
     width: 90%; 
@@ -1157,8 +1189,53 @@
   #passCodeModal {
     display: none;  
   }
-  
-  
+
+  .input-clean-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    font-family: inherit;
+  }
+
+  .field-block {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .field-block label {
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .field-block select,
+  .field-block input {
+    font-size: 14px;
+    font-family: inherit;
+    height: 38px;
+    padding: 4px 8px;
+    line-height: 1.4;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    vertical-align: bottom;
+  }
+
+  .field-block.stretch {
+    flex: 1;
+  }
+
+  .field-block.narrow {
+    width: 90px;
+  }
+
+
+
 
   .toggles {
     display: flex;
@@ -1336,7 +1413,16 @@
     transition: background-color 0.3s ease;
   }
   
-  
+  .custom-slider-container-service {
+    position: relative;
+    width: 59px; 
+    height: 42px; 
+    border-radius: 5px;
+    background-color: transparent; 
+    overflow: hidden; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }  
   
   .custom-slider-ball {
     position: absolute;
@@ -2166,6 +2252,29 @@
   background-color: #999;
 }
 
+.identity-indicator {
+  position: absolute;
+  top: 10px; /* adjust as needed */
+  right: 10px;
+  background-color: #e7f1ff;
+  color: #1E003B;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: max-content;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.identity-indicator.off {
+  background-color: #dee2e6;
+  color: #333;
+}
+
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -2319,6 +2428,13 @@
   letter-spacing: 0.03em;
 }
 
+textarea.generated-password {
+  font-family: 'Courier New', Consolas, monospace, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.03em !important;
+}
+
+
 .generated-password span.lower {
   color: #007acc; /* blue */
 }
@@ -2340,3 +2456,397 @@
 [data-i18n].fade-out {
   opacity: 0;
 }
+
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #ddd;
+  z-index: 1000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.slide-menu.open {
+  right: 0;
+}
+
+.slide-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.slide-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.slide-menu-item {
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  color: #1E003B;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.slide-menu-item:hover {
+  background-color: #f3f3f3;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #1E003B;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.btn-text:hover {
+  color: #4B0082; 
+}
+
+.btn-text:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+#identityModeFields,
+#manualModeFields {
+  transition: opacity 0.2s ease;
+}
+
+.long-password {
+  white-space: nowrap;
+  overflow-x: auto;
+  text-overflow: ellipsis;
+  font-family: monospace;
+}
+
+#emojiGridRegister {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+
+  width: 90vw;           
+  aspect-ratio: 1 / 1;   
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 768px) and (min-aspect-ratio: 4/3) {
+  #emojiGridRegister {
+    width: auto;
+    height: 90vh;
+    aspect-ratio: 1 / 1;
+    max-height: 600px;
+  }
+}
+
+#emojiGridLogin {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+
+  width: 90vw;             
+  aspect-ratio: 1 / 1;     
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 768px) and (min-aspect-ratio: 4/3) {
+  #emojiGridLogin {
+    width: auto;
+    height: 90vh;
+    aspect-ratio: 1 / 1;
+    max-height: 600px;
+  }
+}
+
+
+.emoji-tile {
+  padding: 0;
+  margin: 0;
+  font-size: clamp(1rem, 6vmin, 3rem);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.emoji-tile.selected {
+  background-color: #e0f4ff;
+  border-color: #007acc;
+}
+
+.badge {
+  position: absolute;
+  bottom: 6%;
+  right: 6%;
+  background-color: #007acc;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.65em;
+  width: 1.1em;
+  height: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.icon-grid.grid-mode {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  width: 90vw;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+
+.icon-grid.practice-mode {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  width: 90vw;              
+  max-width: 500px;
+  aspect-ratio: 1 / 1;     
+  margin: 2rem auto;
+}
+
+
+.icon-grid.practice-mode .emoji-tile {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+
+.emoji-tile svg {
+  width: 80%;
+  height: 80%;
+  max-width: 100%;
+  max-height: 100%;
+  stroke-width: 1.8;
+  color: rgb(143, 142, 142);
+}
+
+
+.grid-haze {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 105%;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: 10px;
+  overflow: hidden;
+
+
+  backdrop-filter: blur(4px) contrast(0.7);
+}
+
+
+.radial-interference-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  background-image:
+    repeating-radial-gradient(
+      circle at var(--x1, 30%) var(--y1, 30%),
+      rgba(0, 0, 0, var(--opacity, 0.2)) 0px,
+      transparent 8px,
+      rgba(0, 0, 0, var(--opacity, 0.2)) 16px,
+      transparent 24px
+    ),
+    repeating-radial-gradient(
+      circle at var(--x2, 70%) var(--y2, 70%),
+      rgba(0, 0, 0, var(--opacity, 0.1)) 4px,
+      transparent 12px
+    );
+  background-size: 150px 150px;
+  mix-blend-mode: multiply;
+  transition: background-image 0.3s ease;
+}
+
+.grid-haze {
+  transition: backdrop-filter 0.3s ease;
+}
+
+
+.haze-blackout {
+  background-color: #1e1e1e !important;
+  opacity: 1 !important;
+}
+
+
+
+
+.emoji-tile {
+  background-color: #f2f2f2;
+  border-color: #aaa;
+}
+
+
+#passwordModalText {
+  width: 100%;
+  height: 120px;
+  font-family: monospace;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  resize: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+  #secure-area {
+    position: relative;
+    background: #1e1e1e;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    height: 140px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  #secure-area-login {
+    position: relative;
+    background: #1e1e1e;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    height: 140px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  #passCodeInputRegister {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    caret-color: white;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: monospace;
+    font-size: 1.2rem;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+  }
+
+  #passCodeInputRegister.showing {
+    color: white;
+    caret-color: white;
+  }
+
+  #passCodeInput {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    caret-color: white;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: monospace;
+    font-size: 1.2rem;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+  }
+
+  #passCodeInput.showing {
+    color: white;
+    caret-color: white;
+  }
+
+  #fingerprint-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  #fingerprint-overlay-login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .fp-char {
+    margin: 0 1px;
+  }
+
+  .glow-success {
+    box-shadow: 0 0 10px 2px #90ee90; /* light green */
+    transition: box-shadow 0.3s ease-in-out;
+  }
