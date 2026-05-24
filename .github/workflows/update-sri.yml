@@ -1,0 +1,145 @@
+# ============================================================
+# SRI Hash Updater — GitHub Actions Workflow
+# ============================================================
+#
+# WHAT THIS DOES:
+#   Every time you push changes to your repository, Vercel
+#   deploys your files — but may serve them slightly differently
+#   than your local copies, causing SRI (integrity) hash
+#   mismatches that block scripts from loading.
+#
+#   This workflow automatically fetches each file from your
+#   live Vercel deployment after every push, computes the
+#   correct SHA-384 hash, and updates index.html accordingly.
+#
+# HOW TO SET IT UP:
+#   1. In your repository, create this folder structure:
+#        .github/
+#          workflows/
+#            update-sri.yml   ← place this file here
+#
+#   2. Go to your GitHub repository → Settings →
+#      Secrets and variables → Actions → Variables tab →
+#      New repository variable:
+#        Name:  VERCEL_URL
+#        Value: https://your-deployment.vercel.app
+#      (No trailing slash. This activates the workflow.)
+#
+#   3. Go to your GitHub repository → Settings → Actions →
+#      General → Workflow permissions → select
+#      "Read and write permissions" → Save.
+#      (This allows the workflow to commit back to your repo.)
+#
+#   4. Push any file change to trigger the workflow.
+#      It will wait 45 seconds for Vercel to finish deploying,
+#      then update your index.html automatically.
+#
+#   If VERCEL_URL is not set, this workflow does nothing.
+#   Non-Vercel users can safely ignore this file.
+#
+#   If you add or rename any JS or CSS files, add them
+#   to the FILES list below. Make sure longer filenames
+#   that contain shorter ones come FIRST — for example,
+#   "html5-qrcode.min.js" must come before "qrcode.min.js"
+#   to avoid incorrect matches.
+#
+# NOTE:
+#   This workflow was created for Vercel deployments, but the
+#   same SRI hash mismatch problem can occur on Netlify or
+#   Cloudflare Pages if asset optimization features are enabled
+#   (such as minification or Cloudflare's Rocket Loader).
+#   If you experience SRI errors on those platforms, this
+#   workflow can be adapted by changing BASE_URL to your
+#   Netlify or Cloudflare Pages deployment URL.
+#   GitHub Pages serves files as-is and does not require this.
+# ============================================================
+
+name: Update SRI Hashes
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'index.html'
+
+jobs:
+  update-sri:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for Vercel deployment
+        run: sleep 45
+
+      - name: Fetch hashes and update index.html
+        run: |
+          BASE_URL="https://carrypass.net"
+          FILES=(
+            "carrypass-theme.css"
+            "lucide.min.js"
+            "crypto-js.min.js"
+            "html5-qrcode.min.js"
+            "qrcode.min.js"
+            "eff_words_real.js"
+            "eff_memorable_words.js"
+            "eff_short_words.js"
+            "diceware_hungarian.js"
+            "lucide-pool.js"
+            "zxcvbn.js"
+            "purify.min.js"
+            "lang/en.js"
+            "lang/hu.js"
+            "carrypass.js"
+            "argon2-bundled.min.js"
+          )
+
+          # Build a JSON map of filename -> hash
+          echo "{" > /tmp/hashes.json
+          FIRST=1
+          for FILE in "${FILES[@]}"; do
+            HASH=$(curl -s "$BASE_URL/$FILE" | openssl dgst -sha384 -binary | openssl base64 -A)
+            echo "  $FILE → sha384-$HASH"
+            if [ $FIRST -eq 0 ]; then echo "," >> /tmp/hashes.json; fi
+            printf '  "%s": "%s"' "$FILE" "$HASH" >> /tmp/hashes.json
+            FIRST=0
+          done
+          echo "" >> /tmp/hashes.json
+          echo "}" >> /tmp/hashes.json
+
+          python3 << 'EOF'
+          import re, json
+
+          with open('/tmp/hashes.json') as f:
+              hashes = json.load(f)
+
+          with open('index.html', 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          def replace_integrity(match):
+              tag = match.group(0)
+              for filename, new_hash in hashes.items():
+                  import re as _re
+                  if _re.search(r'(?<![a-zA-Z0-9\-])' + _re.escape(filename), tag):
+                      tag = re.sub(r'integrity="sha384-[^"]*"', f'integrity="sha384-{new_hash}"', tag)
+                      print(f"  Updated: {filename}")
+                      return tag
+              return tag
+
+          # Match entire tags
+          new_content = re.sub(r'<(?:script|link)[^>]+integrity="sha384-[^"]*"[^>]*>', replace_integrity, content)
+
+          with open('index.html', 'w', encoding='utf-8') as f:
+              f.write(new_content)
+
+          print("Done.")
+          EOF
+
+      - name: Commit updated hashes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet || (git add index.html && git commit -m "chore: update SRI hashes" && git push)
