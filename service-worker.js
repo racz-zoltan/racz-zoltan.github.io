@@ -1,13 +1,13 @@
 
-const CACHE_NAME = 'carrypass-shell-v1';
-const CONFIG_CACHE = 'carrypass-configs-v1';
+const CACHE_NAME = 'carrypass-shell-v4';
+const CONFIG_CACHE = 'carrypass-configs-v4';
 const ALLOWED_DOMAIN = 'https://carrypass.net';
 
 const urlsToCache = [
   '/', '/index.html',
-  'argon2-bundled.min.js', 'crypto-js.min.js', 'carrypass.min.js',
+  'argon2-bundled.min.js', 'carrypass.js', 'zxcvbn.js', 'purify.min.js',
   'qrcode.min.js', 'lucide.min.js', 'html5-qrcode.min.js', 'eff_words_real.js',
-  'eff_memorable_words.js', 'eff_short_words.js', 'lucide-pool.js',
+  'eff_memorable_words.js', 'eff_short_words.js', 'diceware_hungarian.js', 'lucide-pool.js',
   'carrypass-gold-transparent.png',
   'icon-192.png',
   'icon-512.png',
@@ -15,14 +15,12 @@ const urlsToCache = [
   'favicon.svg',
   'favicon-96x96.png',
   'apple-touch-icon.png',
-  'carrypass-qr-code.svg',
   'carrypass-theme.css',
-  'member_finalize_qr.png',
   'site.webmanifest',
   '/vault/README.md',
   '/vault/team-vault.json',
-  '/lang/en.json',
-  '/lang/hu.json',
+  '/lang/en.js',
+  '/lang/hu.js',
   '/splash-640x1136.png',
   '/splash-750x1334.png',
   '/splash-1125x2436.png',
@@ -54,13 +52,11 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // ✅ Handle vault files with special logic
   if (url.pathname.startsWith('/vault/')) {
     event.respondWith(handleConfigRequest(request));
     return;
   }
 
-  // ✅ HTTPS enforcement (skip localhost)
   if (
     url.protocol !== 'https:' &&
     url.hostname !== 'localhost' &&
@@ -75,13 +71,11 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // ✅ Main fetch logic (cache-first for static assets)
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
 
       return fetch(request).then(response => {
-        // Only cache valid basic responses (not opaque, not errors)
         if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
@@ -93,11 +87,9 @@ self.addEventListener('fetch', event => {
 
         return response;
       }).catch(() => {
-        // ✅ Fallback: serve index.html if navigation request and offline
         if (request.mode === 'navigate') {
           return caches.match('/index.html');
         }
-        // Optional: fallback to offline.html or blank response
         return new Response("Offline and no cached version found.", {
           status: 503,
           statusText: "Service Unavailable"
@@ -108,12 +100,10 @@ self.addEventListener('fetch', event => {
 });
 
 
-
 async function handleConfigRequest(request) {
   const cache = await caches.open(CONFIG_CACHE);
 
   try {
-    // Force bypass of internal HTTP cache
     const networkResponse = await fetch(request, { cache: "no-store" });
 
     if (!networkResponse || networkResponse.status !== 200) {

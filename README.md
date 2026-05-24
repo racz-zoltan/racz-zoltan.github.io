@@ -1,19 +1,19 @@
 # 🔐 CarryPass
 
-[![License: MIT/Commercial](https://img.shields.io/badge/license-MIT%20%7C%20Commercial-blue.svg)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Privacy First](https://img.shields.io/badge/privacy-zero--knowledge-critical)](https://carrypass.net)
 [![PWA Ready](https://img.shields.io/badge/PWA-offline--first-brightgreen.svg)](https://carrypass.net)
 [![Status: Stable](https://img.shields.io/badge/status-stable-success)]()
 [![Maintenance](https://img.shields.io/badge/maintenance-actively--developed-blue.svg)]()
-[![Made with 💻 & 🔐](https://img.shields.io/badge/built%20with-CryptoJS%2C%20Argon2%2C%20AES-orange)]()
+[![Built with](https://img.shields.io/badge/built%20with-Argon2id%20%7C%20HKDF%20%7C%20AES--GCM-orange)]()
 
 
-# 🔐 CarryPass – Privacy-First Password Generator & Secure Vault
+# 🔐 CarryPass — Privacy-First Credential Manager
 
-**CarryPass** is an open-source, client-side password manager and credential sharing tool built with strong cryptographic primitives and a zero-knowledge philosophy.
+**CarryPass** is an open-source, client-side password manager and team credential-sharing tool built with strong cryptographic primitives and a zero-knowledge philosophy.
 
 All logic runs in your browser. Nothing is sent or stored on servers — **no telemetry, no tracking, no compromise.**
-
+ 
 > 🧠 Inspired by modern cryptography and the principles of privacy, anonymity, and user sovereignty.
 
 ---
@@ -22,148 +22,156 @@ All logic runs in your browser. Nothing is sent or stored on servers — **no te
 
 CarryPass is built on a simple principle:
 
-> **“The best way to protect user data is to never collect it.”**
+> **"The best way to protect user data is to never collect it."**
 
-We designed CarryPass from the ground up to enforce:
-- 💻 **Client-only execution** – No data is sent to any server
-- 🧠 **Zero-knowledge architecture** – We can’t access your passwords, because we never see them
-- 🔐 **Deterministic password generation** – Eliminates the need to store or sync vaults in the cloud
+CarryPass is designed from the ground up to enforce:
+
+- 💻 **Client-only execution** — No data is sent to any server
+- 🧠 **Zero-knowledge architecture** — Servers can't access passwords because passwords never leave your device
+- 🔐 **Deterministic password generation** — Eliminates the need to store or sync vaults in the cloud
 - 🛑 **No telemetry, tracking, or analytics**
 - 🌍 **Full offline support** via PWA
 
-We believe that **privacy is not a feature — it’s a foundation.**
+Privacy is not a feature — it's a foundation.
 
 ---
 
-## 🧷 Password Change Endpoint (Optional)
-
-Some browsers and password managers look for `.well-known/change-password` to help users update their passwords in case of a breach.
-
-**CarryPass does not require or support this mechanism** because:
-
-- It does **not store passwords** at all
-- Passwords are **generated deterministically** from user input
-- There is **no account or backend system** to update
-
-However, for full compatibility, we include a `.well-known/change-password` file to indicate this clearly.
-
-📄 See: [https://carrypass.net/.well-known/change-password](https://carrypass.net/.well-known/change-password)
-
-
 ## ✨ Features
 
-- ✅ **Deterministic password generation**  
-  Generate secure, unique passwords from:
-  - Service name
-  - Master password
-  - User-defined strength and charset
-  - Salted and stretched with Argon2 + PBKDF2
+### Deterministic Password Generator
 
-- 🔐 **Encrypted vaults**
-  - AES-GCM encryption with a new random nonce per edit
-  - Per-member, per-team, and admin-level vault separation
-  - Vaults exportable and re-importable with full integrity
+Generate strong, unique passwords from:
+- Service name
+- Master passphrase + adaptive chained icon sequence
+- Template (or custom character settings)
+- Variant counter (for password rotation without losing other settings)
 
-- 👥 **Team support with TOTP**
-  - Admin assigns members to teams
-  - Team credentials encrypted with deterministic CarryPass-generated passwords
-  - TOTP-based unlock and onboarding via QR code
+The same inputs always produce the same password — so nothing needs to be stored or synced. Lose your device, get a new one, log back in with the same passphrase, regenerate any password you've ever made.
 
-- 📷 **QR onboarding and vault delivery**
-  - Secure QR codes for device setup
-  - Encrypted secrets and keys included
+### Team Vaults with End-to-End Encryption
 
-- 💡 **Fully offline PWA**
-  - Installable and functional even with no internet connection
+- Admin sets up an encrypted vault containing teams, members, and credentials
+- Each member gets a section encrypted with a key derived from **their password + a unique TOTP secret on their trusted device**
+- Members decrypt only the teams they've been assigned to
+- Per-export team-key rotation provides forward-cut revocation: removed members lose access in future vault files
+- Single-admin model with clean handover (no multi-admin coordination complexity)
+
+### Trusted Device Enrollment via QR Code
+
+- Members scan an onboarding QR code with CarryPass on their device
+- The QR carries the member's TOTP secret, which becomes a cryptographic key factor — not a typed code
+- Possession of the trusted device is what proves identity at decryption time
+- No authenticator app needed; no 6-digit codes to type
+
+### Phishing Resistance
+
+- Deterministic generation means a misspelled domain (`paypa1.com` vs `paypal.com`) produces a different password — useless on the real site
+- A visible match indicator (green/red) compares the typed service name against previously-saved services to catch typos and lookalikes
+
+### Self-Recovery via Encrypted Settings Export
+
+- Export your settings (services, profiles, trusted-device state) as an encrypted bundle
+- Import on a new device after completing CarryPass login there (same passphrase + adaptive icon path → same session key)
+- Full self-recovery without admin involvement
+
+### Fully Offline PWA
+
+- Installable as a Progressive Web App on desktop and mobile
+- All required assets are served as static local files — no external CDN calls at runtime
+- Works completely offline after first install
+- Subresource Integrity (SRI) hashes on every script and stylesheet
 
 ---
 
 ## 🛡️ Security Overview
 
-### 🔑 Password Generation Flow
-- **Inputs:** Service name, master password, strength parameters (length, charset, iteration strength)
-- **Process:**
-  - `Argon2` derives an enhanced salt using memory- and time-hard computation
-  - `PBKDF2` derives a key using the Argon2 output + input string
-  - `AES-CTR` generates a deterministic byte stream from this key
-- **Output:** The byte stream is sliced and mapped to user-defined character sets to generate a deterministic password
+### 🔑 Master Secret Derivation
 
----
+At login, CarryPass combines a high-entropy textual passphrase with an adaptive chained icon sequence:
+
+```text
+combinedPass = passphrase || "::" || adaptiveIconHash
+```
+
+The icon factor is not a static six-icon hash. CarryPass currently uses an **Adaptive 3×4** profile:
+
+- 3 icon grids
+- 4 ordered icon selections per grid
+- 12 total icon selections
+- session-randomized icon positions
+- Argon2id state update after every selected icon
+
+Each icon choice updates the internal state, and that state derives the next grid. A wrong icon changes the future path.
+
+The final adaptive icon hash is combined with the passphrase and passed through Argon2id (`t=4, m=128 MiB`) to derive `appMaster`, a short-lived root secret used only during login/key setup. From `appMaster`, CarryPass derives non-extractable runtime keys and branch keys, including handlers for local-state encryption, TOTP-secret protection, and deterministic password generation.
+
+`appMaster` exists only briefly in memory as a `Uint8Array` during this derivation phase. After the required non-extractable keys are created, `appMaster` is zeroed and the reference is cleared. It is never persisted. During an unlocked session, the derived keys remain available in browser memory so the app can operate; they are cleared on logout, failed authentication cleanup, or full session reset.
 
 ### 🔐 Vault Encryption
 
-- **Admin, Member, and Team Vaults:**
-  - Encrypted with **AES-GCM** for confidentiality and integrity
-  - Each vault uses a **new random nonce** on every edit or export
-  - Vaults are encrypted using keys derived from secure user input or generated passwords
+- All vault sections are encrypted with **AES-GCM** using 256-bit keys and 96-bit random nonces (12 bytes)
+- Section metadata is bound as **AAD** so tampering with version, member ID, expiry, or admin flag breaks decryption
+- Each member's key is derived from `Argon2id(password || "::" || totpSecret, salt)` — both halves required
+- Even if the vault file is leaked, the 160-bit TOTP secret on the trusted device sets a hard floor against brute-force
 
-- **Per-Member Vault Protection:**
-  - Members finalize their access with a **personal password** (≥128-bit entropy)
-  - This password is hashed via **PBKDF2**
-  - The resulting hash encrypts the member's vault
-  - Admin stores **PBKDF2 hashes** of member passwords to re-encrypt their vaults upon updates
+### 👥 Team Vaults
 
----
+- Each team has a **freshly random 256-bit AES-GCM key** generated per export
+- The team key is stored inside each assigned member's encrypted section
+- The admin holds operational data (every team's contents, every member's record) in their own encrypted plaintext as `admin_data`
+- Admins are members with an `is_admin: true` flag — no separate admin password, no separate cryptographic role
 
-### 🧩 Team Vaults and Access Codes
+### 🔁 Per-Export Key Rotation
 
-- Each **Team Vault** is encrypted with a password **generated deterministically** using CarryPass:
-  - Service: team name
-  - Password input: a string like `GTHKSM` selected from a character set like `CCXCGTHKSM45103`
-  - Strength: 45-character password, ≥100,000 + 103 PBKDF2 iterations
-- This **team password** is then hashed and used to **encrypt the team vault**
-- The resulting **team vault key** is stored in each **assigned member's record**
-- Only assigned members can decrypt the team vault using their local access
+Every vault export rotates every team's encryption key:
 
----
+- New keys are generated via `crypto.subtle.generateKey`
+- Team blocks are re-encrypted under the new keys
+- Remaining members get the new keys in their sections
+- Removed members' old keys decrypt only the frozen old file
 
-### 🕓 TOTP-Based Validation
+This provides cryptographic forward-cut for revocation. (Note: revocation of credentials already disclosed to a removed member requires rotating the underlying service's password — CarryPass cannot un-disclose what's already in someone's head.)
 
-- Each member has a **unique TOTP secret** generated at setup
-- Onboarding devices scan the QR to persist the TOTP secret (encrypted in local storage)
-- The app uses the **current TOTP token** to validate access to the encrypted team credentials
+### 🕓 TOTP as a Key Factor
 
----
+Unlike traditional TOTP integrations, CarryPass does not use 6-digit codes for unlocking. The TOTP secret (a 160-bit random value generated at member finalization) is bound directly into the member's key derivation as cryptographic input. The trusted device stores the TOTP secret locally in encrypted form. It is protected with a dedicated `totpSecretKey` derived from `appMaster` during login setup; at vault decryption time, the encrypted value is read from `localStorage`, decrypted locally, and combined with the typed member password.
 
-### 🔁 Key Rotation and Integrity
+The result: an attacker with the vault file but not the trusted device cannot decrypt — the 160-bit secret is computationally unguessable.
 
-- On every admin vault export:
-  - All vaults (admin, member, team) are re-encrypted using **new random nonces**
-  - Keys are derived and stored deterministically to allow secure re-import
-- Admin can revoke or rotate team access by modifying code maps and assigned member vaults
+### 🛂 Screen Lock Code
+
+For walking-away convenience, you can set a screen lock code (minimum 6 characters) that locks the session without requiring full re-authentication. This is a UI gate, not a strong cryptographic boundary — three wrong attempts wipe the in-memory state and force full re-authentication.
+
+The feature is deliberately not called "PIN" — that name implies hardware-enforced rate limiting that the in-browser screen lock does not provide.
 
 ---
 
-## 📸 Screenshots
+## 🧷 Password Change Endpoint
 
-<sub>Include screenshots of the generator, vault viewer, QR onboarding screen, etc.</sub>
+Some browsers and password managers look for `.well-known/change-password` to help users update passwords after a breach.
+
+CarryPass does not require or support this mechanism because:
+
+- It does **not store passwords** at all
+- Passwords are **generated deterministically** from user input
+- There is **no account or backend system** to update
+
+A `.well-known/change-password` file is included for compatibility, indicating that CarryPass has nothing to update server-side.
+
+📄 See: [https://carrypass.net/.well-known/change-password](https://carrypass.net/.well-known/change-password)
 
 ---
-
-## 💼 Commercial Use & Rebranding
-
-CarryPass is free to use under the MIT License for personal and non-commercial purposes.
-
-If you wish to:
-- Rebrand or white-label CarryPass
-- Integrate it into a proprietary service
-- Offer it as part of a commercial product
-- Get dedicated support, SLA, or custom features
-
-➡️ Please [contact us](mailto:info.carrypass@proton.me) for a commercial license.
-
-
 
 ## 📦 Installation
 
 ### Web Use
-Visit the app at:  
+
+Visit the app at:
 👉 [https://carrypass.net](https://carrypass.net)
 
-> Works offline after first load (PWA installable).
+Works offline after first load (PWA installable).
 
-
-### 🛠️ Local Use (Developer Mode)
+### 🛠️ Local Development
 
 You can run CarryPass locally using any static file server.
 
@@ -172,12 +180,72 @@ You can run CarryPass locally using any static file server.
    ```bash
    git clone https://github.com/racz-zoltan/racz-zoltan.github.io.git
    cd racz-zoltan.github.io
+   ```
 
+2. Serve the directory with any static server, for example:
 
+   ```bash
+   python3 -m http.server 8000
+   ```
 
-## 📄 Legal & Privacy
+3. Open `http://localhost:8000` in a modern browser.
 
-- [MIT License](./LICENSE.md)
-- [Commercial License Terms](./LICENSE-commercial.md)
-- [Third-Party Library Attributions](./ATTRIBUTIONS.md)
-- [Privacy Policy](./PRIVACY.md)
+CarryPass requires the Web Cryptography API (`crypto.subtle`), which is available in all modern browsers over HTTPS or on `localhost`.
+
+---
+
+## 📚 Documentation
+
+- **[User Manual](./carrypass-user-manual.html)** — Step-by-step guide for everyday use
+- **[Technical Overview](./carrypass-technical-overview.md)** — How CarryPass protects your credentials, written for technically curious users
+- **[Whitepaper](./carrypass-whitepaper.md)** — Full architectural and cryptographic design document for security review
+- **[Privacy Policy](./PRIVACY.md)** — What data CarryPass does and doesn't collect
+- **[Security Policy](./SECURITY.md)** — Vulnerability disclosure process and scope
+
+---
+
+## 📸 Screenshots
+
+<sub>Screenshots of the password generator, admin panel, member view, QR onboarding, and trusted-device enrollment available on [carrypass.net](https://carrypass.net).</sub>
+
+---
+
+## ⚠️ Important Trade-offs
+
+CarryPass is designed to be honest about its limitations. A few worth highlighting:
+
+- **No password recovery.** If you forget your master passphrase or adaptive icon path, your data is gone. There is no backdoor and no recovery mechanism.
+- **Trusted device required for team vaults.** Lose your enrolled device with no settings backup and no QR hard copy, and your admin must re-issue your QR.
+- **Single-admin model.** A team vault has exactly one admin at a time. Promoting a different member is an explicit handover, not a parallel grant.
+- **3–5 second login.** Argon2id at login is deliberately expensive. Designed for a single login per session, not for repeated authentication.
+- **Stateless means stateless.** No server-side state of any kind. Every login re-derives all keys from scratch from your inputs.
+
+These are deliberate consequences of the privacy-first, stateless architecture. If you need server-mediated password recovery or multi-admin team management, CarryPass is the wrong tool — and that's by design.
+
+---
+
+## 📄 License
+
+CarryPass is open source under the [MIT License](./LICENSE).
+
+Use it, modify it, fork it, deploy it, audit it. Attribution is appreciated; please see [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for third-party library credits.
+
+---
+
+## 🤝 Contributing
+
+CarryPass welcomes contributions, particularly:
+
+- Security review and vulnerability reports — see [SECURITY.md](./SECURITY.md)
+- Documentation improvements
+- Translations beyond English and Hungarian
+- Bug reports with reproducible test cases
+
+For larger architectural changes, please open an issue first to discuss.
+
+---
+
+## 📬 Contact
+
+- Email: [info.carrypass@proton.me](mailto:info.carrypass@proton.me)
+- Website: [https://carrypass.net](https://carrypass.net)

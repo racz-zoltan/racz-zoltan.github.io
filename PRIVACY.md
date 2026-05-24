@@ -1,6 +1,6 @@
 # 📄 Privacy Policy
 
-**Effective Date:** 2025-05-22  
+**Effective Date:** 2026-05-23  
 **Applies to:** [https://carrypass.net](https://carrypass.net) and its PWA
 
 ---
@@ -46,5 +46,5 @@ We may update this Privacy Policy to reflect changes in the app or hosting. Upda
 ## 6. Contact
 
 For questions or concerns:  
-📧 **Email:** info.carrypass@proton.me  
+📧 **Email:** carrypass-info@proton.me  
 🌐 **Website:** https://carrypass.net

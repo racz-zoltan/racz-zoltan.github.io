@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CarryPass Felhasználói Útmutató</title>
+  <title>CarryPass Felhasználói Kézikönyv</title>
   <link rel="stylesheet" href="carrypass-theme.css">
-  <script src="lucide.min.js"></script> 
+  <script src="lucide.min.js"></script>
   <style>
     .faq-item summary {
       cursor: pointer;
@@ -16,6 +16,48 @@
       margin-bottom: 1rem;
       border-bottom: 1px solid #ddd;
       padding-bottom: 0.5rem;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--color-gold, #b8972a);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .step-row p {
+      margin: 0;
+    }
+    .ui-label {
+      font-weight: bold;
+      font-style: normal;
+    }
+    .note {
+      background: var(--color-surface, #f5f5f5);
+      border-left: 3px solid var(--color-gold, #b8972a);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .warning {
+      background: var(--color-surface, #fff5f0);
+      border-left: 3px solid #c0504d;
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -30,156 +72,368 @@
   </div>
   <header class="hero">
     <div class="container">
-      <h1>CarryPass Felhasználói Útmutató</h1>
-      <p>Gyakorlati útmutató a CarryPass biztonságos, offline használatának megkezdéséhez.</p>
+      <h1>CarryPass Felhasználói Kézikönyv</h1>
+      <p>Gyakorlati útmutató a biztonságos, offline CarryPass elindításához.</p>
     </div>
   </header>
 
   <section class="section alt">
     <div class="container">
       <h2>1. Bevezetés</h2>
-      <p>A CarryPass egy adatvédelmet előtérbe helyező, determinisztikus jelszó- és hitelesítőkezelő, amely offline használatra készült. Nem tárol jelszavakat — helyette biztonságosan újragenerálja azokat az általad megadott adatok alapján.</p>
+      <p>A CarryPass egy adatvédelem-központú jelszókezelő, amelyet offline használatra terveztek. Csapatok számára teszi lehetővé a hitelesítő adatok biztonságos megosztását végponttól végpontig titkosított széfek útján, QR-kódos eszközregisztrációval és tagonkénti hozzáférés-szabályozással — felhő nélkül, harmadik fél nélkül. Tartalmaz továbbá egy determinisztikus jelszógenerátort: olyan eszközt, amely tárolás nélkül, igény szerint állít elő erős jelszavakat — különösen hasznos a széfhez szükséges magas entrópiájú jelszavak előállítására.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>2. Első Lépések</h2>
-      <p>A CarryPass egy progresszív webalkalmazás (PWA), amely natív alkalmazásként is telepíthető — felhasználói fiók nélkül, követés nélkül, teljes offline támogatással.</p>
+      <h2>2. Első lépések</h2>
+      <p>A CarryPass egy Progressive Web App (PWA), így natív alkalmazásként telepíthető — nyomkövetés nélkül, fiók nélkül, teljes offline támogatással.</p>
 
       <div class="grid split">
         <div class="card">
-          <h3><i data-lucide="monitor-smartphone" class="icon-small"></i> Telepítés Asztali Gépen</h3>
-          <p>Nyisd meg a CarryPass oldalt egy kompatibilis böngészőben, például a <strong>Chrome</strong> vagy <strong>Edge</strong> alkalmazásban. Keresd meg a <strong>telepítő ikont</strong> a böngésző címsorában, majd kattints rá.</p>
-          <p>Ha szeretnéd, rögzítheted az alkalmazást a tálcára is. Ezentúl úgy használhatod, mint egy hagyományos appot — akár internetkapcsolat nélkül is.</p>
+          <h3><i data-lucide="monitor-smartphone" class="icon-small"></i> Telepítés asztali gépen</h3>
+          <p>Nyisd meg a CarryPass-t kompatibilis böngészőben, mint a <strong>Chrome</strong> vagy az <strong>Edge</strong>. Keresd meg a <strong>telepítés ikont</strong> a címsorban, és kattints rá.</p>
+          <p>Opcionálisan rögzítheted a tálcán. Ezután normál alkalmazásként indítható — akár offline is.</p>
         </div>
 
         <div class="card">
-          <h3><i data-lucide="smartphone" class="icon-small"></i> Telepítés Mobilon</h3>
-          <p>A <strong>Chrome</strong> <strong>Safari</strong> vagy <strong>Firefox</strong> böngészőben nyisd meg a CarryPass weboldalt, majd koppints a <strong>Megosztás</strong> ikonra (egy felfelé mutató nyíllal jelölt négyzet).</p>
-          <p>Ezután válaszd a <strong>„Hozzáadás a kezdőképernyőhöz”</strong> lehetőséget, majd erősítsd meg a <strong>„Hozzáadás”</strong> gombbal. Ezután a CarryPass úgy működik, mint egy natív alkalmazás — offline is, egy koppintással elérhető.</p>
+          <h3><i data-lucide="smartphone" class="icon-small"></i> Telepítés mobilon</h3>
+          <p><strong>Chrome</strong>, <strong>Safari</strong> vagy <strong>Firefox</strong> böngészőben nyisd meg a CarryPass weboldalát, és érintsd meg a <strong>Megosztás</strong> ikont (felfelé mutató nyíl egy négyzetben).</p>
+          <p>Ezután érintsd meg a <strong>„Hozzáadás a kezdőképernyőhöz"</strong> opciót, és erősítsd meg a <strong>„Hozzáadás"</strong> gombbal. A CarryPass mostantól natív alkalmazásként viselkedik — offline és egyetlen érintéssel elérhető.</p>
         </div>
       </div>
 
       <ul style="margin-top: 2rem;">
-        <li><strong>Nincs szükség felhasználói fiókra:</strong> Nem történik követés.</li>
-        <li><strong>Nincs felhő alapú tárolás:</strong> Az összes adat az eszközön marad.</li>
-        <li><strong>Teljesen offline:</strong> Az alkalmazás internet nélkül is működik.</li>
+        <li><strong>Nincs szükség fiókra:</strong> Soha nem követünk nyomon.</li>
+        <li><strong>Nincs felhőalapú tárolás:</strong> Az összes adat az eszközödön marad.</li>
+        <li><strong>Teljesen offline:</strong> Telepítés után internet nélkül is működik.</li>
         <li><strong>Támogatott böngészők:</strong> Chrome, Edge, Firefox, Safari.</li>
       </ul>
     </div>
   </section>
 
-<section class="section alt"> 
-  <div class="container">
-    <h2>3. Jelszógenerátor</h2>
-    <p>A CarryPass <strong>determinisztikus</strong> jelszógenerátort használ. Ugyanazok a bemeneti adatok mindig ugyanazt a biztonságos jelszót eredményezik — anélkül, hogy azt valaha elmentenénk. Nincs szinkronizálás, nincs felhő, nincs kiszivárgás.</p>
 
-    <div class="grid split">
-      <div class="card">
-        <h3><i data-lucide="fingerprint" class="icon-small"></i> Hogyan működik</h3>
-        <ul>
-          <li><strong>Szolgáltatás neve:</strong> Például "facebook.com" vagy "Bankom"</li>
-          <li><strong>Mesterjelszó:</strong> Csak Te ismered, nem kerül tárolásra (minden szolgáltatáshoz ugyanaz, így csak egyet kell megjegyezni)</li>
-          <li><strong>Hossz és karakterkészlet:</strong> Válaszd ki a kívánt jelszójellemzőket (betűk, számok, szimbólumok)</li>
-          <li><strong>Jelszóbiztonság:</strong> Haladó opció különböző jelszavak generálásához akár ugyanazon szolgáltatásnál is</li>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>3. CarryPass belépés és adaptív ikonok</h2>
+      <p>A CarryPass belépés két olyan elemből épül fel, amelyet szerver nélkül is újra tudsz állítani: a mesterjelmondatodból és az adaptív ikonútvonaladból. Az alkalmazás nem tárol mesterkulcsot. Helyben építi újra ugyanazt a kriptográfiai kulcsot, amikor ugyanazt a jelmondatot írod be és ugyanazt az ikonútvonalat választod ki.</p>
+
+      <h3 style="margin-top: 2rem;">3.1 Hogyan működik az ikonútvonal?</h3>
+      <p>Amikor a jelmondat eléri a szükséges erősséget, a CarryPass automatikusan megjeleníti az ikonrácsot. Az ikonokat azonosítóként kell megjegyezned, nem pozícióként. A pozíciók minden munkamenetben keverednek, ezért az ikonok személyazonossága számít, nem az, hogy hol jelentek meg.</p>
+      <p>A jelenlegi profil három rácsból áll. Minden rácson négy ikont kell sorrendben kiválasztani. Minden ikonválasztás után a CarryPass memóriaigényes Argon2id számítást végez, és az így kapott állapotból vezeti le a következő lépést. Amikor egy rács kész, automatikusan megjelenik a következő.</p>
+
+      <div class="note">
+        <strong>Nincs külön helyreállító seed:</strong> az ikonútvonal továbbra is állapotmentes és determinisztikus. Ha ismered a mesterjelmondatodat és emlékszel ugyanarra az ikonútvonalra, egy másik eszközön is ugyanazokat a kulcsokat tudod előállítani.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.2 Tanuló fázis regisztrációkor</h3>
+      <p>Regisztrációkor háromszor mész végig az ikonútvonalon:</p>
+      <ul>
+        <li><strong>Első választás:</strong> kiválasztod az ikonútvonaladat.</li>
+        <li><strong>Támogatott gyakorlás:</strong> a helyes ikonok röviden pulzálnak, hogy segítsék a tanulást.</li>
+        <li><strong>Önálló megerősítés:</strong> segítség nélkül megismétled az útvonalat.</li>
+      </ul>
+      <p>Ez a tanító fázis abban segít, hogy az ikonok azonosságát jegyezd meg, ne a képernyőpozíciókat.</p>
+
+      <h3 style="margin-top: 2rem;">3.3 Bejelentkezés</h3>
+      <p>Normál belépéskor írd be a mesterjelmondatodat, majd válaszd ki ugyanazt az adaptív ikonútvonalat. A CarryPass több másodpercig is számolhat, mert az Argon2id szándékosan memóriaigényes. A kiválasztott ikon pulzál, amíg a számítás fut.</p>
+
+      <div class="warning">
+        <strong>Fontos:</strong> ha elfelejted a mesterjelmondatodat vagy az adaptív ikonútvonaladat, a CarryPass nem tudja helyreállítani. Nincs fiók, szerveroldali visszaállítás vagy hátsó ajtó.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>4. Csapat-széfek</h2>
+      <p>A <strong>CSAPATOK</strong> fül hozzáférést biztosít a titkosított hitelesítőadat-széfekhez, amelyeket egy admin állít be és oszt el a csapattagoknak. Minden tag csak a számára kiosztott hitelesítő adatokat látja.</p>
+
+      <div class="note">
+        Minden széf-művelet <strong>végponttól végpontig titkosított (E2EE)</strong>. A szerver és az admin soha nem látja a tagok jelszavait, és a fájl titkosítása az eszköz regisztrációjához van kötve — még egy kiszivárgott széf-fájl sem fejthető vissza a megbízható eszköz titka nélkül.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.1 Tagi hozzáférés — lépésről lépésre</h3>
+      <p>A csapat-széf első használatához egy egyszeri eszköz-regisztrációs lépést kell elvégezned.</p>
+
+      <div class="step-row"><span class="step-number">1</span><p><strong>Olvasd be a regisztrációs QR-kódot a CarryPass-szal.</strong> Használd a <span class="ui-label">Beolvasás</span> gombot a kamera megnyitásához, vagy a <span class="ui-label">Tallózás</span> gombot az admin által küldött QR-kép feltöltéséhez. Ez regisztrálja az eszközödet megbízhatóként, és helyben tárolja a titkosított tagazonosítódat és a TOTP-titkot.</p></div>
+      <div class="step-row"><span class="step-number">2</span><p><strong>Add meg a Tag hozzáférési jelszavadat</strong> a jelszómezőben. Ez az a jelszó, amelyet te választottál a csapattag véglegesítésekor.</p></div>
+      <div class="step-row"><span class="step-number">3</span><p><strong>Kattints a <span class="ui-label">Széf megnyitása</span> gombra.</strong> Ha a széf-fájl nincs előre betöltve, a mellette lévő <span class="ui-label">Tallózás</span> gombbal töltsd fel az admin által küldött <code>.json</code> fájlt.</p></div>
+
+      <p>Mostantól hozzáférsz a számodra kiosztott hitelesítő adatokhoz. Minden bejegyzés a szolgáltatás nevét, a felhasználónevet, a jegyzeteket és egy jelszót mutat, amelyet felfedhetsz és vágólapra másolhatsz.</p>
+
+      <div class="note">
+        <strong>Hogyan működik a visszafejtés:</strong> A tag-szakaszodat egy olyan kulccsal titkosítjuk, amely a jelszavadból <em>és</em> a megbízható eszközön tárolt TOTP-titokból van levezetve. Mindkét részre szükség van. Ezért fontos a QR-regisztráció — nélküle még a helyes jelszó sem nyitja meg a széfet. Nincs külön 6 jegyű kód, amit be kellene gépelni a belépésnél; a megbízható eszköz birtoklása az, ami kriptográfiailag azonosít.
+      </div>
+
+      <div class="note">
+        <strong>Megbízható eszköz jelző:</strong> A <i data-lucide="monitor-dot" class="icon-small"></i> <strong>Megbízható eszköz</strong> jelző a képernyő tetején jelenik meg, amikor az eszközöd regisztrált. A következő látogatások során már csak a Tag hozzáférési jelszóra lesz szükség — a QR-beolvasás egyszeri.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.2 Megbízhatóság megosztása másik eszközzel</h3>
+      <p>Ha egy második eszközön is használni szeretnéd a széfedet, kattints a Megbízható eszköz jelző melletti <i data-lucide="qr-code" class="icon-small"></i> gombra. Ez egy QR-kódot generál, amelyet a másik eszközön a CarryPass-szal beolvasva átviheted a megbízhatóságot — admin bevonása nélkül.</p>
+
+      <p>Alternatívaként a beállításaidat is exportálhatod a jelenlegi eszközön (menü <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Beállítások exportálása</span>), és importálhatod egy új eszközön. Az exportált fájl tartalmazza a megbízható-eszköz állapotodat is, a mesterjelmondatod és adaptív ikonútvonalad alatt titkosítva — vagyis az új eszközön először be kell jelentkezned a CarryPass-ba az importálás előtt. Ez egyfajta önállóan kezdeményezhető helyreállítási útvonal, ha elveszíted az eredeti eszközödet.</p>
+
+      <h3 style="margin-top: 2rem;">3.3 Széf lejárata</h3>
+      <p>A széfeknek lejárati dátuma lehet, amelyet az admin állít be. Két különböző lejárati fogalmat érdemes ismerni:</p>
+      <ul>
+        <li><strong>Széf lejárata</strong> — a globális lejárat, amelyet a panel tetején látsz. Ez csak tájékoztató jellegű — emlékezteti az admint a széf frissítésére, de nem akadályozza a hozzáférésedet.</li>
+        <li><strong>Saját hozzáférési lejáratod</strong> — egyéni hozzáférési záró dátum, amelyet az admin állít be. Ezután a dátum után nem nyithatod meg tagként a széfet, és kérned kell az admintól a hozzáférés meghosszabbítását.</li>
+      </ul>
+
+      <h3 style="margin-top: 2rem;">3.4 Admin széf</h3>
+      <p>Az admin egyszerűen egy olyan tag, akit a széf adminisztrátorának jelöltek. Egy széfnek mindig egyetlen adminja van. Az admin az <span class="ui-label">Admin széf megnyitása</span> belépőponton lép be, és a saját tagi jelszavát adja meg — ugyanazt a jelszót, amelyet egyszerű tagként is használna. Nincs külön „admin jelszó".</p>
+
+      <p>Az admin panelben az admin a következőket teheti:</p>
+      <ul>
+        <li><strong>Csapatok létrehozása</strong> — logikai csoportok a tagok és hitelesítő adatok rendszerezéséhez</li>
+        <li><strong>Tagok létrehozása</strong> — minden tag egyedi azonosítót és véglegesítéskor generált TOTP-titkot kap</li>
+        <li><strong>Tagok csapatokhoz rendelése</strong> — meghatározza, melyik tag mely hitelesítő adatokhoz férhet hozzá</li>
+        <li><strong>Hitelesítő adatok hozzáadása</strong> — szolgáltatás neve, URL, felhasználónév, jelszó és megjegyzések</li>
+        <li><strong>Tagok véglegesítése</strong> — a tag begépeli a jelszavát, a rendszer pedig generálja a regisztrációs QR-kódot</li>
+        <li><strong>Tag előléptetése adminná</strong> — a <span class="ui-label">Admin</span> kapcsoló bekapcsolásával egy másik tagot adminná tehetsz</li>
+        <li><strong>Széf exportálása</strong> — előállítja a titkosított <code>.json</code> fájlt a telepítéshez vagy terjesztéshez</li>
+        <li><strong>Audit napló exportálása</strong> — az aktuális munkamenet alatti admin műveletek rögzített naplója</li>
+      </ul>
+
+      <div class="note">
+        <strong>Fontos:</strong> Az admin szerepköre eszközöket biztosít a széf kezelésére, de a kriptográfiai védelem egységes — minden tag szakasza a saját jelszó+TOTP kombinált kulcsával van titkosítva.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.5 Tag létrehozása — Admin munkafolyamat</h3>
+      <div class="step-row"><span class="step-number">1</span><p>Az admin panelen menj a <span class="ui-label">Tagok</span> részhez → kattints az <span class="ui-label">Új tag létrehozása</span> gombra.</p></div>
+      <div class="step-row"><span class="step-number">2</span><p>Add meg a tag nevét.</p></div>
+      <div class="step-row"><span class="step-number">3</span><p>Kattints a <span class="ui-label">Tag létrehozása</span> gombra. A tag <em>Függőben</em> állapotban jelenik meg a listában.</p><p>Opcionálisan állíts be hozzáférési lejárati dátumot. Kapcsold be az <span class="ui-label">Admin</span> jelölőt, ha ezt a tagot adminná akarod tenni.</p></div>
+      <div class="step-row"><span class="step-number">4</span><p>Kattints a <span class="ui-label">Véglegesítés</span> gombra a függőben lévő tag neve mellett. A tag a saját jelszavát begépeli a te eszközödön. A rendszer friss TOTP-titkot generál, levezeti a tag titkosítási kulcsát a jelszó és TOTP kombinációjából, és előállít egy regisztrációs QR-kódot.</p></div>
+      <div class="step-row"><span class="step-number">5</span><p><strong>A QR-kódot körültekintően kell kezelni — lásd alább.</strong></p></div>
+      <div class="step-row"><span class="step-number">6</span><p>Rendeld a tagot egy vagy több csapathoz a <span class="ui-label">Hozzárendelések</span> részben.</p></div>
+      <div class="step-row"><span class="step-number">7</span><p>Kattints a <span class="ui-label">Széf exportálása</span> gombra, és telepítsd vagy oszd el a <code>.json</code> fájlt. Minden export rotálja az összes csapatkulcsot, így a leváltott tagok régi széf-fájljai már nem fognak passzolni az új fájlhoz.</p></div>
+
+      <div class="warning">
+        <strong>Kritikus: a QR-kód az egyetlen regisztrációs anyag.</strong> A QR-kód tartalmazza a tag TOTP-titkát — nélküle egyetlen eszköz sem tudja visszafejteni a széfet az adott tagnak, és a CarryPass nem rendelkezik helyreállítási mechanizmussal. Ajánlott kezelési mód:
+        <ul style="margin-top: 0.5rem;">
+          <li><strong>Legjobb módszer:</strong> A tag azonnal olvassa be a QR-kódot a saját eszközén (pl. telefonján) lévő CarryPass-szal a véglegesítési munkamenet alatt. Az ő eszköze ott helyben megbízható eszközzé válik, és te törölheted a QR-t a saját eszközödről.</li>
+          <li><strong>Emellett mindenképpen:</strong> A tag készítsen biztonsági másolatot a QR-ről (nyomtatás, fényképezés offline tárolóra, vagy mentés biztonságos offline helyre) <em>a törlés előtt</em>. Ez a helyreállítási hordozója arra az esetre, ha elveszítené az eszközét.</li>
+          <li><strong>Ha a tag nem tud azonnal beolvasni:</strong> Nyomtasd ki a QR-t, vagy juttasd el a képet biztonságos csatornán keresztül, majd töröld a saját eszközödről. Ösztönözd, hogy tartsa meg a fizikai másolatot, és ne ugyanazon az eszközön tárolja, amelyet majd használni fog.</li>
         </ul>
       </div>
 
-      <div class="card">
-        <h3><i data-lucide="lock-keyhole" class="icon-small"></i> Hogyan védett</h3>
-        <ul>
-        <li><strong>Argon2id:</strong> Memóriaigényes algoritmus, amely lassítja a jelszavakat visszafejteni próbáló támadókat</li>
-        <li><strong>PBKDF2:</strong> Kriptográfiai kulcsot hoz létre a megadott adatok alapján</li>
-        <li><strong>AES-CTR:</strong> Ebből generálódik a biztonságos, reprodukálható jelszó</li>
-        <li><strong>Csak offline:</strong> Az összes művelet a böngésződben történik, semmilyen adat nem kerül továbbításra</li>
-        </ul>
+      <div class="warning">
+        <strong>Az adminnak is meg kell őriznie a saját biztonsági másolatát.</strong> Ha elveszíted a hozzáférést a megbízható eszközödhöz, és nincs QR-másolatod, nem tudsz helyreállni — a széf mindenki számára elérhetetlenné válik. Nyomtasd ki vagy más módon őrizd meg a saját regisztrációs QR-kódodat a saját eszközödről való törlése előtt. Kezeld úgy, mint bármely más helyreállítási kulcsot: tárold offline, olyan helyen, ahol csak te férsz hozzá.
+      </div>
+
+      <div class="note">
+        <strong>Bootstrap (első használat):</strong> Ha a CarryPass-t úgy nyitod meg, hogy nincs még létező széf, az admin belépőpont közvetlenül üres admin panelt nyit. Hozd létre magadat első tagként és véglegesítsd. Adj admin státuszt a véglegesített tagnak, így a széfnek mindig lesz adminja.
       </div>
     </div>
+  </section>
 
-    <div style="margin-top: 2rem;">
-      <h3>Először használod? Kövesd ezeket a lépéseket:</h3>
-      <ol>
-        <li>Válassz egy erős, csak általad ismert mesterjelszót</li>
-        <li>Írd be a szolgáltatás nevét (pl. "twitter.com")</li>
-        <li>Válaszd ki a karaktertípusokat és hosszúságot (az alapbeállítások biztonságosak)</li>
-        <li>Kattints a <strong>Get Password</strong> (jelszó létrehozása) gombra</li>
-        <li>Regisztrálj a választott szolgáltatásba, vagy cseréld le a szolgáltatásban használt jelszavadat egy CarryPass jelszóra</li>
-        <li>Bármikor újragenerálhatod ugyanazokkal a bemeneti adatokkal és beállításokkal ugyanazt a jelszót</li>
-      </ol>
-      <p><em>Tipp: Az alkalmazás el tudja menteni a jelszógenerálási beállításaidat (a jelszót nem!), így a későbbiekben könnyebben újragenerálhatók.</em></p>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <h2>5. Jelszógenerátor</h2>
+      <p>A <strong>JELSZAVAK</strong> fül <strong>determinisztikus</strong> modellt használ — ugyanazok a bemeneti adatok mindig ugyanazt a jelszót adják, így semmit sem kell tárolni vagy szinkronizálni. Bármely jelszót bármely eszközön újragenerálhatsz, akár offline is. Ez különösen hasznos a széfhez szükséges erős jelszavak előállításához.</p>
+
+      <div class="grid split" style="margin-top: 1.5rem;">
+        <div class="card">
+          <h3><i data-lucide="lock-keyhole" class="icon-small"></i> Hogyan védett</h3>
+          <ul>
+            <li><strong>Argon2id</strong> — memóriaigényes hash, amely ellenáll a brute-force támadásoknak, kétszer fut le (belépés + jelszavanként)</li>
+            <li><strong>HKDF-SHA256</strong> — domain-szeparált kulcsfolyam-bővítés</li>
+            <li><strong>Elutasítási mintavételezés</strong> — torzítatlan karakterválasztás a kulcsfolyamból</li>
+            <li>Minden a böngésződben fut — semmilyen adat nem kerül továbbításra</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="fingerprint" class="icon-small"></i> Mit irányítasz</h3>
+          <ul>
+            <li><strong>Szolgáltatás</strong> — az oldal neve vagy URL-je (pl. „github.com")</li>
+            <li><strong>Jelszótípus / beállítások</strong> — válassz sablont vagy állíts be kézzel</li>
+            <li><strong>Variáns titkos jelszó</strong> — a mesterjelszavad, soha nem kerül tárolásra</li>
+            <li><strong>Variáns</strong> — egy számláló, amellyel ugyanazokból a bemenetekből alternatív jelszavakat generálhatsz</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.1 Identitás mód — Ajánlott a mindennapi használathoz</h3>
+      <p>Ha az <span class="ui-label">Identitás mód</span> <strong>be van kapcsolva</strong> (alapértelmezett), a generátor <strong>jelszósablonokat</strong> használ. Minden sablon az összes technikai beállítást — karakterkészletet, hosszt és a variáns számot — egyetlen elnevezett opcióvá köti. Ez megszünteti a beállítások egyenkénti konfigurálásával járó mentális terhelést: egyszerűen add meg a szolgáltatás nevét, válassz egy sablont, és kapsz egy erős jelszót.</p>
+
+      <p>Beépített sablonok:</p>
+      <ul>
+        <li><strong>Strukturált</strong> — vegyes karakterek elválasztóval, magas entrópia</li>
+        <li><strong>Szimbólumok nélkül</strong> — csak betűk és számok, szimbólumokat nem fogadó oldalakhoz</li>
+        <li><strong>Rövid</strong> — kompakt kimenet hossz-korlátozott oldalakhoz</li>
+        <li><strong>Vegyes</strong> — változatos karaktereloszlás</li>
+        <li><strong>PIN 4 / PIN 6</strong> — csak számok, eszköz- vagy banki PIN-kódokhoz</li>
+        <li><strong>Hosszú</strong> — maximális hossz magas biztonságú fiókokhoz</li>
+        <li><strong>Jelmondat (EFF Hosszú/Rövid/Megjegyezhető)</strong> — szóalapú jelmondatok az EFF szólistáiból, könnyen megjegyezhetők és begépelhetők</li>
+      </ul>
+
+      <p>A <span class="ui-label">Jelszóvariáns</span> választó lehetővé teszi, hogy ugyanahhoz a sablonhoz több előre levezetett alternatíva közül válassz — hasznos, ha egy oldal jelszóváltást kér vagy ütköző követelményt támaszt. Ez egy gyors rotációs mechanizmus, amelyhez nem kell újragenerálni az alapoktól.</p>
+
+      <div class="note">
+        <strong>Egyéni sablonok:</strong> Ha egyik előre beállított sablon sem felel meg egy oldal követelményeinek, létrehozhatsz sajátot a menü <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Egyéni típus létrehozása</span> menüponton keresztül. Állítsd be egyszer a karaktertípusokat, hosszt és a variáns számot — majd használd név alapján bármely szolgáltatásnál, akárcsak a beépített opciókat.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.2 Manuális mód — Jelszógenerálás a fiók titkaitól függetlenül</h3>
+      <p>Ha az <span class="ui-label">Identitás mód</span> <strong>ki van kapcsolva</strong>, az összes beállítás egyenként elérhető: karakterkapcsolók, hossz és a variáns mező. Egy olyan <span class="ui-label">Variáns titkos jelszót</span> is megadhatsz, amely független a CarryPass mesterjelszavadtól.</p>
+
+      <p>A manuális mód elsődleges célja olyan jelszavak generálása, amelyek <em>kriptográfiai bemenete nem a CarryPass identitásod</em>. A leggyakoribb forgatókönyv:</p>
+      <ul>
+        <li><strong>Megosztott eszköz esetén</strong> — Egy csapattag az admin eszközén generálja a saját széf-hozzáférési jelszavát a saját titkával, majd később ugyanazokat a bemeneteket használva újragenerálja a saját eszközén. Az admin soha nem ismeri meg a tag titkát, és az így generált jelszó a tag által beírt bemenethez kötődik, nem az admin CarryPass identitásához.</li>
+        <li><strong>Egyszeri használatra</strong> — Ha gyors jelszóra van szükséged anélkül, hogy bármit is mentenél a CarryPass profilodba.</li>
+        <li><strong>Részletes vezérléshez</strong> — Ha olyan specifikus beállítás-kombinációra van szükség, amely nem illik egyetlen sablonba sem.</li>
+      </ul>
+
+      <div class="note">
+        Mivel a manuális módban a Variáns titkos jelszó elkülönül a CarryPass mesterjelszavadtól, az a személy, akinek az eszközén a generálás történik, soha nem ismeri meg a másik fél titkát. A manuális módban levezetett jelszó csak attól függ, amit a manuális mód mezőibe begépelnek.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.3 A Variáns mező</h3>
+      <p>A <span class="ui-label">Variáns</span> mező 1-től 99999-ig terjedő számokat fogad el. Ennek a számnak a megváltoztatása teljesen más jelszót eredményez ugyanazokból a többi bemenetekből. A célja, hogy alternatív jelszavakat tudj generálni anélkül, hogy bármi mást megváltoztatnál — hasznos, amikor egy jelszót kell rotálnod, de meg akarod tartani ugyanazt a sablont, hosszt és karakterbeállításokat.</p>
+
+      <p>Például: ha egy GitHub jelszóváltás miatt új jelszóra van szükséged, megtarthatsz minden más bemenetet azonos formában, és csak a Variáns számot inkrementálod. Az új jelszó nem kapcsolódik a régihez, de minden más változatlan marad.</p>
+
+      <p>Az érték alapértelmezetten rejtett — kattints mellette a <span class="ui-label">Megjelenít</span> gombra a felfedéséhez. <strong>Jegyezd fel a használt Variáns számot szolgáltatásonként</strong>, mert a jelszó későbbi újragenerálásához ugyanazt a számot kell megadnod. Tekintsd a bemenet részének, nem biztonsági beállításnak.</p>
+
+      <div class="note">
+        A Variáns mező csak egy számláló. A bemenet része: a módosítása megváltoztatja a generált kimenetet, de önmagában nem biztonsági beállítás. A generált jelszavak erőssége elsősorban a Mesterjelszó erősségétől, valamint a választott jelszóhossztól és karakterkészlettől függ.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.4 Beállítások helyi mentése (csak Identitás módban)</h3>
+      <p><strong>Identitás módban</strong> a jelszó generálása után kattints a kártyán a <span class="ui-label">Mentés helyileg</span> gombra. Ez elmenti a <em>beállításokat</em> (szolgáltatás neve, sablon vagy karakterkonfiguráció, variáns) — <strong>magát a jelszót nem</strong> — titkosítva a böngésző helyi tárolójában.</p>
+      <p>A mentett szolgáltatások a bal oldali panelen jelennek meg. Bármelyikre kattintva azonnal visszatölthetők a beállítások és újragenerálható a jelszó.</p>
+
+      <div class="note">
+        <strong>A mentett beállítások nem érhetők el Manuális módban.</strong> A manuális módban használt Variáns titkos jelszó használatonként külön beírt titok — pillanatnyilag begépelve, majd elfelejtve. A beállítások mentése vagy magát a jelszót is mentené (amit a CarryPass nem tesz), vagy haszontalan beállításokat mentene a kimenet előállításához szükséges titok nélkül. A manuális mód efemer, igény szerinti munkafolyamatokra készült; az identitás mód az, amely támogatja a mentett-szolgáltatások funkciót.
+      </div>
+
+      <p>A mentett beállításokat titkosított fájlként exportálhatod (a menü <i data-lucide="menu" class="icon-small"></i> ikonon keresztül) és importálhatod egy másik eszközre. Az exportált fájl tartalmazza a csapat-széfekhez szükséges megbízható-eszköz állapotot is, így önállóan kezdeményezhető helyreállítási útvonalat biztosít, ha elveszíted az eszközhöz való hozzáférést.</p>
+
+      <div class="note">
+        <p>Mivel a mentett beállítások a böngésző helyi tárhelyén tárolódnak, érdemes őket rendszeresen exportálni, ha számítasz rájuk. A helyi böngészőadatok elveszhetnek, ha törlöd a webhelyadatokat, alaphelyzetbe állítod a böngészőt, újratelepíted az alkalmazást, takarítóprogramot használsz, vagy ha a böngésző automatikusan eltávolítja a tárolt adatokat. A CarryPass nem tart fenn szerveroldali biztonsági mentést, ezért a titkosított exportfájl az ajánlott módja annak, hogy visszaállítható másolatod legyen.</p>
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.5 Adathalászat elleni védelem mentett szolgáltatásokkal</h3>
+      <p>Mivel a jelszavak determinisztikusan a beírt szolgáltatásnévből származnak, már egy karakternyi különbség is teljesen más jelszót eredményez. A CarryPass egy látható egyezésjelzővel alakítja ezt a tulajdonságot adathalászat elleni védelemmé:</p>
+      <ul>
+        <li>A <strong>zöld jelző</strong> azt jelenti, hogy a megadott szolgáltatásnév vagy cím — akár kézzel írtad be, akár a böngésző címsorából másoltad be — pontosan megegyezik egy korábban mentett szolgáltatással.</li>
+        <li>A <strong>piros jelző</strong> azt jelenti, hogy a beírt név nem egyezik egyetlen mentett szolgáltatással sem — vagy elgépelés, vagy adathalászati hasonmás.</li>
+      </ul>
+      <p>A jelző tájékoztató jellegű, nem blokkoló — de lehetőséget ad az URL ellenőrzésére, mielőtt egy esetleg hamisított oldalra generálnál hitelesítő adatokat.</p>
+
+      <h3 style="margin-top: 2rem;">4.6 Képernyőzár</h3>
+      <p>A menü <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Képernyőzár beállítása</span> menüponton keresztül beállíthatsz egy képernyőzár-kódot. A kódnak legalább 6 karakter hosszúságúnak kell lennie. Inaktivitás után az alkalmazás automatikusan lezáródik, és a folytatáshoz a képernyőzár-kód szükséges. Ez védelmet nyújt közös eszközön való alkalmi hozzáféréssel szemben anélkül, hogy újra be kellene írnod a mesterjelszót és az adaptív ikonútvonalat.</p>
+
+      <p>A képernyőzár kényelmi felületi védelem, nem erős kriptográfiai határ. Három hibás próbálkozás törli a memóriában lévő állapotot, és teljes újrahitelesítést kényszerít ki. A külön teljes munkamenet-inaktivitási időkorlát tovább csökkenti azt az időablakot, amelyben egy lezárt képernyő támadható maradhat. Az alapértelmezett érték 30 perc, de ezt a felhasználó módosíthatja a biztonsági beállításokban.</p>
+
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>6. Opcionális: Titkosított helyi tárolás</h2>
+      <p>Lehetőséged van a jelszó <em>beállításait</em> (nem a jelszót magát) titkosítva elmenteni a böngésző helyi tárolójába a kényelmesebb használat érdekében.</p>
+      <ul>
+        <li>Ez a funkció identitás módban megjegyzi a szolgáltatásonkénti kedvenc beállításaidat.</li>
+        <li>Az adatokat a mesterjelszavadból és adaptív ikonútvonaladból levezetett munkamenet-kulccsal titkosítjuk helyben.</li>
+        <li>Az alkalmazáson belül bármikor törölheted ezeket az adatokat.</li>
+        <li>Lehetőség van az adatok exportálására is, ha eszközt cserélsz — hasznos egy új eszközre való átálláshoz.</li>
+      </ul>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
-      <h2>4. Opcionális: Titkosított Helyi Tárolás</h2>
-      <p>Lehetőséged van a jelszó <em>beállításaidat</em> (nem a jelszót magát) titkosítva elmenteni a böngésződ helyi tárolójába a kényelmesebb használat érdekében.</p>
+      <h2>7. Biztonsági tippek</h2>
       <ul>
-        <li>Ez a funkció megjegyzi a szolgáltatásonkénti kedvenc beállításaidat.</li>
-        <li>Az adatokat saját jelszóval (az alkalmazásazonosítóval) titkosítja.</li>
-        <li>Bármikor törölheted ezeket az adatokat az alkalmazáson belül.</li>
-        <li>Lehetőség van az adatok exportálására is, ha eszközt cserélsz.</li>
+        <li>Használj erős mesterjelmondatot — legalább 16 karakter, ideálisan szóalapú jelmondat. A CarryPass a regisztrációkor Diceware javaslatot is kínál, ami segít.</li>
+        <li>Használj következetes és egyértelmű szolgáltatásnév-formátumot (pl. mindig <code>github.com</code>, soha <code>GitHub</code>).</li>
+        <li>Soha ne oszd meg a mesterjelmondatodat vagy a tagi hozzáférési jelszavadat senkivel.</li>
+        <li>Tarts biztonsági másolatot a csapat-széf regisztrációs QR-kódodról egy biztonságos offline helyen. Ez az egyetlen helyreállítási útvonalad, ha elveszíted az eszközödet.</li>
+        <li>Töröld a helyi tárolót, ha eszközt cserélsz vagy átadod az eszközödet.</li>
+        <li>Tartsd a megbízható eszközödet a saját ellenőrzésed alatt — ezen tárolódik a TOTP-titok, ami a jelszavaddal kombinálva visszafejti a széf-szakaszodat.</li>
+        <li>Időszakosan exportáld a beállításaidat (menü → Beállítások exportálása), hogy helyre tudd állítani a hozzáférést, ha elveszítenéd az eszközt.</li>
       </ul>
     </div>
   </section>
 
   <section class="section alt">
     <div class="container">
-      <h2>5. Csoportkonfigurációk & Admin Beállítások</h2>
-      <p>A CarryPass lehetőséget ad az adminok számára, hogy titkosított jelszótárolókon keresztül biztonságosan osszanak meg hozzáféréseket a csoporttagokkal, QR-kódos beléptetéssel.</p>
-      <ul>
-        <li>Az admin titkosítja a hitelesítő adatokat csoportonként vagy felhasználónként.</li>
-        <li>Minden felhasználó saját azonosítóval és jelszóval (opcionálisan TOTP kóddal) fér hozzá a saját tárolójához.</li>
-        <li>A jelszótárolók lejárhatnak (biztonsági funkció), és ellenőrzésre kerülnek egy ellenőrzőösszeggel (checksum; hamisítás elleni védelem).</li>
-        <li>Az adminisztrátor nem látja sem a csoporttagok, sem a csoportok jelszavait.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>6. Biztonsági Tippek</h2>
-      <ul>
-        <li>Használj erős mesterjelszót (minimum 12 karakter).</li>
-        <li>Kerüld az általános vagy rövid szolgáltatásnevek újrafelhasználását.</li>
-        <li>Ugyanazokkal a bemenetekkel bármely eszközön újra létrehozhatod a jelszavaidat.</li>
-        <li>Ha új eszközre váltasz, vagy átadod a meglévőt, töröld a helyi tárolót.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="container">
-      <h2>7. Gyakran Ismételt Kérdések</h2>
+      <h2>8. Gyakran ismételt kérdések</h2>
       <details class="faq-item">
-        <summary>Mi történik, ha elfelejtem a mesterjelszót?</summary>
-        <p>Nem lehet visszaállítani a jelszót. A CarryPass soha nem tárolja. De ha emlékszel ugyanazokra a bemenetekre (szolgáltatás neve + mesterjelszó), a jelszó mindig újra előállítható.</p>
+        <summary>Hogyan érem el a széfemet egy új vagy második eszközön?</summary>
+        <p><strong>Második eszköz esetén</strong>, amelyet már használsz: kattints a Megbízható eszköz jelző melletti <i data-lucide="qr-code" class="icon-small"></i> gombra az átviteli QR-kód generálásához. Olvasd be a CarryPass-szal az új eszközön — admin bevonása nélkül.</p>
+        <p><strong>Teljesen új eszköz esetén</strong> (pl. telefoncsere után): ha korábban exportáltad a beállításaidat, importálhatod a fájlt az új eszközön, miután bejelentkeztél a CarryPass-ba. Ha megvan a fizikai másolatod a regisztrációs QR-ről, beolvashatod azt az új eszközön. Ha egyik sem áll rendelkezésre, kérd meg az admint, hogy adja ki újra a QR-kódodat.</p>
       </details>
       <details class="faq-item">
-        <summary>Elmentésre kerülnek a jelszavak?</summary>
-        <p>Nem. A jelszavakat mindig újraszámítja az alkalmazás. Csak a beállításokat lehet opcionálisan titkosítva elmenteni — mást nem.</p>
+        <summary>Miért nincs 6 jegyű TOTP-kód, amit be kellene gépelni?</summary>
+        <p>A CarryPass a TOTP-titkot közvetlenül kriptográfiai kulcstényezőként használja, nem begépelt kódként. A megbízható eszközödön tárolt titok a jelszavaddal együtt vezeti le a visszafejtő kulcsot. A széf eléréséhez nincs szükséged hitelesítő alkalmazásra — a megbízható eszköz birtoklása azonosít. Ez egyszerűsíti a belépést, miközben erősíti a kriptográfiai védelmet: aki megszerzi a széf-fájlt, de nincs nála az eszközöd, nem tud visszafejteni semmit, függetlenül attól, milyen jól tippel a jelszavadra.</p>
       </details>
       <details class="faq-item">
-        <summary>Át tudom vinni a CarryPass-t másik eszközre?</summary>
-        <p>Igen. Mivel a CarryPass nem tárol hitelesítő adatokat, elég csak újra telepíteni az új eszközön. Ugyanazokat a bemeneteket használva ugyanazokat az eredményeket kapod.</p>
+        <summary>Látja az admin a hitelesítő adataimat vagy jelszavaimat?</summary>
+        <p>Nem. Minden tag szakasza a saját jelszó+TOTP titokkal levezetett kulccsal van titkosítva. A tag-jelszavadat csak te ismered.</p>
       </details>
       <details class="faq-item">
-        <summary>Biztonságos a CarryPass internet nélkül is?</summary>
-        <p>Igen. Kifejezetten offline használatra készült. Minden titkosítási művelet a böngészőben történik, szabványos AES, PBKDF2 és Argon2id algoritmusokkal.</p>
+        <summary>Mi a különbség a széf lejárata és a hozzáférési lejárat között?</summary>
+        <p>A <strong>széf lejárata</strong> tájékoztató jellegű — emlékezteti az admint a széf frissítésére. Nem akadályozza a hozzáférésedet. A <strong>személyes hozzáférési lejáratod</strong> az admin által beállított dátum, amely valóban blokkolja a hozzáférésed a dátum elérése után.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Szükséges az internet a CarryPass használatához?</summary>
+        <p>Nem. A CarryPass PWA-ként telepítve teljesen offline működésre lett tervezve. A széf-fájl helyben tárolódik, minden kriptográfiai művelet a böngésződben fut, a jelszógenerátor pedig soha nem lép kapcsolatba egyetlen szerverrel sem. Internetkapcsolat csak az első telepítéshez és az admintól érkező új széf-fájl fogadásához szükséges.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Mi van, ha elfelejtem a Tag hozzáférési jelszavamat?</summary>
+        <p>Nincs helyreállítási lehetőség — sehol nem kerül tárolásra. Lépj kapcsolatba az adminisztrátorral, aki új jelszóval tud újra véglegesíteni a tagbejegyzésedet, és kibocsát neked egy új regisztrációs QR-kódot.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Mi van, ha elfelejtem a jelszógenerátor mesterjelmondatát?</summary>
+        <p>Nincs helyreállítási lehetőség — a CarryPass soha nem tárolja. Ha emlékszel az összes bemeneti adatra (szolgáltatás neve, mesterjelmondat, hossz, variáns, karakterbeállítások), ugyanaz a jelszó mindig újragenerálható. Ha a mesterjelmondat elvész, azok a generált jelszavak nem állíthatók vissza.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Miért eredményez teljesen más jelszót a szolgáltatásnév kis megváltoztatása?</summary>
+        <p>A szolgáltatásnév a kriptográfiai bemenet része. Még egyetlen karakternyi különbség is — egy nagybetű, egy záró perjel, egy szóköz — teljesen más kimenetet eredményez. Ez szándékos: adathalászat elleni védelmet biztosít, mivel egy hasonmás domain (<code>paypa1.com</code> vs <code>paypal.com</code>) más jelszót generál, ami nem fog működni a valódi oldalon. Használj következetes formátumot az elejétől fogva, például mindig <code>github.com</code> legyen, ne váltogasd <code>GitHub</code>-bal.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Több csapat is lehet ugyanabban a széfben?</summary>
+        <p>Igen — ez a tervezett működés. Egyetlen széf több csapatot is tartalmazhat, mindegyiknek saját hitelesítő adataival és tagjaival. Minden tag csak azt látja, amihez hozzá van rendelve. Az admin egyetlen helyről kezeli az összes csapatot, és egyetlen széf-fájlt exportál.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Mire való az „Admin" kapcsoló a tagnál?</summary>
+        <p>Az <span class="ui-label">Admin</span> kapcsoló jelöli ki, hogy melyik tag a széf adminisztrátora. Egy adott pillanatban pontosan egy tag rendelkezhet ezzel a jelöléssel. Ha egy másik tagot adminná teszel (és a saját kapcsolódat kikapcsolod), admin-átadás történik — a következő export után az új admin kezeli a széfet. A legtöbb tagnak soha nem kell foglalkoznia ezzel a kapcsolóval; csak a kezdeti beállításnál vagy admin-átadásnál használt.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Mire való a Variáns mező?</summary>
+        <p>A Variáns egy szám (1–99999), amely lehetővé teszi, hogy ugyanazokból a bemenetekből alternatív jelszavakat generálj. Ha egy szolgáltatás kötelező jelszóváltást ír elő, inkrementálhatod a Variánst, és minden más bemenetet azonos formában tarthatsz — az új jelszó nem kapcsolódik a régihez, de minden más változatlan marad. Jegyezd fel a használt értéket szolgáltatásonként, mert ugyanazon jelszó újragenerálásához ugyanaz a Variáns kell.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Menthetek beállításokat Manuális módban?</summary>
+        <p>Nem. A mentett beállítások csak Identitás módban érhetők el. A manuális mód külön begépelt Variáns titkos jelszót használ, amely nem a CarryPass identitásodból származik, így a mentett beállítások haszontalanok lennének a kimenet előállításához szükséges titok nélkül. A manuális mód efemer, igény szerinti munkafolyamatokra készült — jellemzően olyan jelszó generálására, amelynek kriptográfiai bemenete nem a CarryPass mesterjelmondatod.</p>
       </details>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2022–2025 CarryPass. Adatvédelemre építve.</p>
+      <p>&copy; 2022–<span class="current-year"></span> CarryPass. Adatvédelemre építve.</p>
     </div>
   </footer>
 
   <script>
     lucide.createIcons();
+    document.addEventListener("DOMContentLoaded", setCurrentYear);
+
+    function setCurrentYear() {
+      const year = new Date().getFullYear();
+
+      document.querySelectorAll(".current-year").forEach(el => {
+        el.textContent = year;
+      });
+    }  
   </script>
 </body>
 </html>

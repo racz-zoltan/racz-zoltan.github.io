@@ -51,7 +51,7 @@
         <ul>
             <li><strong>No Data Collection:</strong> CarryPass does not collect or transmit personal information. All data is handled locally in your browser or device.</li>
             <li><strong>Privacy by Design:</strong> Encryption, password generation, and vault operations are implemented fully client-side, requiring no network connection or backend processing.</li>
-            <li><strong>Protection by Default:</strong> All sensitive data such as vaults and TOTP secrets are encrypted automatically using AES-GCM and PBKDF2, without optional user steps.</li>
+            <li><strong>Protection by Default:</strong> All sensitive data such as vaults and TOTP secrets are encrypted automatically using AES-GCM and Argon2id, without optional user steps.</li>
             <li><strong>User Control:</strong> Only the user can access or export data. Optional QR code exports are encrypted and handled entirely on-device.</li>
         </ul>
         <p>
@@ -74,10 +74,10 @@
 
         <h3>General Privacy Inquiries</h3>
         <p>For questions about this Privacy Policy or your personal data, please contact:  
-        <br><strong>Email:</strong> <a href="mailto:info.carrypass@proton.me">info.carrypass@proton.me</a></p>
+        <br><strong>Email:</strong> carrypass-info [at] proton.me</p>
 
-        <h3>Custom Deployment Requests (Companies Only)</h3>
-        <p>CarryPass offers limited customization (e.g., algorithm changes or visual adjustments) exclusively to verified companies and organizations located in the European Union. We collect the following data to evaluate such requests:</p>
+        <h3>Custom Deployment Requests (Companies and Verified Organizations Only)</h3>
+        <p>CarryPass offers limited customization (e.g., algorithm changes, hosting consultation, or visual adjustments) exclusively to verified companies and organizations located in the European Union. We collect the following data to evaluate such requests:</p>
         <ul>
         <li>Email address</li>
         <li>Your name (if given)</li>
@@ -86,16 +86,27 @@
         </ul>
         <p>I do not use this information for marketing or any unrelated purpose. Data is deleted once no longer necessary.</p>
 
-        <p><strong>Note:</strong> Requests from private individuals or unverifiable entities may be disregarded. CarryPass is an open-source, privacy-first project. Individual users are invited to participate in the community discussion on the <a href="https://discuss.privacyguides.net/t/carrypass-stateless-password-credential-manager-with-zero-cloud-dependency/28347" target="_blank">Privacy Guides Showcase Forum</a>.</p>
+        <p><strong>Note:</strong> Requests from private individuals or unverifiable entities may be disregarded. CarryPass is an open-source, privacy-first project. Individual users are invited to participate in the discussion section on the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank">GitHub Discussions Forum</a>.</p>
 
-        <p><strong>Business Contact Email:</strong> <a href="mailto:info.carrypass@proton.me">info.carrypass@proton.me</a></p>
+        <p><strong>Business Contact Email:</strong> carrypass-info [at] proton.me</p>
 
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2022-2025 CarryPass. Built for privacy. All rights reserved.</p>
+            <p>&copy; 2022-<span class="current-year"></span> CarryPass. Built for privacy.</p>
         </div>
     </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", setCurrentYear);
+
+    function setCurrentYear() {
+    const year = new Date().getFullYear();
+
+    document.querySelectorAll(".current-year").forEach(el => {
+        el.textContent = year;
+    });
+    }
+</script>
 </body>
 </html>

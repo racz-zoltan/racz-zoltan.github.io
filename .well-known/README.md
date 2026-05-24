@@ -1,31 +1,40 @@
-# 📁 .well-known/
+# 📁 `.well-known/`
 
 This folder contains standard public metadata files used by security researchers, browsers, and automated tools to interact with **CarryPass** in a structured, privacy-aware way.
 
-These files follow [IETF standards](https://datatracker.ietf.org/doc/html/rfc8615) and are **publicly accessible** at:
+These files follow the general `.well-known` convention defined by RFC 8615 and are intentionally public.
 
-- 🔗 [https://carrypass.net/.well-known/security.txt](https://carrypass.net/.well-known/security.txt)
+Public endpoint:
 
-> Note: If hosted via GitHub Pages, a `.nojekyll` file must exist in the project root to ensure `.well-known/` is correctly published.
+- `https://carrypass.net/.well-known/security.txt`
+
+> **GitHub Pages note:** if this project is hosted through GitHub Pages, a `.nojekyll` file should exist in the project root. This helps ensure that the `.well-known/` directory is published correctly.
 
 ---
 
 ## 📄 Included Files
 
-| File                  | Description                                                                 |
-|-----------------------|-----------------------------------------------------------------------------|
-| `security.txt`        | Contact and disclosure policy for ethical hackers (per [RFC 9116](https://datatracker.ietf.org/doc/html/rfc9116)) |
-| `README.md`           | This document explaining the purpose of the `.well-known/` folder           |
-| *(optional)* `change-password` | Used by some browsers for password change automation *(not yet implemented)*  |
+| File | Purpose |
+|---|---|
+| `security.txt` | Security contact and responsible disclosure metadata for researchers and automated tools. |
+| `README.md` | This explanatory document for humans browsing the repository. |
+| `change-password` | Placeholder note only. CarryPass does not use account-based passwords or server-side password reset flows. |
 
 ---
 
 ## 🛠️ Implementation Notes
 
-- `.well-known/` is intended for **automated tools**. Humans typically don’t visit it, but when they do via GitHub, this `README.md` helps clarify intent.
-- Files placed here should be **plaintext and standardized** — not JavaScript or app logic.
-- You should avoid placing private files here.
+- `.well-known/` is intended for **automated tools**. Humans typically do not visit it, but when they do via GitHub, this `README.md` helps clarify the purpose of the folder.
+- The `change-password` file is included only to explain that CarryPass has no central account password to change. If a real account-based password change flow is ever introduced, this file should be replaced with a proper redirect or endpoint.
 
 ---
 
-If you have any questions about this folder or would like to suggest improvements to CarryPass's security policy, please see [SECURITY.md](../SECURITY.md).
+## 🔐 CarryPass Context
+
+CarryPass is a client-side, privacy-first credential sharing and password generation system. It does not provide user accounts, server-side password storage, or central password recovery.
+
+For this reason, `.well-known/security.txt` is used only to publish a security contact and disclosure policy. It does not imply that CarryPass stores user credentials or manages user accounts on a server.
+
+For vulnerability reporting and disclosure guidance, see:
+
+- [`SECURITY.md`](../SECURITY.md)

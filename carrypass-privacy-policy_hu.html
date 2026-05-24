@@ -51,7 +51,7 @@
         <ul>
             <li><strong>Nincs adatgyűjtés:</strong> A CarryPass nem gyűjt és nem továbbít semmilyen személyes adatot. Minden adatkezelés helyileg, a felhasználó böngészőjében vagy eszközén történik.</li>
             <li><strong>Beépített adatvédelem:</strong> A titkosítás, jelszógenerálás és jelszó-beállítás tárolás teljes mértékben offline, kliensoldalon működik – nincs szükség hálózati kapcsolatra vagy szerverre.</li>
-            <li><strong>Alapértelmezett védelem:</strong> Az érzékeny adatok (például a jelszótárolók és TOTP titkok) automatikusan AES-GCM és PBKDF2 algoritmusokkal kerülnek titkosításra, a felhasználó külön beavatkozása nélkül.</li>
+            <li><strong>Alapértelmezett védelem:</strong> Az érzékeny adatok (például a jelszótárolók és TOTP titkok) automatikusan AES-GCM és Argon2id algoritmusokkal kerülnek titkosításra, a felhasználó külön beavatkozása nélkül.</li>
             <li><strong>Felhasználói ellenőrzés:</strong> Az adatok kizárólag a felhasználó által érhetők el vagy exportálhatók. Az opcionális QR-kód exportálás is teljes egészében helyben, titkosítva történik.</li>
         </ul>
         <p>
@@ -73,10 +73,10 @@
 
         <h3>Általános adatvédelmi megkeresések</h3>
         <p>Az Adatkezelési Tájékoztatóval vagy személyes adatai kezelésével kapcsolatban kérjük, írjon az alábbi címre:  
-        <br><strong>E-mail:</strong> <a href="mailto:info.carrypass@proton.me">info.carrypass@proton.me</a></p>
+        <br><strong>E-mail:</strong> carrypass-info [at] proton.me</p>
 
-        <h3>Egyedi testreszabási kérelmek (csak vállalatok számára)</h3>
-        <p>A CarryPass korlátozott testreszabási lehetőségeket kínál (pl. algoritmusmódosítások vagy vizuális testreszabás) kizárólag az Európai Unió területén bejegyzett, hitelesített vállalatok és szervezetek számára. Az ilyen kérelem értékeléséhez az alábbi adatokat kérhetemk:</p>
+        <h3>Egyedi testreszabási kérelmek (csak vállalatok, regisztrált szervezetek számára)</h3>
+        <p>A CarryPass korlátozott testreszabási lehetőségeket kínál (pl. algoritmusmódosítások, hostolási tanácsadás vagy vizuális testreszabás) kizárólag az Európai Unió területén bejegyzett, hitelesített vállalatok és szervezetek számára. Az ilyen kérelem értékeléséhez az alábbi adatokat kérhetemk:</p>
         <ul>
         <li>E-mail cím</li>
         <li>Az Ön neve (ha megadja)</li>
@@ -85,9 +85,9 @@
         </ul>
         <p>Ezek az információk kizárólag a kérés értékelésére és megválaszolására szolgálnak. Nem használom marketing célokra, és törölöm, amint az adatkezelés célja megszűnik.</p>
 
-        <p><strong>Figyelem:</strong> A magánszemélyektől vagy nem ellenőrizhető forrásból érkező kérelmeket válasz nélkül figyelmen kívül hagyhatom. A CarryPass nyílt forráskódú, adatvédelmet előtérbe helyező projekt. Az egyéni felhasználókat arra bátorítom, hogy a közösségi fórumon, a <a href="https://discuss.privacyguides.net/t/carrypass-stateless-password-credential-manager-with-zero-cloud-dependency/28347" target="_blank">Privacy Guides Project Showcase</a> szekcióban vegyenek részt a megbeszélésekben, kérdéseik, ötleteik megosztásával.</p>
+        <p><strong>Figyelem:</strong> A magánszemélyektől vagy nem ellenőrizhető forrásból érkező kérelmeket válasz nélkül figyelmen kívül hagyhatom. A CarryPass nyílt forráskódú, adatvédelmet előtérbe helyező projekt. Az egyéni felhasználókat arra bátorítom, hogy a dedikált fórumon, a <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank">GitHub Discussions</a> szekcióban vegyenek részt a megbeszélésekben, kérdéseik, ötleteik megosztásával.</p>
 
-        <p><strong>Vállalati kapcsolattartás e-mail címe:</strong> <a href="mailto:info.carrypass@proton.me">info.carrypass@proton.me</a></p>
+        <p><strong>Vállalati kapcsolattartás e-mail címe:</strong> carrypass-info [at] proton.me</p>
         <p>Az Adatkezelő az adatkezelést kizárólag a fent megjelölt adatkezelési célok érdekében, azok megvalósításához szükséges mértékben és módon, megfelelő jogalappal végzi.</p>
         <p>A jelen tájékoztatóban fel nem sorolt – vagyis új – adatkezelésekről az adat felvételekor nyújtok külön tájékoztatást.</p>
         </div>
@@ -95,8 +95,19 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2022-2025 CarryPass. Adatvédelemre építve. Minden jog fenntartva.</p>
+            <p>&copy; 2022-<span class="current-year"></span> CarryPass. Adatvédelemre építve.</p>
         </div>
     </footer>
+<script>
+document.addEventListener("DOMContentLoaded", setCurrentYear);
+
+function setCurrentYear() {
+  const year = new Date().getFullYear();
+
+  document.querySelectorAll(".current-year").forEach(el => {
+    el.textContent = year;
+  });
+}
+</script>
 </body>
 </html>

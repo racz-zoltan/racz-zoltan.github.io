@@ -17,6 +17,48 @@
       border-bottom: 1px solid #ddd;
       padding-bottom: 0.5rem;
     }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--color-gold, #b8972a);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .step-row p {
+      margin: 0;
+    }
+    .ui-label {
+      font-weight: bold;
+      font-style: normal;
+    }
+    .note {
+      background: var(--color-surface, #f5f5f5);
+      border-left: 3px solid var(--color-gold, #b8972a);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .warning {
+      background: var(--color-surface, #fff5f0);
+      border-left: 3px solid #c0504d;
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
@@ -38,7 +80,7 @@
   <section class="section alt">
     <div class="container">
       <h2>1. Introduction</h2>
-      <p>CarryPass is a privacy-first, deterministic password and credential manager designed for offline use. It does not store your passwords — instead, it regenerates them securely on demand based on inputs you control.</p>
+      <p>CarryPass is a privacy-first credential manager designed for offline use. It lets teams securely share credentials through end-to-end encrypted vaults, with QR-based device enrollment and per-member access control — no cloud, no third party involved. It also includes a deterministic password generator: a tool that calculates strong passwords on demand without ever storing them, which comes in especially handy for generating the high-entropy passwords the vault requires.</p>
     </div>
   </section>
 
@@ -50,14 +92,14 @@
       <div class="grid split">
         <div class="card">
           <h3><i data-lucide="monitor-smartphone" class="icon-small"></i> Install on Desktop</h3>
-          <p>Open CarryPass in a compatible browser such as <strong>Chrome</strong> or <strong>Edge</strong> Look for the <strong>install icon</strong> in the address bar, then click it to install.</p>
+          <p>Open CarryPass in a compatible browser such as <strong>Chrome</strong> or <strong>Edge</strong>. Look for the <strong>install icon</strong> in the address bar, then click it to install.</p>
           <p>Optionally, pin it to your taskbar. You can now launch it like a regular app — even offline.</p>
         </div>
 
         <div class="card">
           <h3><i data-lucide="smartphone" class="icon-small"></i> Install on Mobile</h3>
-          <p>In <strong>Chrome</strong> <strong>Safari</strong> or <strong>Firefox</strong> open the CarryPass website and tap the <strong>Share</strong> icon (a square with an upward arrow).</p>
-          <p>Then tap <strong>“Add to Home Screen”</strong> and confirm with <strong>“Add”</strong> CarryPass now behaves like a native app — offline and just a tap away.</p>
+          <p>In <strong>Chrome</strong>, <strong>Safari</strong>, or <strong>Firefox</strong>, open the CarryPass website and tap the <strong>Share</strong> icon (a square with an upward arrow).</p>
+          <p>Then tap <strong>"Add to Home Screen"</strong> and confirm with <strong>"Add"</strong>. CarryPass now behaves like a native app — offline and just a tap away.</p>
         </div>
       </div>
 
@@ -71,116 +113,328 @@
   </section>
 
 
-<section class="section alt"> 
-  <div class="container">
-    <h2>3. Password Generator</h2>
-    <p>CarryPass uses a <strong>deterministic</strong> password generator. This means the same inputs will always produce the same secure password — without ever saving it. No syncing, no cloud, no leaks.</p>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>3. CarryPass Login and Adaptive Icons</h2>
+      <p>CarryPass login uses two things you can reproduce without any server: your master passphrase and an adaptive icon path. The app does not store your master secret. Instead, it rebuilds the same cryptographic key locally when you type the same passphrase and complete the same icon path.</p>
 
-    <div class="grid split">
-      <div class="card">
-        <h3><i data-lucide="fingerprint" class="icon-small"></i> How It Works</h3>
-        <ul>
-          <li><strong>Service Name:</strong> Like "facebook.com" or "My Bank"</li>
-          <li><strong>Master Password:</strong> Known only to you, never stored (same for all services, so you only have to remember one strong password)</li>
-          <li><strong>Length & Character set:</strong> Choose how long the generated password to be and what types of characters (letters, numbers, symbols) should it have</li>
-          <li><strong>Password Security:</strong> An advanced option to generate different outputs per service or version.</li>
+      <h3 style="margin-top: 2rem;">3.1 How the Icon Path Works</h3>
+      <p>After your passphrase reaches the required strength, CarryPass shows an icon grid automatically. You select icons by identity, not by position. The positions are randomized each session, so you should remember the icons themselves, not where they appeared.</p>
+      <p>The current profile uses three grids. On each grid, select four icons in order. After every icon selection CarryPass performs a memory-hard Argon2id calculation and uses the resulting state to derive the next step. When a grid is complete, the next grid appears automatically.</p>
+
+      <div class="note">
+        <strong>No extra recovery seed:</strong> the icon path remains stateless and deterministic. If you know your master passphrase and remember the same icon path, you can reproduce the same keys on another device.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.2 Registration Practice</h3>
+      <p>During registration you complete the icon path three times:</p>
+      <ul>
+        <li><strong>First selection:</strong> choose your icon path.</li>
+        <li><strong>Guided practice:</strong> the correct icons briefly pulse to help you learn them.</li>
+        <li><strong>Final confirmation:</strong> repeat the path without assistance.</li>
+      </ul>
+      <p>This teaching phase helps you remember icon identity instead of screen position.</p>
+
+      <h3 style="margin-top: 2rem;">3.3 Login</h3>
+      <p>On normal login, type your master passphrase and select the same adaptive icon path. CarryPass may take several seconds because Argon2id is intentionally memory-hard. The selected icon pulses while the calculation is running.</p>
+
+      <div class="warning">
+        <strong>Important:</strong> if you forget your master passphrase or adaptive icon path, CarryPass cannot recover it. There is no account, server-side reset, or backdoor.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>4. Team Vaults</h2>
+      <p>The <strong>TEAMS</strong> tab gives access to encrypted credential vaults that an admin has set up and distributed to team members. Each member can only see the credentials assigned to them.</p>
+
+      <div class="note">
+        All vault operations use <strong>end-to-end encryption (E2EE)</strong>. The server and admin never see member passwords, and the file's encryption is tied to the device's enrollment — even a leaked vault file cannot be decrypted without the trusted device's secret.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.1 Member Access — Step by Step</h3>
+      <p>To access your team vault for the first time you need to complete a one-time device enrollment step.</p>
+
+      <div class="step-row"><span class="step-number">1</span><p><strong>Scan your onboarding QR code with CarryPass.</strong> Use the <span class="ui-label">Scan</span> button to open the camera, or the <span class="ui-label">Browse</span> button to upload a QR image your admin provided. This enrolls your device as the trusted device and stores your encrypted member identifier and TOTP secret locally.</p></div>
+      <div class="step-row"><span class="step-number">2</span><p><strong>Enter your Member Access Password</strong> in the password field. This is the password you chose at member finalization.</p></div>
+      <div class="step-row"><span class="step-number">3</span><p><strong>Click <span class="ui-label">Access Vault</span>.</strong> If a vault file is not preloaded, use the <span class="ui-label">Browse</span> button next to it to upload the <code>.json</code> vault file your admin gave you.</p></div>
+
+      <p>You now have access to your assigned credentials. Each entry shows the service name, username, the notes, and a password you can reveal and copy.</p>
+
+      <div class="note">
+        <strong>How decryption works:</strong> Your member section is encrypted with a key derived from your password <em>combined with</em> the TOTP secret stored on your trusted device. Both halves are required. This is why the QR enrollment is essential — without it, even a correct password cannot decrypt the vault. There is no separate 6-digit code to type at unlock; possession of the trusted device is what proves your identity cryptographically.
+      </div>
+
+      <div class="note">
+        <strong>Trusted device indicator:</strong> A <i data-lucide="monitor-dot" class="icon-small"></i> <strong>Trusted Device</strong> indicator appears at the top of the screen when your device is enrolled. On subsequent visits you only need your Member Access Password — the QR scan is one-time.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.2 Sharing Trust with Another Device</h3>
+      <p>If you want to use your vault on a second device, click the <i data-lucide="qr-code" class="icon-small"></i> button next to the Trusted Device indicator. This generates a QR code you can scan with CarryPass on the other device to transfer trust — without involving your admin.</p>
+
+      <p>Alternatively, you can export your settings (menu <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Export Settings</span>) on your current device and import them on a new one. The exported file contains your trusted-device state, encrypted under your master password and adaptive icon path — meaning the new device must complete CarryPass login first before importing. This serves as a self-recovery path if you lose access to your original device.</p>
+
+      <h3 style="margin-top: 2rem;">3.3 Vault Expiry</h3>
+      <p>Vaults can have an expiry date set by the admin. There are two kinds of expiry to be aware of:</p>
+      <ul>
+        <li><strong>Vault expiry</strong> — the global expiry shown at the top of the panel. This is informational only — it reminds the admin to refresh the vault, but it does not block your access.</li>
+        <li><strong>Your access expiry</strong> — your individual access end date, set by the admin. After this date you will not be able to open the vault as a member, and you will need to ask the admin to extend your access.</li>
+      </ul>
+
+      <h3 style="margin-top: 2rem;">3.4 Admin Vault</h3>
+      <p>An admin is simply a member who has been flagged as the vault's administrator. There is only ever one admin per vault. To enter the admin panel, the admin uses the <span class="ui-label">Unlock Admin Vault</span> entry and provides their member password — the same password they would use as a regular member. There is no separate "admin password."</p>
+
+      <p>From the admin panel the admin can:</p>
+      <ul>
+        <li><strong>Create teams</strong> — logical groups for organising members and credentials</li>
+        <li><strong>Create members</strong> — each member gets a unique ID and a TOTP secret generated at finalization</li>
+        <li><strong>Assign members to teams</strong> — controls which credentials each member can access</li>
+        <li><strong>Add credentials</strong> — service name, URL, username, password, and notes</li>
+        <li><strong>Finalize members</strong> — the member types their password, the system generates the onboarding QR code</li>
+        <li><strong>Promote a member to admin</strong> — toggle the <span class="ui-label">Admin</span> flag on a member to designate them as the new admin</li>
+        <li><strong>Export the vault</strong> — produces the encrypted <code>.json</code> file to deploy or distribute</li>
+        <li><strong>Export the audit log</strong> — a record of admin actions during the current session</li>
+      </ul>
+
+      <div class="note">
+        <strong>Important:</strong> The admin's role gives them tools to manage the vault, but the cryptographic protections are uniform — every member's section is encrypted with their own combined password+TOTP key.
+      </div>
+
+      <h3 style="margin-top: 2rem;">3.5 Creating a Member — Admin Workflow</h3>
+      <div class="step-row"><span class="step-number">1</span><p>In the admin panel, go to <span class="ui-label">Members</span> → click <span class="ui-label">Create New Member</span>.</p></div>
+      <div class="step-row"><span class="step-number">2</span><p>Enter a member name.</p></div>
+      <div class="step-row"><span class="step-number">3</span><p>Click <span class="ui-label">Create Member</span>. The member appears in the list as <em>Pending</em>.</p><p>Optionally set an access expiry date. Toggle the <span class="ui-label">Admin</span> flag if you intend to promote this member to admin.</p></div>
+      <div class="step-row"><span class="step-number">4</span><p>Click <span class="ui-label">Finalize</span> next to the pending member's name. The member types their own password on your device. The system generates a fresh TOTP secret, derives the member's encryption key from password and TOTP combined, and produces an onboarding QR code.</p></div>
+      <div class="step-row"><span class="step-number">5</span><p><strong>Handle the QR code carefully — see below.</strong></p></div>
+      <div class="step-row"><span class="step-number">6</span><p>Assign the member to one or more teams via the <span class="ui-label">Assignments</span> section.</p></div>
+      <div class="step-row"><span class="step-number">7</span><p>Click <span class="ui-label">Export Vault</span> and deploy or distribute the <code>.json</code> file. Each export rotates all team keys, so previous vault files held by removed members will not match the new file.</p></div>
+
+      <div class="warning">
+        <strong>Critical: the QR code is the only enrollment material.</strong> The QR encodes the member's TOTP secret — without it, no device can decrypt the vault for that member, and CarryPass has no recovery mechanism. The recommended handling:
+        <ul style="margin-top: 0.5rem;">
+          <li><strong>Best:</strong> Have the member scan the QR with CarryPass on their own device (e.g. their phone) immediately during the finalization session. Their device becomes a trusted device on the spot, and you delete the QR from your device when done.</li>
+          <li><strong>Also do:</strong> The member should make a hard copy (print, photograph onto offline storage, or save to a secure offline location) <em>before</em> deletion. This is their recovery medium if they lose their device.</li>
+          <li><strong>If the member can't scan immediately:</strong> Print the QR or transfer the image to them through a secure channel, then delete it from your device. Encourage them to keep the hard copy and not store it on the same device they'll be using.</li>
         </ul>
       </div>
 
-      <div class="card">
-        <h3><i data-lucide="lock-keyhole" class="icon-small"></i> How It’s Secured</h3>
-        <ul>
-        <li><strong>Argon2id:</strong> Adds memory-hard security to slow down attackers</li>
-        <li><strong>PBKDF2:</strong> Further derives a strong key from your inputs</li>
-        <li><strong>AES-CTR:</strong> Stream cipher ensures deterministic, secure password output</li>
-        <li><strong>Offline-only:</strong> Everything happens in your browser — no data is sent or stored</li>
-        </ul>
+      <div class="warning">
+        <strong>Admins must keep their own hard copy.</strong> If you lose access to your trusted device and have no QR backup, you cannot recover — the vault becomes inaccessible to everyone. Print or otherwise preserve your own onboarding QR before deleting it from your device. Treat it like any other recovery key: store it offline, somewhere only you can access.
+      </div>
+
+      <div class="note">
+        <strong>Bootstrap:</strong> When CarryPass opens with no existing vault, the admin entry presents an empty admin panel directly. Create yourself as the first member and finalize. Grants admin status to the finalized member, ensuring the vault always has a designated admin.
       </div>
     </div>
+  </section>
 
-    <div style="margin-top: 2rem;">
-      <h3>First Time? Here's What to Do:</h3>
-      <ol>
-        <li>Pick a master password that only you know and can remember</li>
-        <li>Enter the name of the service you need a password for (e.g. "twitter.com")</li>
-        <li>Choose your character types and length (defaults are strong)</li>
-        <li>Tap <strong>Get Password</strong> — your secure password will appear</li>
-        <li>You can return anytime and regenerate it with the same inputs</li>
-      </ol>
-      <p><em>Tip: You can also save your password generation settings (not the password!) for easier reuse — encrypted in your local storage.</em></p>
-    </div>
-  </div>
-</section>
-
-
+  <!-- ═══════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="container">
-      <h2>4. Optional: Encrypted Local Storage</h2>
+      <h2>5. Password Generator</h2>
+      <p>The <strong>PASSWORDS</strong> tab uses a <strong>deterministic</strong> model — the same inputs always produce the same password, so nothing needs to be stored or synced. You can regenerate any password on any device, even offline. This is particularly useful for generating the strong passwords that vault access requires.</p>
+
+      <div class="grid split" style="margin-top: 1.5rem;">
+        <div class="card">
+          <h3><i data-lucide="lock-keyhole" class="icon-small"></i> How It's Secured</h3>
+          <ul>
+            <li><strong>Argon2id</strong> — memory-hard hashing that resists brute-force attacks, run twice (login + per-credential)</li>
+            <li><strong>HKDF-SHA256</strong> — domain-separated keystream expansion</li>
+            <li><strong>Rejection sampling</strong> — unbiased character selection from the keystream</li>
+            <li>Everything runs in your browser — nothing is sent anywhere</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="fingerprint" class="icon-small"></i> What You Control</h3>
+          <ul>
+            <li><strong>Service</strong> — the name or URL of the site (e.g. "github.com")</li>
+            <li><strong>Password type / settings</strong> — choose a template or set manually</li>
+            <li><strong>Variant Secret Password</strong> — your master password, never stored</li>
+            <li><strong>Variant</strong> — a counter that lets you regenerate alternative passwords from the same inputs</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.1 Identity Mode — Recommended for everyday use</h3>
+      <p>When <span class="ui-label">Identity mode</span> is <strong>on</strong> (the default), the generator uses <strong>password templates</strong>. Each template bundles all the technical settings — character set, length, and variant — into a single named choice. This removes the mental load of configuring settings individually: you simply enter the site name, pick a template, and get a strong password.</p>
+
+      <p>Built-in templates include:</p>
+      <ul>
+        <li><strong>Structured</strong> — mixed characters with a separator, high entropy</li>
+        <li><strong>No symbols</strong> — letters and numbers only, for sites that reject symbols</li>
+        <li><strong>Short</strong> — compact output for length-restricted sites</li>
+        <li><strong>Mixed</strong> — varied character distribution</li>
+        <li><strong>PIN 4 / PIN 6</strong> — numeric only, for device or bank PINs</li>
+        <li><strong>Long</strong> — maximum length for high-security accounts</li>
+        <li><strong>Passphrase (EFF Long/Short/Memorable)</strong> — word-based passphrases from the EFF word lists, easy to remember and type</li>
+      </ul>
+
+      <p>The <span class="ui-label">Password variant</span> selector lets you pick between several pre-derived alternatives for the same template — useful if a site forces a password change or has a conflicting requirement. This is a quick rotation mechanism that doesn't require regenerating from scratch.</p>
+
+      <div class="note">
+        <strong>Custom templates:</strong> If none of the presets match a site's requirements, you can create your own template via the menu <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Create custom type</span>. Set the character types, length, and variant number once — then reuse it by name across any service, just like the built-in options.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.2 Manual Mode — Generating passwords without your account secrets</h3>
+      <p>When <span class="ui-label">Identity mode</span> is <strong>off</strong>, all settings are exposed individually: character toggles, length, and the variant field. You also provide a <span class="ui-label">Variant Secret Password</span> that is independent of your CarryPass master password.</p>
+
+      <p>The primary purpose of manual mode is generating passwords whose <em>cryptographic input is not your CarryPass identity</em>. The most common scenario:</p>
+      <ul>
+        <li><strong>Shared device scenarios</strong> — A team member generates their own vault access password on the admin's device using their own secret, then regenerates the same password on their own device later with identical inputs. The admin never sees the member's secret, and the password they generate is bound to the member's typed input rather than the admin's CarryPass identity.</li>
+        <li><strong>One-time use</strong> — When you need a quick password without saving anything to your CarryPass profile.</li>
+        <li><strong>Fine-grained control</strong> — When a specific combination of settings is needed that doesn't fit any template.</li>
+      </ul>
+
+      <div class="note">
+        Because the Variant Secret Password in manual mode is separate from your CarryPass master password, the person on whose device the generation happens never learns the other person's secret. The password derived in manual mode depends only on what is typed into the manual-mode fields.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.3 The Variant Field</h3>
+      <p>The <span class="ui-label">Variant</span> field accepts numbers from 1 to 99999. Changing this number produces a completely different password from the same other inputs. Its purpose is to let you generate alternative passwords without changing anything else — useful when you need to rotate a password but want to keep the same template, length, and character settings.</p>
+
+      <p>For example: if you need to change your GitHub password because of a forced rotation, you can keep all your other inputs identical and just increment the Variant. The new password is unrelated to the old one, but everything else is preserved.</p>
+
+      <p>The value is hidden by default — click <span class="ui-label">Show</span> next to it to reveal it. <strong>Note the variant number you used per service</strong>, because to regenerate the same password later you need to provide the same number. Treat it as part of the input, not as a security setting.</p>
+
+      <div class="note">
+        The Variant field is just a counter. It is part of the input: changing it changes the generated output, but it is not a security setting by itself. The actual cryptographic strength of generated passwords primarily depends on the strength of your Master Password, plus the password length and character set you choose.
+      </div>
+
+      <h3 style="margin-top: 2rem;">4.4 Saving Settings Locally (Identity Mode Only)</h3>
+      <p>After generating a password in <strong>Identity mode</strong>, click <span class="ui-label">Save locally</span> in the result card. This saves your <em>settings</em> (service name, template or character configuration, variant) — <strong>not the password itself</strong> — encrypted in your browser's local storage.</p>
+      <p>Saved services appear in the panel on the left. Click any saved service to instantly reload its settings and regenerate the password.</p>
+
+      <div class="note">
+        <strong>Saved settings are not available in Manual mode.</strong> The Variant Secret Password used in manual mode is a separate secret per use — typed in for the moment, then forgotten. Saving the settings would require either saving the password itself (which CarryPass doesn't do) or saving useless settings without the secret needed to reproduce the output. Manual mode is meant for ephemeral, secret-on-demand workflows; identity mode is what supports the saved-services feature.
+      </div>
+
+      <p>You can export your saved settings as an encrypted file (via the menu <i data-lucide="menu" class="icon-small"></i>) and import them on another device. The exported file also includes your trusted-device state for team vaults, providing a self-recovery path if you lose access to your device.</p>
+
+      <div class="note">
+        <p>Because saved settings are stored in your browser’s local storage, you should export them regularly if you rely on them. Local browser data can be lost if you clear site data, reset the browser, reinstall the app, use a cleanup tool, or if the browser removes stored data automatically under storage pressure. CarryPass does not store a server-side backup, so an encrypted export file is the recommended way to keep a recoverable copy of your saved settings and trusted-device state.</p>
+      </div>
+     
+      <h3 style="margin-top: 2rem;">4.5 Phishing Resistance via Saved Services</h3>
+      <p>Because passwords are deterministically derived from the service name you type, even a one-character difference produces a completely different password. CarryPass adds a visible match indicator to convert this property into phishing protection:</p>
+      <ul>
+        <li>A <strong>green indicator</strong> means the service name or address you entered — whether typed manually or pasted from the browser address bar — matches a previously saved service exactly.</li>
+        <li>A <strong>red indicator</strong> means the typed name does not match any saved service — possibly because it's a typo, possibly because it's a phishing lookalike.</li>
+      </ul>
+      <p>The indicator is informational, not blocking — but it gives you a chance to verify the URL before generating credentials for what might be a fake site.</p>
+
+      <h3 style="margin-top: 2rem;">4.6 Screen Lock</h3>
+      <p>You can set a screen lock code via the menu <i data-lucide="menu" class="icon-small"></i> → <span class="ui-label">Set Screen Lock</span>. The code must be at least 6 characters. After a period of inactivity the app locks itself and requires your screen lock code to resume. This protects against casual access on a shared device without requiring you to re-enter your master password and adaptive icon path.</p>
+
+      <p>The screen lock is a UI convenience, not a strong cryptographic boundary. Three wrong attempts wipe the in-memory state and force full re-authentication. The full-session inactivity timeout provides an additional limit on how long a locked screen can remain attackable. By default, this timeout is 30 minutes, but users can change it in the security settings.</p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <h2>6. Optional: Encrypted Local Storage</h2>
       <p>You may choose to store your password <em>settings</em> (not the password itself) in encrypted localStorage for convenience.</p>
       <ul>
-        <li>This feature remembers your preferred settings per service.</li>
-        <li>The data is encrypted locally using your application ID.</li>
+        <li>This feature remembers your preferred settings per service in identity mode.</li>
+        <li>The data is encrypted locally with a session key derived from your master password and adaptive icon path.</li>
         <li>You can delete this data at any time from within the app.</li>
-        <li>You can optionally export the encrypted settings and import them if you change the device.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="container">
-      <h2>5. Team Configs & Admin Options</h2>
-      <p>CarryPass allows an admin to securely distribute credentials to team members using encrypted vaults and QR onboarding.</p>
-      <ul>
-        <li>Admins encrypt credentials per team or user.</li>
-        <li>Each user unlocks their vault using their member ID and their member password + optional TOTP code.</li>
-        <li>Vaults can expire and are validated with a checksum.</li>
-        <li>Admin never sees member or team passwords.</li>
+        <li>You can optionally export the encrypted settings and import them on another device — useful for migrating to a new device.</li>
       </ul>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>6. Security Tips</h2>
+      <h2>7. Security Tips</h2>
       <ul>
-        <li>Use a strong master password (minimum 12 characters).</li>
-        <li>Do not reuse short or ambiguous service names.</li>
-        <li>Regenerate your password on any device with the same inputs.</li>
+        <li>Use a strong master passphrase — at least 16 characters, ideally a word-based passphrase. CarryPass offers a Diceware suggestion at registration to help.</li>
+        <li>Use a consistent and unambiguous service name format (e.g. always <code>github.com</code>, never <code>GitHub</code>).</li>
+        <li>Never share your master passphrase or your member access password with anyone.</li>
+        <li>Keep a hard copy of your team-vault onboarding QR code in a secure offline location. This is your only recovery path if your device is lost.</li>
         <li>Clear local storage if switching or handing over your device.</li>
+        <li>Keep your trusted device under your control — it holds the TOTP secret that, combined with your password, decrypts your vault section.</li>
+        <li>Back up your settings periodically (menu → Export Settings) so you can recover access if you lose your device.</li>
       </ul>
     </div>
   </section>
 
   <section class="section alt">
     <div class="container">
-      <h2>7. Frequently Asked Questions</h2>
+      <h2>8. Frequently Asked Questions</h2>
       <details class="faq-item">
-        <summary>What if I forget my master password?</summary>
-        <p>There’s no way to recover your password. CarryPass never stores it. But if you remember the same inputs (service name + master password), it will regenerate the same password every time.</p>
+        <summary>How do I access my vault on a new or second device?</summary>
+        <p>For a <strong>second device</strong> you already use: click the <i data-lucide="qr-code" class="icon-small"></i> button next to the Trusted Device indicator to generate a transfer QR code. Scan it with CarryPass on the new device — no admin involvement needed.</p>
+        <p>For a <strong>completely new device</strong> (e.g. after a phone replacement): if you previously exported your settings, you can import the file on the new device after completing CarryPass login. If you have your hard-copy onboarding QR, you can scan it on the new device. If neither is available, ask your admin to re-issue your QR code.</p>
       </details>
       <details class="faq-item">
-        <summary>Are any passwords saved?</summary>
-        <p>No. Your passwords are calculated, not stored. Only your settings can be optionally encrypted and saved locally — nothing else.</p>
+        <summary>Why is there no 6-digit TOTP code to type?</summary>
+        <p>CarryPass uses your TOTP secret directly as a cryptographic key factor, not as a typed code. The secret stored on your trusted device combines with your password to derive the decryption key. You don't need an authenticator app for vault access — possession of the trusted device is what proves your identity. This makes login simpler while making the underlying cryptography stronger: an attacker who has the vault file but not your device cannot decrypt anything regardless of how well they guess your password.</p>
       </details>
       <details class="faq-item">
-        <summary>Can I move CarryPass to another device?</summary>
-        <p>Yes. Since CarryPass doesn’t store your credentials, you can simply reinstall it on a new device. Use the same inputs to get the same results.</p>
+        <summary>Can the admin see my credentials or passwords?</summary>
+        <p>No. Each member's section is encrypted with a key derived from their own password + TOTP secret. Your member password is only known to you.</p>
       </details>
       <details class="faq-item">
-        <summary>Is CarryPass secure even without internet?</summary>
-        <p>Yes. It is designed to be offline-first. All cryptographic operations run in your browser using standard AES, PBKDF2 and Argon2id.</p>
+        <summary>What's the difference between vault expiry and access expiry?</summary>
+        <p>The <strong>vault expiry</strong> is informational — it reminds the admin that the vault should be refreshed. It does not block your access. Your <strong>personal access expiry</strong> is set by the admin and does block your access after the date passes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need internet to use CarryPass?</summary>
+        <p>No. CarryPass is designed to work fully offline once installed as a PWA. The vault file is cached locally, all cryptographic operations run in your browser, and the password generator never contacts any server. An internet connection is only needed for the initial install and to receive a new vault file from your admin.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I forget my Member Access Password?</summary>
+        <p>There is no recovery mechanism — it is never stored anywhere. Contact your admin, who can re-finalize your member entry with a new password and re-issue your onboarding QR code.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I forget my master passphrase for the password generator?</summary>
+        <p>There is no way to recover it — CarryPass never stores it. If you remember all the same inputs (service name, master passphrase, length, variant, character settings), the same password will always be regenerated. If the master passphrase is lost, those generated passwords cannot be recovered.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does a small change in the service name produce a completely different password?</summary>
+        <p>The service name is part of the cryptographic input. Even a single character difference — a capital letter, a trailing slash, a space — produces an entirely different output. This is by design: it provides phishing resistance, since a lookalike domain (<code>paypa1.com</code> vs <code>paypal.com</code>) generates a different password that won't work on the real site. Use a consistent format from the start, such as always using <code>github.com</code> rather than alternating with <code>GitHub</code>.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can multiple teams share the same vault?</summary>
+        <p>Yes — this is the intended use. A single vault can contain multiple teams, each with their own credentials and members. Each member only sees what they have been assigned to. The admin manages all teams from one place and exports a single vault file.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is the "Admin" toggle on a member?</summary>
+        <p>The <span class="ui-label">Admin</span> toggle designates which member is the vault's administrator. Exactly one member can have this flag at any time. Toggling another member to admin (and clearing your own flag) performs an admin handover — after the next export, the new admin can manage the vault. Most members never need to think about this toggle; it is only used during initial setup or admin handover.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is the Variant field for?</summary>
+        <p>The Variant is a number (1–99999) that lets you generate alternative passwords from the same inputs. If a service forces you to change your password, you can increment the Variant and keep all other inputs the same — the new password will be unrelated to the old one, but everything else stays consistent. Note the value you used per service, because regenerating the same password requires the same Variant.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I save settings in Manual mode?</summary>
+        <p>No. Saved-settings only works in Identity mode. Manual mode uses a separately-typed Variant Secret Password that's not derived from your CarryPass identity, so the saved settings would be useless without the secret to reproduce the output. Manual mode is designed for ephemeral, on-demand workflows — typically when generating a password whose cryptographic input shouldn't be your CarryPass masterpassphrase.</p>
       </details>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2022–2025 CarryPass. Built for privacy.</p>
+      <p>&copy; 2022–<span class="current-year"></span> CarryPass. Built for privacy.</p>
     </div>
   </footer>
 
   <script>
     lucide.createIcons();
+    document.addEventListener("DOMContentLoaded", setCurrentYear);
+
+    function setCurrentYear() {
+      const year = new Date().getFullYear();
+
+      document.querySelectorAll(".current-year").forEach(el => {
+        el.textContent = year;
+      });
+    }
   </script>
+
 </body>
 </html>

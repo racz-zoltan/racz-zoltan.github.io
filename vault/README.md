@@ -4,35 +4,25 @@ This folder is reserved for storing encrypted vault data used by the CarryPass P
 
 ## 📁 Typical Files (Encrypted Artifacts)
 
-- `admin-config.json`  
-  Fully encrypted vault containing all admin-managed credentials, metadata, and user vaults.
-
 - `team-vault.json`  
   Vaults for individual team members, encrypted with the member’s PBKDF2-derived key.
-
-- `carrypass-[team].vault.json`  
-  Team-specific encrypted credential sets, locked with deterministic CarryPass-generated passwords and TOTP-secured access.
 
 
 ## 📦 Folder Purpose
 
 This directory supports:
 - Admin exports of encrypted vaults for secure delivery or backup
-- Import into the CarryPass frontend via manual upload or QR delivery
+- Import into the CarryPass frontend via manual upload or service-worker delivery
 - Clear separation between admin, team, and member data
 
 ## 🔒 Security Notes
 
 - All files are encrypted **client-side** using AES-GCM with new nonces per export
 - No plaintext credentials are ever written here
-- Files are not included in the default PWA cache to prevent accidental exposure
 
 ## 🚫 Deployment Warning
 
-If you deploy CarryPass on **static platforms** like GitHub Pages or Netlify:
+If you deploy CarryPass on **static platforms** like GitHub Pages, Netlify, or Vercel:
 - This `README.md` ensures the `vault/` folder is preserved even if it’s empty
 - You may still need manual upload mechanisms for working with vault files
 
----
-
-> This folder is a staging location only. For actual deployment, vaults are typically downloaded or delivered via secure channels — not served from the web root.

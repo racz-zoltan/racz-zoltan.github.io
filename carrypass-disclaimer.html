@@ -53,7 +53,7 @@
             <h2 class="text-2xl font-bold mb-4">Jogi nyilatkozat</h2>
             <h3 class="text-lg font-semibold mb-2">Magyar</h3>
             <p class="mb-2">
-              A CarryPass egy <strong>demó és bemutató célokat szolgáló weboldal</strong>, ezért annak működése, logikája és funkciói időről időre előzetes értesítés nélkül változhatnak. Bár az alkalmazás tervezése során kiemelt figyelmet fordítunk a biztonságra, a felhasználóknak tudomásul kell venniük, hogy a CarryPass <strong>nem minősül végleges vagy éles környezetben használható terméknek</strong>.
+              A CarryPass egy <strong>bemutató célokat szolgáló weboldal</strong>, ezért annak működése, logikája és funkciói időről időre előzetes értesítés nélkül változhatnak. Bár az alkalmazás tervezése során kiemelt figyelmet fordítunk a biztonságra, a felhasználóknak tudomásul kell venniük, hogy a CarryPass <strong>nem minősül végleges vagy éles környezetben használható terméknek</strong>.
             </p>
             <p class="mb-2">
               A felhasználók felelőssége, hogy tisztában legyenek saját <strong>fenyegetettségi modelljükkel</strong>, és ennek megfelelően használják az alkalmazást. Ez magában foglalja többek között:
@@ -81,8 +81,19 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2022-2025 CarryPass. Built for privacy. All rights reserved.</p>
+            <p>&copy; 2022–<span class="current-year"></span> CarryPass. Built for privacy.</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", setCurrentYear);
+
+        function setCurrentYear() {
+        const year = new Date().getFullYear();
+
+        document.querySelectorAll(".current-year").forEach(el => {
+            el.textContent = year;
+        });
+        }
+    </script>
 </body>
 </html>

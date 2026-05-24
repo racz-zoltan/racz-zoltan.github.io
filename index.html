@@ -2,25 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>CarryPass</title>
-    
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-src 'none'; script-src 'self' 'wasm-unsafe-eval'">
-    <script src="argon2-bundled.min.js"></script>
-    <!-- Viewport and Progressive Web App Basics -->
+    <title>CarryPass — Client-side password manager and team credential sharing</title>
+    <meta name="description" content="CarryPass is an open-source, client-side password manager and team credential-sharing tool built with strong cryptographic primitives and a zero-knowledge philosophy.">
+    <meta name="keywords" content="CarryPass, password manager, client-side password manager, team credential sharing, credential sharing tool, zero-knowledge, offline password manager, open-source password manager, encrypted vaults, deterministic password generation, PWA password manager">
+    <meta name="author" content="Zoltán Rácz">
+    <meta property="og:title" content="CarryPass — Client-side password manager and team credential sharing">
+    <meta property="og:description" content="Open-source, client-side password manager and team credential-sharing tool built with strong cryptographic primitives and a zero-knowledge philosophy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://carrypass.net/">
+    <meta property="og:image" content="https://carrypass.net/carrypass-gold-transparent.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CarryPass — Client-side password manager and team credential sharing">
+    <meta name="twitter:description" content="Open-source, client-side password manager and team credential-sharing tool built with strong cryptographic primitives and a zero-knowledge philosophy.">
+    <meta name="twitter:image" content="https://carrypass.net/carrypass-gold-transparent.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CarryPass",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Web, Windows, macOS, Linux, Android, iOS",
+      "url": "https://carrypass.net/",
+      "description": "CarryPass is an open-source, client-side password manager and team credential-sharing tool built with strong cryptographic primitives, encrypted vaults, deterministic password generation, offline-first PWA support, and a zero-knowledge philosophy.",
+      "creator": {
+        "@type": "Person",
+        "name": "Zoltán Rácz"
+      },
+      "license": "https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE",
+      "isAccessibleForFree": true,
+      "softwareVersion": "4.0",
+      "featureList": [
+        "Client-side password generation",
+        "Team credential sharing",
+        "Encrypted vaults",
+        "Offline-first Progressive Web App",
+        "Deterministic password generation",
+        "Zero-knowledge design",
+        "Self-hostable deployment"
+      ]
+    }
+    </script>
+    <!-- 
+      Meta-tag CSP and Permissions-Policy serve as a portable fallback for
+      deployments without HTTP header control (e.g., GitHub Pages).
+      When deployed to platforms supporting HTTP headers (e.g., Vercel via
+      vercel.json), the header values take precedence where stricter, with
+      CSP combining as intersection.
+      
+      KEEP THESE TAGS IN SYNC WITH (e.g., vercel.json) HEADERS to avoid
+      silent enforcement drift when you self host.
+    -->    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; manifest-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; worker-src 'self'; connect-src 'self'; style-src 'self'; object-src 'none'; frame-src 'none'; script-src 'self' 'wasm-unsafe-eval'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Permissions-Policy" content="camera=(self), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), bluetooth=(), clipboard-read=()">
+    <meta name="referrer" content="no-referrer">
+
+    <script src="argon2-bundled.min.js" integrity="sha384-XOR3aNvHciLPIf6r+2glkrmbBbLmIJ1EChMXjw8eBKBf8gE0rDq1TyUNuRdorOqi" crossorigin="anonymous"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1E003B">
     <meta name="application-name" content="CarryPass">
     
-    <!-- Apple-specific Meta -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="CarryPass">
     <meta name="format-detection" content="telephone=no">
     
-    <!-- Windows -->
     <meta name="msapplication-TileColor" content="#FFD43B">
     
-    <!-- Icons and Manifest -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -28,7 +77,6 @@
     <meta name="apple-mobile-web-app-title" content="CarryPass" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- iOS Splash Screens -->
     <link rel="apple-touch-startup-image" href="/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px)">
     <link rel="apple-touch-startup-image" href="/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px)">
     <link rel="apple-touch-startup-image" href="/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px)">
@@ -36,24 +84,21 @@
     <link rel="apple-touch-startup-image" href="/splash-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px)">
     <link rel="apple-touch-startup-image" href="/splash-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1366px)">
     
-    <!-- Styles and Icons -->
-    <link rel="stylesheet" href="carrypass-theme.css">
-    <script src="lucide.min.js"></script>
+    <link rel="stylesheet" href="carrypass-theme.css" integrity="sha384-LxXtI33yeFWxMgciD7Y4VZ6Uj4M9VDLTnHdPlB4MM3WYVOThq7Xs8UprkoloQYMP" crossorigin="anonymous">
+    <script src="lucide.min.js" integrity="sha384-1WBlizZxaHNZADu+vujEL0zCN6BYOAzpLXB3HHLkdb5oOd3rxlWlCNuws/tVj4Cu" crossorigin="anonymous"></script>
 
 </head>
       
 <body>
-<button type="button" id="clearClipboardBtn" class="btn outline-delete" style="align-items: center; justify-content: center; gap: 0.3rem;">
+<button type="button" id="clearClipboardBtn" class="btn outline-delete clipbutton nodisplay">
   <span><i data-lucide="clipboard-x"></i></span>
   <span data-i18n="clearClipboardButton">Clear Clipboard</span>
 </button>
-<div id="globalTooltip" class="tooltip" style="display: none;">
+<div id="globalTooltip" class="tooltip nodisplay">
   <div class="tooltip-title" id="globalTooltipTitle"></div>
   <div class="tooltip-body" id="globalTooltipBody"></div>
 </div>
-  <!-- REGISTRATION VIEW -->
   <div id="registrationView" class="screen">
-
     <header class="navbar">
       <div class="navbar-left">
         <a href="" class="logo-link">
@@ -62,327 +107,467 @@
       </div>
       <div class="navbar-right">
         <a href="#demo" class="btn primary" data-i18n="CTAfree">Use It For Free</a>
-        <a href="carrypass-privacy-policy.html#contactprivacy" class="btn strong" data-i18n="CTAcustom">Get Custom Build</a>
+        <a href="https://github.com/racz-zoltan/carrypass-self-host/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="btn strong" data-i18n="CTAcustom">Self-host</a>
       </div>
     </header>
-    <div class="custom-dropdown" style="margin-left: 1rem; max-width: 7rem;">
+    <div class="custom-dropdown language-switcher">
       <select id="languageSwitcher" class="form-control">
         <option value="en">English</option>
         <option value="hu">Magyar</option>
       </select>
     </div>
-
     <header class="hero">
-      <!-- <div class="container"> -->
-        <h2 style="color: #1E003B;" data-i18n="appSubtitle">CarryPass: A privacy-first password manager — built on end-to-end encryption for credential sharing, with no accounts and no tracking.</h2>
-        <p data-i18n="appSubtitleSub">Keep total control over your data with zero-knowledge, offline-first design, and customizable cryptography.</p>
-      <!-- </div> -->
+      <h1 class="cp-heading" data-i18n="heroTitle"><em>Access Management</em><br>Any device. Any environment.</h1>
+      <p class="cp-desc-hero" data-i18n="heroSubtitle">CarryPass enables encrypted access that expires, rotates, and revokes — without orphaned accounts or forgotten credentials. No identity provider needed. Access exists cryptographically, or it doesn't.</p>
     </header>
-    <section class="section alt">
-      <div class="container">
-         <h2 data-i18n="ownSecurity">Own Your Security</h2>
-        <div class="grid split">
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="shield-check" class="icon-large"></i>
-            <h3 data-i18n="protectReputation">Protect Your Reputation</h3>
-            <p data-i18n="protectReputationHow">No servers. No syncing. No leaks. Credentials stay local, encrypted, and under your control — always.</p>
-          </div>
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="alert-octagon" class="icon-large"></i>
-            <h3 data-i18n="preventBreach">Prevent Costly Breaches</h3>
-            <p data-i18n="preventBreachHow">Eliminate one of the most common attack surfaces: cloud-based password storage. With CarryPass, there’s nothing to steal.</p>
-          </div>
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="share-2" class="icon-large"></i>
-            <h3 data-i18n="credShare">Simplify Credential Sharing</h3>
-            <p data-i18n="credShareHow">Securely distribute passwords to team members using encrypted vaults and smooth QR-based onboarding — even without internet access.</p>
-          </div>
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="euro" class="icon-large"></i>
-            <h3 data-i18n="cutCost">Cut Costs</h3>
-            <p data-i18n="cutCostHow">Say goodbye to recurring license fees. CarryPass is a one-time, privacy-first investment that scales with your team.</p>
-          </div>
-          <div class="card" style="height: 26rem; overflow: hidden;">
-            <i data-lucide="lock-keyhole" class="icon-large"></i>
-            <h3 data-i18n="securityDesign">Uncompromising Security by Design</h3>
-            <p data-i18n="securityDesignHow">CarryPass doesn’t cut corners for scalability — it doesn’t need to. All encryption happens locally on your device, allowing the application to use strong, resource-intensive cryptographic methods without worrying about server cost or performance tradeoffs.</p>
-          </div>
-          <div class="card" style="height: 26rem; overflow: hidden;">
-            <i data-lucide="cpu" class="icon-large"></i>
-            <h3 data-i18n="noPerformanceBottleneck">Performance without Bottlenecks</h3>
-            <p data-i18n="noPerformanceBottleneckHow">CarryPass runs instantly on any device — no infrastructure required. Because everything runs client-side, there are no rate limits, no server queues, and no dependency on infrastructure availability. It works instantly, wherever you are.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <h2 data-i18n="builtForYou">Built For You</h2>
-        <div class="grid split">
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="shield" class="icon-large"></i>
-            <h3 data-i18n="cisoTeams">CISOs & Security Teams</h3>
-            <p data-i18n="cisoTeamsWhy">Keep credentials out of the cloud. Enforce zero-trust. Stay audit-ready. No backdoors. No exposure. No excuses.</p>
-          </div>
-          <div class="card" style="height: 18rem; overflow: hidden;">
-            <i data-lucide="server-cog" class="icon-large"></i>
-            <h3 data-i18n="itManagers">IT Managers & DevOps</h3>
-            <p data-i18n="itManagersWhy">Distribute sensitive access credentials securely — without risky workarounds: relying on emails, chats, or manual copy-paste.</p>
-          </div>
-          <div class="card" style="height: 22rem; overflow: hidden;">
-            <i data-lucide="briefcase" class="icon-large"></i>
-            <h3 data-i18n="procurement">Procurement & Leadership</h3>
-            <p data-i18n="procurementWhy">Reduce tool bloat and subscription creep. Achieve better security outcomes at lower cost — no cloud, no compliance headaches.</p>
-          </div>
-          <div class="card" style="height: 22rem; overflow: hidden;">
-          <i data-lucide="radio" class="icon-large"></i>
-          <h3 data-i18n="airGappedPrivacy">Privacy-Focused Environments & Air-Gapped systems</h3>
-          <p data-i18n="airGappedPrivacyWhy">Perfect for use cases that demand complete device-side control — from air-gapped systems to regulated and privacy-sensitive contexts where zero network dependency is essential.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="container" style="margin-top: 1rem;">
-      <form id="defaultDesign" class="grid split">
-        <div class="column-left">
-        <section class="section alt" style="padding-top: 0 !important; margin-top: 0 !important;">
-          <div class="container responsive-container">
-            <h2 class="text-2xl font-bold mb-4" style="color: #1E003B;" data-i18n="privacyByDesignTitle">
-              Privacy by Design <i data-lucide="shield-user"></i>
-            </h2>
-            <p class="mb-4" data-i18n="privacyByDesignIntro"></p>
-            <ul class="list-disc list-inside space-y-2 mb-4">
-              <li data-i18n="designPoint1"></li>
-              <li data-i18n="designPoint2"></li>
-              <li data-i18n="designPoint3"></li>
-              <li data-i18n="designPoint4"></li>
-            </ul>
-          </div>
-        </section>
-        </div>
-        <div class="column-right">
-        <section class="section alt" style="padding-top: 0 !important; margin-top: 0 !important;">
-          <div class="container responsive-container">
 
-            <h2 class="text-2xl font-bold mb-4" style="color: #1E003B;" data-i18n="privacyByDefaultTitle">
-              Privacy by Default <i data-lucide="eye-off"></i>
-            </h2>
-            <p class="mb-4" data-i18n="privacyByDefaultIntro"></p>
-            <ul class="list-disc list-inside space-y-2 mb-4">
-              <li data-i18n="defaultPoint1"></li>
-              <li data-i18n="defaultPoint2"></li>
-              <li data-i18n="defaultPoint3"></li>
-              <li data-i18n="defaultPoint4"></li>
-              <li data-i18n="defaultPoint5"></li>
-            </ul>
-          </div>
-        </section>
-        </div>
-      </form>
-    </div>
-    <div class="container" style="margin-top: 1rem;" id="demo">
+<section class="cp-scene">
+<div class="cp-copy">
+<span class="cp-eyebrow" data-i18n="deviceShowcaseEyebrow">Works Everywhere</span>
+<h2 class="cp-heading" data-i18n="deviceShowcaseTitle">On every device,<br><em>even offline.</em></h2>
+<p class="cp-desc" data-i18n="deviceShowcaseDesc">CarryPass runs as a Progressive Web App — no app store, no installation friction. Your team's access is available on desktop and mobile, online or off.</p>
+</div>
+
+<div class="cp-devices">
+<div class="cp-frame cp-frame--desktop">
+<img src="cp_desktop_display.png" alt="CarryPass desktop view">
+</div>
+<div class="cp-frame cp-frame--mobile">
+<img src="cp_mobile_display.png" alt="CarryPass mobile view">
+</div>
+<div class="cp-badge" data-i18n="deviceShowcaseBadge">Desktop &amp; Mobile</div>
+</div>
+
+</section>
+
+<section class="pwa-how">
+
+<div class="pwa-how__header">
+<span class="pwa-how__eyebrow" data-i18n="pwaEyebrow">Install the app</span>
+<h2 class="pwa-how__title" data-i18n="pwaTitle">On every device,<br><em>no app store needed.</em></h2>
+<p class="pwa-how__subtitle" data-i18n="pwaSubtitle">CarryPass is a Progressive Web App. Install it in seconds directly from your browser — it runs like a native app with no download required.</p>
+</div>
+
+<div class="pwa-how__tabs" role="tablist">
+
+<button class="pwa-tab is-active" role="tab" aria-selected="true" data-panel="ios">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+<span data-i18n="pwaTabIos">iOS / iPadOS</span>
+</button>
+
+<button class="pwa-tab" role="tab" aria-selected="false" data-panel="android">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24A10.7 10.7 0 0 0 12 8c-1.53 0-2.98.33-4.27.91L5.85 5.67c-.19-.28-.54-.37-.83-.22-.3.16-.42.54-.26.85L6.6 9.48A9.88 9.88 0 0 0 2 17h20a9.88 9.88 0 0 0-4.4-7.52zM8.5 14.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm7 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+<span data-i18n="pwaTabAndroid">Android</span>
+</button>
+
+<button class="pwa-tab" role="tab" aria-selected="false" data-panel="desktop">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+<span data-i18n="pwaTabDesktop">Desktop</span>
+</button>
+
+</div>
+
+<div class="pwa-panel is-active" id="pwa-panel-ios" role="tabpanel">
+<div class="pwa-grid">
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#4A90D9" stroke-width="1.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/><path d="M15.5 8.5l-7 7M16 8l-3 1-1 3-3 1 1-3 3-1z" stroke="#E5A800" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaSafariName">Safari</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaSafariSub">iPhone &amp; iPad · Required</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaSafariStep1">Open CarryPass in <strong>Safari</strong> — the default iOS browser.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaSafariStep2">Tap the <span class="pwa-ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> Share</span> button in the bottom toolbar.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaSafariStep3">Scroll down and tap <strong>"Add to Home Screen"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaSafariStep4">Confirm the name and tap <strong>Add</strong> — done.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8h8.66A10 10 0 1 0 7.08 19.5L11 13" stroke="#EA4335" stroke-width="1.5"/><path d="M12 8H3.34M7.08 19.5L11.5 12" stroke="#34A853" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="#4285F4"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaChromeEdgeIosName">Chrome &amp; Edge</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaChromeEdgeIosSub">iPhone &amp; iPad · Supported</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaChromeEdgeIosStep1">Open CarryPass in <strong>Chrome</strong> or <strong>Edge</strong> on iOS.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaChromeEdgeIosStep2">Tap the <span class="pwa-ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> Share</span> button in the bottom toolbar.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaChromeEdgeIosStep3">Tap <strong>"Add to Home Screen"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaChromeEdgeIosStep4">Confirm the name and tap <strong>Add</strong> — done.</span></li>
+</ol>
+<p class="pwa-unsupported-note" data-i18n="pwaChromeEdgeIosNote">Firefox for iOS does not support PWA installation. Use Safari, Chrome, or Edge instead.</p>
+</div>
+
+</div>
+<div class="pwa-tip">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+<span data-i18n="pwaIosTip">On iOS 16.4+ the installed app can show local notifications about vault status. CarryPass does not subscribe to any external push service. If notifications are added in a future update, you'll be prompted to allow them.</span>
+</div>
+</div>
+
+<div class="pwa-panel" id="pwa-panel-android" role="tabpanel">
+<div class="pwa-grid">
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8h8.66A10 10 0 1 0 7.08 19.5L11 13" stroke="#EA4335" stroke-width="1.5"/><path d="M12 8H3.34M7.08 19.5L11.5 12" stroke="#34A853" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="#4285F4"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaAndroidChromeName">Chrome</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaAndroidChromeSub">Android · Recommended</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaAndroidChromeStep1">Open CarryPass in <strong>Chrome</strong>.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaAndroidChromeStep2">A banner may appear at the bottom — tap <strong>"Install"</strong> or <strong>"Add to Home screen"</strong>.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaAndroidChromeStep3">If no banner: tap the <span class="pwa-ui">⋮ Menu</span> (top-right) → <strong>"Add to Home screen"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaAndroidChromeStep4">Tap <strong>Install</strong> in the confirmation dialog.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="rgba(255,109,0,0.15)"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#FF6D00"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaAndroidFirefoxName">Firefox</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaAndroidFirefoxSub">Android</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaAndroidFirefoxStep1">Open CarryPass in <strong>Firefox for Android</strong>.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaAndroidFirefoxStep2">Tap the <span class="pwa-ui">⋯ Menu</span> button.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaAndroidFirefoxStep3">Tap <strong>"Install"</strong> or <strong>"Add to Home screen"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaAndroidFirefoxStep4">Confirm by tapping <strong>Add</strong>.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#1428A0" stroke-width="1.5" fill="rgba(20,40,160,0.15)"/><path d="M8 12a4 4 0 0 1 8 0M6 12a6 6 0 0 1 12 0M12 8v8M9 9l6 6M15 9l-6 6" stroke="#1428A0" stroke-width="1.3" stroke-linecap="round"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaAndroidSamsungName">Samsung Internet</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaAndroidSamsungSub">Android · Samsung devices</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaAndroidSamsungStep1">Open CarryPass in <strong>Samsung Internet</strong>.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaAndroidSamsungStep2">Tap the <span class="pwa-ui">☰ Menu</span> at the bottom.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaAndroidSamsungStep3">Tap <strong>"Add page to"</strong> → <strong>"Home screen"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaAndroidSamsungStep4">Tap <strong>Add</strong> to confirm.</span></li>
+</ol>
+</div>
+
+</div>
+<div class="pwa-tip">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+<span data-i18n="pwaAndroidTip">On Android, Chrome gives the richest install experience including a proper splash screen and standalone window. If you're on a Samsung device, Samsung Internet works equally well.</span>
+</div>
+</div>
+
+<div class="pwa-panel" id="pwa-panel-desktop" role="tabpanel">
+<div class="pwa-grid">
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8h8.66A10 10 0 1 0 7.08 19.5L11 13" stroke="#EA4335" stroke-width="1.5"/><path d="M12 8H3.34M7.08 19.5L11.5 12" stroke="#34A853" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="#4285F4"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaDesktopChromeName">Chrome</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaDesktopChromeSub">Windows · macOS · Linux</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaDesktopChromeStep1">Open CarryPass in <strong>Chrome</strong>.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaDesktopChromeStep2">Look for the Install icon on the right side of the address bar.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaDesktopChromeStep3">Click it, then click <strong>"Install"</strong> in the prompt.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaDesktopChromeStep4">CarryPass opens as a standalone window — pinnable to your taskbar.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><path d="M21 12.5C21 17.19 17.19 21 12.5 21a8.5 8.5 0 0 1-7.38-4.28" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12.5C3 7.81 6.81 4 11.5 4c2.8 0 5.29 1.3 6.93 3.33" stroke="#50E6FF" stroke-width="1.5" stroke-linecap="round"/><path d="M7 15c.9 2.4 3.2 4 5.8 4 2.9 0 5.4-1.9 6.2-4.8" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaDesktopEdgeName">Microsoft Edge</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaDesktopEdgeSub">Windows · macOS</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaDesktopEdgeStep1">Open CarryPass in <strong>Edge</strong>.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaDesktopEdgeStep2">Look for the Install app icon on the right side of the address bar.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaDesktopEdgeStep3">Click it, then click <strong>"Install"</strong> in the prompt.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaDesktopEdgeStep4">CarryPass will appear in your Start menu and taskbar.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#4A90D9" stroke-width="1.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/><path d="M15.5 8.5l-7 7M16 8l-3 1-1 3-3 1 1-3 3-1z" stroke="#E5A800" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaDesktopSafariName">Safari</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaDesktopSafariSub">macOS Sonoma 14+</div>
+</div>
+</div>
+<ol class="pwa-steps">
+<li><span class="pwa-step-num">1</span><span data-i18n="pwaDesktopSafariStep1">Open CarryPass in <strong>Safari</strong> on macOS Sonoma or later.</span></li>
+<li><span class="pwa-step-num">2</span><span data-i18n="pwaDesktopSafariStep2">Click <strong>File</strong> in the menu bar.</span></li>
+<li><span class="pwa-step-num">3</span><span data-i18n="pwaDesktopSafariStep3">Select <strong>"Add to Dock"</strong>.</span></li>
+<li><span class="pwa-step-num">4</span><span data-i18n="pwaDesktopSafariStep4">Click <strong>Add</strong> — the app appears in your Dock.</span></li>
+</ol>
+</div>
+
+<div class="pwa-card pwa-card--unsupported">
+<div class="pwa-card__browser">
+<div class="pwa-card__icon">
+<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="rgba(255,109,0,0.1)"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="#FF6D00" stroke-width="1.5"/></svg>
+</div>
+<div>
+<div class="pwa-card__browser-name" data-i18n="pwaDesktopFirefoxName">Firefox</div>
+<div class="pwa-card__browser-sub" data-i18n="pwaDesktopFirefoxSub">Desktop — Not supported</div>
+</div>
+</div>
+<p class="pwa-unsupported-note" data-i18n="pwaDesktopFirefoxNote">Firefox on desktop does not support PWA installation. Use Chrome or Edge for the best desktop install experience.</p>
+</div>
+
+</div>
+<div class="pwa-tip">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+<span data-i18n="pwaDesktopTip">Once installed, CarryPass on desktop gets its own window, taskbar/Dock entry, and runs independently of the browser. It feels and behaves like a native app.</span>
+</div>
+</div>
+
+</section>
+    <div class="container" id="demo">
       <form id="registrationForm" class="grid split">
-        <div class="column-left" style="margin-top: 1rem;">
-        <section class="section" id="appIdHow">
+        <div class="column-left column-left--registration">
+        <section class="section-register" id="appIdHow"> 
           <div class="container">
-            <h4 data-i18n="wantTry">Want to start the application?</h4>
-            <p data-i18n="applicationID">
-            <strong>CarryPass</strong> is a <strong>stateless</strong> and <strong>deterministic</strong> password manager.<br>
-            It doesn’t store your data online — everything stays in your browser.<br>
-            Your passwords are generated on demand from your personal key and settings, so the same inputs always produce the same results.<br><br>
-            
-            <strong>Create your personal key for this application.</strong><br>
-            Choose a passphrase and an icon sequence. These protect your generated passwords and locally stored settings. That’s why the stronger your personal key, the stronger your protection.<br><br>
+            <h2 class="pwa-how__title" data-i18n="startDemo">
+              Explore it,<br><em>on this device</em>
+            </h2>
 
-            It’s recommended to use <strong>a random passphrase with at least 16 characters</strong>, or <strong>a diceware-style phrase with 8 or more words</strong>.<br>
-            There’s no backup or recovery, so be sure to remember it.
-          </p>
+            <h2 data-i18n="appKeyTitle" class="cp-desc">
+              Create your personal key
+            </h2>
+
+            <p data-i18n="appKeyIntro" class="cp-desc">
+              Choose a strong passphrase and an adaptive icon path. These define access to your generated passwords, team vaults, and encrypted local settings.
+            </p>
+
+            <p data-i18n="appKeyStrength" class="cp-desc">
+              Use a strong passphrase: at least 16 random characters, or preferably a long multi-word phrase.
+            </p>
+
+            <p data-i18n="tapSequenceExplain" class="cp-desc">
+              Select 12 icons across 3 short rounds. The icon positions change, so remember the icons and their order, not their location.
+            </p>
+
+            <p data-i18n="appKeyPractice" class="cp-desc">
+              During setup, CarryPass will ask you to repeat the icon path with guidance and then without help, so you can learn it before relying on it.
+            </p>
+
+            <p data-i18n="appKeyNoRecovery" class="cp-desc">
+              There is no account recovery. If you lose your passphrase or icon path, CarryPass cannot restore them.
+            </p>
+          </div>
+          <div class="diceware-suggestions-box">
+            <p class="diceware-line">
+              <span class="diceware-lang-pill">EN</span>
+              <span id="dicewareEnglishWords" class="diceware-words"></span>
+            </p>
+
+            <p class="diceware-line">
+              <span class="diceware-lang-pill">HU</span>
+              <span id="dicewareHungarianWords" class="diceware-words"></span>
+            </p>
+
+            <button type="button" id="generateDicewareWords" class="btn outline-primary" data-i18n="generateNew">
+              Generate new
+            </button>
           </div>
         </section>
         </div>
-        <div class="column-right"  style="margin-top: 1rem;" id="appRight">
-        <section class="section" id="masterPassContainer">
-          <h2 data-i18n="tryApp">Type your masterpassword</h2>
+        <div class="column-right" id="appRight">
+        <section class="section-register" id="masterPassContainer">
+          <h2 class="cp-heading" data-i18n="tryApp">Masterpassword</h2>
           <div id="secure-area">
-            <textarea id="passCodeInputRegister" placeholder="Enter your masterpassword..." data-i18n-placeholder="personalMaster" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off"></textarea>
-            <div id="fingerprint-overlay"></div>
+            <textarea id="passCodeInputRegister" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off"></textarea>
+            <div id="fingerprint-overlay" class="overlay-visible"></div>
           </div>
-          <button type="button" style="width: 4rem;" class="btn secondary-outline" id="toggle-button" data-i18n="showButton">Show</button>
-          <div id="entropyFeedback" style="margin-top: 8px;">
-            <div id="entropyBar" style="height: 8px; background: #ccc; border-radius: 4px; overflow: hidden;">
-                <div id="entropyFill" style="height: 100%; width: 0%; background: red; transition: width 0.3s;"></div>
-            </div>
+          <div id="entropyFeedback">
+              <div id="entropyBar"> 
+                  <div id="entropyFill"></div>
+              </div>
           </div>
+          <button type="button" class="btn secondary-outline btn-show-fixed" id="toggle-button" data-i18n="showButton">Show</button>
         </section>
-        <section class="section" id="emojiGridContainer">
-          <h2 data-i18n="tapSequence">Tap Your Icon Sequence</h2>
-          <p data-i18n="tapSequenceExplain">Select 6 icons in any order you like. Tap again to deselect.</p>
-          <div class="container" style="position: relative; display: inline-block;">
-            <div id="emojiGridRegister" class="icon-grid grid-mode" style="width: 100%; height: 100%;"></div>
-            <div id="gridHazeOverlayRegister" class="grid-haze">
-              <div class="radial-interference-layer" id="radialHazeRegister"></div>
+        <section class="section-register" id="emojiGridContainer">
+        <h2 class="cp-heading" data-i18n="tapSequence">Icon Sequence</h2>
+          <div class="toggle-container">
+            <label for="iconPracticeToggle" data-i18n="iconPracticeToggle">
+              Practice icon path
+            </label>
+            <input type="checkbox" id="iconPracticeToggle" class="toggle" checked>
+          </div>
+          <div class="container emoji-grid-container">
+            <div id="emojiGridRegister" class="icon-grid grid-mode"></div>
+            <div id="gridHazeOverlayRegister" class="grid-haze haze-mode-gray">
+              <div id="radialHazeRegister"></div>
             </div>  
           </div>
-          <div class="haze-control-container" style="margin-top: 1.5rem;">
-            <label for="hazeSliderRegister" data-i18n="hazeAdjustLabel">Adjust Visibility</label>
-            <input type="range" id="hazeSliderRegister" min="0" max="100" value="0" />
-          </div>
-          <button type="button" class="btn outline-gold" id="confirmEmojiSequence" style="margin-top: 1rem; visibility: visible;" data-i18n="continueIconSequence">Continue</button>
           <div class="input-group">
-          <button id="submitPassCodeRegister" type="button" class="btn primary" style="margin-top: 1rem; visibility: hidden;" data-i18n="startAppButton" disabled>Start Using CarryPass</button>
-          <div id="spinner2" class="spinner" style="margin-top: 1.2rem; visibility: hidden; display: inline-block;"></div>
+            <button type="button" id="restartIconAttemptRegister" class="btn secondary-outline btn-show-fixed btn-reverse restart">
+              <span><i data-lucide="rotate-ccw"></i></span>
+            </button>
+            <button type="button" id="reverseIconRoundRegister" class="btn secondary-outline btn-show-fixed btn-reverse reverse">
+                <span><i data-lucide="undo-2"></i></span>
+            </button>
+            <button type="button" id="hazeModeButtonRegister" class="btn secondary-outline btn-reverse hide">
+              <span class="haze-icon-wrap"><i data-lucide="eye-off"></i></span>
+            </button>
+            <div id="spinner2" class="spinner invisible"></div>
+          </div>
+          <div class="input-group">
+            <button id="submitPassCodeRegister" type="button" class="btn btn-card-action noshow-submit invisible" data-i18n="startAppButton" disabled>Start Using CarryPass</button>
+            <button id="confirmEmojiSequence" type="button" class="btn btn-card-action noshow-submit invisible" data-i18n="continueIconSequence">Continue</button>
           </div>
         </section>
         </div>
       </form>
     </div>
-    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
-    <p data-i18n="footerDescription">
-      CarryPass is a lightweight, offline-first password manager designed for privacy and control — built on true end-to-end encryption and zero server dependency.
-    </p>
-    <div class="input-group" style="margin-top: 1rem;">
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="github" class="trusted-icon"></i>
+    <section class="seo-summary hero container">
+      <h2 class="cp-heading" data-i18n="seoSummaryTitle">
+        What is CarryPass?
+      </h2>
+      <p class="cp-desc-hero" data-i18n="seoSummaryText">
+        CarryPass is an open-source, client-side password manager and team credential-sharing tool. It runs in the browser as an offline-first Progressive Web App and uses strong cryptographic primitives to generate passwords and protect encrypted vaults without requiring accounts, telemetry, or server-side access to secrets.
+      </p>
+    </section>
+    <footer class="footer">
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
+    </footer>
+    <footer class="footer">
+    <div class="input-group-header">
+      <div class="toggle-container">
+        <a id="aboutsection" href="carrypass-user-manual.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="book-open" class="trusted-icon"></i>
         </a>
-        <label for="github">GitHub</label>
+        <label for="aboutsection" data-i18n="aboutUs">Manual</label>
       </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+      <div class="toggle-container">
         <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="messages-square" class="trusted-icon"></i>
         </a>
         <label for="discussions" data-i18n="discussionsLabel">Discussions</label>
       </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="shield-check" class="trusted-icon"></i>
-        </a>
-        <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
-      </div>
-    </div>
-    </footer>
-    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
-    <div class="input-group">
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="purchase" href="carrypass-landing.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="key-round" class="trusted-icon"></i>
-        </a>
-        <label for="purchase" data-i18n="getModelLabel">Get CarryPass</label>
-      </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="book-open" class="trusted-icon"></i>
-        </a>
-        <label for="aboutsection" data-i18n="aboutUs">About</label>
-      </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+      <div class="toggle-container">
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer" data-i18n="demoDisclaimer">Demo Disclaimer</label>
+        <label for="disclaimer" data-i18n="demoDisclaimer">Disclaimer</label>
       </div>
     </div>
     </footer>
-    <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
-    </footer>
   </div>
 
-  <!-- LOGIN VIEW -->
   <div id="loginView" class="screen">
     <a href="" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div style="margin-top: 0.4rem; display: flex; justify-content: flex-end; margin-right: 1rem; color: #1E003B;">
+    <div class="reset-btn-wrapper">
       <button type="button" id="resetAppButton" class="btn icon-only small">
         <i data-lucide="screen-share-off"></i>
       </button>
     </div>
-    <div class="container" style="margin-top: 3rem;">
+    <div class="container mt-3">
       <form id="loginForm" class="grid split">
-        <div style="margin-top: 1rem;" class="column-left">
-          <h2 style="color: #1E003B;">CarryPass</h2>
+        <div class="column-left">
           <section class="section" id="masterPassLoginContainer">
           <div id="secure-area-login">
-            <textarea id="passCodeInput" placeholder="Enter your masterpassword..." data-i18n-placeholder="personalMaster" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off"></textarea>
-            <div id="fingerprint-overlay-login"></div>
+            <textarea id="passCodeInput" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off"></textarea>
+            <div id="fingerprint-overlay-login" class="overlay-visible"></div>
           </div>
-          <button type="button" style="width: 4rem;" class="btn secondary-outline" id="toggle-button-login" data-i18n="showButton">Show</button>
+          <button type="button" class="btn secondary-outline btn-show-fixed" id="toggle-button-login" data-i18n="showButton">Show</button>
           </section>
         </div>
-        <div style="margin-top: 1rem;" class="column-right">
-          <div class="container" id="hazeGrid" style="position: relative; display: inline-block;">
-            <div id="emojiGridLogin" class="icon-grid grid-mode" style="width: 100%; height: 100%;"></div>
-            <div id="gridHazeOverlay" class="grid-haze">
-              <div class="radial-interference-layer" id="radialHaze"></div>
+        <div class="column-right">
+          <section class="section">
+          <div class="container emoji-grid-container" id="hazeGrid">
+            <div id="emojiGridLogin" class="icon-grid grid-mode"></div>
+            <div id="gridHazeOverlay" class="grid-haze haze-mode-gray">
+              <div id="radialHaze"></div>
             </div>         
           </div>
-          <div class="haze-control-container" style="margin-top: 1.5rem;">
-            <label for="hazeSlider" data-i18n="hazeAdjustLabel">Adjust Visibility</label>
-            <input type="range" id="hazeSlider" min="0" max="100" value="0" />
+          <div class="input-group">
+            <button type="button" id="restartIconAttempt" class="btn secondary-outline btn-show-fixed btn-reverse restart">
+              <span><i data-lucide="rotate-ccw"></i></span>
+            </button>
+            <button type="button" id="reverseIconRound" class="btn secondary-outline btn-show-fixed btn-reverse reverse">
+                <span><i data-lucide="undo-2"></i></span>
+            </button>
+            <button type="button" id="hazeModeButton" class="btn secondary-outline btn-reverse hide">
+              <span class="haze-icon-wrap"><i data-lucide="eye-off"></i></span>
+            </button>
+            <div id="spinner1" class="spinner invisible"></div>
           </div>
           <div class="input-group">
-            <button id="submitPassCode" style="margin-top: 1rem; margin-bottom: 7rem;" type="button" class="btn primary" data-i18n="unlock">Unlock</button>
-            <div id="spinner1" class="spinner" style="margin-top: 1.2rem; visibility: hidden; display: inline-block;"></div>
+            <button id="submitPassCode" type="button" class="btn noshow-submit invisible" data-i18n="unlock">Unlock</button>
           </div>
+          </section>
         </div>
       </form>
     </div>
-    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.9rem;">
-    <div class="input-group">
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="github" href="https://github.com/racz-zoltan/racz-zoltan.github.io" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="github" class="trusted-icon"></i>
+    <footer class="footer">
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
+    </footer>
+    <footer class="footer">
+    <div class="input-group-header">
+      <div class="toggle-container">
+        <a id="aboutsection" href="carrypass-user-manual.html" target="_blank" rel="noopener noreferrer" class="tag-link">
+          <i data-lucide="book-open" class="trusted-icon"></i>
         </a>
-        <label for="github">GitHub</label>
+        <label for="aboutsection" data-i18n="aboutUs">Manual</label>
       </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+      <div class="toggle-container">
         <a id="discussions" href="https://github.com/racz-zoltan/racz-zoltan.github.io/discussions/1" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="messages-square" class="trusted-icon"></i>
         </a>
         <label for="discussions" data-i18n="discussionsLabel">Discussions</label>
       </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="privacypolicy" href="carrypass-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="shield-check" class="trusted-icon"></i>
-        </a>
-        <label for="privacypolicy" data-i18n="privacyLabel">Privacy</label>
-      </div>
-    </div>
-    </footer>
-    <footer class="footer" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.9rem;">
-    <div class="input-group">
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="purchase" href="carrypass-landing.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="key-round" class="trusted-icon"></i>
-        </a>
-        <label for="purchase">Get CarryPass</label>
-      </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
-        <a id="aboutsection" href="carrypass-about.html" target="_blank" rel="noopener noreferrer" class="tag-link">
-          <i data-lucide="book-open" class="trusted-icon"></i>
-        </a>
-        <label for="aboutsection" data-i18n="aboutUs">About</label>
-      </div>
-      <div class="toggle-container" style="display: inline-flex; align-items: center;">
+      <div class="toggle-container">
         <a id="disclaimer" href="carrypass-disclaimer.html" target="_blank" rel="noopener noreferrer" class="tag-link">
           <i data-lucide="triangle-alert" class="trusted-icon"></i>
         </a>
-        <label for="disclaimer" data-i18n="demoDisclaimer">Demo Disclaimer</label>
+        <label for="disclaimer" data-i18n="demoDisclaimer">Disclaimer</label>
       </div>
     </div>
     </footer>
-    <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> | created by Zoltán Rácz | hosted by GitHub Pages | domain provider GoDaddy
-    </footer>
   </div>
 
-  <!-- SCREEN LOCK VIEW -->
-  <div id="screenLockView" class="screen" style="display:none">
+  <div id="screenLockView" class="screen">
     <a href="" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>   
-    <div class="container" style="margin-top: 3rem;">
+    <div class="container mt-3">
       <h2 data-i18n="screenLocked">Screen Locked</h2>
       <section class="section">
       <input type="password" id="pinInput" placeholder="Enter unlock PIN" data-i18n-placeholder="screenLockedPlace">
@@ -391,50 +576,12 @@
     </div>
   </div>
 
-  <!-- Upload Admin Config Screen -->
-  <div id="uploadAdminConfigScreen" class="screen" style="display: none">
-    <a href="#appView" class="logo-link">
-      <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
-    </a>
-    <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
-      |
-      <a href="" data-section="memberUnlockScreen" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
-      |
-      <a href="" id="adminBootstrapLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
-    </div>
-    <div class="container" style="margin-top: 4rem;">
-      <form id="adminConfigForm" class="grid split">
-        <div>
-          <p data-i18n="noVault">No vault detected. Upload your Admin Config to proceed.</p>
-              <label for="adminFileInput" data-i18n="chooseAdminFile">Choose admin config file</label>
-              <div class="input-group">
-                  <input type="text" class="form-control" id="adminFileInputText" disabled placeholder="Choose file" data-i18n-placeholder="chooseFile"/>
-                  <div class="input-group-append">
-                      <button class="btn primary" type="button" id="adminFileButton" data-i18n="browseButton">Browse</button>
-                  </div>
-                  <input type="file" class="custom-file-input" accept=".json" id="adminFileInput">
-              </div>
-          <br><br>
-          <button id="uploadConfigToMemberPanel" type="button" class="btn secondary" data-i18n="backButton">Back</button>
-        </div>
-        <div>
-          <p data-i18n="noVault">No vault detected. Upload your Admin Config to proceed.</p>
-        </div>
-      </form>
-    </div>
-    <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li>
-    </footer>
-  </div>
-
-  <!-- Admin Vault Viewer Panel -->
-  <div id="adminVaultEditorPanel" class="screen" style="display: none">
+  <div id="adminVaultEditorPanel" class="screen">
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
     <div class="logo link">
-    <div id="trustedDeviceIndicator" class="trusted-indicator" style="margin-top: 3.3rem;" title="" data-trusted-indicator>
+    <div id="trustedDeviceIndicator" class="trusted-indicator nodisplay" title="" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
       <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
       <button id="exportTrustedQRButton" class="btn icon-only small export-qr-button" title="Share TOTP with another device">
@@ -449,20 +596,23 @@
       |
       <a href="" id="adminEditorLoginLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
-    <div class="container" style="margin-top: 5rem;">
+    <div class="container mt-5">
       <form id="adminVaultEditorForm" class="grid split">
         <div>
           <h2 data-i18n="editorAccess">Vault Editor Access</h2>
+          <div class="footer toggle-container">
+            <button type="button" id="openDemoModalAdmin" class="btn secondary">
+              <i data-lucide="circle-play"></i> <span data-i18n="tryDemoLabel">How to try the demo</span>
+            </button>
+          </div>
           <div class="input-group">
-            <input type="password" id="adminPasswordEditorInput" placeholder="Admin Vault Password" data-i18n-placeholder="adminVaultPwd">
+            <input type="password" id="adminPasswordEditorInput" placeholder="Admin Vault Password" data-i18n-placeholder="adminVaultPwd" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off">
           <button id="adminPasswordEditorInputToggle" type="button" name="adminPasswordEditorInput" class="btn secondary-outline" data-i18n="showButton">Show</button>
           </div>
-          <br><br>
-          <input id="adminEditorTOTPInput" type="text" placeholder="2FA (6-digit code)" data-i18n-placeholder="adminTOTP" maxlength="6">
-          <br><br>
+          <div id="spinner8" class="spinner spinner-middle invisible"></div><br>
           <div class="input-group">
-          <button type="button" class="btn strong" id="handleCompleteAdminVault" style="margin-right: 0.5rem;" data-i18n="editorAccessButton">Access&nbsp;Admin&nbsp;Vault</button>
-          <div class="input-group" style="margin-left: auto;">
+          <button type="button" class="btn strong btn-margin-right-sm" id="handleCompleteAdminVault" data-i18n="editorAccessButton">Access&nbsp;Admin&nbsp;Vault</button>
+          <div class="input-group toggle-container-right">
               <input type="text" class="form-control" id="adminEditFileInputText" disabled placeholder="Upload vault file" data-i18n-placeholder="uploadVault" />
               <div class="input-group-append">
                   <button class="btn primary" type="button" id="adminEditFileButton" data-i18n="browseButton">Browse</button>
@@ -472,64 +622,18 @@
           </div>
         </div>
         <div>
-          <p style="margin-top: 2rem;" data-i18n="adminPanelIntro">This is the admin unlock & edit panel - it is used for editing the complete vault, when there is a team vault already set up.</p>
-           <h4 data-i18n="adminTrustStep">To access the editor, first you have to make yours a trusted device - see Team Member Access Panel</h4>
-          <h4 data-i18n="demoAdminPassword">Demo Admin Password</h4>
-          <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
-          <div style="margin-top: 3rem; margin-left: auto;">
+          <div class="modal-section-top-xl toggle-container-right">
           <button data-i18n="backToTeamMemberPanel" id="adminToMemberUnlock" type="button" class="btn secondary">Back to Team Member Access Panel</button>
           </div>
         </div>
       </form>
     </div>
     <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li>
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li>
     </footer>
   </div>
 
-  <!-- Admin Unlock Panel -->
-  <div id="adminUnlockPanel" class="screen" style="display: none">
-    <a href="#appView" class="logo-link">
-      <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
-    </a>
-    <div class="trusted-indicator logo-link" style="margin-top: 3.3rem;" data-trusted-indicator>
-      <i data-lucide="monitor-dot" class="trusted-icon"></i>
-      <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
-    </div>
-    <div class="lang-toggle">
-      <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
-      |
-      <a href="" data-section="memberUnlockPanel" class="lang-link active" data-i18n="menuVaults">TEAMS</a>
-      |
-      <a href="" id="adminSetupLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
-    </div>
-    <div class="container" style="margin-top: 4rem;">
-      <form id="adminUnlockForm" class="grid split">
-        <div>
-          <h2 data-i18n="firstUnlockAdminVaultTitle">Admin Vault Unlock</h2>
-          <input id="adminAccessInput" placeholder="Access Settings" data-i18n-placeholder="accessSettings">
-          <div class="input-group">
-            <input type="password" id="adminPasswordInput" placeholder="Master Password" data-i18n-placeholder="password">
-          <button id="adminPasswordInputToggle" type="button" name="adminPasswordInput" class="btn secondary-outline" data-i18n="showButton">Show</button>
-          </div>
-          <br><br>
-          <input id="adminTOTPInput" type="text" placeholder="2FA Code" data-i18n-placeholder="adminTOTP" maxlength="6">
-          <br><br>
-          <button type="button" id="firstUnlockAdminVault" class="btn strong" data-i18n="firstUnlockAdminVault">Unlock Admin Vault</button>
-          <button type="button" id="backToTeamsPanel" class="btn secondary" data-i18n="backButton">Back</button>
-        </div>
-        <div>
-          <p data-i18n="bootStrap">This is the admin unlock panel - used for initial setup - bootstrapping the app.</p>
-        </div>
-      </form>
-    </div>
-    <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
-    </footer>
-  </div>
-
-  <!-- MEMBER VAULT CONTENT -->
-  <div id="memberPanel" class="screen" style="display: none">
+  <div id="memberPanel" class="screen">
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
@@ -540,42 +644,38 @@
       |
       <a href="" id="memberVaultLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
-    <div class="container" style="margin-top: 4rem;">
+    <div class="container mt-4">
       <form id="memberVaultForm" class="grid split">
         <div>
-          <p id="vaultSourceLabel" style="font-size: 0.9rem; margin-bottom: 0.2rem;" data-i18n="vaultLoadedFrom"></p>
-          <button type="button" class="btn secondary" style="margin-bottom: 1.4rem;" id="logoutMemberFromVault">
+          <p id="vaultSourceLabel" data-i18n="vaultLoadedFrom"></p>
+          <button type="button" class="btn secondary btn-clear-vault" id="logoutMemberFromVault">
             <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
           </button>
-          <div class="logout-mobile" style="margin-left: auto;"><p style="margin-bottom: 1rem;" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
+          <div class="logout-mobile toggle-container-right"><p class="btn-card-up" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
           <div id="memberVaultContent1"></div>
         </div>
         <div>
-          <div class="logout-desktop" style="margin-left: auto;"><p style="margin-bottom: 1rem;" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
+          <div class="logout-desktop toggle-container-right"><p class="btn-card-up" data-i18n="teamMemberExplain">Teams without credentials also appear if team is already assigned.</p></div>
           <div id="memberVaultContent2"></div>
         </div>
       </form>
     </div>
     <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
     </footer>
   </div>
 
-
-  <!-- Member Unlock Panel -->
-  <div id="memberUnlockPanel" class="screen" style="display:none">
+  <div id="memberUnlockPanel" class="screen">
     <a href="#appView" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <!-- <div class="logo link"> -->
-    <div id="trustedDeviceIndicatorMember" class="trusted-indicator" style="margin-top: 3.3rem; margin-right: auto;" title="" data-trusted-indicator>
+    <div id="trustedDeviceIndicatorMember" class="trusted-indicator nodisplay" title="" data-trusted-indicator>
       <i data-lucide="monitor-dot" class="trusted-icon"></i>
       <span class="trusted-label" data-i18n="trustedDevice">Trusted Device</span>
       <button id="exportTrustedQRButtonMember" class="btn icon-only small export-qr-button" title="Share TOTP with another device">
         <i data-lucide="qr-code"></i>
       </button>
     </div>
-    <!-- </div> -->
     <div class="lang-toggle">
       <a href="" data-section="appView" class="lang-link" data-i18n="menuPasswords">PASSWORDS</a>
       |
@@ -583,20 +683,23 @@
       |
       <a href="" id="memberPanelLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
-    <div class="container" style="margin-top: 4rem;">
+    <div class="container mt-5">
       <form id="memberUnlockForm" class="grid split">
         <div>
           <h2 data-i18n="teamMemberAccess">Team Member Access</h2>
-          <!-- <input id="memberId" placeholder="Member ID" type="text">
-          <br><br> -->
-          <div class="input-group">
-            <input type="password" id="memberPassword" placeholder="Member Access Password" data-i18n-placeholder="memberPassword">
-          <button id="memberPasswordToggle" type="button" name="memberPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
+          <div class="footer toggle-container">
+            <button type="button" id="openDemoModal" class="btn secondary">
+              <i data-lucide="circle-play"></i> <span data-i18n="tryDemoLabel">How to try the demo</span>
+            </button>
           </div>
-          <br><br>
           <div class="input-group">
-          <button id="memberVaultImportButton" type="button" class="btn strong" style="margin-right: 0.5rem;" data-i18n="memberAccessVault">Access&nbsp;Vault</button>
-          <div class="input-group" style="margin-left: auto;">
+            <input type="password" id="memberPassword" placeholder="Member Access Password" data-i18n-placeholder="memberPassword" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off">
+            <button id="memberPasswordToggle" type="button" name="memberPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
+          </div>
+          <div id="spinner7" class="spinner spinner-middle invisible"></div><br>
+          <div class="input-group">
+          <button id="memberVaultImportButton" type="button" class="btn strong btn-margin-right-sm" data-i18n="memberAccessVault">Access&nbsp;Vault</button>
+          <div class="input-group toggle-container-right">
               <input type="text" class="form-control" id="memberGappedFileInputText" disabled placeholder="Upload vault file" data-i18n-placeholder="uploadVault" />
               <div class="input-group-append">
                   <button class="btn primary" type="button" id="memberGappedFileButton" data-i18n="browseButton">Browse</button>
@@ -604,44 +707,34 @@
               <input type="file" class="custom-file-input" accept=".json" id="memberGappedFileInput">
           </div>
           </div>
-        </div>
-        <div>
-          <img src="member_finalize_qr.png" alt="Demo onboarding QR code" class="qr-image" style="margin-bottom: 1rem;">
-           <h4 data-i18n="qrStep1">
-            1) Scan this Demo TOTP QR Code <span class="highlight"> with CarryPass</span> to make yours a trusted device
-          </h4>
-           <p data-i18n="qrAltText">Alternatively, download image (right click (long-press on mobile) - Save image as...) and upload.</p>
-          <div id="qr-reader" style="width: 300px; margin: auto;"></div>
+          <div id="qr-camera-reader"></div>
+          <div id="qr-file-reader"></div>
+          <br><br>
           <div class="input-group">
           <button type="button" id="startQrScan" class="btn outline"><i data-lucide="scan-qr-code"></i> Scan</button>
-          <button type="button" id="stopScanButton" class="btn outline-delete" style="display: none;"><i data-lucide="camera-off"></i></button>
-          <div class="input-group" style="margin-left: auto;">
+          <button type="button" id="stopScanButton" class="btn outline-delete nodisplay"><i data-lucide="camera-off"></i></button>
+          <div class="input-group toggle-container-right">
               <input type="text" class="form-control" id="qr-file-inputText" disabled placeholder="Upload QR image" data-i18n-placeholder="uploadQrImage" />
               <div class="input-group-append">
                   <button class="btn primary" type="button" id="qr-file-inputButton" data-i18n="browseButton">Browse</button>
               </div>
               <input type="file" class="custom-file-input" accept="image/*" id="qr-file-input">
           </div>
+        </div>      
+        </div>
+        <div>
+          <div class="modal-section-top-xl toggle-container-right">
+            <button data-i18n="qrStep9" id="onAdminEntryCheck" type="button" class="btn secondary">Access Admin Vault</button>
           </div>
-          <h4 data-i18n="qrStep2">2) Then, scan this Demo TOTP QR Code with <span class="highlight">an Authenticator app</span> e.g.: FreeOTP; Microsoft/Google Authenticator</h4>
-          <!-- <h4 data-i18n="qrStep3">3) Read Demo Member ID from Authenticator app and type</h4> -->
-          <h4 data-i18n="qrStep4">3) Copy&paste the Demo Member Access Password:</h4>
-          <p>iHP3pH62N9W+);8Kx[0jF*mFNz+y+eT160Sw409HWLG</p>
-          <h4 data-i18n="qrStep5">4) Click Access Vault</h4>
-          <h4 data-i18n="qrStep6">5) Read Demo Member 2FA (6-digit code) from <span class="highlight">the Authenticator App</span> and type into the popup modal</h4>
-          <h4 data-i18n="qrStep7">6) Click OK</h4>
-          <p data-i18n="qrStep8" style="margin-top: 2rem;">Unlock the admin vault to manage teams, members, credentials and assignments.</p>
-          <button data-i18n="qrStep9" id="onAdminEntryCheck" type="button" class="btn secondary" style="margin-bottom: 2rem;">Unlock Admin Vault</button>
         </div>
       </form>
     </div>
     <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
     </footer>
   </div>
 
-    <!-- Admin Control Panel -->
-    <div id="adminPanel" class="screen" style="display:none">
+    <div id="adminPanel" class="screen">
         <a href="#appView" class="logo-link">
             <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
         </a>
@@ -652,33 +745,31 @@
             |
             <a href="" id="adminEditViewLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
           </div>
-        <div class="container" style="margin-top: 4rem;">
+        <div class="container mt-4">
           <form id="adminFullForm" class="grid split">
             <div class="desktop-margin-right">
-              <div class="logout-mobile" style="margin-left: auto;">
-                <button type="button" class="btn secondary" id="adminPasswordGenerator1" style="margin-right: 1rem; margin-bottom: 0.2rem;">
+              <div class="logout-mobile toggle-container-right">
+                <button type="button" class="btn secondary btn-admin-action" id="adminPasswordGenerator1">
                   <span data-i18n="generatePasswordButton">Generate Password&nbsp;&nbsp;</span><i data-lucide="shield-ellipsis"></i>
                 </button>
-                <button type="button" class="btn secondary" id="logoutAdminEditMobile" style="margin-bottom: 0.2rem;">
+                <button type="button" class="btn secondary btn-admin-action-bottom" id="logoutAdminEditMobile">
                   <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
                 </button>
               </div>
-                <div id="sessionCountdown" style="display: none; color: #1E003B;">
-                  <span data-i18n="sessionLock">Session locks in</span> <span id="countdownTime">60:00</span>
+                <div id="sessionCountdown" class="brand-color nodisplay">
+                  <span data-i18n="sessionLock">Session locks in</span> <span id="countdownTime">30:00</span>
                 </div>
                 <div id="vaultInfoSection" class="admin-section">
-                  <p id="vaultSourceLabelAdmin" style="font-size: 0.9rem;"></p>
+                  <p id="vaultSourceLabelAdmin"></p>
                   <p><span data-i18n="vaultExpiryDate"><strong>Vault Expiration:</strong></span> <span id="vaultExpirationDisplay">Unknown</span></p>
                 </div>
-                  <!-- Teams -->
-                <div id="teamsSection" class="admin-section" style="margin-top: 2.6rem;">
+                <div id="teamsSection" class="admin-section">
                     <h3><span data-i18n="teamsTitle">Teams&nbsp;&nbsp;</span><i data-lucide="group"></i></h3>
                     <input type="text" id="teamSearchInput" placeholder="Search Teams..." data-i18n-placeholder="searchTeams">
                     <div id="teamsList" class="compact-list"></div>
                     <button type="button" class="btn outline-gold" id="createTeamModal" data-i18n="addTeamButton"> Create New Team</button>
                 </div>
-                    <!-- Credentials -->
-                <div id="credentialsSection" class="admin-section" style="margin-top: 2rem;">
+                <div id="credentialsSection" class="admin-section">
                     <h3><span data-i18n="addCredentialTitle">Credentials&nbsp;&nbsp;</span><i data-lucide="globe-lock"></i></h3>
                     <div class="input-group">
                     <input type="text" id="credentialSearchInput" placeholder="Search by Title..." data-i18n-placeholder="searchTitle">
@@ -689,32 +780,31 @@
                 </div>
             </div>
             <div class="desktop-margin-left">
-                <!-- Members -->
-                <div class="logout-desktop" style="margin-left: auto; margin-top: 2rem;">
-                  <button type="button" class="btn secondary" id="adminPasswordGenerator2" style="margin-right: 3rem; margin-bottom: 2.5rem;">
+                <div class="logout-desktop toggle-container-right modal-section-top-lg">
+                  <button type="button" class="btn secondary btn-admin-logout" id="adminPasswordGenerator2">
                     <span data-i18n="generatePasswordButton">Generate Password&nbsp;&nbsp;</span><i data-lucide="shield-ellipsis"></i>
                   </button>
-                  <button type="button" class="btn secondary" id="logoutAdminEditDesktop" style="margin-bottom: 2.5rem;">
+                  <button type="button" class="btn secondary btn-admin-logout" id="logoutAdminEditDesktop">
                     <span data-i18n="clearVault">Clear Vault&nbsp;&nbsp;</span><i data-lucide="zap"></i>
                   </button>
                 </div>
-                <div id="membersSection" class="admin-section responsive-margin-top" style="margin-top: 2rem;">
+                <div id="membersSection" class="admin-section responsive-margin-top">
                     <h3><span data-i18n="membersTitle">Members&nbsp;&nbsp;</span><i data-lucide="user"></i></h3>
-                    <div id="hiddenQr" class="input-group" style="display: none; margin-bottom: 1rem;">
+                    <div id="hiddenQr" class="input-group nodisplay">
                     <div id="qrOutput"></div>
-                    <button id="deleteQrOutput" type="button" class="btn outline-delete" style="margin-top: 1rem;" data-i18n="deleteQr"> Delete QR</button>
+                    <button id="deleteQrOutput" type="button" class="btn outline-delete btn-card-action" data-i18n="deleteQr"> Delete QR</button>
                     </div>
                     <div class="input-group">
                     <input type="text" id="memberSearchInput" placeholder="Search Members..." data-i18n-placeholder="searchMember">
-                    <button type="button" id="toggleExpirySort" class="btn outline-secondary" data-active="false" style="margin-left: 1rem;" data-i18n="sortByExpiry">
+                    <button type="button" id="toggleExpirySort" class="btn outline-secondary" data-active="false" data-i18n="sortByExpiry">
                       Sort by Expiry
                     </button>
                     </div>
                     <div id="membersList" class="compact-list"></div>
                     <button id="createMemberShow" type="button" class="btn outline-gold" data-i18n="createMemberButton"> Create New Member</button>
                 </div>
-                <!-- ===== Assignments Management ===== -->
-                <div id="assignmentsSection" class="admin-section" style="margin-top: 2rem;">
+
+                <div id="assignmentsSection" class="admin-section">
                     <h3><span data-i18n="assignmentsTitle">Assignments&nbsp;&nbsp;</span><i data-lucide="share-2"></i></h3>
                     <div class="input-group">
                     <input type="text" id="assignmentSearchInput" placeholder="Search by Memeber..." data-i18n-placeholder="searchByMember">
@@ -728,7 +818,7 @@
                             <span class="assigned-team-item">
                             {{ this.name }}
                             <button id="removeTeamMemberAssignment" class="icon-button outline-delete">
-                                <i data-lucide="square-arrow-out-up-right" style="color: #1E003B;"></i>
+                                <i data-lucide="square-arrow-out-up-right" class="icon-button-dark"></i>
                             </button>
                             </span>
                         {{/each}}
@@ -736,28 +826,32 @@
                     </div>
                     </div> 
                 </div>
-                <!-- Vault Export -->
-              <div id="exportVaultSection" class="admin-section" style="margin-top: 3rem;">
+
+              <div id="exportVaultSection" class="admin-section">
+              <label for="vaultExpiry" data-i18n="vaultExpiration">Vault Expiration Date</label>
+              <div class="input-group">
+              <input type="date" id="vaultExpiry">
+              </div>
+              <br><br>
                 <div class="input-group">
                   <button id="exportAuditLogFile" type="button" class="btn outline-gold"><span data-i18n="logExport">Export Log&nbsp;&nbsp;</span><i data-lucide="file-clock"></i></button>
-                  <button id="vaultExportModalShow" type="button" class="btn strong"><span data-i18n="vaultExport">Export Vault&nbsp;&nbsp;</span><i data-lucide="folder-symlink"></i></button>
-                  <div id="vaultExportFeedback"></div>
+                  <button id="adminExportsVault" type="button" class="btn strong"><span data-i18n="vaultExport">Export Vault&nbsp;&nbsp;</span><i data-lucide="folder-symlink"></i></button>
+                  <div id="spinner6" class="spinner invisible"></div>
                 </div>
               </div>
             </div>
           </form>
         </div>
         <footer class="footer">
-      &copy; 2022–2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li>
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li>
         </footer>
     </div>
 
-  <!-- MAIN APP VIEW -->
   <div id="appView" class="screen">
     <a href="#" class="logo-link">
       <img src="carrypass-gold-transparent.png" alt="CarryPass logo" class="logo-img">
     </a>
-    <div id="identityIndicator" class="identity-indicator logo-link" style="margin-top: 3.5rem;" title="Identity mode enabled">
+    <div id="identityIndicator" class="identity-indicator logo-link" title="Identity mode enabled">
       <span class="identity-label" data-i18n="identityOn">Identity ON</span>
       <button id="toggleIdentityBtn" class="btn icon-only small" title="Toggle identity mode">
         <i id="identityToggleIcon" data-lucide="orbit"></i>
@@ -771,22 +865,20 @@
       <a href="" id="appViewLogout" class="lang-link" data-i18n="menuExit">EXIT</a>
     </div>
 
-    <div class="container" style="margin-top: 2rem;">
+    <div class="container">
       
       <form id="keyGeneratorForm" class="grid split">
         <div class="column-left">
-          <div class="input-group" style="justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <!-- Left-aligned text label acting as button -->
-             <p style="visibility: hidden;">hidden</p>
-            <!-- Right-aligned menu icon -->
-            <div class="dropdown-wrapper" style="position: relative;">
-              <button type="button" id="menuToggle" class="btn icon-only small" aria-haspopup="true" aria-expanded="false">
+          <div class="input-group input-group-header">
+             <p class="invisible-spacer">hidden</p>
+            <div class="dropdown-wrapper">
+              <button type="button" id="menuToggle" class="btn icon-only small icon-menu" aria-haspopup="true" aria-expanded="false">
                 <i data-lucide="menu"></i>
               </button>
             </div>
           </div>
           <div id="savedServicesPanel" class="saved-services-panel">
-            <input type="text" id="savedServicesSearch" placeholder="Search saved services..." data-i18n-placeholder="servicesSearch" style="width: 100%; margin-bottom: 0.5rem;">
+            <input type="text" id="savedServicesSearch" placeholder="Search saved services..." data-i18n-placeholder="servicesSearch">
             <ul id="savedServicesList"></ul>
           </div>
           <p></p>
@@ -794,20 +886,20 @@
             <label for="webAddress" >
               <div class="input-group">
               <span data-i18n="webAddress">Service</span>
-              <button type="button" id="toggleSavedServices" class="btn icon-only small" style="padding-left: 0; margin-left: 1rem; margin-bottom: 0.2rem;"><i data-lucide="clipboard-list"></i></button>
+              <button type="button" id="toggleSavedServices" class="btn icon-only small icon-menu"><i data-lucide="clipboard-list"></i></button>
               </div>
             </label>
           </div>
-          <input type="text" id="webAddress" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" name="webAddress" class="form-control" placeholder="https://example.com" data-i18n-placeholder="examplecom" required>
+          <input type="text" id="webAddress" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" name="webAddress" class="form-control" placeholder="example.com" data-i18n-placeholder="examplecom" required>
           
           <div id="manualModeFields">
-            <div id="settings" style="margin-top: 1.5rem;">
+            <div id="settings">
 
               <div class="toggles">
               <div class="toggle-container">
                     <div class="label-tooltip-wrapper tooltip-anchor">
                       <div class="label-flex-wrapper">
-                      <label for="toggle1" style="margin-right: auto;" class="label-with-icon">
+                      <label for="toggle1" class="label-with-icon label-push-right">
                         <span data-i18n="uppercase">Uppercase</span>
                       </label>
                       </div>
@@ -837,29 +929,29 @@
                 <input type="hidden" id="salt" name="salt" value="">          
               </div>
               
-              <div class="input-group" style="margin-bottom: 1.5rem; margin-top: 1.5rem;">
+              <div class="input-group input-group-spaced">
                 <div class="toggles">
-                  <div class="toggle-container" style="margin-right: 1rem;">
+                  <div class="toggle-container toggle-container-mr">
                       <div class="label-tooltip-wrapper tooltip-anchor">
                         <div class="label-flex-wrapper">
-                        <label for="length" style="margin-right: auto;" class="label-with-icon">
+                        <label for="length" class="label-with-icon label-push-right">
                           <span data-i18n="length">Length</span>
                         </label>
                         </div>
                       </div>
-                      <input class="input-group-length" max="999" min="1" type="number" id="length" name="length" class="form-control" placeholder="" value="28" step="1" required>
+                      <input class="input-group-length" max="999" min="1" type="number" id="length" name="length" class="form-control" placeholder="" value="43" step="1" required>
                   </div>
                   <div class="toggle-container-security">
                       <div class="label-tooltip-wrapper tooltip-anchor">
-                        <div class="label-flex-wrapper" style="text-align: left">
+                        <div class="label-flex-wrapper">
                         <label for="iterationCount" class="label-with-icon">
-                          <span data-i18n="security">Security</span>
-                          <span id="argonTierLabel" class="argon-tier-label">🔹 Standard</span>
+                          <span data-i18n="security">Variant</span>
+                          <span id="argonTierLabel" class="argon-tier-label">🔸 Default</span>
                         </label>
                         </div>
                       </div>
                       <div class="input-group">
-                        <input class="input-group-password" maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCount" name="iterationCount" class="form-control" value="100" step="1" placeholder="" required>
+                        <input class="input-group-password" maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCount" name="iterationCount" class="form-control" value="50000" step="1" placeholder="" required>
                         <button id="iterCount" type="button" class="btn secondary-outline" name="iterationCount" data-i18n="show">Show</button>
                       </div>
                   </div>
@@ -872,14 +964,18 @@
               </label>
             </div> 
             <div class="input-group">
-              <input type="password" id="password" name="password" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" class="form-control" placeholder="A variant of a secret password" data-i18n-placeholder="secretMaster" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" disabled required>
+              <input type="password" id="password" name="password" class="form-control" placeholder="A variant of a secret password" data-i18n-placeholder="secretMaster" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" disabled required>
               <button id="masterPass" type="button" class="btn secondary-outline" name="password">
-                <i data-lucide="square-asterisk" class="feedback-icon" style="color: gainsboro; margin-right: 0.4rem;"></i>
+                <i data-lucide="square-asterisk" class="feedback-icon"></i>
                 <span class="toggle-text" data-i18n="showButton">Show</span>
               </button>
             </div>
+            <div id="passwordStrengthContainerMaster">
+              <div id="passwordStrengthBarMaster" class=""></div>
+              <span id="passwordStrengthTextMaster"></span>
+              <span id="entropyTextMaster"></span>
+            </div>
           </div>
-
           <div id="identityModeFields">
             <div>
               <div class="custom-dropdown dropdown-lower">
@@ -895,162 +991,137 @@
                   <option value="diceware" data-i18n="diceware">Passphrase (Diceware-EFF Long)</option>
                   <option value="diceware-short" data-i18n="dicewareShort">Passphrase (Diceware-EFF Short)</option>
                   <option value="diceware-memorable" data-i18n="dicewareMemorable">Passphrase (Diceware-EFF Memorable)</option>
+                  <option value="diceware-hungarian" data-i18n="dicewareHungarian">Passphrase (Diceware-Hungarian)</option>
                 </select>
               </div>
             </div>
-
-            <div style="margin-top: 1rem;">
+            <div class="counter-wrapper">
             <label for="counter" data-i18n="counterVariant">Password variant</label>
-            <input type="number" id="counter" value="0" min="0" step="1" style="text-align: center;" />
+            <input type="number" id="counter" value="0" min="0" step="1" />
             </div>
           </div>
-
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
-          <div class="input-group" style="display: flex; gap: 0.5rem;"> 
-          <div id="signaldot" class="custom-slider-container-service" style="margin-top: auto; margin-left: auto;">
+          <div class="get-password-row">
+          <div id="spinner3" class="spinner btn-get-password invisible"></div>
+          <div class="input-group input-group-gap"> 
+          <div id="signaldot" class="custom-slider-container-service">
             <div id="dot" class="dot-signal"></div>
           </div>
-          <button id="collectInput" type="button" class="btn strong" style="margin-top: 1rem;font-weight: 500;" data-i18n="getPassword">GET PASSWORD</button>
+          <button id="collectInput" type="button" class="btn strong btn-get-password" data-i18n="getPassword">GET PASSWORD</button>
           </div>
           </div>
         </div>
         <div class="column-right">
 
           <div class="card smooth-toggle" id="passwordCard">
-            <button type="button" class="btn icon-only small" style="margin-top: 0.3rem; display: flex; justify-content: flex-end; color: #1E003B;" id="clearGeneratedPasswordCard"><i data-lucide="square-x"></i></button>
+            <button type="button" class="btn icon-only small btn-card-close icon-trash" id="clearGeneratedPasswordCard"><i data-lucide="square-x"></i></button>
             <h3 id="serviceLabel">Service Name</h3>
-
             <h4><span id="generatedPass" data-i18n="generatedPass">Generated passwords</span> <span id="passwordIndexLabel">(1/6)</span></h4>
+            <br>
             <div class="field-controls">
-              <button type="button" class="btn icon-only small" style="margin-bottom: 1rem;" id="passwordUp"><i data-lucide="arrow-up"></i></button>
+              <button type="button" class="btn icon-only small btn-card-up" id="passwordUp"><i data-lucide="arrow-up"></i></button>
               <input id="passwordPreview" class="form-control input-pwd generated-password" type="password" />
               <button type="button" class="btn icon-only small" id="passwordDown"><i data-lucide="arrow-down"></i></button>
+              <br><br>
               <div>
-              <button id="pwdAnButton" type="button" class="btn secondary-outline" style="margin-top: 0.5rem;" name="passwordPreview" data-i18n="showButton">Show</button>
-              <button type="button" id="viewFullPasswordBtn" class="btn outline" style="margin-top: 0.5rem;" data-i18n="viewFull">View Full Password</button>
-              <button data-password-id="pwdAnCopy" type="button" class="btn outline-gold" style="margin-top: 0.5rem;" name="passwordPreview" data-i18n="copyButton">Copy</button>
-              <span id="copySuccessIcon-pwdAnCopy" class="icon" style="display: none;"></span>
+              <button id="pwdAnButton" type="button" class="btn secondary-outline btn-card-action" name="passwordPreview" data-i18n="showButton">Show</button>
+              <button type="button" id="viewFullPasswordBtn" class="btn outline btn-card-action" data-i18n="viewFull">View</button>
+              <button data-password-id="pwdAnCopy" type="button" class="btn outline-gold btn-card-action" name="passwordPreview" data-i18n="copyButton">Copy</button>
+              <span id="copySuccessIcon-pwdAnCopy" class="icon nodisplay">
+                <i data-lucide="copy-check" class="icon-success"></i>
+              </span>
               </div>          
             </div>
             <br>
-            <h4><span id="suggestUsername" data-i18n="suggestUsername">Username suggestions</span> <span id="usernameIndexLabel">(1/6)</span></h4>
             <div class="field-controls">
-              <button type="button" class="btn icon-only small" style="margin-bottom: 1rem;" id="usernameUp"><i data-lucide="arrow-up"></i></button>
-              <input id="usernamePreview" class="form-control input-pwd generated-password" type="password" readonly />
-              <button type="button" class="btn icon-only small" id="usernameDown"><i data-lucide="arrow-down"></i></button>
-              <div>
-              <button id="usrnAmButton" type="button" class="btn secondary-outline" style="margin-top: 0.5rem;" name="usernamePreview" data-i18n="showButton">Show</button>
-              <button data-password-id="usrnAmCopy" type="button" class="btn outline-gold" style="margin-top: 0.5rem;" name="usernamePreview" data-i18n="copyButton">Copy</button>
-              <span id="copySuccessIcon-usrnAmCopy" class="icon" style="display: none;"></span>
-              </div>            
+              <h4><span data-i18n="identifierLabel">Username or email</span></h4>
+              <textarea type="text" id="identifierInput" class="generated-password" maxlength="256" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" data-i18n-placeholder="identifierPlaceholder" placeholder="Optional eg. username, email, or notes"></textarea>
             </div>
             <br>
-            <button id="saveLocallyBtn" type="button" class="btn strong" id="saveCredential" data-i18n="saveLocally"> Save locally</button>
+            <button id="saveLocallyBtn" type="button" class="btn primary" data-i18n="saveLocally"> Save locally</button>
           </div>
         </div>
       </form>
     </div>
-
     <footer class="footer">
-      &copy; 2022-2025 CarryPass. Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
+      &copy; 2022–<span class="current-year"></span> CarryPass.  Source code licensed under the <a href="https://github.com/racz-zoltan/racz-zoltan.github.io/blob/main/LICENSE" class="lang-link active">MIT License.</a></li> Built for<a href="carrypass-privacy-policy.html" class="lang-link active">Privacy</a></li> 
     </footer>
   </div>
-  <div id="alertModal" class="modal-confirm hidden">
-    <div class="modal-confirm-content">
-      <h3 id="alertMessage">Notice</h3>
-      <div class="modal-confirm-buttons">
-        <button id="alertOkBtn" data-i18n="ok">OK</button>
-      </div>
-    </div>
-  </div>
-  <div id="alertModalAlert" class="carrypass-modal">
-    <div class="carrypass-modal-content">
-      <span class="close" aria-label="Close">&times;</span>
-      <p id="alertModalMessage"></p>
-    </div>
-  </div>
-  <!-- Export/Import Passcode Modal -->
-  <div id="exportImportModal" class="modal hidden">
-    <div class="modal-content">
-      <h4 id="exportImportModalTitle">Enter Passcode</h4>
-      <div class="input-group">
-      <input type="password" id="exportImportModalInput" placeholder="" />
-      <button type="button" id="exportImportShow" class="btn secondary-outline" name="exportImportModalInput" data-i18n="showButton">Show</button>
-      </div>
-      <div id="exportImportModalError" class="modal-error hidden"></div>
-      <br><br>
-      <button type="button" style="padding: 0.7rem 1rem;" class="btn secondary-outline" id="exportImportModalCancel" data-i18n="cancelButton">Cancel</button>
-      <button type="button" class="btn strong" style="margin-left: auto;" id="exportImportModalOK" data-i18n="okButton">OK</button>
-    </div>
-  </div>
-<!-- ===== Create Team Modal ===== -->
   <div id="teamModal" class="modal hidden">
-    <div class="modal-content">
+    <div class="modal-content modal-main">
       <h3 data-i18n="createTeamLabel">Create New Team</h3>
       <input type="text" id="newTeamName" placeholder="Team Name" data-i18n-placeholder="teamName">
       <br><br>
       <button type="button" class="btn secondary" id="hideCreateTeamUnit" data-i18n="cancelButton">Cancel</button>
-      <button type="button" class="btn strong" id="createTeamUnit" data-i18n="createButton">Create</button>
+      <button type="button" class="btn primary" id="createTeamUnit" data-i18n="createButton">Create</button>
     </div>
-  </div>
-  
-
+  </div>  
   <div id="createMemberModal" class="modal hidden">
-    <div class="modal-content">
+    <div class="modal-content modal-main">
       <h3 data-i18n="createMemberLabel">Create New Member</h3>
       <input id="newMemberName" placeholder="Member Name" data-i18n-placeholder="memberName" type="text" class="input-field">
       <br><br>    
         <button type="button" id="realCreateMemberHide" class="btn secondary" data-i18n="cancelButton">Cancel</button>
-        <button type="button" id="realCreateMember" class="btn strong" data-i18n="createButton">Create</button>
+        <button type="button" id="realCreateMember" class="btn primary" data-i18n="createButton">Create</button>
     </div>
   </div>
-  
-  <!-- ===== Assign Member to Team Modal ===== -->
-  
   <div id="assignMemberModal" class="modal hidden">
-    <div class="modal-content">
+    <div class="modal-content modal-main">
       <h3 data-i18n="assignLabel">Assign Team to Member</h3>
       <p id="assignMemberNameLabel"></p>
-      <div class="custom-dropdown" style="margin-bottom: 1rem;">
+      <div class="custom-dropdown modal-dropdown">
       <select id="assignTeamSelect" class="form-control"></select>
       </div>
       <br><br>
       <button type="button" class="btn secondary" id="cancelAssignButton" data-i18n="cancelButton">Cancel</button>
-      <button type="button" class="btn strong" id="assignMemberButton" data-i18n="assignButton">Assign</button>
+      <button type="button" class="btn primary" id="assignMemberButton" data-i18n="assignButton">Assign</button>
     </div>
   </div>
 
-<!-- ===== Add Credential Modal ===== -->
-<div id="credentialModal" class="modal hidden">
-  <div class="modal-content">
-    <h3 data-i18n="addCredTitle">Add New Credential</h3>
-    <label for="credentialTeam" data-i18n="addCredTeam">Team</label>
-      <div class="custom-dropdown" style="margin-bottom: 1rem;">
-      <select id="credentialTeam" class="form-control"></select>
-      </div>
-    <label for="credentialLabel" data-i18n="editCredLabel">Label</label>
-      <input id="credentialLabel" placeholder="Credential Label (e.g. Website or Service)" data-i18n-placeholder="credLabel">
-    <label for="credentialURL" data-i18n="editCredUrl">URL</label>
-      <input id="credentialURL" placeholder="Login URL (optional)" data-i18n-placeholder="loginURL">
-    <label for="credentialUsername">Username</label>
-      <input id="credentialUsername" placeholder="Username" data-i18n-placeholder="generatedUsernameLabel">
-    <label for="credentialPassword" data-i18n="editCredPassword">Password</label>
-      <div class="input-group">
+  <div id="credentialModal" class="modal hidden">
+    <div class="modal-content modal-main">
+      <h3 data-i18n="addCredTitle">Add New Credential</h3>
+      <label for="credentialTeam" data-i18n="addCredTeam">Team</label>
+        <div class="custom-dropdown modal-dropdown">
+        <select id="credentialTeam" class="form-control"></select>
+        </div>
+      <label for="credentialLabel" data-i18n="editCredLabel">Label</label>
+        <input id="credentialLabel" placeholder="Credential Label (e.g. Website or Service)" data-i18n-placeholder="credLabel">
+      <label for="credentialURL" data-i18n="editCredUrl">URL</label>
+        <input id="credentialURL" placeholder="Login URL (optional)" data-i18n-placeholder="loginURL">
+      <label for="credentialUsername">Username</label>
+        <input id="credentialUsername" placeholder="Username" data-i18n-placeholder="generatedUsernameLabel">
+      <label for="credentialPassword" data-i18n="editCredPassword">Password</label>
+      <div class="input-group password-edit-group">
         <input type="password" id="credentialPassword" placeholder="Password" data-i18n-placeholder="simplyPassword">
-        <button id="createPasswordToggle" type="button" name="credentialPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
-      </div>
-    <label for="credentialNotes" data-i18n="editCredNotes">Notes</label>
-      <textarea id="credentialNotes" placeholder="Additional notes (optional)" data-i18n-placeholder="credNotes"></textarea>
-     <br><br>
-    <button id="hideCredentialAddModal" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
-    <button id="addCredentialByModal" type="button" class="btn strong" data-i18n="saveButton">Save</button>
-  </div>
-</div>
+        <textarea id="credentialPasswordText" class="hidden password-visible-textarea" placeholder="Password" data-i18n-placeholder="simplyPassword"></textarea>
 
-<!-- ===== Edit Credential Modal ===== -->
+        <button id="createPasswordToggle" type="button" name="credentialPassword" class="btn secondary-outline" data-i18n="showButton">
+          Show
+        </button>
+      </div>
+      <label for="credentialNotes" data-i18n="editCredNotes">Notes</label>
+        <textarea id="credentialNotes" placeholder="Additional notes (optional)" data-i18n-placeholder="credNotes"></textarea>
+      <br><br>
+      <button id="hideCredentialAddModal" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+      <button id="addCredentialByModal" type="button" class="btn primary" data-i18n="saveButton">Save</button>
+    </div>
+  </div>
+
   <div id="editCredentialModal" class="modal-edit hidden">
-    <div class="modal-edit-content">
+    <div class="modal-edit-content modal-warning">
       <h3 data-i18n="editCredTitle">Edit Credential</h3>
+      <label for="editCredentialTargetTeam" data-i18n="editCredTargetTeam">Target team</label>
+      <div class="custom-dropdown modal-dropdown">
+        <select id="editCredentialTargetTeam" class="form-control"></select>
+      </div>
+      <label for="editCredentialAction" data-i18n="editCredAction">Action</label>
+      <div class="custom-dropdown modal-dropdown">
+        <select id="editCredentialAction" class="form-control">
+          <option value="edit" data-i18n="editCredActionSave">Save changes</option>
+          <option value="move" data-i18n="editCredActionMove">Move to selected team</option>
+          <option value="copy" data-i18n="editCredActionCopy">Copy to selected team</option>
+        </select>
+      </div>
       <label for="editCredentialLabel" data-i18n="editCredLabel">Label</label>
         <input type="text" id="editCredentialLabel" placeholder="">
       <label for="editCredentialURL" data-i18n="editCredUrl">URL</label>
@@ -1058,31 +1129,29 @@
       <label for="editCredentialUsername" data-i18n="editCredUsername">Username</label>
         <input type="text" id="editCredentialUsername" placeholder="">
       <label for="editCredentialPassword" data-i18n="editCredPassword">Password</label>
-        <div class="input-group">
-          <input type="password" id="editCredentialPassword" placeholder="">
-          <button id="editPasswordToggle" type="button" name="editCredentialPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
-        </div>
+      <div class="input-group password-edit-group">
+        <input type="password" id="editCredentialPassword" placeholder="">
+        <textarea id="editCredentialPasswordText" class="hidden password-visible-textarea" placeholder=""></textarea>
+        <button id="editPasswordToggle" type="button" name="editCredentialPassword" class="btn secondary-outline" data-i18n="showButton">
+          Show
+        </button>
+      </div>
       <label for="editCredentialNotes" data-i18n="editCredNotes">Notes</label>
         <textarea id="editCredentialNotes" placeholder=""></textarea> 
-      <br><br>
-      <button id="cancelEditCredential" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
-      <button id="saveEditCredential" type="button" class="btn strong" data-i18n="saveButton">Save</button>
-    </div>
-  </div>
-  
-  <div id="confirmationModal" class="modal-confirm hidden">
-    <div class="modal-confirm-content">
-      <h3 id="confirmationMessage">Are you sure?</h3>
-      <div class="modal-confirm-buttons">
-        <button id="confirmYesBtn" data-i18n="confirmYesBtn">Yes</button>
-        <button id="confirmNoBtn" data-i18n="confirmNoBtn">No</button>
+      <br>
+      <p class="pwa-unsupported-note" data-i18n="copyCredentialHelp">
+        Copy creates an independent copy. Later edits will not update the original credential.
+      </p>
+      <br>
+      <div class="modal-actions sticky-actions">
+        <button id="cancelEditCredential" type="button" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+        <button id="saveEditCredential" type="button" class="btn primary" data-i18n="saveButton">Save</button>
       </div>
     </div>
   </div>
 
- <!-- ===== Member Finalization Step ===== -->
-<div id="memberFinalizeModal" class="modal hidden">
-    <div class="modal-content">
+  <div id="memberFinalizeModal" class="modal hidden">
+    <div class="modal-content modal-main">
       <h3 data-i18n="finalizeMemberTitle">Member Finalization</h3>
       <input id="memberFinalizeUsername" type="text" readonly>
       <div class="input-group">
@@ -1095,51 +1164,33 @@
         <span id="entropyTextMember"></span>
       </div>
       <br><br>
+      <div class="input-group">
       <button type="button" class="btn secondary" id="closeMemberFinalizeButton" data-i18n="cancelButton">Cancel</button>
       <button type="button" class="btn strong" id="memberFinalizeButton" data-i18n="finalizeMember">Finalize Member</button>
+      <div id="spinner5" class="spinner invisible"></div>
+      </div>
     </div>
   </div>
-  <!-- ===================== MODAL BACKDROP ===================== -->
+
 <div id="modalBackdrop" class="modal-backdrop hidden"></div>
 
-
-<!-- ===================== EXPORT VAULT MODAL ===================== -->
-<div id="exportVaultModal" class="modal hidden">
-  <div class="modal-content">
-    <h3 data-i18n="vaultExportLabel">Export Vault</h3>
-    <label for="adminExportPassword" data-i18n="adminMaster">Admin Password</label>
-    <div class="input-group">
-      <input type="password" id="adminExportPassword" placeholder="">
-    <button id="adminExportPasswordToggle" type="button" name="adminExportPassword" class="btn secondary-outline" data-i18n="showButton">Show</button>
-    </div>
-    <div id="passwordStrengthContainerAdmin" style="margin-bottom: 2rem;">
-      <div id="passwordStrengthBarAdmin" class=""></div>
-      <span id="passwordStrengthTextAdmin"></span>
-      <span id="entropyTextAdmin"></span>
-    </div>
-    <label for="vaultExpiry" data-i18n="vaultExpiration">Vault Expiration Date (optional)</label>
-    <input type="date" id="vaultExpiry">
-    <div id="vaultExportFeedback" class="feedback"></div>
-    <br><br>
-    <button type="button" class="btn secondary" id="cancelAdminExport" data-i18n="cancelButton">Cancel</button>
-    <button type="button" class="btn strong" id="adminExportsVault" data-i18n="exportVaultButton">Export Vault</button>
-  </div>
-</div>
-<!-- ===================== PASSWORD GENERATOR MODAL ===================== -->
 <div id="adminPasswordGeneratorModal" class="modal hidden">
-  <div class="modal-content">
-
+  <div class="modal-content modal-main">
     <label for="webAddressAdmin" data-i18n="webAddress">Service</label>
     <input type="text" id="webAddressAdmin" class="form-control" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="" required>
     <label for="passwordAdmin" data-i18n="password">Master Password</label>
     <div class="input-group">
-      <input type="password" id="passwordAdmin" class="form-control" placeholder="Master Password" data-i18n-placeholder="password" required>
+      <input type="password" id="passwordAdmin" class="form-control" placeholder="Master Password" data-i18n-placeholder="secretMaster" required>
       <button id="masterPassAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="passwordAdmin" name="passwordAdmin">
-        <i data-lucide="square-asterisk" class="feedback-icon-admin" style="color: gainsboro; margin-right: 0.4rem;"></i>
+        <i data-lucide="square-asterisk" class="feedback-icon-admin"></i>
         <span class="toggle-text" data-i18n="showButton">Show</span>
       </button>
     </div>
-
+    <div id="passwordStrengthContainerAdminInput">
+      <div id="passwordStrengthBarAdminInput" class=""></div>
+      <span id="passwordStrengthTextAdminInput"></span>
+      <span id="entropyTextAdminInput"></span>
+    </div>
     <div class="toggles">
       <div class="toggle-container">
         <label for="toggle1Admin" data-i18n="uppercase">Uppercase</label>
@@ -1163,15 +1214,14 @@
       </div>
       <input type="hidden" id="saltAdmin" value="">
     </div>
-
     <div class="input-group">
       <div class="toggle-container">
-        <label for="lengthAdmin" style="margin-right: auto;" data-i18n="length">Length</label>
+        <label for="lengthAdmin" class="label-push-right" data-i18n="length">Length</label>
         <input max="999" min="1" type="number" id="lengthAdmin" class="form-control" value="43" step="1" required>
       </div>
-      <div class="toggle-container" style="margin-left: auto;">
-        <label for="iterationCountAdmin" style="margin-right: auto;">
-          <span data-i18n="security">Password Security</span>
+      <div class="toggle-container toggle-container-right">
+        <label for="iterationCountAdmin" class="label-push-right">
+          <span data-i18n="security">Variant</span>
         </label>
         <div class="input-group">
           <input maxlength="5" max="99999" min="1" type="password" inputmode="numeric" pattern="\d*" id="iterationCountAdmin" class="form-control" value="50000" step="1" required>
@@ -1179,13 +1229,14 @@
         </div>
       </div>
     </div>
-
-      <button id="collectInputAdmin" type="button" class="btn strong" style="margin-top: 1rem; font-weight: 500;" data-i18n="getPassword">GET PASSWORD</button>
-      <p id="generationStatusAdmin" style="visibility: hidden; color: #1E003B; margin-left: 1rem; margin-bottom: 2rem;">
+      <div class="input-group">
+      <button id="collectInputAdmin" type="button" class="btn strong btn-get-password" data-i18n="getPassword">GET PASSWORD</button>
+      <div id="spinner4" class="spinner btn-get-password invisible"></div>
+      </div>
+      <p id="generationStatusAdmin" class="generation-status">
         <span data-i18n="generatingLoader">Generating passwords</span>
         <span class="dot-loader"><span>.</span><span>.</span><span>.</span></span>
       </p>
-
     <div id="generatedPasswordAdmin">
       <label for="mainPasswordAdmin" data-i18n="generatedLabel">Generated Password</label>
       <label id="createdforAdmin" class="form-label"></label>
@@ -1194,36 +1245,31 @@
         <input type="password" id="mainPasswordAdmin" class="form-control input-pwd generated-password" readonly>
         <button id="mainButtonAdmin" type="button" class="btn secondary-outline" data-adminpassword-id="mainPasswordAdmin" name="mainPasswordAdmin" data-i18n="showButton">Show</button>
         <button data-password-id="mainCopyAdmin" type="button" class="btn outline-gold" name="mainPasswordAdmin" data-i18n="copyButton">Copy</button>
-        <span id="copySuccessIcon-mainCopyAdmin" class="icon" style="display: none;"></span>
-      </div>
-
-      <div id="passwordStrengthContainerAdminPlus">
-        <div id="passwordStrengthBarAdminPlus"></div>
-        <span id="passwordStrengthTextAdminPlus"></span>
-        <span id="entropyTextAdminPlus"></span>
+        <span id="copySuccessIcon-mainCopyAdmin" class="icon nodisplay">
+          <i data-lucide="copy-check" class="icon-success"></i>
+        </span>
       </div>
     </div>
-
-    <div style="margin-top: 2rem;">
+    <div class="modal-section-top-lg">
       <button id="closeAdminPasswordGenerator" type="button" class="btn secondary" data-i18n="closeButton">Close</button>
     </div>
   </div>
 </div>
-<!-- ===================== MAKE ANOTHER DEVICE TRUSTED MODAL ===================== -->
+
 <div id="qrExportModal" class="modal hidden">
-  <div class="modal-content">
+  <div class="modal-content modal-danger">
     <h2 data-i18n="trustAnother">Trust Another Device</h2>
-    <div id="qrExportContainer" style="display: flex; justify-content: center;"></div>
+    <div id="qrExportContainer"></div>
     <p data-i18n="trustAnotherText">Scan this QR code on another CarryPass device to enable 2FA access.</p>
     <button id="trustAnotherDeviceButton" type="button" class="btn outline-secondary" data-i18n="closeButton">Close</button>
-    <p id="qrTimeoutMessage" style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;"></p>
+    <p id="qrTimeoutMessage"></p>
   </div>
 </div>
-<!-- ===================== CUSTOM PASSWORD SETTINGS MODAL ===================== -->
-<div id="customPasswordSettingsModal" class="modal hidden">
-  <div class="modal-content">
 
-    <div style="margin-top: 1.5rem;">
+<div id="customPasswordSettingsModal" class="modal hidden">
+  <div class="modal-content modal-main">
+
+    <div class="modal-section-top">
       <label for="customProfileName" data-i18n="customProfileName">Custom Password Type Name</label>
       <input type="text" id="customProfileName" class="form-control" placeholder="e.g. Banking-Strict" data-i18n-placeholder="customProfileNamePlaceholder" autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off">
     </div>
@@ -1251,14 +1297,13 @@
       </div>
       <input type="hidden" id="saltAdmin" value="">
     </div>
-
     <div class="input-group">
       <div class="toggle-container">
-        <label for="lengthCustomSettings" style="margin-right: auto;" data-i18n="length">Length</label>
+        <label for="lengthCustomSettings" class="label-with-icon label-push-right" data-i18n="length">Length</label>
         <input max="999" min="1" type="number" id="lengthCustomSettings" class="form-control" value="28" step="1" required>
       </div>
-      <div class="toggle-container" style="margin-left: auto;">
-        <label for="iterationCountCustomSettings" style="margin-right: auto;">
+      <div class="toggle-container toggle-container-right">
+        <label for="iterationCountCustomSettings" class="label-push-right">
           <span data-i18n="security">Password Security</span>
         </label>
         <div class="input-group">
@@ -1267,19 +1312,17 @@
         </div>
       </div>
     </div>
-
-    <button id="saveCustomProfileBtn" class="btn strong" style="margin-top: 1rem;" data-i18n="saveCustomPwdType">Save As Custom Password Type</button>
-
-    <div style="margin-top: 2rem;">
+    <button id="saveCustomProfileBtn" class="btn primary btn-card-action" data-i18n="saveCustomPwdType">Save As Custom Password Type</button>
+    <div class="modal-section-top-lg">
       <button id="closePasswordCustomSettings" type="button" class="btn secondary" data-i18n="closeButton">Close</button>
     </div>
   </div>
 </div>
-<!-- ===================== SLIDE MENU ===================== -->
+
 <div id="slideMenu" class="slide-menu hidden">
   <div class="slide-menu-header">
     <span data-i18n="sideMenu">Menu</span>
-    <button type="button" id="closeSlideMenu" class="btn icon-only small"><i data-lucide="x"></i></button>
+    <button type="button" id="closeSlideMenu" class="btn icon-only small icon-trash"><i data-lucide="x"></i></button>
   </div>
   <div class="slide-menu-items">
     <button class="slide-menu-item" id="menuCreateCustomType" data-i18n="menuCreateCustomType">Create Custom Password Type</button>
@@ -1289,36 +1332,124 @@
     <button class="slide-menu-item" id="menuLockNow" data-i18n="menuLockNow">Lock Screen</button>
   </div>
 </div>
-<!-- ===================== PIN LOCK MODAL ===================== -->
+
+<div id="slideMenuBackdrop" class="slide-menu-backdrop hidden"></div>
+
 <div id="pinSettingsModal" class="modal hidden">
-  <div class="modal-content">
-    <h3 data-i18n="screenLockNew">Set Screen Lock PIN</h3>
+  <div class="modal-content modal-main">
+    <h3 data-i18n="screenLockNew">Set Screen Lock</h3>
+
+    <label for="setPinInput" data-i18n="screenLockPinLabel">Screen Lock Code</label>
     <div class="input-group">
       <input type="password" id="setPinInput" class="form-control" placeholder="Enter new PIN" data-i18n-placeholder="newPinEnter">
-      <button id="setPinInputBtn" type="button" class="btn secondary-outline" name="setPinInput" data-i18n="showButton">Show</button>
+      <button id="setPinInputBtn" type="button" class="btn secondary-outline" name="setPinInput" data-i18n="showButton">
+        Show
+      </button>
     </div>
-    <button id="savePinBtn" class="btn strong" data-i18n="savePinBtn">Save PIN</button>
+
+    <label for="screenLockMinutes" data-i18n="screenLockTimeLabel">
+      Screen lock after inactivity
+    </label>
+    <div class="custom-dropdown modal-dropdown">
+    <select id="screenLockMinutes" class="form-control">
+      <option value="1" data-i18n="timeout1Minute">1 minute</option>
+      <option value="5" data-i18n="timeout5Minutes">5 minutes</option>
+      <option value="10" data-i18n="timeout10Minutes">10 minutes</option>
+      <option value="15" data-i18n="timeout15Minutes">15 minutes</option>
+      <option value="30" data-i18n="timeout30Minutes">30 minutes</option>
+      <option value="60" data-i18n="timeout60Minutes">60 minutes</option>
+    </select>
+    </div>
+
+    <label for="sessionTimeoutMinutes" data-i18n="sessionTimeoutLabel">
+      Full logout after inactivity
+    </label>
+    <div class="custom-dropdown modal-dropdown">
+    <select id="sessionTimeoutMinutes" class="form-control">
+      <option value="15" data-i18n="timeout15Minutes">15 minutes</option>
+      <option value="30" data-i18n="timeout30Minutes">30 minutes</option>
+      <option value="60" data-i18n="timeout60Minutes">60 minutes</option>
+      <option value="120" data-i18n="timeout2Hours">2 hours</option>
+      <option value="240" data-i18n="timeout4Hours">4 hours</option>
+      <option value="480" data-i18n="timeout8Hours">8 hours</option>
+    </select>
+    </div>
+
+    <p class="settings-help" data-i18n="timeoutSettingsHelp">
+      Screen lock keeps your session in memory. Full logout clears the active session keys.
+    </p>
+
     <button id="closePinModal" class="btn secondary" data-i18n="cancelButton">Cancel</button>
+    <button id="savePinBtn" class="btn primary" data-i18n="savePinBtn">Save PIN</button>
   </div>
 </div>
-<!-- ===================== PASSWORD SHOW MODAL ===================== -->
+
 <div id="passwordModal" class="modal hidden">
-  <div class="modal-content">
+  <div class="modal-content modal-main">
     <h2 data-i18n="pwdPreview">Password Preview</h2>
     <textarea id="passwordModalText" class="generated-password" readonly></textarea>
     <button id="closePasswordModal" class="btn outline" data-i18n="closeButton">Close</button>
   </div>
 </div>
 
+<div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="crypto-js.min.js"></script>
-  <script src="qrcode.min.js"></script>
-  <script src="html5-qrcode.min.js"></script>
-  <script src="eff_words_real.js"></script>
-  <script src="eff_short_words.js"></script>
-  <script src="eff_memorable_words.js"></script>
-  <script src="lucide-pool.js"></script>
-  <script src="carrypass.min.js" defer></script>
+<!-- DEMO ONLY — remove this block in self-hosted deployments -->
+<div id="demo-modal" class="modal hidden">
+  <div class="modal-content modal-main">
 
+    <h2 data-i18n="demoModalTitle">How to Try the Demo</h2>
+
+    <p data-i18n="demoIntro">
+      The demo lets you explore CarryPass as the admin of a team vault. 
+      You'll see how teams, members, credentials, and assignments are managed.
+    </p>
+
+    <img src="member_finalize_qr.png" alt="Demo onboarding QR code" class="qr-image">
+
+    <h4 data-i18n="qrStep1">
+      1) Scan this Demo QR Code <span class="highlight">with CarryPass</span> 
+      to enroll this device as a trusted device.
+    </h4>
+    <p data-i18n="qrAltText">
+      On mobile, you can also long-press the image and save it, then upload 
+      it through CarryPass's QR scan dialog.
+    </p>
+
+    <h4 data-i18n="qrStep2">2) Copy and paste the Demo Admin Password:</h4>
+    <pre class="demo-password">e6FOwho3Aymbp79XEh9K1gi2PCulklRJ7NnBrnT9aHp</pre>
+
+    <h4 data-i18n="qrStep3">3) Click Access Admin Vault.</h4>
+
+    <h4 data-i18n="qrStep4">4) Paste the password and click Access Vault</h4>
+
+    <p data-i18n="qrStep5">
+      The admin panel will open. Here you can explore creating teams, 
+      managing members, adding credentials, and assigning members to teams.
+    </p>
+
+    <p data-i18n="qrStep6">
+      To try the member view instead, you can also enter through the 
+      member access screen using the same password.
+    </p>
+
+    <div class="clearcontainer"></div>
+    <button id="closeDemoModal" class="btn secondary" data-i18n="cancelButton">Close</button>
+  </div>
+</div>
+<!-- END DEMO ONLY -->
+
+<script src="lang/en.js" integrity="sha384-+ax07UIrDuQTCunokpojNw6XBIHWwHJE4AGYVvJrXwrE787/7JYmiAuM/ArMOKvs" crossorigin="anonymous"></script>
+<script src="lang/hu.js" integrity="sha384-IiRZvqSVYxpYYe/cU5N8OoHAdjEzie+tt/zb9LJzXcHFV2AlbQqFiSoo46/2Lv8K" crossorigin="anonymous"></script>
+<script src="qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
+<script src="html5-qrcode.min.js" integrity="sha384-c9d8RFSL+u3exBOJ4Yp3HUJXS4znl9f+z66d1y54ig+ea249SpqR+w1wyvXz/lk+" crossorigin="anonymous"></script>
+<script src="eff_words_real.js" integrity="sha384-bYQ4RxtnAbmicO5FMDbDZFfEVA0a8aYtZEFf09yOemjgYOrX2qwHwlaZE1wM9b7m" crossorigin="anonymous"></script>
+<script src="eff_memorable_words.js" integrity="sha384-AxVhSrsm04PFQfRDhlMQ1b0rGso/hD/uvUlMM+tdr/zsBq6qWimbR38IIUnKr2Uw" crossorigin="anonymous"></script>
+<script src="eff_short_words.js" integrity="sha384-bAsCHuOLotigJAVaBJhT76xa34E6LLS0JIi/5mSDfbmqxXepG9rpdEEUp87GEEzQ" crossorigin="anonymous"></script>
+<script src="diceware_hungarian.js" integrity="sha384-6QSeltzek4nRixj9UPSsm5yWan6GEILepWcQUgH5k8rj2XDJqDu/mXEYRSijrkHv" crossorigin="anonymous"></script>
+<script src="lucide-pool.js" integrity="sha384-61y7KTRnp6QDDqrOnaE/JhntEFBbDofgVYfBkUQme3VPgqRcVsTuZ9BayRN4uVzs" crossorigin="anonymous"></script>
+<script src="zxcvbn.js" integrity="sha384-fusiA+sr7zfg9pPJeBibshVIHURK5DevSR7JUQmmjnAStj1JWzUrISAC74Kz0DrO" crossorigin="anonymous"></script>
+<script src="purify.min.js" integrity="sha384-PNrLTuEZCIexFL3IeKVxzGY2Xzk1RCbJpcvRWVzlvadxKsNBDN4+iq94kWHgWlLZ" crossorigin="anonymous"></script>
+<script src="carrypass.js" integrity="sha384-UdkaYv/4b5cLgUii1o1tpGnQ45jlsmTqoFaz0JIj58Mc+wRyJ1MUWicTuvo9BEeB" crossorigin="anonymous" defer></script>
 </body>
 </html>

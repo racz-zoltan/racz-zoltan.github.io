@@ -1,0 +1,29 @@
+# CarryPass
+
+CarryPass is an open-source, client-side password manager and team credential-sharing tool.
+
+It is designed for privacy-first credential sharing without accounts, without a central identity provider, and without server-side access to plaintext secrets.
+
+## Key concepts
+
+- Client-side password generation
+- Team credential sharing
+- Encrypted admin, member, and team vaults
+- Offline-first Progressive Web App
+- Deterministic password generation
+- AES-GCM encrypted vaults
+- Argon2id, PBKDF2, and AES-CTR based password derivation
+- Zero-knowledge philosophy
+- Self-hostable static deployment
+
+## Main pages
+
+- Homepage: https://carrypass.net/
+- User manual: https://carrypass.net/carrypass-user-manual.html
+- Privacy policy: https://carrypass.net/carrypass-privacy-policy.html
+- Disclaimer: https://carrypass.net/carrypass-disclaimer.html
+- GitHub repository: https://github.com/racz-zoltan/racz-zoltan.github.io
+
+## Short description
+
+CarryPass helps individuals and small teams generate, store, and share credentials locally in the browser using cryptographic access control instead of server-side accounts or a central password database.
