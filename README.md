@@ -247,5 +247,5 @@ For larger architectural changes, please open an issue first to discuss.
 
 ## 📬 Contact
 
-- Email: [info.carrypass@proton.me](mailto:info.carrypass@proton.me)
+- Email: [carrypass-info@proton.me](mailto:carrypass-info@proton.me)
 - Website: [https://carrypass.net](https://carrypass.net)
